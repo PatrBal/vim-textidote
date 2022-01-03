@@ -25,20 +25,6 @@ if !has('python3')
 	finish
 endif
 
-" Get default browser
-" let g:defaultBrowser = system("defaults read ~/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure | awk -F\'\"\' \'/http;/{print window[(NR)-1]}{window[NR]=$2}\'")
-" if g:defaultBrowser =~ 'safari' || g:defaultBrowser == ''
-" 	"if Safari is the only Browser installed or if another Browser is installed and has never had a default Browser set, then by default nothing will be returned by the "defaults ..." command, and this means Safari is the default Browser
-" 	let g:defaultBrowser = 'Safari'
-" elseif g:defaultBrowser =~ 'chrome'
-" 	let g:defaultBrowser = 'Google Chrome'
-" elseif g:defaultBrowser =~ 'firefox'
-" 	let g:defaultBrowser = 'Firefox'
-" else
-" 	echom "Unknown default browser."
-" 	finish
-" endif
-
 let g:scriptPath = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/openBrowser.py'
 
 " TeXtidote spellchecking
