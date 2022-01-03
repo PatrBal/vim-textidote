@@ -42,7 +42,6 @@ import webbrowser
 url = 'file://' + vim.eval('tempNameBis')
 webbrowser.open_new_tab(url)
 EOL
-	" exe '!open -a ' . g:defaultBrowser . ' ' . tempNameBis
 	exe 'silent !sleep 8'
 	exe "silent !rm " . tempName
 	exe "silent !rm " . tempNameBis
@@ -65,7 +64,6 @@ import webbrowser
 url = 'file://' + vim.eval('tempNameBis')
 webbrowser.open_new_tab(url)
 EOL
-	" exe '!open -a ' . g:defaultBrowser . ' ' . tempNameBis
 	exe 'silent !sleep 8'
 	exe "silent !rm " . tempNameBis
 endfunction
@@ -113,7 +111,6 @@ import webbrowser
 url = 'file://' + vim.eval('tempNameBis')
 webbrowser.open_new_tab(url)
 EOL
-	" exe '!open -a ' . g:defaultBrowser . ' ' . tempNameBis
 	execute 'silent !sleep 8'
 	execute "silent !rm " . tempName
 	execute "silent !rm " . tempNameBis
