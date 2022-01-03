@@ -1,4 +1,4 @@
-" Description: Spellcheck with either Antidote.app or TeXtidote from Vim
+" Description: Grammar check with TeXtidote from Vim
 " Author: Patrick Ballard <patrick.ballard.paris@gmail.com>
 " License: MIT
 
