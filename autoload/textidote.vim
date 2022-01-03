@@ -55,11 +55,11 @@ function! textidote#NormalTeXtidote()
 	let currentDir = expand('%:p:h')
 	let tempNameBis = currentDir . "/tempfileBis.html"
 	if &spelllang == "en"
-		exe '!java -jar ' . g:antidote_textidote_application . ' --check en --firstlang fr --output html > ' . tempNameBis . ' "%:p"'
+		exe '!java -jar ' . g:textidote_application . ' --check en --firstlang fr --output html > ' . tempNameBis . ' "%:p"'
 	elseif &spelllang == "fr"
-		exe '!java -jar ' . g:antidote_textidote_application . ' --check fr --output html > ' . tempNameBis . ' "%:p"'
+		exe '!java -jar ' . g:textidote_application . ' --check fr --output html > ' . tempNameBis . ' "%:p"'
 	else
-		exe '!java -jar ' . g:antidote_textidote_application . ' --check ' . &spelllang . ' --firstlang fr --output html > ' . tempNameBis . ' "%:p"'
+		exe '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . ' --firstlang fr --output html > ' . tempNameBis . ' "%:p"'
 	endif
 	exe 'silent !sleep 1'
 	" This python script open the html report in a new tab in the default browser
