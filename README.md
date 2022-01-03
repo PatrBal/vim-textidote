@@ -44,3 +44,23 @@ See `:help license`.
 [TeXtidote]: https://sylvainhalle.github.io/textidote
 [Vim-LanguageTool]: https://github.com/dpelle/vim-LanguageTool
 
+
+## Développement
+
+Pour voir la sortie XML le LanguageTool qui sert de base au plugin vim-LanguageTool, lancer dans le terminal la commande :
+
+`java -jar /Users/patrick.ballard/Desktop/LanguageTool-5.2/languagetool-commandline.jar -c utf-8 -d WHITESPACE_RULE,EN_QUOTES -l en --api /Users/patrick.ballard/Documents/Science/Articles/SteadyFriction-HalfSpace/NewIntroRef.tex 2> LT-report.txt`
+
+La sortie texte de TeXtidote s'obtient par :
+
+`java -jar ~/.vim/textidote.jar --check en --output plain /Users/patrick.ballard/Documents/Science/Articles/SteadyFriction-HalfSpace/NewIntroRef.tex > ~/Desktop/TeX-report.txt`
+
+C'est du RTF. On peut le nettoyer en faisant :
+
+`sed -r "s/\x1B\[(([0-9]{1,2})?(;)?([0-9]{1,2})?)?[m,K,H,f,J]//g" TeX-report.txt > pure-TeX-report.txt`
+
+Il s'agit donc d'obtenir toutes les informations que vim-LanguageTool extrait de la sortie XML à partir de la sortie texte nettoyée de TeXtidote.
+
+
+
+
