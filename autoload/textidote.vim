@@ -35,8 +35,15 @@ function! textidote#CommandTeXtidote(line_start, line_end)
 	call writefile(lines, tempName, 'b')
 	execute '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . g:textidote_first_language_option . ' --output html > ' . tempNameBis . ' ' . tempName
 	exe '!sleep 1'
-	exe '!open -a ' . g:defaultBrowser . ' ' . tempNameBis
-	exe '!sleep 1'
+	" This python script open the html report in a new tab in the default browser
+	python3 << EOL
+import vim
+import webbrowser
+url = 'file://' + vim.eval('tempNameBis')
+webbrowser.open_new_tab(url)
+EOL
+	" exe '!open -a ' . g:defaultBrowser . ' ' . tempNameBis
+	exe '!sleep 8'
 	exe "silent !rm " . tempName
 	exe "silent !rm " . tempNameBis
 endfunction
@@ -59,7 +66,7 @@ url = 'file://' + vim.eval('tempNameBis')
 webbrowser.open_new_tab(url)
 EOL
 	" exe '!open -a ' . g:defaultBrowser . ' ' . tempNameBis
-	exe 'silent !sleep 10'
+	exe 'silent !sleep 8'
 	exe "silent !rm " . tempNameBis
 endfunction
 
@@ -107,7 +114,7 @@ url = 'file://' + vim.eval('tempNameBis')
 webbrowser.open_new_tab(url)
 EOL
 	" exe '!open -a ' . g:defaultBrowser . ' ' . tempNameBis
-	execute 'silent !sleep 10'
+	execute 'silent !sleep 8'
 	execute "silent !rm " . tempName
 	execute "silent !rm " . tempNameBis
 endfunction
