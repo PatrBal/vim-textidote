@@ -34,11 +34,11 @@ function! textidote#CommandTeXtidote(line_start, line_end)
 	" writing selection in temporary file
 	call writefile(lines, tempName, 'b')
 	if &spelllang == "en"
-		exe '!java -jar ' . g:antidote_textidote_application . ' --check en --firstlang fr --output html > ' . tempNameBis . ' ' . tempName
+		exe '!java -jar ' . g:textidote_application . ' --check en --firstlang fr --output html > ' . tempNameBis . ' ' . tempName
 	elseif &spelllang == "fr"
-		exe '!java -jar ' . g:antidote_textidote_application . ' --check fr --output html > ' . tempNameBis . ' ' . tempName
+		exe '!java -jar ' . g:textidote_application . ' --check fr --output html > ' . tempNameBis . ' ' . tempName
 	else
-		exe '!java -jar ' . g:antidote_textidote_application . ' --check ' . &spelllang . ' --firstlang fr --output html > ' . tempNameBis . ' ' . tempName
+		exe '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . ' --firstlang fr --output html > ' . tempNameBis . ' ' . tempName
 	endif
 	exe '!sleep 1'
 	exe '!open -a ' . g:defaultBrowser . ' ' . tempNameBis
@@ -108,7 +108,7 @@ function! textidote#VisualTeXtidote()
 	let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
 	let lines[0] = lines[0][column_start - 1:]
 	call writefile(lines, tempName, 'b')
-	exe '!java -jar ' . g:antidote_textidote_application . ' --check ' . &spelllang . g:antidote_textidote_first_language_option . ' --output html > ' . tempNameBis . ' ' . tempName
+	exe '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . g:textidote_first_language_option . ' --output html > ' . tempNameBis . ' ' . tempName
 	exe 'silent !sleep 1'
 	" This python script open the html report in a new tab in the default browser
 	python3 << EOL
