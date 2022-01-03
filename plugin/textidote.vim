@@ -4,7 +4,7 @@
 
 
 
-if !exists('g:antidote_textidote_first_language')
+if !exists('g:textidote_first_language')
 	let g:textidote_first_language = ''
 endif
 
