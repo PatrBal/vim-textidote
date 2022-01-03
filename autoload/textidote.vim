@@ -33,13 +33,7 @@ function! textidote#CommandTeXtidote(line_start, line_end)
 	endif
 	" writing selection in temporary file
 	call writefile(lines, tempName, 'b')
-	if &spelllang == "en"
-		exe '!java -jar ' . g:textidote_application . ' --check en --firstlang fr --output html > ' . tempNameBis . ' "%:p"'
-	elseif &spelllang == "fr"
-		exe '!java -jar ' . g:textidote_application . ' --check fr --output html > ' . tempNameBis . ' "%:p"'
-	else
-		exe '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . ' --firstlang fr --output html > ' . tempNameBis . ' "%:p"'
-	endif
+	execute '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . g:textidote_first_language_option . ' --output html > ' . tempNameBis . ' ' . tempName
 	exe '!sleep 1'
 	exe '!open -a ' . g:defaultBrowser . ' ' . tempNameBis
 	exe '!sleep 1'
