@@ -9,9 +9,9 @@ if !exists('g:textidote_first_language')
 endif
 
 if g:textidote_first_language == ''
-	let g:antidote_textidote_first_language_option = ''
-elseif g:antidote_textidote_first_language == 'de' || g:antidote_textidote_first_language == 'de_AT' || g:antidote_textidote_first_language == 'de_CH' || g:antidote_textidote_first_language == 'en' || g:antidote_textidote_first_language == 'de_UK' || g:antidote_textidote_first_language == 'de_CA' || g:antidote_textidote_first_language == 'es' || g:antidote_textidote_first_language == 'fr' || g:antidote_textidote_first_language == 'nl' || g:antidote_textidote_first_language == 'pt' || g:antidote_textidote_first_language == 'pl'
-	let g:antidote_textidote_first_language_option = ' --firstlang ' . g:antidote_textidote_first_language
+	let g:textidote_first_language_option = ''
+elseif g:textidote_first_language == 'de' || g:textidote_first_language == 'de_AT' || g:textidote_first_language == 'de_CH' || g:textidote_first_language == 'en' || g:textidote_first_language == 'de_UK' || g:textidote_first_language == 'de_CA' || g:textidote_first_language == 'es' || g:textidote_first_language == 'fr' || g:textidote_first_language == 'nl' || g:textidote_first_language == 'pt' || g:textidote_first_language == 'pl'
+	let g:textidote_first_language_option = ' --firstlang ' . g:textidote_first_language
 else
 	echom 'Unknown first language!'
 	finish
