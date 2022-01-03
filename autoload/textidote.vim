@@ -54,7 +54,7 @@ function! textidote#NormalTeXtidote()
 	endif
 	let currentDir = expand('%:p:h')
 	let tempNameBis = currentDir . "/tempfileBis.html"
-	execute '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . g:textidote_first_language_option . ' --output html > ' . tempNameBis . ' ' . tempName
+	execute '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . g:textidote_first_language_option . ' --output html > ' . tempNameBis . ' "%:p"'
 	execute 'silent !sleep 1'
 	exe 'silent !sleep 1'
 	" This python script open the html report in a new tab in the default browser
@@ -103,7 +103,7 @@ function! textidote#VisualTeXtidote()
 	let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
 	let lines[0] = lines[0][column_start - 1:]
 	call writefile(lines, tempName, 'b')
-	execute '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . g:textidote_first_language_option . ' --output html > ' . tempNameBis . ' ' . ' "%:p"'
+	execute '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . g:textidote_first_language_option . ' --output html > ' . tempNameBis . ' ' . tempName
 	execute 'silent !sleep 1'
 	" This python script open the html report in a new tab in the default browser
 	python3 << EOL
