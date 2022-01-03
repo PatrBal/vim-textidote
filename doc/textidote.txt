@@ -1,0 +1,126 @@
+*antidote.txt*        Spellcheck with Antidote.app or TeXtidote from inside Vim
+
+
+==============================================================================
+CONTENTS                                                    *AntidoteContents*
+
+    1. Intro ............................................. |AntidoteIntro|
+    2. Configuration ..................................... |AntidoteConfig|
+    3. Interfacing Vim with Antidote ..................... |AntidoteAn|
+       3.1. Spellchecking ................................ |AntidoteSpell|
+       3.2. Calling definitions and conjugations ......... |AntidoteDef|
+    4. Spellchecking with TeXtidote ...................... |AntidoteTeX|
+    5. Switching language ................................ |AntidoteSwitch|
+    6. License ........................................... |AntidoteLicense|
+    7. Changelog ......................................... |AntidoteChangelog|
+    8. Credits ........................................... |AntidoteCredits|
+
+
+==============================================================================
+1. Intro                                                       *AntidoteIntro*
+
+`Antidote` is a very complete proprietary dictionary application maintained and 
+distributed by the canadian company Druide. At the present time, it is limited 
+to the english and french languages only.
+
+`TeXtidote` is an open source project. Its aim is to provide an onlive 
+spelling and grammar checker for LaTeX documents, but also for other formats, 
+like Markdown. It is based on the Language Tool library, which performs a 
+verification of both spelling and grammar in a dozen languages. 
+
+This plugin provides commands and mappings to interface Vim with both of them.
+In particular, it makes it easy to spellcheck a part of a file only. With 
+`Antidote`, it takes care to reimport in Vim all the corrections that have been
+validated in Antidote. With `TeXtidote`, all the suggested corrections appear 
+in the default browser.
+
+==============================================================================
+2. Configuration
+
+Install `Antidote` and/or `TeXtidote`.
+* https://www.antidote.info/en
+* https://sylvainhalle.github.io/textidote
+
+*g:antidote_antidote_application*
+  Path to the application `Antidote`
+  Default value: `'/Applications/Antidote/Antidote 11.app'`
+
+*g:antidote_textidote_application*
+  Path to `textidote.jar`
+  Default value: `'~/.vim/textidote.jar'`
+
+*g:antidote_textidote_first_language*
+  Define your first language to check false friends.
+  Must be either empty or one of the following: 'de', 'de_AT', 'de_CH', 
+  'en', 'en_CA', 'en_UK', 'es', 'fr' ,'nl', 'pt', 'pl'.
+  Default value: empty
+
+==============================================================================
+3. Interfacing Vim with Antidote                                  *AntidoteAn*
+
+------------------------------------------------------------------------------
+3.1. Spellchecking                                             *AntidoteSpell*
+
+The following command:
+`:[range]Antidote`
+run spellcheking of the specified range of the file in Antidote. Validation of
+the suggested corrections is operated within `Antidote`. When coming back to 
+Vim the option of either importing or discarding the validated corrections is
+proposed. If `[range]` is omitted, then the spellcheck is run on the whole 
+file.
+
+One can also use the mapping:
+`<Leader>an`
+in either visual or normal mode. In visual mode, the spellcheck is run on the
+selection and in normal mode it is run on the whole file.
+
+------------------------------------------------------------------------------
+3.2. Calling definitions                                         *AntidoteDef*
+
+The plugin provides a mapping for calling easily the definition of the current
+word under the cursor.
+
+`C-@` calls the definition in Antidote of the current word in normal and 
+visual modes.
+
+==============================================================================
+4. Spellchecking with TeXtidote                                  *AntidoteTeX*
+
+The following command:
+`:[range]TeXtidote`
+run spellcheking of the specified range of the file in `TeXtidote`. Suggested
+corrections are displayed in the default browser. If `[range]` is omitted, 
+then the spellcheck is run on the whole file.
+
+One can also use the mapping:
+`<Leader>te`
+in either visual or normal mode. In visual mode, the spellcheck is run on the
+selection and in normal mode it is run on the whole file.
+
+==============================================================================
+5. Switching language                                         *AntidoteSwitch*
+
+In `Antidote`, detection of language (english or french only) is performed 
+automatically.
+
+In `TeXtidote`, the language is determined by the Vim setting |spelllang|.
+To display the current value, run:
+`:set spelllang?`
+To make a specific choice:
+`:set spelllang=en`
+`:set spelllang=en_us`
+`:set spelllang=en_gb`
+`:set spelllang=fr`
+
+==============================================================================
+6. License                                                   *AntidoteLicense*
+
+==============================================================================
+7. Changelog                                               *AntidoteChangelog*
+
+26/12/2021 Add this documentation
+20/12/2021 Add support for TeXtidote
+14/08/2018 Initial version
+
+==============================================================================
+8. Credits                                                   *AntidoteCredits*
