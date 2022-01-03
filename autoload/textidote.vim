@@ -34,7 +34,7 @@ function! textidote#CommandTeXtidote(line_start, line_end)
 	" writing selection in temporary file
 	call writefile(lines, tempName, 'b')
 	execute '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . g:textidote_first_language_option . ' --output html > ' . tempNameBis . ' ' . tempName
-	exe '!sleep 1'
+	exe 'silent !sleep 1'
 	" This python script open the html report in a new tab in the default browser
 	python3 << EOL
 import vim
@@ -43,7 +43,7 @@ url = 'file://' + vim.eval('tempNameBis')
 webbrowser.open_new_tab(url)
 EOL
 	" exe '!open -a ' . g:defaultBrowser . ' ' . tempNameBis
-	exe '!sleep 8'
+	exe 'silent !sleep 8'
 	exe "silent !rm " . tempName
 	exe "silent !rm " . tempNameBis
 endfunction
