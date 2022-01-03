@@ -108,8 +108,8 @@ function! textidote#VisualTeXtidote()
 	let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
 	let lines[0] = lines[0][column_start - 1:]
 	call writefile(lines, tempName, 'b')
-	exe '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . g:textidote_first_language_option . ' --output html > ' . tempNameBis . ' ' . tempName
-	exe 'silent !sleep 1'
+	execute '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . g:textidote_first_language_option . ' --output html > ' . tempNameBis . ' ' . tempName
+	execute 'silent !sleep 1'
 	" This python script open the html report in a new tab in the default browser
 	python3 << EOL
 import vim
@@ -118,7 +118,7 @@ url = 'file://' + vim.eval('tempNameBis')
 webbrowser.open_new_tab(url)
 EOL
 	" exe '!open -a ' . g:defaultBrowser . ' ' . tempNameBis
-	exe 'silent !sleep 10'
-	exe "silent !rm " . tempName
-	exe "silent !rm " . tempNameBis
+	execute 'silent !sleep 10'
+	execute "silent !rm " . tempName
+	execute "silent !rm " . tempNameBis
 endfunction
