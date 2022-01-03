@@ -3,6 +3,9 @@
 " License: MIT
 
 
+if !exists('g:textidote_application')
+	let g:textidote_application = '~/.vim/textidote.jar'
+endif
 
 if !exists('g:textidote_first_language')
 	let g:textidote_first_language = ''
