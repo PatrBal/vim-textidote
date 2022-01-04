@@ -59,7 +59,29 @@ C'est du RTF. On peut le nettoyer en faisant :
 
 `sed -r "s/\x1B\[(([0-9]{1,2})?(;)?([0-9]{1,2})?)?[m,K,H,f,J]//g" TeX-report.txt > pure-TeX-report.txt`
 
-Il s'agit donc d'obtenir toutes les informations que vim-LanguageTool extrait de la sortie XML à partir de la sortie texte nettoyée de TeXtidote.
+Il s'agit donc d'obtenir toutes les informations que vim-LanguageTool extrait de la sortie XML à partir de la sortie texte nettoyée de TeXtidote.  Le plus simple semble de reconstituer le format du fichier XML utilisé par 
+vim-LanguageTool.
+
+Voici un one-liner :
+
+`cat pure-TeX-report.txt | sed -E 's/^( *)(\^+)$/\1,\2,trucdeouf/' | awk -F"," '{ if ($3=="trucdeouf")  print "contextoffset=\""length($1)"\" errorlength=\""length($2)"\"/>"; else print $0 }' | sed -E 's/\* L([0-9]*)C([0-9]*)-L([0-9]*)C([0-9]*)/<error fromy="\1" fromx="\2" toy="\3" tox="\4"/'`
+
+qui transforme
+
+```
+* L77C70-L77C79 Do not use 'in [X]': the syntax of a sentence should not be
+  changed by the removal of a citation. [sh:c:noin]
+  lem was first proved in \cite{Jarusek} (see also \
+                       ^^^^^^^^^^
+```
+en
+```
+<error fromy="77" fromx="70" toy="77" tox="79" Do not use 'in [X]': the syntax of a sentence should not be
+  changed by the removal of a citation. [sh:c:noin]
+  lem was first proved in \cite{Jarusek} (see also \
+contextoffset="23" errorlength="10"/>
+```
+
 
 
 
