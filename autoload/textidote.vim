@@ -202,10 +202,10 @@ function textidote#Check(line1, line2) "{{{1
   let l:content = readfile(l:tmpfilename)
   if match(readfile(l:tmpfilename) , "begin{document}")
 	  let l:option = ' --check '
-	  " echom 'no --read-all'
+	  echom 'no --read-all'
   else
 	  let l:option = ' --read-all --check '
-	  " echom '--read-all'
+	  echom '--read-all'
   endif 
 
   let l:textidote_cmd = exists("g:textidote_cmd")
