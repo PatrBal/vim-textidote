@@ -213,7 +213,7 @@ function textidote#Check(line1, line2) "{{{1
   silent execute '%!' . l:textidote_cmd_txt
 
   if v:shell_error
-    echoerr 'Command [' . l:textidote_cmd . '] failed with error: '
+    echoerr 'Command [' . l:textidote_cmd_txt . '] failed with error: '
     \      . v:shell_error
     if filereadable(l:tmperror)
       echoerr string(readfile(l:tmperror))
