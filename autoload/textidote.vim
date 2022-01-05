@@ -210,9 +210,9 @@ function textidote#Check(line1, line2) "{{{1
   \ : 'java -jar ' . s:textidote_jar
 
   let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
-  silent execute '%!timeout 300s ' . l:textidote_cmd_txt
+  silent execute '%!' . l:textidote_cmd_txt
 
-  if v:shell_error
+  if v:shell_error 
     echoerr 'Command [' . l:textidote_cmd_txt . '] failed with error: '
     \      . v:shell_error
     if filereadable(l:tmperror)
@@ -373,7 +373,7 @@ function textidote#Check(line1, line2) "{{{1
 	let currentDir = expand('%:p:h')
 	let l:tmphtml = currentDir . "/tmpfile.html"
     let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
-	silent execute '!timeout 300s ' . l:textidote_cmd_html
+	silent execute '!' . l:textidote_cmd_html
 
 	if v:shell_error
       echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
