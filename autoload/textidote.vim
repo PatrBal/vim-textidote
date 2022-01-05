@@ -219,7 +219,7 @@ function textidote#Check(line1, line2) "{{{1
       echoerr string(readfile(l:tmperror))
     endif
     call delete(l:tmperror)
-    call textidoteClear()
+    call textidote#Clear()
     return -1
   endif
 
