@@ -151,22 +151,22 @@ function s:LanguageToolSetUp() "{{{1
   endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  let s:languagetool_jar = exists("g:languagetool_jar")
-  \ ? g:languagetool_jar
-  \ : $HOME . '/languagetool/languagetool-commandline.jar'
+  " let s:languagetool_jar = exists("g:languagetool_jar")
+  " \ ? g:languagetool_jar
+  " \ : $HOME . '/languagetool/languagetool-commandline.jar'
 
-  if !exists("g:languagetool_cmd") && !filereadable(s:languagetool_jar)
-    " Hmmm, can't find the jar file.  Try again with expand() in case user
-    " set it up as: let g:languagetool_jar = '$HOME/languagetool-commandline.jar'
-    let l:languagetool_jar = expand(s:languagetool_jar)
-    if !filereadable(expand(l:languagetool_jar))
-      echomsg "LanguageTool cannot be found at: " . s:languagetool_jar
-      echomsg "You need to install LanguageTool and/or set up g:languagetool_jar"
-      echomsg "to indicate the location of the languagetool-commandline.jar file."
-      return -1
-    endif
-    let s:languagetool_jar = l:languagetool_jar
-  endif
+  " if !exists("g:languagetool_cmd") && !filereadable(s:languagetool_jar)
+  "   " Hmmm, can't find the jar file.  Try again with expand() in case user
+  "   " set it up as: let g:languagetool_jar = '$HOME/languagetool-commandline.jar'
+  "   let l:languagetool_jar = expand(s:languagetool_jar)
+  "   if !filereadable(expand(l:languagetool_jar))
+  "     echomsg "LanguageTool cannot be found at: " . s:languagetool_jar
+  "     echomsg "You need to install LanguageTool and/or set up g:languagetool_jar"
+  "     echomsg "to indicate the location of the languagetool-commandline.jar file."
+  "     return -1
+  "   endif
+  "   let s:languagetool_jar = l:languagetool_jar
+  " endif
 
   let s:textidote_jar = exists("g:textidote_jar")
   \ ? g:textidote_jar
