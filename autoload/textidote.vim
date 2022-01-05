@@ -319,11 +319,11 @@ function textidote#Check(line1, line2) "{{{1
     call add(s:errors, l:error)
   endwhile
 
-  if s:ltextidote_win_height >= 0
+  if s:textidote_win_height >= 0
     " Reformat the output of LanguageTool (XML is not human friendly) and
     " set up syntax highlighting in the buffer which shows all errors.
     %d
-    call append(0, '# ' . l:ltextidote_cmd)
+    call append(0, '# ' . l:textidote_cmd)
     set bt=nofile
     setlocal nospell
     syn clear
@@ -369,16 +369,16 @@ function textidote#Check(line1, line2) "{{{1
       call append('$', '')
       let l:i += 1
     endfor
-    exe "norm! z" . s:languagetool_win_height . "\<CR>"
+    exe "norm! z" . s:textidote_win_height . "\<CR>"
     0
     map <silent> <buffer> <CR> :call <sid>JumpToCurrentError()<CR>
     redraw
     echon 'Press <Enter> on error in scratch buffer to jump its location'
     exe "norm! \<C-W>\<C-P>"
   else
-    " Negative s:languagetool_win_height -> no scratch window.
+    " Negative s:textidote_win_height -> no scratch window.
     bd!
-    unlet! s:languagetool_error_buffer
+    unlet! s:textidote_error_buffer
   endif
 
   " Also highlight errors in original buffer and populate location list.
