@@ -191,20 +191,20 @@ endfunction
 " a:line1 and a:line2 parameters are the first and last line number of
 " the range of line to check.
 " Returns 0 if success, < 0 in case of error.
-function languagetool#Check(line1, line2) "{{{1
+function textidote#Check(line1, line2) "{{{1
   if s:LanguageToolSetUp() < 0
     return -1
   endif
-  call languagetool#Clear()
+  call textidote#Clear()
 
   " Using window ID is more reliable than window number.
   " But win_getid() does not exist in old version of Vim.
-  let s:languagetool_text_winid = exists('*win_getid')
+  let s:textidote_text_winid = exists('*win_getid')
   \                             ? win_getid() : winnr()
   sil %y
   botright new
   set modifiable
-  let s:languagetool_error_buffer = bufnr('%')
+  let s:textidote_error_buffer = bufnr('%')
   sil put!
 
   " LanguageTool somehow gives incorrect line/column numbers when
@@ -216,9 +216,9 @@ function languagetool#Check(line1, line2) "{{{1
   let l:range = a:line1 . ',' . a:line2
   silent exe l:range . 'w!' . l:tmpfilename
 
-  let l:languagetool_cmd = exists("g:languagetool_cmd")
-  \ ? g:languagetool_cmd
-  \ : 'java -jar ' . s:languagetool_jar
+  let l:textidote_cmd = exists("g:textidote_cmd")
+  \ ? g:textidote_cmd
+  \ : 'java -jar ' . s:textidote_jar
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " let l:languagetool_cmd = l:languagetool_cmd
@@ -234,7 +234,7 @@ function languagetool#Check(line1, line2) "{{{1
   " sil exe '%!' . l:languagetool_cmd
   " call delete(l:tmpfilename)
 
-  let l:textidote_cmd = l:textidote_cmd . ' --check ' . s:languagetool_lang . g:textidote_first_language_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
+  let l:textidote_cmd = l:textidote_cmd . ' --check ' . s:textidote_lang . g:textidote_first_language_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
   silent execute '%!' . l:textidote_cmd
   call delete(l:tmpfilename)
 
@@ -273,7 +273,7 @@ function languagetool#Check(line1, line2) "{{{1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
   if v:shell_error
-    echoerr 'Command [' . l:languagetool_cmd . '] failed with error: '
+    echoerr 'Command [' . l:textidote_cmd . '] failed with error: '
     \      . v:shell_error
     if filereadable(l:tmperror)
       echoerr string(readfile(l:tmperror))
