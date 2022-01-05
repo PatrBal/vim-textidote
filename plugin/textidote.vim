@@ -25,6 +25,10 @@ if &cp || exists("g:loaded_textidote")
 endif
 let g:loaded_textidote = "1"
 
+if !exists('g:textidote_indicator')
+	let g:textidote_indicator = 0
+endif
+
 if !exists('g:textidote_html_report')
 	let g:textidote_html_report = 1
 endif
@@ -72,9 +76,8 @@ if has("gui_running") && has("menu") && &go =~# 'm'
 endif
 
 " Defines commands {{{1
-com! -nargs=0          TeXtidoteClear :call textidote#Clear()
-com! -nargs=0 -range=% TeXtidoteCheck :call textidote#Check(<line1>,<line2>)
-" vim: fdm=marker
+command! -nargs=0          TeXtidoteClear :call textidote#Clear()
+command! -nargs=0 -range=% TeXtidoteCheck :call textidote#Check(<line1>,<line2>)
 
 
 
