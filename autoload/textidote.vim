@@ -393,7 +393,7 @@ print(url)
 webbrowser.open_new_tab(url)
 EOL
 	exe 'silent !sleep 8'
-    call delete(l:tmphtml)
+    " call delete(l:tmphtml)
   endif
 
   call delete(l:tmperror)
