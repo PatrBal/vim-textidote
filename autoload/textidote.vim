@@ -346,6 +346,8 @@ function textidote#Check(line1, line2) "{{{1
     \ . l:error['ruleId'] . ' ' . l:error['msg']
   endfor
 
+  echon 'Press <Enter> on error in scratch buffer to jump its location'
+  
   " Handle the optional additional html report.
   if g:textidote_html_report == 1
     let l:tmphtml = tempname()
