@@ -271,7 +271,7 @@ function textidote#Check(line1, line2) "{{{1
   silent %substitute/\m\C. Suggestions: \[\([^]]*\)\]/" replacements="\1/
   silent %substitute/\m\C ([0-9]*) \[[^:]*:[^:]*:\([^]]*\)\]/" ruleId="\1"/
 
-  silent saveas /Users/patrick.ballard/Desktop/output.txt
+  silent %!cat
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
   if v:shell_error
