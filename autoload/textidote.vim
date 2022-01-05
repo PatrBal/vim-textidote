@@ -293,16 +293,10 @@ function textidote#Check(line1, line2) "{{{1
 
     let l:i = 1
     for l:error in s:errors
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-      " call append('$', 'Error:      '
-      " \ . l:i . '/' . len(s:errors)
-      " \ . ' '  . l:error['ruleId'] . ((len(l:error['subId']) ==  0) ? '' : ':') . l:error['subId']
-      " \ . ' @ ' . l:error['fromy'] . 'L ' . l:error['fromx'] . 'C')
       call append('$', 'Error:      '
       \ . l:i . '/' . len(s:errors)
       \ . ' '  . l:error['ruleId']
       \ . ' @ ' . l:error['fromy'] . 'L ' . l:error['fromx'] . 'C')
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
       call append('$', 'Message:    '     . l:error['msg'])
       call append('$', 'Context:    ' . l:error['context'])
       let l:re =
@@ -317,11 +311,6 @@ function textidote#Check(line1, line2) "{{{1
       if !empty(l:error['replacements'])
         call append('$', 'Correction: ' . l:error['replacements'])
       endif
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-      " if !empty(l:error['url'])
-      "   call append('$', 'URL:        ' . l:error['url'])
-      " endif
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
       call append('$', '')
       let l:i += 1
     endfor
