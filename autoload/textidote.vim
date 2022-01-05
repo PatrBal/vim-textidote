@@ -404,6 +404,6 @@ function textidote#Toggle(line1, line2) "{{{1
   if g:textidote_indicator
 	call textidote#Clear()
   else
-	call TeXtidoteCheck(a:line1 , a:line2)
+	call textidote#Check(a:line1 , a:line2)
   endif
 endfunction
