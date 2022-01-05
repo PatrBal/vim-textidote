@@ -80,5 +80,3 @@ command! -nargs=0          TeXtidoteClear :call textidote#Clear()
 command! -nargs=0 -range=% TeXtidoteCheck :call textidote#Check(<line1>,<line2>)
 command! -nargs=0 -range=% TeXtidoteToggle :call textidote#Toggle(<line1>,<line2>)
 
-" TeXtidote spellchecking
-
