@@ -256,7 +256,6 @@ function textidote#Check(line1, line2) "{{{1
     call textidoteClear()
     return -1
   endif
-  call delete(l:tmperror)
 
   " Loop on all errors in XML output of LanguageTool and
   " collect information about all errors in list s:errors
@@ -369,9 +368,23 @@ function textidote#Check(line1, line2) "{{{1
 
   " Handle the optional additional html report.
   if g:textidote_html_report == 1
+    let l:tmphtml = tempname()
+    let l:textidote_cmd = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml .' 2> ' . l:tmperror
+
+	if v:shell_error
+    echoerr 'Command [' . l:textidote_cmd . '] failed with error: '
+    \      . v:shell_error
+    if filereadable(l:tmperror)
+      echoerr string(readfile(l:tmperror))
+    endif
+    call delete(l:tmperror)
+    call textidoteClear()
+    return -1
+  endif
 
   endif
 
+  call delete(l:tmperror)
   call delete(l:tmpfilename)
   return 0
 endfunction
