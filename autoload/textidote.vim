@@ -402,26 +402,26 @@ endfunction
 
 " This function clears syntax highlighting created by LanguageTool plugin
 " and removes the scratch window containing grammar errors.
-function languagetool#Clear() "{{{1
-  if exists('s:languagetool_error_buffer')
-    if bufexists(s:languagetool_error_buffer)
-      sil! exe "bd! " . s:languagetool_error_buffer
+function textidote#Clear() "{{{1
+  if exists('s:textidote_error_buffer')
+    if bufexists(s:textidote_error_buffer)
+      sil! exe "bd! " . s:textidote_error_buffer
     endif
   endif
-  if exists('s:languagetool_text_winid')
+  if exists('s:textidote_text_winid')
     let l:win = winnr()
     " Using window ID is more reliable than window number.
     " But win_getid() does not exist in old version of Vim.
     if exists('*win_gotoid')
-      call win_gotoid(s:languagetool_text_winid)
+      call win_gotoid(s:textidote_text_winid)
     else
-      exe s:languagetool_text_winid . ' wincmd w'
+      exe s:textidote_text_winid . ' wincmd w'
     endif
     call setmatches(filter(getmatches(), 'v:val["group"] !~# "LanguageTool.*Error"'))
     lexpr ''
     lclose
     exe l:win . ' wincmd w'
   endif
-  unlet! s:languagetool_error_buffer
-  unlet! s:languagetool_text_winid
+  unlet! s:textidote_error_buffer
+  unlet! s:textidote_text_winid
 endfunction
