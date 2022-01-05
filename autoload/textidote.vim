@@ -79,8 +79,8 @@ endfunction
 
 " Set up configuration.
 " Returns 0 if success, < 0 in case of error.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function s:TeXtidoteSetUp() "{{{1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " let s:languagetool_disable_rules = exists("g:languagetool_disable_rules")
   " \ ? g:languagetool_disable_rules
   " \ : 'WHITESPACE_RULE,EN_QUOTES'
@@ -93,6 +93,7 @@ function s:TeXtidoteSetUp() "{{{1
   " let s:languagetool_enable_categories = exists("g:languagetool_enable_categories")
   " \ ? g:languagetool_enable_categories
   " \ : ''
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   let s:textidote_win_height = exists("g:textidote_win_height")
   \ ? g:textidote_win_height
   \ : 14
@@ -134,7 +135,6 @@ function s:TeXtidoteSetUp() "{{{1
   endif
   return 0
 endfunction
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Jump to a grammar mistake (called when pressing <Enter>
 " on a particular error in scratch buffer).
