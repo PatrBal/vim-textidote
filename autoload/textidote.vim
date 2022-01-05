@@ -200,7 +200,6 @@ function textidote#Check(line1, line2) "{{{1
 
   " Check if 'begin{document}' is in file, and otherwise set '--read-all' option
   let l:content = readfile(l:tmpfilename)
-  echom l:content
   if l:condition_option
 	  let l:option = ' --check '
 	  " echom 'no --read-all'
