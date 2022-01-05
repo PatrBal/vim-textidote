@@ -371,7 +371,7 @@ function textidote#Check(line1, line2) "{{{1
   if g:textidote_html_report == 1
     let l:tmphtml = tempname()
 	let l:tmphtml = l:tmphtml . '.html'
-    let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
+    let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
 	silent execute '!' . l:textidote_cmd_html
 
 	if v:shell_error && v:shell_error != 102
