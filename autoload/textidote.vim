@@ -369,6 +369,7 @@ function textidote#Check(line1, line2) "{{{1
   " Handle the optional additional html report.
   if g:textidote_html_report == 1
     let l:tmphtml = tempname()
+	let l:tmphtml = l:tmphtml . '.html'
     let l:textidote_cmd = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml .' 2> ' . l:tmperror
 
 	if v:shell_error
