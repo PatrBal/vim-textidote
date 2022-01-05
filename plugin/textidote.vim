@@ -82,7 +82,7 @@ if !has('python3')
 endif
 
 " TeXtidote spellchecking
-" vnoremap <silent> <Leader>te :<C-U>call textidote#VisualTeXtidote()<CR>
-" nnoremap <silent> <Leader>te :call textidote#NormalTeXtidote()<CR>
+vnoremap <silent> <Leader>te :<C-U>call textidote#VisualTeXtidote()<CR>
+nnoremap <silent> <Leader>te :call textidote#NormalTeXtidote()<CR>
 command -range=% TeXtidote call textidote#CommandTeXtidote(<line1>,<line2>)
 
