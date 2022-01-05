@@ -273,17 +273,8 @@ function textidote#Check(line1, line2) "{{{1
       let l:error[l:k] = s:ParseKeyValue(l:k, l:l)
     endfor
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " Make line/column number start at 1 rather than 0.
-    " Make also line number absolute as in buffer.
-    " let l:error['fromy'] += a:line1
-    " let l:error['fromx'] += 1
-    " let l:error['toy']   += a:line1
-    " let l:error['tox']   += 1
-
     let l:error['fromy'] += a:line1 - 1
     let l:error['toy']   += a:line1 - 1
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     call add(s:errors, l:error)
   endwhile
