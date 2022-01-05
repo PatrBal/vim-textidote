@@ -40,7 +40,7 @@ endfunction
 " Return a regular expression used to highlight a grammatical error
 " at line a:line in text.  The error starts at character a:start in
 " context a:context and its length in context is a:len.
-function s:LanguageToolHighlightRegex(line, context, start, len)  "{{{1
+function s:TeXtidoteHighlightRegex(line, context, start, len)  "{{{1
   let l:start_idx     = byteidx(a:context, a:start)
   let l:end_idx       = byteidx(a:context, a:start + a:len) - 1
   let l:start_ctx_idx = byteidx(a:context, a:start + a:len)
@@ -80,43 +80,43 @@ endfunction
 
 " Set up configuration.
 " Returns 0 if success, < 0 in case of error.
-function s:LanguageToolSetUp() "{{{1
-  let s:languagetool_disable_rules = exists("g:languagetool_disable_rules")
-  \ ? g:languagetool_disable_rules
-  \ : 'WHITESPACE_RULE,EN_QUOTES'
-  let s:languagetool_enable_rules = exists("g:languagetool_enable_rules")
-  \ ? g:languagetool_enable_rules
-  \ : ''
-  let s:languagetool_disable_categories = exists("g:languagetool_disable_categories")
-  \ ? g:languagetool_disable_categories
-  \ : ''
-  let s:languagetool_enable_categories = exists("g:languagetool_enable_categories")
-  \ ? g:languagetool_enable_categories
-  \ : ''
-  let s:languagetool_win_height = exists("g:languagetool_win_height")
-  \ ? g:languagetool_win_height
-  \ : 14
-  let s:languagetool_encoding = &fenc ? &fenc : &enc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function s:TeXtidoteSetUp() "{{{1
+  " let s:languagetool_disable_rules = exists("g:languagetool_disable_rules")
+  " \ ? g:languagetool_disable_rules
+  " \ : 'WHITESPACE_RULE,EN_QUOTES'
+  " let s:languagetool_enable_rules = exists("g:languagetool_enable_rules")
+  " \ ? g:languagetool_enable_rules
+  " \ : ''
+  " let s:languagetool_disable_categories = exists("g:languagetool_disable_categories")
+  " \ ? g:languagetool_disable_categories
+  " \ : ''
+  " let s:languagetool_enable_categories = exists("g:languagetool_enable_categories")
+  " \ ? g:languagetool_enable_categories
+  " \ : ''
+  " let s:languagetool_win_height = exists("g:languagetool_win_height")
+  " \ ? g:languagetool_win_height
+  " \ : 14
+  " let s:languagetool_encoding = &fenc ? &fenc : &enc
 
   " Setting up language...
-  if exists("g:languagetool_lang")
-    let s:languagetool_lang = g:languagetool_lang
+  if exists("g:textidote_lang")
+    let s:textidote_lang = g:textidote_lang
   else
     " Trying to guess language from 'spelllang' or 'v:lang'.
-    let s:languagetool_lang = s:FindLanguage(&spelllang)
-    if s:languagetool_lang == ''
-      let s:languagetool_lang = s:FindLanguage(v:lang)
-      if s:languagetool_lang == ''
+    let s:textidote_lang = s:FindLanguage(&spelllang)
+    if s:textidote_lang == ''
+      let s:textidote_lang = s:FindLanguage(v:lang)
+      if s:textidote_lang == ''
         echoerr 'Failed to guess language from spelllang=['
         \ . &spelllang . '] or from v:lang=[' . v:lang . ']. '
-        \ . 'Defauling to English (en-US). '
-        \ . 'See ":help LanguageTool" regarding setting g:languagetool_lang.'
-        let s:languagetool_lang = 'en-US'
+        \ . 'Defauling to US English (en). '
+        \ . 'See ":help TeXtidote" regarding setting g:textidote_lang.'
+        let s:textidote_lang = 'en'
       endif
     endif
   endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " let s:languagetool_jar = exists("g:languagetool_jar")
   " \ ? g:languagetool_jar
   " \ : $HOME . '/languagetool/languagetool-commandline.jar'
@@ -150,9 +150,9 @@ function s:LanguageToolSetUp() "{{{1
     endif
     let s:textidote_jar = l:textidote_jar
   endif
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   return 0
 endfunction
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Jump to a grammar mistake (called when pressing <Enter>
 " on a particular error in scratch buffer).
