@@ -199,15 +199,17 @@ function textidote#Check(line1, line2) "{{{1
   silent execute l:range . 'w!' . l:tmpfilename
 
   " Check if 'begin{document}' is in file, and otherwise set '--read-all' option
-  if match(readfile(l:tmpfilename),/\V\Cbegin{document}/)
-	  let l:option
-	
+  if match(readfile(l:tmpfilename),'begin{document}')
+	  let l:option = ' --check '
+  else
+	  let l:option = ' --read-all --check '
   endif 
+
   let l:textidote_cmd = exists("g:textidote_cmd")
   \ ? g:textidote_cmd
   \ : 'java -jar ' . s:textidote_jar
 
-  let l:textidote_cmd = l:textidote_cmd . ' --read-all --check ' . s:textidote_lang . g:textidote_first_language_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
+  let l:textidote_cmd = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
   silent execute '%!' . l:textidote_cmd
   call delete(l:tmpfilename)
 
