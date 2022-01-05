@@ -321,7 +321,7 @@ function textidote#Check(line1, line2) "{{{1
     0
     map <silent> <buffer> <CR> :call <sid>JumpToCurrentError()<CR>
     redraw
-    echon 'Press <Enter> on error in scratch buffer to jump its location'
+    echom 'Press <Enter> on error in scratch buffer to jump its location'
     execute "normal! \<C-W>\<C-P>"
   else
     " Negative s:textidote_win_height -> no scratch window.
