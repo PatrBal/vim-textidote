@@ -31,20 +31,20 @@ if !exists('g:textidote_first_language')
 	let g:textidote_first_language = ''
 endif
 
-  " All supported languages (with variants) by TeXtidote.
-  let l:supportedLanguages =  {
-  \  'de'    : 1,
-  \  'de_AT' : 1,
-  \  'de_CH' : 1,
-  \  'en'    : 1,
-  \  'en_CA' : 1,
-  \  'en_GB' : 1,
-  \  'es'    : 1,
-  \  'fr'    : 1,
-  \  'nl'    : 1,
-  \  'pl'    : 1,
-  \  'pt'    : 1,
-  \}
+" All supported languages (with variants) by TeXtidote.
+let l:supportedLanguages =  {
+\  'de'    : 1,
+\  'de_AT' : 1,
+\  'de_CH' : 1,
+\  'en'    : 1,
+\  'en_CA' : 1,
+\  'en_GB' : 1,
+\  'es'    : 1,
+\  'fr'    : 1,
+\  'nl'    : 1,
+\  'pl'    : 1,
+\  'pt'    : 1,
+\}
 
 if g:textidote_first_language == ''
 	let g:textidote_first_language_option = ''
