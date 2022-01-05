@@ -196,7 +196,7 @@ function textidote#Check(line1, line2) "{{{1
   let l:tmperror    = tempname()
 
   let l:range = a:line1 . ',' . a:line2
-  silent exe l:range . 'w!' . l:tmpfilename
+  silent execute l:range . 'w!' . l:tmpfilename
 
   let l:textidote_cmd = exists("g:textidote_cmd")
   \ ? g:textidote_cmd
