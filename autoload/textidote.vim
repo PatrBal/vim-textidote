@@ -94,9 +94,9 @@ function s:TeXtidoteSetUp() "{{{1
   " let s:languagetool_enable_categories = exists("g:languagetool_enable_categories")
   " \ ? g:languagetool_enable_categories
   " \ : ''
-  " let s:languagetool_win_height = exists("g:languagetool_win_height")
-  " \ ? g:languagetool_win_height
-  " \ : 14
+  let s:textidote_win_height = exists("g:textidote_win_height")
+  \ ? g:textidote_win_height
+  \ : 14
   " let s:languagetool_encoding = &fenc ? &fenc : &enc
 
   " Setting up language...
