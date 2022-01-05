@@ -385,8 +385,9 @@ function textidote#Check(line1, line2) "{{{1
       " return -1
     " endif
     
-	exe 'silent !sleep 1'
+	sleep 1000m
 	" This python script open the html report in a new tab in the default browser
+
 	python3 << EOL
 import vim
 import webbrowser
@@ -394,8 +395,8 @@ url = 'file://' + vim.eval('l:tmphtml')
 print(url)
 webbrowser.open_new_tab(url)
 EOL
-	exe 'silent !sleep 8'
-    call delete(l:tmphtml)
+	sleep 8000m
+	call delete(l:tmphtml)
   endif
 
   call delete(l:tmperror)
