@@ -388,6 +388,7 @@ function textidote#Check(line1, line2) "{{{1
 import vim
 import webbrowser
 url = 'file://' + vim.eval('l:tmphtml')
+print(url)
 webbrowser.open_new_tab(url)
 EOL
 	exe 'silent !sleep 8'
