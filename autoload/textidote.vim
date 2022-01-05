@@ -391,7 +391,7 @@ endfunction
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+let g:textidote_application = $HOME . '/.vim/textidote.jar"
 
 function! textidote#CommandTeXtidote(line_start, line_end)
 	if &modified == 1
