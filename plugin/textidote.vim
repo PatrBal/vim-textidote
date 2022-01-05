@@ -32,7 +32,7 @@ if !exists('g:textidote_first_language')
 endif
 
 " All supported languages (with variants) by TeXtidote.
-let l:supportedLanguages =  {
+let s:supportedLanguages =  {
 \  'de'    : 1,
 \  'de_AT' : 1,
 \  'de_CH' : 1,
@@ -48,7 +48,7 @@ let l:supportedLanguages =  {
 
 if g:textidote_first_language == ''
 	let g:textidote_first_language_option = ''
-elseif has_key(l:supportedLanguages, g:textidote_first_language)
+elseif has_key(s:supportedLanguages, g:textidote_first_language)
 	let g:textidote_first_language_option = ' --firstlang ' . g:textidote_first_language
 else
 	echom 'Unknown first language!'
