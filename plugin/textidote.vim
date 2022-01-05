@@ -80,10 +80,10 @@ com! -nargs=0 -range=% TeXtidoteCheck :call textidote#Check(<line1>,
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if !has('python3')
-	echomsg "Vim-Antidote unavailable: unable to load Python." |
-	finish
-endif
+" if !has('python3')
+" 	echomsg "Vim-Antidote unavailable: unable to load Python." |
+" 	finish
+" endif
 
 " TeXtidote spellchecking
 vnoremap <silent> <Leader>te :<C-U>call textidote#VisualTeXtidote()<CR>
