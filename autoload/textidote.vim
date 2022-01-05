@@ -192,7 +192,7 @@ endfunction
 " the range of line to check.
 " Returns 0 if success, < 0 in case of error.
 function textidote#Check(line1, line2) "{{{1
-  if s:LanguageToolSetUp() < 0
+  if s:TeXtidoteSetUp() < 0
     return -1
   endif
   call textidote#Clear()
