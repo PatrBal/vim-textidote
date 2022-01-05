@@ -167,9 +167,9 @@ function <sid>JumpToCurrentError() "{{{1
     let l:rule = l:error['ruleId']
     call setpos('.', l:save_cursor)
     if exists('*win_gotoid')
-      call win_gotoid(s:languagetool_text_winid)
+      call win_gotoid(s:textidote_text_winid)
     else
-      exe s:languagetool_text_winid . ' wincmd w'
+      exe s:textidote_text_winid . ' wincmd w'
     endif
     exe 'norm! ' . l:line . 'G0'
     if l:col > 0
