@@ -387,7 +387,7 @@ function textidote#Check(line1, line2) "{{{1
 	python3 << EOL
 import vim
 import webbrowser
-url = 'file://' + vim.eval('l:tmphtml')
+url = 'file://' + vim.eval(l:tmphtml)
 webbrowser.open_new_tab(url)
 EOL
 	exe 'silent !sleep 8'
