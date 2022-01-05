@@ -175,20 +175,15 @@ function s:LanguageToolSetUp() "{{{1
   if !exists("g:textidote_cmd") && !filereadable(s:textidote_jar)
     " Hmmm, can't find the jar file.  Try again with expand() in case user
     " set it up as: let g:textidote_jar = '$HOME/.vim/textidote.jar'
-    let l:languagetool_jar = expand(s:languagetool_jar)
-    if !filereadable(expand(l:languagetool_jar))
-      echomsg "LanguageTool cannot be found at: " . s:languagetool_jar
-      echomsg "You need to install LanguageTool and/or set up g:languagetool_jar"
-      echomsg "to indicate the location of the languagetool-commandline.jar file."
+    let l:textidote_jar = expand(s:textidote_jar)
+    if !filereadable(expand(l:textidote_jar))
+      echomsg "TeXtidote cannot be found at: " . s:textidote_jar
+      echomsg "You need to install TeXtidote and/or set up g:textidote_jar"
+      echomsg "to indicate the location of the textidote.jar file."
       return -1
     endif
-    let s:languagetool_jar = l:languagetool_jar
+    let s:textidote_jar = l:textidote_jar
   endif
-
-
-
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   return 0
 endfunction
