@@ -227,9 +227,6 @@ function languagetool#Check(line1, line2) "{{{1
   " correct results.
   let l:tmpfilename = tempname()
   let l:tmperror    = tempname()
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  let l:tmptxtreport= tempname() 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
   let l:range = a:line1 . ',' . a:line2
   silent exe l:range . 'w!' . l:tmpfilename
