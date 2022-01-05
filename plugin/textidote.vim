@@ -1,8 +1,6 @@
-" LanguageTool: Grammar checker in Vim for English, French, German, etc.
-" Maintainer:   Dominique Pellé <dominique.pelle@gmail.com>
-" Screenshots:  http://dominique.pelle.free.fr/pic/LanguageToolVimPlugin_en.png
-"               http://dominique.pelle.free.fr/pic/LanguageToolVimPlugin_fr.png
-" Last Change:  2020/10/30
+" Description: Grammar checker with TeXtidote from Vim
+" Author:      Patrick Ballard <patrick.ballard.paris@gmail.com>
+" Last Change: 05/01/2022
 "
 " Long Description: {{{1
 "
