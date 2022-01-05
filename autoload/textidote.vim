@@ -367,6 +367,10 @@ function textidote#Check(line1, line2) "{{{1
     \ . l:error['ruleId'] . ' ' . l:error['msg']
   endfor
 
+  " Handle the optional additional html report.
+  if g:textidote_html_report == 1
+
+  endif
 
   call delete(l:tmpfilename)
   return 0
