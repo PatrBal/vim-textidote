@@ -80,20 +80,6 @@ endfunction
 " Set up configuration.
 " Returns 0 if success, < 0 in case of error.
 function s:TeXtidoteSetUp() "{{{1
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " let s:languagetool_disable_rules = exists("g:languagetool_disable_rules")
-  " \ ? g:languagetool_disable_rules
-  " \ : 'WHITESPACE_RULE,EN_QUOTES'
-  " let s:languagetool_enable_rules = exists("g:languagetool_enable_rules")
-  " \ ? g:languagetool_enable_rules
-  " \ : ''
-  " let s:languagetool_disable_categories = exists("g:languagetool_disable_categories")
-  " \ ? g:languagetool_disable_categories
-  " \ : ''
-  " let s:languagetool_enable_categories = exists("g:languagetool_enable_categories")
-  " \ ? g:languagetool_enable_categories
-  " \ : ''
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   let s:textidote_ignore_rules = exists("g:textidote_ignore_rules")
   \ ? g:textidote_ignore_rules
   \ : ''
