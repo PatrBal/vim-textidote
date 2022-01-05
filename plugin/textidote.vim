@@ -72,7 +72,6 @@ hi def link TeXtidoteSpellingError WarningMsg
 " Menu items {{{1
 if has("gui_running") && has("menu") && &go =~# 'm'
   amenu <silent> &Plugin.TeXtidote.Togg&le :TeXtidoteToggle<CR>
-  amenu <silent> &Plugin.TeXtidote.Clea&r :TeXtidoteClear<CR>
 endif
 
 " Defines commands {{{1
