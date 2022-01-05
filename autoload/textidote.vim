@@ -369,6 +369,7 @@ function textidote#Check(line1, line2) "{{{1
   endif
 
   call delete(l:tmpfilename)
+  let g:textidote_indicator = 1
   return 0
 endfunction
 
@@ -396,5 +397,6 @@ function textidote#Clear() "{{{1
   endif
   unlet! s:textidote_error_buffer
   unlet! s:textidote_text_winid
+  let g:textidote_indicator = 0
 endfunction
 
