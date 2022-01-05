@@ -31,6 +31,15 @@ if !exists('g:textidote_first_language')
 	let g:textidote_first_language = ''
 endif
 
+if g:textidote_first_language == ''
+	let g:textidote_first_language_option = ''
+elseif g:textidote_first_language == 'de' || g:textidote_first_language == 'de_AT' || g:textidote_first_language == 'de_CH' || g:textidote_first_language == 'en' || g:textidote_first_language == 'de_UK' || g:textidote_first_language == 'de_CA' || g:textidote_first_language == 'es' || g:textidote_first_language == 'fr' || g:textidote_first_language == 'nl' || g:textidote_first_language == 'pt' || g:textidote_first_language == 'pl'
+	let g:textidote_first_language_option = ' --firstlang ' . g:textidote_first_language
+else
+	echom 'Unknown first language!'
+	finish
+endif
+
 
 hi def link TeXtidoteCmd           Comment
 hi def link TeXtidoteErrorCount    Title
