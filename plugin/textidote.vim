@@ -26,7 +26,7 @@ endif
 let g:loaded_textidote = "1"
 
 if !exists('g:textidote_html_report')
-	let g:textidote_html_report = 0
+	let g:textidote_html_report = 1
 endif
 
 if !exists('g:textidote_first_language')
