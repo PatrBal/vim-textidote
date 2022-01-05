@@ -202,7 +202,7 @@ function textidote#Check(line1, line2) "{{{1
   \ ? g:textidote_cmd
   \ : 'java -jar ' . s:textidote_jar
 
-  let l:textidote_cmd = l:textidote_cmd . ' --check ' . s:textidote_lang . g:textidote_first_language_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
+  let l:textidote_cmd = l:textidote_cmd . ' --read-all --check ' . s:textidote_lang . g:textidote_first_language_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
   silent execute '%!' . l:textidote_cmd
   call delete(l:tmpfilename)
 
