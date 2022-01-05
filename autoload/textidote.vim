@@ -199,13 +199,14 @@ function textidote#Check(line1, line2) "{{{1
   silent execute l:range . 'w!' . l:tmpfilename
 
   " Check if 'begin{document}' is in file, and otherwise set '--read-all' option
-  let l:content = readfile(l:tmpfilename) 
+  let l:content = readfile(l:tmpfilename)
+  echom l:content
   if l:condition_option
 	  let l:option = ' --check '
-	  echom 'no --read-all'
+	  " echom 'no --read-all'
   else
 	  let l:option = ' --read-all --check '
-	  echom '--read-all'
+	  " echom '--read-all'
   endif 
 
   let l:textidote_cmd = exists("g:textidote_cmd")
