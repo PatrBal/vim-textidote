@@ -27,6 +27,11 @@ if &cp || exists("g:loaded_textidote")
 endif
 let g:loaded_textidote = "1"
 
+if !exists('g:textidote_first_language')
+	let g:textidote_first_language = ''
+endif
+
+
 hi def link TeXtidoteCmd           Comment
 hi def link TeXtidoteErrorCount    Title
 hi def link TeXtidoteLabel         Label
