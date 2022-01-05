@@ -179,6 +179,8 @@ function textidote#Check(line1, line2) "{{{1
   endif
   call textidote#Clear()
 
+  echom 'Thinking...'
+
   " Using window ID is more reliable than window number.
   " But win_getid() does not exist in old version of Vim.
   let s:textidote_text_winid = exists('*win_getid')
