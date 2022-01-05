@@ -384,14 +384,14 @@ function textidote#Check(line1, line2) "{{{1
   " Also highlight errors in original buffer and populate location list.
   setlocal errorformat=%f:%l:%c:%m
   for l:error in s:errors
-    let l:re = s:LanguageToolHighlightRegex(l:error['fromy'],
+    let l:re = s:TeXtidoteHighlightRegex(l:error['fromy'],
     \                                       l:error['context'],
     \                                       l:error['contextoffset'],
     \                                       l:error['errorlength'])
     if l:error['ruleId'] =~# 'HUNSPELL_RULE\|HUNSPELL_NO_SUGGEST_RULE\|MORFOLOGIK_RULE_\|_SPELLING_RULE\|_SPELLER_RULE'
-      call matchadd('LanguageToolSpellingError', l:re)
+      call matchadd('TeXtidoteSpellingError', l:re)
     else
-      call matchadd('LanguageToolGrammarError', l:re)
+      call matchadd('TeXtidoteGrammarError', l:re)
     endif
     laddexpr expand('%') . ':'
     \ . l:error['fromy'] . ':'  . l:error['fromx'] . ':'
@@ -400,7 +400,7 @@ function textidote#Check(line1, line2) "{{{1
   return 0
 endfunction
 
-" This function clears syntax highlighting created by LanguageTool plugin
+" This function clears syntax highlighting created by TeXtidote plugin
 " and removes the scratch window containing grammar errors.
 function textidote#Clear() "{{{1
   if exists('s:textidote_error_buffer')
@@ -417,7 +417,7 @@ function textidote#Clear() "{{{1
     else
       exe s:textidote_text_winid . ' wincmd w'
     endif
-    call setmatches(filter(getmatches(), 'v:val["group"] !~# "LanguageTool.*Error"'))
+    call setmatches(filter(getmatches(), 'v:val["group"] !~# "TeXtidote.*Error"'))
     lexpr ''
     lclose
     exe l:win . ' wincmd w'
