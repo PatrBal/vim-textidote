@@ -13,7 +13,7 @@ function s:FindLanguage(lang) "{{{1
   \  '\=tolower(submatch(1)) . toupper(submatch(2))', ''),
   \  '-', '_', '')
 
-  " All supported languages (with variants) by LanguageTool.
+  " All supported languages (with variants) by TeXtidote.
   let l:supportedLanguages =  {
   \  'de'    : 1,
   \  'de_AT' : 1,
