@@ -372,16 +372,26 @@ function textidote#Check(line1, line2) "{{{1
     let l:textidote_cmd = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml .' 2> ' . l:tmperror
 
 	if v:shell_error
-    echoerr 'Command [' . l:textidote_cmd . '] failed with error: '
-    \      . v:shell_error
-    if filereadable(l:tmperror)
-      echoerr string(readfile(l:tmperror))
+      echoerr 'Command [' . l:textidote_cmd . '] failed with error: '
+      \      . v:shell_error
+      if filereadable(l:tmperror)
+        echoerr string(readfile(l:tmperror))
+      endif
+      call delete(l:tmperror)
+      call textidoteClear()
+      return -1
     endif
-    call delete(l:tmperror)
-    call textidoteClear()
-    return -1
-  endif
-
+    
+	exe 'silent !sleep 1'
+	" This python script open the html report in a new tab in the default browser
+	python3 << EOL
+import vim
+import webbrowser
+url = 'file://' + vim.eval('tempNameBis')
+webbrowser.open_new_tab(url)
+EOL
+	exe 'silent !sleep 8'
+    call delete(l:tmphtml)
   endif
 
   call delete(l:tmperror)
