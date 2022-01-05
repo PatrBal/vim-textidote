@@ -96,7 +96,7 @@ function s:TeXtidoteSetUp() "{{{1
   let s:textidote_win_height = exists("g:textidote_win_height")
   \ ? g:textidote_win_height
   \ : 14
-  " let s:languagetool_encoding = &fenc ? &fenc : &enc
+  let s:textidote_encoding = &fenc ? &fenc : &enc
 
   " Setting up language...
   if exists("g:textidote_lang")
