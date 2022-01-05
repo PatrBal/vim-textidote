@@ -30,7 +30,7 @@ if !exists('g:textidote_indicator')
 endif
 
 if !exists('g:textidote_html_report')
-	let g:textidote_html_report = 1
+	let g:textidote_html_report = 0
 endif
 
 if !exists('g:textidote_first_language')
