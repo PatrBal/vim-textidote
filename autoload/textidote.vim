@@ -222,6 +222,7 @@ function textidote#Check(line1, line2) "{{{1
     call textidote#Clear()
     return -1
   endif
+  call delete(l:tmperror)
 
   " The text report produced by TeXtidote is processed to match the format of
   " the XML report produced by LanguageTool
@@ -385,6 +386,7 @@ function textidote#Check(line1, line2) "{{{1
       call textidote#Clear()
       return -1
     endif
+    call delete(l:tmperror)
     
 	sleep 1000m
 	" This python script open the html report in a new tab in the default browser
@@ -392,14 +394,12 @@ function textidote#Check(line1, line2) "{{{1
 import vim
 import webbrowser
 url = 'file://' + vim.eval('l:tmphtml')
-print(url)
 webbrowser.open_new_tab(url)
 EOL
 	sleep 8000m
 	call delete(l:tmphtml)
   endif
 
-  call delete(l:tmperror)
   call delete(l:tmpfilename)
   return 0
 endfunction
