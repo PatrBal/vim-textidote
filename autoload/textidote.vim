@@ -212,6 +212,17 @@ function textidote#Check(line1, line2) "{{{1
   let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
   silent execute '%!' . l:textidote_cmd_txt
 
+  if v:shell_error
+    echoerr 'Command [' . l:textidote_cmd . '] failed with error: '
+    \      . v:shell_error
+    if filereadable(l:tmperror)
+      echoerr string(readfile(l:tmperror))
+    endif
+    call delete(l:tmperror)
+    call textidoteClear()
+    return -1
+  endif
+
   " The text report produced by TeXtidote is processed to match the format of
   " the XML report produced by LanguageTool
 
@@ -245,17 +256,6 @@ function textidote#Check(line1, line2) "{{{1
   silent! %substitute/\m\C. Suggestions: \[\([^]]*\)\]/" replacements="\1/
   silent! %substitute/\m\C ([0-9]*) \[[^:]*:[^:]*:\([^]]*\)\]/" ruleId="\1"/
   silent! %!cat
-
-  if v:shell_error
-    echoerr 'Command [' . l:textidote_cmd . '] failed with error: '
-    \      . v:shell_error
-    if filereadable(l:tmperror)
-      echoerr string(readfile(l:tmperror))
-    endif
-    call delete(l:tmperror)
-    call textidoteClear()
-    return -1
-  endif
 
   " Loop on all errors in XML output of LanguageTool and
   " collect information about all errors in list s:errors
