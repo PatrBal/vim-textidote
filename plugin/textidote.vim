@@ -73,12 +73,13 @@ com! -nargs=0 -range=% TeXtidoteCheck :call textidote#Check(<line1>,
                                                                 \ <line2>)
 " vim: fdm=marker
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 if !has('python3')
 	echomsg "Vim-Antidote unavailable: unable to load Python." |
 	finish
 endif
-
-let g:scriptPath = fnamemodify(resolve(expand('<sfile>:p')), ':h') . '/openBrowser.py'
 
 " TeXtidote spellchecking
 " vnoremap <silent> <Leader>te :<C-U>call textidote#VisualTeXtidote()<CR>
