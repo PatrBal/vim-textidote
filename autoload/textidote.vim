@@ -375,16 +375,16 @@ function textidote#Check(line1, line2) "{{{1
     let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
 	silent execute '!' . l:textidote_cmd_html
 
-	" if v:shell_error
-      " echoerr 'Command [' . l:textidote_cmd . '] failed with error: '
-      " \      . v:shell_error
-      " if filereadable(l:tmperror)
-        " echoerr string(readfile(l:tmperror))
-      " endif
-      " call delete(l:tmperror)
-      " call textidoteClear()
-      " return -1
-    " endif
+	if v:shell_error
+      echoerr 'Command [' . l:textidote_cmd . '] failed with error: '
+      \      . v:shell_error
+      if filereadable(l:tmperror)
+        echoerr string(readfile(l:tmperror))
+      endif
+      call delete(l:tmperror)
+      call textidoteClear()
+      return -1
+    endif
     
 	sleep 1000m
 	" This python script open the html report in a new tab in the default browser
