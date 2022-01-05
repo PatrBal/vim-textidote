@@ -153,14 +153,14 @@ function <sid>JumpToCurrentError() "{{{1
     else
       exe s:textidote_text_winid . ' wincmd w'
     endif
-    exe 'norm! ' . l:line . 'G0'
+    exe 'normal! ' . l:line . 'G0'
     if l:col > 0
-      exe 'norm! ' . (l:col  - 1) . 'l'
+      execute 'normal! ' . (l:col  - 1) . 'l'
     endif
 
     echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
     \ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
-    norm! zz
+    normal! zz
   else
     call setpos('.', l:save_cursor)
   endif
