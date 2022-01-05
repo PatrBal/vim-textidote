@@ -33,7 +33,7 @@ function s:FindLanguage(lang) "{{{1
   endif
 
   " Removing the region (if any) and trying again.
-  let l:language = substitute(l:language, '-.*', '', '')
+  let l:language = substitute(l:language, '_.*', '', '')
   return has_key(l:supportedLanguages, l:language) ? l:language : ''
 endfunction
 
