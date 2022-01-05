@@ -287,13 +287,9 @@ function textidote#Check(line1, line2) "{{{1
     set bt=nofile
     setlocal nospell
     syn clear
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     call matchadd('TeXtidoteCmd',        '\%1l.*')
     call matchadd('TeXtidoteErrorCount', '^Error:\s\+\d\+/\d\+')
     call matchadd('TeXtidoteLabel',      '^\(Context\|Message\|Correction\):')
-    " call matchadd('LanguageToolLabel',      '^\(Context\|Message\|Correction\|URL\):')
-    " call matchadd('LanguageToolUrl',        '^URL:\s*\zs.*')
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     let l:i = 1
     for l:error in s:errors
