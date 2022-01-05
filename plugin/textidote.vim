@@ -31,9 +31,24 @@ if !exists('g:textidote_first_language')
 	let g:textidote_first_language = ''
 endif
 
+  " All supported languages (with variants) by TeXtidote.
+  let l:supportedLanguages =  {
+  \  'de'    : 1,
+  \  'de_AT' : 1,
+  \  'de_CH' : 1,
+  \  'en'    : 1,
+  \  'en_CA' : 1,
+  \  'en_GB' : 1,
+  \  'es'    : 1,
+  \  'fr'    : 1,
+  \  'nl'    : 1,
+  \  'pl'    : 1,
+  \  'pt'    : 1,
+  \}
+
 if g:textidote_first_language == ''
 	let g:textidote_first_language_option = ''
-elseif g:textidote_first_language == 'de' || g:textidote_first_language == 'de_AT' || g:textidote_first_language == 'de_CH' || g:textidote_first_language == 'en' || g:textidote_first_language == 'de_UK' || g:textidote_first_language == 'de_CA' || g:textidote_first_language == 'es' || g:textidote_first_language == 'fr' || g:textidote_first_language == 'nl' || g:textidote_first_language == 'pt' || g:textidote_first_language == 'pl'
+elseif has_key(l:supportedLanguages, g:textidote_first_language)
 	let g:textidote_first_language_option = ' --firstlang ' . g:textidote_first_language
 else
 	echom 'Unknown first language!'
