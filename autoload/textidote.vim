@@ -279,7 +279,7 @@ function textidote#Check(line1, line2) "{{{1
       echoerr string(readfile(l:tmperror))
     endif
     call delete(l:tmperror)
-    call s:LanguageToolClear()
+    call textidoteClear()
     return -1
   endif
   call delete(l:tmperror)
@@ -319,18 +319,18 @@ function textidote#Check(line1, line2) "{{{1
     call add(s:errors, l:error)
   endwhile
 
-  if s:languagetool_win_height >= 0
+  if s:ltextidote_win_height >= 0
     " Reformat the output of LanguageTool (XML is not human friendly) and
     " set up syntax highlighting in the buffer which shows all errors.
     %d
-    call append(0, '# ' . l:languagetool_cmd)
+    call append(0, '# ' . l:ltextidote_cmd)
     set bt=nofile
     setlocal nospell
     syn clear
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    call matchadd('LanguageToolCmd',        '\%1l.*')
-    call matchadd('LanguageToolErrorCount', '^Error:\s\+\d\+/\d\+')
-    call matchadd('LanguageToolLabel',      '^\(Context\|Message\|Correction\):')
+    call matchadd('TeXtidoteCmd',        '\%1l.*')
+    call matchadd('TeXtidoteErrorCount', '^Error:\s\+\d\+/\d\+')
+    call matchadd('TeXtidoteLabel',      '^\(Context\|Message\|Correction\):')
     " call matchadd('LanguageToolLabel',      '^\(Context\|Message\|Correction\|URL\):')
     " call matchadd('LanguageToolUrl',        '^URL:\s*\zs.*')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
