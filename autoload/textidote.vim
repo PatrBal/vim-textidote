@@ -6,60 +6,26 @@
 
 " Guess language from 'a:lang' (either 'spelllang' or 'v:lang')
 function s:FindLanguage(lang) "{{{1
-  " This replaces things like en_gb en-GB as expected by LanguageTool,
-  " only for languages that support variants in LanguageTool.
+  " This replaces things like en-gb en_GB as expected by TeXtidote,
+  " only for languages that support variants in TeXtidote.
   let l:language = substitute(substitute(a:lang,
   \  '\(\a\{2,3}\)\(_\a\a\)\?.*',
   \  '\=tolower(submatch(1)) . toupper(submatch(2))', ''),
-  \  '_', '-', '')
+  \  '-', '_', '')
 
   " All supported languages (with variants) by LanguageTool.
   let l:supportedLanguages =  {
-  \  'ar'    : 1,
-  \  'ast'   : 1,
-  \  'be'    : 1,
-  \  'br'    : 1,
-  \  'ca'    : 1,
-  \  'cs'    : 1,
-  \  'da'    : 1,
   \  'de'    : 1,
-  \  'de-AT' : 1,
-  \  'de-CH' : 1,
-  \  'de-DE' : 1,
-  \  'el'    : 1,
+  \  'de_AT' : 1,
+  \  'de_CH' : 1,
   \  'en'    : 1,
-  \  'en-AU' : 1,
-  \  'en-CA' : 1,
-  \  'en-GB' : 1,
-  \  'en-NZ' : 1,
-  \  'en-US' : 1,
-  \  'en-ZA' : 1,
-  \  'eo'    : 1,
+  \  'en_CA' : 1,
+  \  'en_GB' : 1,
   \  'es'    : 1,
-  \  'fa'    : 1,
   \  'fr'    : 1,
-  \  'ga'    : 1,
-  \  'gl'    : 1,
-  \  'it'    : 1,
-  \  'ja'    : 1,
-  \  'km'    : 1,
-  \  'lt'    : 1,
   \  'nl'    : 1,
   \  'pl'    : 1,
   \  'pt'    : 1,
-  \  'pt-AO' : 1,
-  \  'pt-BR' : 1,
-  \  'pt-MZ' : 1,
-  \  'pt-PT' : 1,
-  \  'ro'    : 1,
-  \  'ru'    : 1,
-  \  'sk'    : 1,
-  \  'sl'    : 1,
-  \  'sv'    : 1,
-  \  'ta'    : 1,
-  \  'tl'    : 1,
-  \  'uk'    : 1,
-  \  'zh'    : 1
   \}
 
   if has_key(l:supportedLanguages, l:language)
