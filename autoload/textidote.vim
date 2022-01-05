@@ -106,6 +106,8 @@ function s:TeXtidoteSetUp() "{{{1
     endif
   endif
 
+
+
   let s:textidote_jar = exists("g:textidote_jar")
   \ ? g:textidote_jar
   \ : $HOME . '/.vim/textidote.jar'
