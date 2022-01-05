@@ -400,3 +400,7 @@ function textidote#Clear() "{{{1
   let g:textidote_indicator = 0
 endfunction
 
+function textidote#Toggle(line1, line2) "{{{1
+
+
+endfunction
