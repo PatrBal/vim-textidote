@@ -388,3 +388,120 @@ function textidote#Clear() "{{{1
   unlet! s:textidote_error_buffer
   unlet! s:textidote_text_winid
 endfunction
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+function! textidote#CommandTeXtidote(line_start, line_end)
+	if &modified == 1
+		echo "Buffer has unsaved changes. Please, save before spellchecking!"
+		return
+	endif
+	" first make the name of the tempfile (keeping the extension of the original file to inform Antidote)
+	let currentDir = expand('%:p:h')
+	let currentExt = expand('%:e')
+	if currentExt != ''
+		let currentExt = "." .  currentExt
+	endif	  
+	let tempName = currentDir . "/tempfile" .  currentExt
+	let tempNameBis = currentDir . "/tempfileBis.html"
+	" load selection in a list of lines
+	let lines = getline(a:line_start, a:line_end)
+	if len(lines) == 0
+		echo "Houston, we have a problem which should not exist!"
+		return
+	endif
+	" counting the number of trailing newlines in the selection
+	let trailingNewline = 0
+	while trailingNewline < len(lines) && len(lines[-1-trailingNewline]) == 0
+		let trailingNewline += 1
+	endwhile
+	if len(lines) == trailingNewline 
+		echo "Please, spellcheck something!"
+		return
+	endif
+	" writing selection in temporary file
+	call writefile(lines, tempName, 'b')
+	execute '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . g:textidote_first_language_option . ' --output html > ' . tempNameBis . ' ' . tempName
+	exe 'silent !sleep 1'
+	" This python script open the html report in a new tab in the default browser
+	python3 << EOL
+import vim
+import webbrowser
+url = 'file://' + vim.eval('tempNameBis')
+webbrowser.open_new_tab(url)
+EOL
+	exe 'silent !sleep 8'
+	exe "silent !rm " . tempName
+	exe "silent !rm " . tempNameBis
+endfunction
+
+function! textidote#NormalTeXtidote()
+	if &modified == 1
+		echo "Buffer has unsaved changes. Please, save before spellcheck!"
+		return
+	endif
+	let currentDir = expand('%:p:h')
+	let tempNameBis = currentDir . "/tempfileBis.html"
+	execute '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . g:textidote_first_language_option . ' --output html > ' . tempNameBis . ' "%:p"'
+	execute 'silent !sleep 1'
+	exe 'silent !sleep 1'
+	" This python script open the html report in a new tab in the default browser
+	python3 << EOL
+import vim
+import webbrowser
+url = 'file://' + vim.eval('tempNameBis')
+webbrowser.open_new_tab(url)
+EOL
+	exe 'silent !sleep 8'
+	exe "silent !rm " . tempNameBis
+endfunction
+
+function! textidote#VisualTeXtidote()
+	if &modified == 1
+		echo "Buffer has unsaved changes. Please, save before spellchecking!"
+		return
+	endif
+	" first make the name of the tempfile (keeping the extension of the original file to inform Antidote)
+	let currentDir = expand('%:p:h')
+	let currentExt = expand('%:e')
+	if currentExt != ''
+		let currentExt = "." .  currentExt
+	endif	  
+	let tempName = currentDir . "/tempfile" .  currentExt
+	let tempNameBis = currentDir . "/tempfileBis.html"
+	" load selection in a list of lines
+	let [line_start, column_start] = getpos("'<")[1:2]
+	let [line_end, column_end] = getpos("'>")[1:2]
+	let lines = getline(line_start, line_end)
+	if len(lines) == 0
+		echo "Houston, we have a problem which should not exist!"
+		return
+	endif
+	" counting the number of trailing newlines in the selection
+	let trailingNewline = 0
+	while trailingNewline < len(lines) && len(lines[-1-trailingNewline]) == 0
+		let trailingNewline += 1
+	endwhile
+	if len(lines) == trailingNewline 
+		echo "Please, spellcheck something!"
+		return
+	endif
+	" writing selection in temporary file
+	let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+	let lines[0] = lines[0][column_start - 1:]
+	call writefile(lines, tempName, 'b')
+	execute '!java -jar ' . g:textidote_application . ' --check ' . &spelllang . g:textidote_first_language_option . ' --output html > ' . tempNameBis . ' ' . tempName
+	execute 'silent !sleep 1'
+	" This python script open the html report in a new tab in the default browser
+	python3 << EOL
+import vim
+import webbrowser
+url = 'file://' + vim.eval('tempNameBis')
+webbrowser.open_new_tab(url)
+EOL
+	execute 'silent !sleep 8'
+	execute "silent !rm " . tempName
+	execute "silent !rm " . tempNameBis
+endfunction
