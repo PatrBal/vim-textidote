@@ -255,7 +255,8 @@ function textidote#Check(line1, line2) "{{{1
   silent! %substitute/\m\C^[0-9]*,[0-9]*,<error/<error/
   " Final formatting
   silent! %substitute/\m\C. Suggestions: \[\([^]]*\)\]/" replacements="\1/
-  silent! %substitute/\m\C ([0-9]*) \[[^:]*:[^:]*:\([^]]*\)\]/" ruleId="\1"/
+  " silent! %substitute/\m\C ([0-9]*) \[[^:]*:[^:]*:\([^]]*\)\]/" ruleId="\1"/
+  silent! %substitute/\m\C ([0-9]*) \[\([^]]*\)\]/" ruleId="\1"/
   silent! %!cat
 
   " Loop on all errors in XML output of LanguageTool and
