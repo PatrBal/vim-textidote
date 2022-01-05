@@ -211,7 +211,6 @@ function textidote#Check(line1, line2) "{{{1
 
   let l:textidote_cmd = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
   silent execute '%!' . l:textidote_cmd
-  call delete(l:tmpfilename)
 
   " The text report produced by TeXtidote is processed to match the format of
   " the XML report produced by LanguageTool
@@ -367,6 +366,9 @@ function textidote#Check(line1, line2) "{{{1
     \ . l:error['fromy'] . ':'  . l:error['fromx'] . ':'
     \ . l:error['ruleId'] . ' ' . l:error['msg']
   endfor
+
+
+  call delete(l:tmpfilename)
   return 0
 endfunction
 
