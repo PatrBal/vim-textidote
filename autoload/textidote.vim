@@ -94,7 +94,8 @@ function s:TeXtidoteSetUp() "{{{1
   " \ ? g:languagetool_enable_categories
   " \ : ''
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  let s:textidote_ignore_rules = exists("s:textidote_ignore_rules")
+  let s:textidote_ignore_rules = exists("g:textidote_ignore_rules")
+  \ ? g:textidote_ignore_rules
   let s:textidote_win_height = exists("g:textidote_win_height")
   \ ? g:textidote_win_height
   \ : 14
