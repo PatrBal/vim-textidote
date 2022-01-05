@@ -189,7 +189,7 @@ function textidote#Check(line1, line2) "{{{1
   let s:textidote_error_buffer = bufnr('%')
   sil put!
 
-  " LanguageTool somehow gives incorrect line/column numbers when
+  " TeXtidote/LanguageTool somehow gives incorrect line/column numbers when
   " reading from stdin so we need to use a temporary file to get
   " correct results.
   let l:tmpfilename = tempname()
@@ -201,20 +201,6 @@ function textidote#Check(line1, line2) "{{{1
   let l:textidote_cmd = exists("g:textidote_cmd")
   \ ? g:textidote_cmd
   \ : 'java -jar ' . s:textidote_jar
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " let l:languagetool_cmd = l:languagetool_cmd
-  " \ . ' -c '    . s:languagetool_encoding
-  " \ . (empty(s:languagetool_disable_rules) ? '' : ' -d '.s:languagetool_disable_rules)
-  " \ . (empty(s:languagetool_enable_rules) ?  '' : ' -e '.s:languagetool_enable_rules)
-  " \ . (empty(s:languagetool_disable_categories) ? '' : ' --disablecategories '.s:languagetool_disable_categories)
-  " \ . (empty(s:languagetool_enable_categories) ?  '' : ' --enablecategories '.s:languagetool_enable_categories)
-  " \ . ' -l '    . s:languagetool_lang
-  " \ . ' --api ' . l:tmpfilename
-  " \ . ' 2> '    . l:tmperror
-
-  " sil exe '%!' . l:languagetool_cmd
-  " call delete(l:tmpfilename)
 
   let l:textidote_cmd = l:textidote_cmd . ' --check ' . s:textidote_lang . g:textidote_first_language_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
   silent execute '%!' . l:textidote_cmd
@@ -252,9 +238,7 @@ function textidote#Check(line1, line2) "{{{1
   " Final formatting
   silent %substitute/\m\C. Suggestions: \[\([^]]*\)\]/" replacements="\1/
   silent %substitute/\m\C ([0-9]*) \[[^:]*:[^:]*:\([^]]*\)\]/" ruleId="\1"/
-
   silent %!cat
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
   if v:shell_error
     echoerr 'Command [' . l:textidote_cmd . '] failed with error: '
@@ -277,14 +261,9 @@ function textidote#Check(line1, line2) "{{{1
     " They are even sometimes negative!
 
     let l:error= {}
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " for l:k in [ 'fromy', 'fromx', 'tox', 'toy',
-    " \            'ruleId', 'subId', 'msg', 'replacements',
-    " \            'context', 'contextoffset', 'errorlength', 'url' ]
     for l:k in [ 'fromy', 'fromx', 'toy', 'tox',
     \            'msg', 'replacements', 'ruleId',
     \            'context', 'contextoffset', 'errorlength' ]
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
       let l:error[l:k] = s:ParseKeyValue(l:k, l:l)
     endfor
 
