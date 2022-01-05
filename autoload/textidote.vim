@@ -364,13 +364,6 @@ function textidote#Check(line1, line2) "{{{1
     
 	sleep 1000m
 	silent execute '!open ' . 'file://' . l:tmphtml
-	" This python script open the html report in a new tab in the default browser
-	" python3 << EOL
-" import vim
-" import webbrowser
-" url = 'file://' + vim.eval('l:tmphtml')
-" webbrowser.open_new_tab(url)
-" EOL
 	sleep 8000m
 	call delete(l:tmphtml)
   endif
