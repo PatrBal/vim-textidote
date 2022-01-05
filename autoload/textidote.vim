@@ -308,9 +308,14 @@ function languagetool#Check(line1, line2) "{{{1
     " They are even sometimes negative!
 
     let l:error= {}
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     for l:k in [ 'fromy', 'fromx', 'tox', 'toy',
     \            'ruleId', 'subId', 'msg', 'replacements',
     \            'context', 'contextoffset', 'errorlength', 'url' ]
+    for l:k in [ 'fromy', 'fromx', 'toy', 'tox',
+    \            'msg', 'replacements', 'ruleId',
+    \            'context', 'contextoffset', 'errorlength' ]
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
       let l:error[l:k] = s:ParseKeyValue(l:k, l:l)
     endfor
 
