@@ -209,8 +209,9 @@ function textidote#Check(line1, line2) "{{{1
   \ ? g:textidote_cmd
   \ : 'java -jar ' . s:textidote_jar
 
-  let l:textidote_cmd = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
-  silent execute '%!' . l:textidote_cmd
+  " let l:textidote_cmd = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
+  silent execute '%!' . l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
+  " silent execute '%!' . l:textidote_cmd
 
   " The text report produced by TeXtidote is processed to match the format of
   " the XML report produced by LanguageTool
@@ -372,8 +373,7 @@ function textidote#Check(line1, line2) "{{{1
 	" let l:tmphtml = l:tmphtml . '.html'
 	let currentDir = expand('%:p:h')
 	let l:tmphtml = currentDir . "/tmpfile.html"
-    let l:textidote_cmd = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
-    silent execute '!' . l:textidote_cmd
+    silent execute '!' . l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
 
 	if v:shell_error
       echoerr 'Command [' . l:textidote_cmd . '] failed with error: '
