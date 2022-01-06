@@ -71,7 +71,6 @@ built-in package support:
     `git clone https://github.com/PatrBal/vim-textidote`
     `vim -u NONE -c "helptags vim-textidote/doc" -c q`
 
-
 You must also install `TeXtidote`.  Downloadthe latest `textidote.jar` from 
 * https://sylvainhalle.github.io/textidote
 and make sure that you have Java version 8 or later installed on your system. 
