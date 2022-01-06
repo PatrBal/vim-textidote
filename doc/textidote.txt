@@ -11,10 +11,8 @@ CONTENTS                                                   *TeXtidoteContents*
 	3. Usage ............................................ |TeXtidoteUsage|
 	4. Installation ..................................... |TeXtidoteInstall|
 	    4.1. Installing the plugin ...................... |
+		4.2. Installing TeXtidote ....................... |
     5. Configuration .................................... |TeXtidoteConfig|
-    3. Interfacing Vim with Antidote .................... |TeXtidoteAn|
-       3.1. Spellchecking ............................... |TeXtidoteSpell|
-       3.2. Calling definitions and conjugations ........ |TeXtidoteDef|
     4. Spellchecking with TeXtidote ..................... |TeXtidoteTeX|
     5. Switching language ............................... |TeXtidoteSwitch|
     6. License .......................................... |TeXtidoteLicense|
@@ -48,11 +46,25 @@ markup.
    the default brower.
 
 ==============================================================================
+3. Usage                                                      *TeXtidoteUsage*
 
+The plugin provides the new command
+`:[range]TeXtidoteToggle`
+where the default `[range]` is the whole buffer, except in the case where 
+there is a visual selection which is then taken as the default `[range]`. 
+This command launch the checking of `[range` by TeXtidote, highlights the 
+corresponding errors and open the scratch buffer listing all the errors. 
+Subsequent invocation of the same command closes the scratch buffer and 
+clears the error highlighting.
 
+In addition, there are
+`:[range]TeXtidoteCheck`
+`:TeXtidoteClear`
+which respectively activates the checking and clears it.
 
+==============================================================================
 
-2. Configuration
+4. Configuration
 
 Install `Antidote` and/or `TeXtidote`.
 * https://www.antidote.info/en
@@ -115,7 +127,7 @@ in either visual or normal mode. In visual mode, the spellcheck is run on the
 selection and in normal mode it is run on the whole file.
 
 ==============================================================================
-5. Switching language                                         *AntidoteSwitch*
+5. Configuration                                              *AntidoteSwitch*
 
 In `Antidote`, detection of language (english or french only) is performed 
 automatically.
