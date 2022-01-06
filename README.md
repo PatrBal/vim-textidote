@@ -24,6 +24,7 @@ support:
 ## Usage
  - :[range]TeXtidoteToggle
 
+
 ## Features
  - Spellcheck of either the entire buffer or part of it.
  - Validated corrections in Antidote are reimported in Vim.
@@ -39,6 +40,11 @@ support:
 
 Copyright (c) Patrick Ballard.  Distributed under the same terms as Vim itself.
 See `:help license`.
+
+
+## Credit
+
+This plugin is strongly based on the excellent [Vim-LanguageTool][Vim-LanguageTool].  Large parts of its code have been reused.
 
 [TeXtidote]: https://sylvainhalle.github.io/textidote
 [Vim-LanguageTool]: https://github.com/dpelle/vim-LanguageTool
