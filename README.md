@@ -9,7 +9,7 @@ The plugin [Vim-LanguageTool][Vim-LanguageTool] is a full-featured interface of 
 
 ## Installation
 
-Download the latest `textidote.jar` from [TeXtidote][TeXtidote] and make sure you have Java version 8 or later installed on your system.
+Download the latest `textidote.jar` from [TeXtidote][TeXtidote] and make sure that you have Java version 8 or later installed on your system.
 
 Install `vim-textidote` using your favorite package manager, or use Vim's built-in package support:
 
