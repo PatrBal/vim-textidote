@@ -109,6 +109,7 @@ function s:TeXtidoteSetUp() "{{{1
   if !exists('g:textidote_first_language')
 	let g:textidote_first_language = ''
   endif
+  let g:textidote_first_language = s:FindLanguage(g:textidote_first_language)
   if g:textidote_first_language == ''
 	let g:textidote_first_language_option = ''
   elseif has_key(s:supportedLanguages, g:textidote_first_language)
