@@ -133,13 +133,13 @@ function s:TeXtidoteSetUp() "{{{1
 	endif
 	
 	if !exists('g:textidote_first_language')
-	  let g:textidote_first_language = ''
+		let g:textidote_first_language = ''
 	endif
 	let g:textidote_first_language = s:FindLanguage(g:textidote_first_language)
 	if g:textidote_first_language == ''
-	  let s:textidote_first_language_option = ''
+		let s:textidote_first_language_option = ''
 	else
-	  let s:textidote_first_language_option = ' --firstlang ' . g:textidote_first_language
+		let s:textidote_first_language_option = ' --firstlang ' . g:textidote_first_language
 	endif
 	
 	let s:textidote_jar = exists("g:textidote_jar")
@@ -147,16 +147,16 @@ function s:TeXtidoteSetUp() "{{{1
 	\ : $HOME . '/.vim/textidote.jar'
 	
 	if !exists("g:textidote_cmd") && !filereadable(s:textidote_jar)
-	  " Hmmm, can't find the jar file.  Try again with expand() in case user
-	  " set it up as: let g:textidote_jar = '$HOME/.vim/textidote.jar'
-	  let l:textidote_jar = expand(s:textidote_jar)
-	  if !filereadable(expand(l:textidote_jar))
-	    echomsg "TeXtidote cannot be found at: " . s:textidote_jar
-	    echomsg "You need to install TeXtidote and/or set up g:textidote_jar"
-	    echomsg "to indicate the location of the textidote.jar file."
-	    return -1
-	  endif
-	  let s:textidote_jar = l:textidote_jar
+		" Hmmm, can't find the jar file.  Try again with expand() in case user
+		" set it up as: let g:textidote_jar = '$HOME/.vim/textidote.jar'
+		let l:textidote_jar = expand(s:textidote_jar)
+		if !filereadable(expand(l:textidote_jar))
+			echomsg "TeXtidote cannot be found at: " . s:textidote_jar
+			echomsg "You need to install TeXtidote and/or set up g:textidote_jar"
+			echomsg "to indicate the location of the textidote.jar file."
+			return -1
+		endif
+		let s:textidote_jar = l:textidote_jar
 	endif
 	return 0
 endfunction
@@ -433,9 +433,9 @@ function textidote#Clear() "{{{1
 endfunction
 
 function textidote#Toggle(line1, line2) "{{{1
-  if g:textidote_indicator
-	call textidote#Clear()
-  else
-	call textidote#Check(a:line1,a:line2)
-  endif
+	if g:textidote_indicator
+		call textidote#Clear()
+	else
+		call textidote#Check(a:line1,a:line2)
+	endif
 endfunction
