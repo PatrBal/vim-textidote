@@ -15,7 +15,6 @@ CONTENTS                                                     *TeXtidoteContents*
     7. Changelog ........................................ |TeXtidoteChangelog|
     8. Credits .......................................... |TeXtidoteCredits|
 
-
 ==============================================================================
 1. Overview                                                  *TeXtidoteOverview*
 
