@@ -16,7 +16,7 @@
 " License: {{{1
 "
 " The VIM LICENSE applies to LanguageTool.vim plugin
-" (see ":help copyright" except use "LanguageTool.vim" instead of "Vim").
+" (see ":help copyright" except use "textidote.vim" instead of "Vim").
 "
 " Plugin set up {{{1
 if &cp || exists("g:loaded_textidote")
