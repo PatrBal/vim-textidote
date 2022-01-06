@@ -91,6 +91,11 @@ function s:TeXtidoteSetUp() "{{{1
   \ : 14
   let s:textidote_encoding = &fenc ? &fenc : &enc
 
+  if s:textidote_ignore_rules == ''
+	let s:textidote_ignore_rules_option = ''
+  else
+	let s:textidote_ignore_rules_option = ' --ignore ' . s:textidote_ignore_rules
+  endif
   if s:textidote_ignore_environments == ''
 	let s:textidote_ignore_environments_option = ''
   else
