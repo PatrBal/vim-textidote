@@ -10,6 +10,7 @@ CONTENTS                                                   *TeXtidoteContents*
 	2. Features ......................................... |TeXtidoteFeatures|
 	3. Usage ............................................ |TeXtidoteUsage|
 	4. Installation ..................................... |TeXtidoteInstall|
+	    4.1. Installing the plugin ...................... |
     5. Configuration .................................... |TeXtidoteConfig|
     3. Interfacing Vim with Antidote .................... |TeXtidoteAn|
        3.1. Spellchecking ............................... |TeXtidoteSpell|
