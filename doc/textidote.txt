@@ -129,11 +129,11 @@ of the LanguageTool plugin.
 
 You can also customize the following syntax highlighting groups:
 
-  `TeXtidoteCmd
-  `TeXtidoteErrorCount
-  `TeXtidoteLabel
-  `TeXtidoteGrammarError
-  `TeXtidoteSpellingError
+  `TeXtidoteCmd`
+  `TeXtidoteErrorCount`
+  `TeXtidoteLabel`
+  `TeXtidoteGrammarError`
+  `TeXtidoteSpellingError`
 
 For example, to highlight grammar errors in blue, and spelling errors in
 red, with a curly underline in vim GUIs that support it, add this into your
