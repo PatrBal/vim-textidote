@@ -124,25 +124,23 @@ of the LanguageTool plugin.
 
 *g:textidote_ignore_macros*
   Default value: empty
-  Example: `:let g:textidote_ignore_macros = 'array'
+  Example: `:let g:textidote_ignore_macros = 'array'`
 
 
-You can also customize the following syntax highlighting groups: >
+You can also customize the following syntax highlighting groups:
 
-  LanguageToolCmd
-  LanguageToolErrorCount
-  LanguageToolLabel
-  LanguageToolUrl
-  LanguageToolGrammarError
-  LanguageToolSpellingError
+  `TeXtidoteCmd
+  `TeXtidoteErrorCount
+  `TeXtidoteLabel
+  `TeXtidoteGrammarError
+  `TeXtidoteSpellingError
 
 For example, to highlight grammar errors in blue, and spelling errors in
 red, with a curly underline in vim GUIs that support it, add this into your
-colorscheme: >
+colorscheme:
 
-  :hi LanguageToolGrammarError  guisp=blue gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=blue term=underline cterm=none
-  :hi LanguageToolSpellingError guisp=red  gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=red  term=underline cterm=none
-`
+  `:hi TeXtidoteGrammarError  guisp=blue gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=blue term=underline cterm=none`
+  `:hi TeXtidoteSpellingError guisp=red  gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=red  term=underline cterm=none`
 
 ==============================================================================
 6. License                                                  *TeXtidoteLicense*
