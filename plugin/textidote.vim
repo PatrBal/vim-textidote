@@ -8,7 +8,7 @@
 " Current version of TeXtidote can check grammar in many languages:
 " de, en, es, fr, nl, pl, pt.
 "
-" See doc/LanguageTool.txt for more details about how to use the
+" See doc/TeXtidote.txt for more details about how to use the
 " LanguageTool plugin.
 "
 " See http://www.languagetool.org/ for more information about LanguageTool.
