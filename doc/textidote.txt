@@ -7,9 +7,9 @@
 CONTENTS                                                   *TeXtidoteContents*
 
     1. Overview ......................................... |TeXtidoteOverview|
-	2. Features ......................................... |TeXtidoteFeatures|
-	3. Usage ............................................ |TeXtidoteUsage|
-	4. Installation ..................................... |TeXtidoteInstall|
+    2. Features ......................................... |TeXtidoteFeatures|
+    3. Usage ............................................ |TeXtidoteUsage|
+    4. Installation ..................................... |TeXtidoteInstall|
     5. Configuration .................................... |TeXtidoteConfig|
     6. License .......................................... |TeXtidoteLicense|
     7. Changelog ........................................ |TeXtidoteChangelog|
@@ -19,9 +19,9 @@ CONTENTS                                                   *TeXtidoteContents*
 ==============================================================================
 1. Overview                                                *TeXtidoteOverview*
 
-This plugin integrates `TeXtidote` into Vim.  `TeXtidote` provides online 
+This plugin integrates `TeXtidote` into Vim. `TeXtidote` provides online 
 grammar and style checker for LaTeX documents, but also for Markdown.  It is 
-built on top of LanguageTool.   In fact, `TeXtidote` is able to remove all the 
+built on top of LanguageTool. In fact, `TeXtidote` is able to remove all the 
 markup of the original file before calling LanguageTool, but it keeps track of 
 the relative position of words between the original and "clean text". In 
 short, TeXtidote is a version of LanguageTool made blind to LaTeX and Markdown
