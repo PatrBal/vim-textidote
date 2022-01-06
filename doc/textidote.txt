@@ -19,20 +19,10 @@ CONTENTS                                                   *TeXtidoteContents*
 ==============================================================================
 1. Intro                                                       *AntidoteIntro*
 
-`Antidote` is a very complete proprietary dictionary application maintained and 
-distributed by the canadian company Druide. At the present time, it is limited 
-to the english and french languages only.
+This plugin integrates `TeXtidote` into Vim.  ` TeXtidote` provides online 
+spelling and grammar checker for LaTeX documents, but also for Markdown.  It 
+is built on top of LanguageTool.
 
-`TeXtidote` is an open source project. Its aim is to provide an onlive 
-spelling and grammar checker for LaTeX documents, but also for other formats, 
-like Markdown. It is based on the Language Tool library, which performs a 
-verification of both spelling and grammar in a dozen languages. 
-
-This plugin provides commands and mappings to interface Vim with both of them.
-In particular, it makes it easy to spellcheck a part of a file only. With 
-`Antidote`, it takes care to reimport in Vim all the corrections that have been
-validated in Antidote. With `TeXtidote`, all the suggested corrections appear 
-in the default browser.
 
 ==============================================================================
 2. Configuration
