@@ -21,7 +21,7 @@ Install `vim-textidote` using your favorite package manager, or use Vim's built-
 
 ## Usage
 `:[range]TeXtidoteToggle`  
-By default `[range]` is the whole file, except in the case where there is a visual selection which is then taken as the default `[range]`.
+By default `[range]` is the whole buffer, except in the case where there is a visual selection which is then taken as the default `[range]`.
 
 
 ## Features
