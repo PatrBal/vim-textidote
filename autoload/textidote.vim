@@ -112,7 +112,7 @@ function s:TeXtidoteSetUp() "{{{1
   let g:textidote_first_language = s:FindLanguage(g:textidote_first_language)
   if g:textidote_first_language == ''
 	let g:textidote_first_language_option = ''
-  elseif has_key(s:supportedLanguages, g:textidote_first_language)
+  else
 	let g:textidote_first_language_option = ' --firstlang ' . g:textidote_first_language
   else
 	echom 'Unknown first language!'
