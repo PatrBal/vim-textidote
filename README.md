@@ -31,10 +31,6 @@ support:
  - Corrections of TeXtidote are displayed in the default brower.
  - Show definition in Antidote of the current word.
 
-## Open tasks
- - [ ] Add support for Windows and Linux
- - [ ] Highlight grammar and spelling mistakes of TeXtidote in the current buffer and populate the location list, as does the plugin [Vim-LanguageTool] for LanguageTool.
-
 
 ## License
 
@@ -45,6 +41,7 @@ See `:help license`.
 ## Credit
 
 This plugin is strongly based on the excellent [Vim-LanguageTool][Vim-LanguageTool].  Large parts of its code have been reused.
+
 
 [TeXtidote]: https://sylvainhalle.github.io/textidote
 [Vim-LanguageTool]: https://github.com/dpelle/vim-LanguageTool
