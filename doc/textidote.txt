@@ -7,6 +7,7 @@
 CONTENTS                                                   *TeXtidoteContents*
 
     1. Overview ......................................... |TeXtidoteOverview|
+	2. Features ......................................... |TeXtidoteFeatures|
     2. Configuration .................................... |TeXtidoteConfig|
     3. Interfacing Vim with Antidote .................... |TeXtidoteAn|
        3.1. Spellchecking ............................... |TeXtidoteSpell|
@@ -31,6 +32,11 @@ markup.
 * https://sylvainhalle.github.io/textidote
 
 ==============================================================================
+2. Features                                                *TeXtidoteFeatures*
+
+
+
+
 2. Configuration
 
 Install `Antidote` and/or `TeXtidote`.
