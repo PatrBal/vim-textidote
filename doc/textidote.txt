@@ -124,5 +124,5 @@ See `:help license`.
 8. Credits                                                  *TeXtidoteCredits*
 
 This plugin is strongly based on the excellent plugin `vim-LanguageTool`. 
-Large parts of its code have been reused.
+Large parts of its code have been reused in this plugin.
 * https://github.com/dpelle/vim-LanguageTool
