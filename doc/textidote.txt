@@ -63,16 +63,16 @@ which respectively activates the checking and clears it.
 ==============================================================================
 4. Installation                                             *TeXtidoteInstall*
 
-4.1. Installing the plugin
+Install `vim-textidote` using your favorite package manager, or use Vim's 
+built-in package support:
 
-Install `Antidote` and/or `TeXtidote`.
-* https://www.antidote.info/en
-* https://sylvainhalle.github.io/textidote
+    `mkdir -p ~/.vim/pack/PatrBal/start`
+    `cd ~/.vim/pack/PatrBal/start`
+    `git clone https://github.com/PatrBal/vim-textidote`
+    `vim -u NONE -c "helptags vim-textidote/doc" -c q`
 
-*g:antidote_antidote_application*
-  Path to the application `Antidote`
-  Default value: `'/Applications/Antidote/Antidote 11.app'`
 
+You must also install `TeXtidote`.
 
 ==============================================================================
 5. Configuration                                              *AntidoteSwitch*
