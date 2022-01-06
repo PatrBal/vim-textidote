@@ -26,7 +26,7 @@ the original file before calling LanguageTool, but it keeps track of the
 relative position of words between the original and "clean text". In short, 
 `TeXtidote` is a version of LanguageTool made blind to LaTeX and Markdown 
 markup.
-* https://sylvainhalle.github.io/textidote
+*https://sylvainhalle.github.io/textidote*
 
 ==============================================================================
 2. Features                                                *TeXtidoteFeatures*
@@ -70,7 +70,7 @@ built-in package support:
     `vim -u NONE -c "helptags vim-textidote/doc" -c q`
 
 You must also install `TeXtidote`.  Downloadthe latest `textidote.jar` from 
-* https://sylvainhalle.github.io/textidote
+*https://sylvainhalle.github.io/textidote*
 and make sure that you have Java version 8 or later installed on your system. 
 Alternatively, on Debian systems (Ubuntu and derivatives), you can install 
 `TeXtidote` using `dpkg`.
@@ -167,4 +167,4 @@ See `:help license`.
 
 This plugin is strongly based on the excellent plugin `vim-LanguageTool`. 
 Large parts of its code have been reused in this plugin.
-* https://github.com/dpelle/vim-LanguageTool
+*https://github.com/dpelle/vim-LanguageTool*
