@@ -130,9 +130,9 @@ function s:TeXtidoteSetUp() "{{{1
   endif
   let g:textidote_first_language = s:FindLanguage(g:textidote_first_language)
   if g:textidote_first_language == ''
-	let g:textidote_first_language_option = ''
+	let s:textidote_first_language_option = ''
   else
-	let g:textidote_first_language_option = ' --firstlang ' . g:textidote_first_language
+	let s:textidote_first_language_option = ' --firstlang ' . g:textidote_first_language
   endif
 
   let s:textidote_jar = exists("g:textidote_jar")
@@ -229,7 +229,7 @@ function textidote#Check(line1, line2) "{{{1
   \ ? g:textidote_cmd
   \ : 'java -jar ' . s:textidote_jar
 
-  let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
+  let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
   silent execute '%!' . l:textidote_cmd_txt
 
   if v:shell_error && v:shell_error != 102 && v:shell_error != 13
@@ -369,7 +369,7 @@ function textidote#Check(line1, line2) "{{{1
   if g:textidote_html_report == 1
     let l:tmphtml = tempname()
 	let l:tmphtml = l:tmphtml . '.html'
-    let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . g:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
+    let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
 	silent execute '!' . l:textidote_cmd_html
 
 	if v:shell_error && v:shell_error != 102 && v:shell_error != 13
