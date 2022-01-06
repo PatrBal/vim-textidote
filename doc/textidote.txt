@@ -8,7 +8,9 @@ CONTENTS                                                   *TeXtidoteContents*
 
     1. Overview ......................................... |TeXtidoteOverview|
 	2. Features ......................................... |TeXtidoteFeatures|
-    2. Configuration .................................... |TeXtidoteConfig|
+	3. Usage ............................................ |TeXtidoteUsage|
+	4. Installation ..................................... |TeXtidoteInstall|
+    5. Configuration .................................... |TeXtidoteConfig|
     3. Interfacing Vim with Antidote .................... |TeXtidoteAn|
        3.1. Spellchecking ............................... |TeXtidoteSpell|
        3.2. Calling definitions and conjugations ........ |TeXtidoteDef|
@@ -33,6 +35,18 @@ markup.
 
 ==============================================================================
 2. Features                                                *TeXtidoteFeatures*
+
+ - Spelling, grammar and style checking of either the entire buffer or part of
+   it.
+ - A scratch buffer shows up, listing all the errors.  Pressing <Enter> on an
+   error in the error scratch buffer will jump to that error.
+ - The location-list is populated, so that you can use location-list Vim
+   commands such as `:lopen` to open the location-list window, `:lne` to jump
+   to the next error, etc.
+ - Optionally, a full html report of TeXtidote analysis can be displayed in
+   the default brower.
+
+==============================================================================
 
 
 
