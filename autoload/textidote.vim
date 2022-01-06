@@ -252,7 +252,8 @@ function textidote#Check(line1, line2) "{{{1
   call delete(l:tmperror)
 
   " The text report produced by TeXtidote is processed to match the format of
-  " the XML report produced by LanguageTool
+  " the XML report produced by LanguageTool so that large parts of the code of
+  " vim-LanguageTool can be reused. 
 
   " Filter RichTextFormat markup
   silent! %!sed -r "s/\x1B\[(([0-9]{1,2})?(;)?([0-9]{1,2})?)?[m,K,H,f,J]//g"
