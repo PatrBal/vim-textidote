@@ -108,14 +108,6 @@ of the LanguageTool plugin.
   'spelllang' or v:lang. If neither work, the plugin defaults to
   English US (en). The valid language codes are: `de`, `de_AT`, `de_CH`, 
   `en`, `en_CA`, `en_UK`, `es`, `fr` ,`nl`, `pt`, `pl`.
-In `TeXtidote`, the language is determined by the Vim setting |spelllang|.
-To display the current value, run:
-`:set spelllang?`
-To make a specific choice:
-`:set spelllang=en`
-`:set spelllang=en_us`
-`:set spelllang=en_gb`
-`:set spelllang=fr`
 
 ==============================================================================
 6. License                                                  *TeXtidoteLicense*
