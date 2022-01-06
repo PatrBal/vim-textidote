@@ -10,8 +10,6 @@ CONTENTS                                                   *TeXtidoteContents*
 	2. Features ......................................... |TeXtidoteFeatures|
 	3. Usage ............................................ |TeXtidoteUsage|
 	4. Installation ..................................... |TeXtidoteInstall|
-	    4.1. Installing the plugin ...................... |
-		4.2. Installing TeXtidote ....................... |
     5. Configuration .................................... |TeXtidoteConfig|
     4. Spellchecking with TeXtidote ..................... |TeXtidoteTeX|
     5. Switching language ............................... |TeXtidoteSwitch|
@@ -65,7 +63,6 @@ which respectively activates the checking and clears it.
 ==============================================================================
 4. Installation 
 
-------------------------------------------------------------------------------
 4.1. Installing the plugin
 
 Install `Antidote` and/or `TeXtidote`.
@@ -76,6 +73,13 @@ Install `Antidote` and/or `TeXtidote`.
   Path to the application `Antidote`
   Default value: `'/Applications/Antidote/Antidote 11.app'`
 
+
+==============================================================================
+5. Configuration                                              *AntidoteSwitch*
+
+In `Antidote`, detection of language (english or french only) is performed 
+automatically.
+
 *g:antidote_textidote_application*
   Path to `textidote.jar`
   Default value: `'~/.vim/textidote.jar'`
@@ -85,12 +89,6 @@ Install `Antidote` and/or `TeXtidote`.
   Must be either empty or one of the following: 'de', 'de_AT', 'de_CH', 
   'en', 'en_CA', 'en_UK', 'es', 'fr' ,'nl', 'pt', 'pl'.
   Default value: empty
-
-==============================================================================
-5. Configuration                                              *AntidoteSwitch*
-
-In `Antidote`, detection of language (english or french only) is performed 
-automatically.
 
 In `TeXtidote`, the language is determined by the Vim setting |spelllang|.
 To display the current value, run:
