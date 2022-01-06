@@ -26,9 +26,9 @@ If ommitted `[range]` is the whole file, except in the case where there is a vis
 
 ## Features
  - Spell, grammar and style check of either the entire buffer or part of it.
- - Validated corrections in Antidote are reimported in Vim.
- - Corrections of TeXtidote are displayed in the default brower.
- - Show definition in Antidote of the current word.
+ - A scratch buffer shows up, listing all the errors.  Pressing <Enter> on an error in the error scratch buffer will jump to that error.
+ - The location-list is populated, so that you can use location-list Vim commands such as `:lopen` to open the location-list window, `:lne` to jump to the next error, etc.
+ - Optionally, a full html report of TeXtidote analysis can be displayed in the default brower.
 
 
 ## License
