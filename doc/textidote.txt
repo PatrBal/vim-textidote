@@ -1,4 +1,4 @@
-*antidote.txt*        Spellcheck with Antidote.app or TeXtidote from inside Vim
+*antidote.txt*         Grammar checking of LaTeX files with TeXtidote from Vim
 
 
 ==============================================================================
