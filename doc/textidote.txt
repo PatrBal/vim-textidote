@@ -2,18 +2,18 @@
 
 
 ==============================================================================
-CONTENTS                                                    *AntidoteContents*
+CONTENTS                                                   *TeXtidoteContents*
 
-    1. Intro ............................................. |AntidoteIntro|
-    2. Configuration ..................................... |AntidoteConfig|
-    3. Interfacing Vim with Antidote ..................... |AntidoteAn|
-       3.1. Spellchecking ................................ |AntidoteSpell|
-       3.2. Calling definitions and conjugations ......... |AntidoteDef|
-    4. Spellchecking with TeXtidote ...................... |AntidoteTeX|
-    5. Switching language ................................ |AntidoteSwitch|
-    6. License ........................................... |AntidoteLicense|
-    7. Changelog ......................................... |AntidoteChangelog|
-    8. Credits ........................................... |AntidoteCredits|
+    1. Intro ............................................ |TeXtidoteIntro|
+    2. Configuration .................................... |TeXtidoteConfig|
+    3. Interfacing Vim with Antidote .................... |TeXtidoteAn|
+       3.1. Spellchecking ............................... |TeXtidoteSpell|
+       3.2. Calling definitions and conjugations ........ |TeXtidoteDef|
+    4. Spellchecking with TeXtidote ..................... |TeXtidoteTeX|
+    5. Switching language ............................... |TeXtidoteSwitch|
+    6. License .......................................... |TeXtidoteLicense|
+    7. Changelog ........................................ |TeXtidoteChangelog|
+    8. Credits .......................................... |TeXtidoteCredits|
 
 
 ==============================================================================
