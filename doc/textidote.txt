@@ -86,16 +86,27 @@ plugin
 Several global variables can be set in your |vimrc| to configure the behavior
 of the LanguageTool plugin.
 
-*g:antidote_textidote_application*
+*g:textidote_jar*
   Path to `textidote.jar`
-  Default value: `'~/.vim/textidote.jar'`
+  Default value: `$HOME/.vim/textidote.jar`
 
-*g:antidote_textidote_first_language*
-  Define your first language to check false friends.
-  Must be either empty or one of the following: 'de', 'de_AT', 'de_CH', 
-  'en', 'en_CA', 'en_UK', 'es', 'fr' ,'nl', 'pt', 'pl'.
+*g:textidote_html_report*
+  Set to `1` if you want to have a html TeXtidote report showing up in your
+  default browser, in addition to the scratch buffer in Vim.
+  Default value: `0`
+
+*g:textidote_first_language*
+  Define your first language to enable the checking for false friends.
+  Must be either empty or one of the following: `de`, `de_AT`, `de_CH`, 
+  `en`, `en_CA`, `en_UK`, `es`, `fr` ,`nl`, `pt`, `pl`.
   Default value: empty
+  Example: `:let g:textidote_first_language = 'fr'`
 
+*g:textidote_lang*
+  The language code to use for the TeXtidote checker. If undefined, the
+  plugin tries to guess the language of the Vim spelling checker
+  'spelllang' or v:lang. If neither work, the plugin defaults to
+  English US (en). The valid language codes are: 
 In `TeXtidote`, the language is determined by the Vim setting |spelllang|.
 To display the current value, run:
 `:set spelllang?`
