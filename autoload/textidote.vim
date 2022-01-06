@@ -5,35 +5,35 @@
 
 " Guess language from 'a:lang' (either 'spelllang' or 'v:lang')
 function s:FindLanguage(lang) "{{{1
-  " This replaces things like en-gb en_GB as expected by TeXtidote,
-  " only for languages that support variants in TeXtidote.
-  let l:language = substitute(substitute(a:lang,
-  \  '\(\a\{2,3}\)\(_\a\a\)\?.*',
-  \  '\=tolower(submatch(1)) . toupper(submatch(2))', ''),
-  \  '-', '_', '')
+	" This replaces things like en-gb en_GB as expected by TeXtidote,
+	" only for languages that support variants in TeXtidote.
+	let l:language = substitute(substitute(a:lang,
+	\  '\(\a\{2,3}\)\(_\a\a\)\?.*',
+	\  '\=tolower(submatch(1)) . toupper(submatch(2))', ''),
+	\  '-', '_', '')
+	
+	" All supported languages (with variants) by TeXtidote.
+	let l:supportedLanguages =  {
+	\  'de'    : 1,
+	\  'de_AT' : 1,
+	\  'de_CH' : 1,
+	\  'en'    : 1,
+	\  'en_CA' : 1,
+	\  'en_GB' : 1,
+	\  'es'    : 1,
+	\  'fr'    : 1,
+	\  'nl'    : 1,
+	\  'pl'    : 1,
+	\  'pt'    : 1,
+	\}
 
-  " All supported languages (with variants) by TeXtidote.
-  let l:supportedLanguages =  {
-  \  'de'    : 1,
-  \  'de_AT' : 1,
-  \  'de_CH' : 1,
-  \  'en'    : 1,
-  \  'en_CA' : 1,
-  \  'en_GB' : 1,
-  \  'es'    : 1,
-  \  'fr'    : 1,
-  \  'nl'    : 1,
-  \  'pl'    : 1,
-  \  'pt'    : 1,
-  \}
-
-  if has_key(l:supportedLanguages, l:language)
-    return l:language
-  endif
-
-  " Removing the region (if any) and trying again.
-  let l:language = substitute(l:language, '_.*', '', '')
-  return has_key(l:supportedLanguages, l:language) ? l:language : ''
+	if has_key(l:supportedLanguages, l:language)
+		return l:language
+	endif
+	
+	" Removing the region (if any) and trying again.
+	let l:language = substitute(l:language, '_.*', '', '')
+	return has_key(l:supportedLanguages, l:language) ? l:language : ''
 endfunction
 
 " Return a regular expression used to highlight a grammatical error
