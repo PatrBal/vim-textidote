@@ -32,9 +32,9 @@ if !exists('g:textidote_html_report')
 	let g:textidote_html_report = 0
 endif
 
-let g:textidote_ignore_rules = 'lt:en:EN_REPEATEDWORDS,sh:c:noin'
-let g:textidote_ignore_environments = 'tikzpicture,equation'
-let g:textidote_ignore_macros = 'array'
+" let g:textidote_ignore_rules = 'lt:en:EN_REPEATEDWORDS,sh:c:noin'
+" let g:textidote_ignore_environments = 'tikzpicture,equation'
+" let g:textidote_ignore_macros = 'array'
 
 hi def link TeXtidoteCmd           Comment
 hi def link TeXtidoteErrorCount    Title
