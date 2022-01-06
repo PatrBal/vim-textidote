@@ -9,7 +9,7 @@
 " de, en, es, fr, nl, pl, pt.
 "
 " See doc/TeXtidote.txt for more details about how to use the
-" LanguageTool plugin.
+" TeXtidote plugin.
 "
 " See http://www.languagetool.org/ for more information about LanguageTool.
 "
