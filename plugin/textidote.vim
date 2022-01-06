@@ -33,7 +33,7 @@ if !exists('g:textidote_html_report')
 endif
 
 let g:textidote_ignore_rules = ''
-let g:textidote_ignore_environments = ''
+let g:textidote_ignore_environments = 'tikzpicture,equation'
 let g:textidote_ignore_macros = ''
 
 hi def link TeXtidoteCmd           Comment
