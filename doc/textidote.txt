@@ -1,4 +1,6 @@
 *textidote.txt*        Grammar checking of LaTeX files with TeXtidote from Vim
+*textidote*
+*TeXtidote*
 
 
 ==============================================================================
