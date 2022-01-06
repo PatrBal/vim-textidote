@@ -7,9 +7,6 @@ This plugin interfaces Vim with the [TeXtidote][TeXtidote] grammar checker.  TeX
 The plugin [Vim-LanguageTool][Vim-LanguageTool] is a full-featured interface of LanguageTool with Vim.  This plugin offers the same clean interface based on TeXtidote instead of LanguageTool. As a consquences, all the errors based on LaTeX or Markdown markup are skipped.
 
 
-It provides a new :Antidote and :TeXtidote family of commands and (recommended) mappings.
-
-
 ## Installation
 
 Install using your favorite package manager, or use Vim's built-in package
@@ -17,12 +14,13 @@ support:
 
     mkdir -p ~/.vim/pack/PatrBal/start
     cd ~/.vim/pack/PatrBal/start
-    git clone https://github.com/PatrBal/vim-TeXtidote
-    vim -u NONE -c "helptags vim-antidote/doc" -c q
+    git clone https://github.com/PatrBal/vim-textidote
+    vim -u NONE -c "helptags vim-textidote/doc" -c q
 
 
 ## Usage
- - :[range]TeXtidoteToggle
+`:[range]TeXtidoteToggle`  
+If ommitted `[range]` is the whole file, except in the case where there is a visual selection which is then taken as `[range]`
 
 
 ## Features
