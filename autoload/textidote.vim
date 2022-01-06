@@ -84,8 +84,7 @@ function s:TeXtidoteSetUp() "{{{1
   \ ? g:textidote_ignore_rules : ''
 
   let s:textidote_ignore_environments = exists("g:textidote_ignore_environments")
-  \ ? g:textidote_ignore_environments
-  \ : ''
+  \ ? g:textidote_ignore_environments : ''
   let s:textidote_ignore_macros = exists("g:textidote_ignore_macros")
   \ ? g:textidote_ignore_macros
   \ : ''
