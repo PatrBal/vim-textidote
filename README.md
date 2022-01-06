@@ -1,4 +1,4 @@
-# vim-antidote
+# vim-textidote
 
 ## Description
 
