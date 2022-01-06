@@ -22,7 +22,7 @@ support:
 
 
 ## Usage
- - :[range]Antidote :[range]TeXtidote
+ - :[range]TeXtidoteToggle
 
 ## Features
  - Spellcheck of either the entire buffer or part of it.
