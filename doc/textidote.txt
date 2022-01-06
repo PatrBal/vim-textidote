@@ -111,10 +111,17 @@ of the LanguageTool plugin.
   `en`, `en_CA`, `en_UK`, `es`, `fr` ,`nl`, `pt`, `pl`.
 
 *g:textidote_dictionary*
+  If you have a list of words that you want TeXtidote to ignore when checking
+  spelling, you can specify a dictionary file. This file must be a plain text
+  file contain a list of words to be ignored, with each word on a separate
+  line.  
   Default value: empty
   Example: `:let g:textidote_dictionary = $HOME . '.vim/dico.txt'`
 
 *g:textidote_ignore_rules*
+  You may want to ignore some of TeXtidote's advice. You can do so by 
+  specifying rule IDs to ignore (rule IDs are shown between brackets in the
+  reports given by TeXtidote).
   Default value: empty
   Example: `:let g:textidote_ignore_rules = 'lt:en:EN_REPEATEDWORDS,sh:c:noin'`
 
