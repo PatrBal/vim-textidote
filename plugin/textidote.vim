@@ -14,12 +14,12 @@
 "
 " License: {{{1
 "
-" The VIM LICENSE applies to LanguageTool.vim plugin
+" The VIM LICENSE applies to TeXtidote.vim plugin
 " (see ":help copyright" except use "textidote.vim" instead of "Vim").
 "
 " Plugin set up {{{1
 if &cp || exists("g:loaded_textidote")
- finish
+	finish
 endif
 let g:loaded_textidote = "1"
 
@@ -41,7 +41,7 @@ hi def link TeXtidoteSpellingError WarningMsg
 
 " Menu items {{{1
 if has("gui_running") && has("menu") && &go =~# 'm'
-  amenu <silent> &Plugin.TeXtidote.Togg&le :TeXtidoteToggle<CR>
+	amenu <silent> &Plugin.TeXtidote.Togg&le :TeXtidoteToggle<CR>
 endif
 
 " Defines commands {{{1
