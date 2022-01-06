@@ -11,7 +11,7 @@
 " See doc/TeXtidote.txt for more details about how to use the
 " TeXtidote plugin.
 "
-" See http://www.languagetool.org/ for more information about TeXtidote.
+" See https://sylvainhalle.github.io/textidote/ for more information about TeXtidote.
 "
 " License: {{{1
 "
