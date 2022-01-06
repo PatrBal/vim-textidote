@@ -44,4 +44,3 @@ This plugin is strongly based on the excellent [vim-LanguageTool][vim-LanguageTo
 
 [TeXtidote]: https://sylvainhalle.github.io/textidote
 [vim-LanguageTool]: https://github.com/dpelle/vim-LanguageTool
-
