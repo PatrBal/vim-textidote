@@ -106,6 +106,9 @@ function s:TeXtidoteSetUp() "{{{1
     endif
   endif
 
+  if !exists('g:textidote_first_language')
+	let g:textidote_first_language = ''
+  endif
 
 
   let s:textidote_jar = exists("g:textidote_jar")
