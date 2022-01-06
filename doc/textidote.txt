@@ -131,8 +131,9 @@ of the LanguageTool plugin.
   Example: `:let g:textidote_ignore_environments = 'tikzpicture,equation'`
 
 *g:textidote_ignore_macros*
+  Same as above with macros instead of environments.
   Default value: empty
-  Example: `:let g:textidote_ignore_macros = 'array'`
+  Example: `:let g:textidote_ignore_macros = 'textsc'`
 
 
 You can also customize the following syntax highlighting groups:
