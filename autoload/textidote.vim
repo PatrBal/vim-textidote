@@ -101,6 +101,12 @@ function s:TeXtidoteSetUp() "{{{1
   else
 	let s:textidote_ignore_environments_option = ' --remove ' . s:textidote_ignore_environments
   endif
+  if s:textidote_ignore_macros == ''
+	let s:textidote_ignore_macros_option = ''
+  else
+	let s:textidote_ignore_macros_option = ' --remove-macros ' . s:textidote_ignore_macros
+  endif
+
   " Setting up language...
   if exists("g:textidote_lang")
     let s:textidote_lang = g:textidote_lang
