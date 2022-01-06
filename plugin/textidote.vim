@@ -1,6 +1,6 @@
 " Description: Grammar checker with TeXtidote from Vim
 " Author:      Patrick Ballard <patrick.ballard.paris@gmail.com>
-" Last Change: 05/01/2022
+" Last Change: 06/01/2022
 "
 " Long Description: {{{1
 "
@@ -8,8 +8,7 @@
 " Current version of TeXtidote can check grammar in many languages:
 " de, en, es, fr, nl, pl, pt.
 "
-" See doc/TeXtidote.txt for more details about how to use the
-" TeXtidote plugin.
+" See doc/TeXtidote.txt for more details about how to use the vim-textidote plugin.
 "
 " See https://sylvainhalle.github.io/textidote/ for more information about TeXtidote.
 "
@@ -49,4 +48,3 @@ endif
 command! -nargs=0          TeXtidoteClear :call textidote#Clear()
 command! -nargs=0 -range=% TeXtidoteCheck :call textidote#Check(<line1>,<line2>)
 command! -nargs=0 -range=% TeXtidoteToggle :call textidote#Toggle(<line1>,<line2>)
-
