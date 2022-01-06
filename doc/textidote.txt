@@ -109,6 +109,13 @@ of the LanguageTool plugin.
   English US (en). The valid language codes are: `de`, `de_AT`, `de_CH`, 
   `en`, `en_CA`, `en_UK`, `es`, `fr` ,`nl`, `pt`, `pl`.
 
+*g:textidote_dictionary*
+
+*g:textidote_ignore_rules*
+
+*g:textidote_ignore_environments*
+
+*g:textidote_ignore_macros*
 ==============================================================================
 6. License                                                  *TeXtidoteLicense*
 
