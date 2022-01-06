@@ -113,4 +113,4 @@ See `:help license`.
 
 This plugin is strongly based on the excellent plugin `vim-LanguageTool`. 
 Large parts of its code have been reused.
-
+* https://github.com/dpelle/vim-LanguageTool
