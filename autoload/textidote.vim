@@ -82,7 +82,6 @@ endfunction
 function s:TeXtidoteSetUp() "{{{1
   let s:textidote_ignore_rules = exists("g:textidote_ignore_rules")
   \ ? g:textidote_ignore_rules : ''
-
   let s:textidote_ignore_environments = exists("g:textidote_ignore_environments")
   \ ? g:textidote_ignore_environments : ''
   let s:textidote_ignore_macros = exists("g:textidote_ignore_macros")
