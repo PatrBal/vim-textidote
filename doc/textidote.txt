@@ -98,7 +98,7 @@ To make a specific choice:
 `:set spelllang=fr`
 
 ==============================================================================
-6. License                                                   *AntidoteLicense*
+6. License                                                  *TeXtidoteLicense*
 
 ==============================================================================
 7. Changelog                                              *TeXtidoteChangelog*
