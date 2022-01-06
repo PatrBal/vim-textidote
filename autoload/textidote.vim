@@ -91,6 +91,11 @@ function s:TeXtidoteSetUp() "{{{1
   \ : 14
   let s:textidote_encoding = &fenc ? &fenc : &enc
 
+  if s:textidote_ignore_environments == ''
+	let s:textidote_ignore_environments_option = ''
+  else
+	let s:textidote_ignore_environments_option = ' --remove ' . s:textidote_ignore_environments
+  endif
   " Setting up language...
   if exists("g:textidote_lang")
     let s:textidote_lang = g:textidote_lang
