@@ -83,11 +83,11 @@ function s:TeXtidoteSetUp() "{{{1
   let s:textidote_ignore_rules = exists("g:textidote_ignore_rules")
   \ ? g:textidote_ignore_rules
   \ : ''
-  let s:textidote_ignore_rules = exists("g:textidote_ignore_rules")
-  \ ? g:textidote_ignore_rules
+  let s:textidote_ignore_environments = exists("g:textidote_ignore_environments")
+  \ ? g:textidote_ignore_environments
   \ : ''
-  let s:textidote_ignore_rules = exists("g:textidote_ignore_rules")
-  \ ? g:textidote_ignore_rules
+  let s:textidote_ignore_macros = exists("g:textidote_ignore_macros")
+  \ ? g:textidote_ignore_macros
   \ : ''
   let s:textidote_win_height = exists("g:textidote_win_height")
   \ ? g:textidote_win_height
