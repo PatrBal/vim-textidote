@@ -35,9 +35,9 @@ endif
 """ Example of configuration
 " let g:textidote_first_language = 'fr'
 " let g:textidote_html_report = 0
-" let g:textidote_ignore_rules = 'lt:en:EN_REPEATEDWORDS,sh:c:noin'
-" let g:textidote_ignore_environments = 'tikzpicture,equation'
-" let g:textidote_ignore_macros = 'array'
+let g:textidote_ignore_rules = 'lt:en:EN_REPEATEDWORDS,sh:c:noin'
+let g:textidote_ignore_environments = 'tikzpicture,equation'
+let g:textidote_ignore_macros = 'array'
 " vnoremap <silent> <Leader>te :'<,'>TeXtidoteToggle<CR>
 " nnoremap <silent> <Leader>te :TeXtidoteToggle<CR>
 
