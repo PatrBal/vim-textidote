@@ -30,7 +30,6 @@ In short, TeXtidote is a version of LanguageTool made blind to LaTeX and
 Markdown markup.
 * https://sylvainhalle.github.io/textidote
 
-
 ==============================================================================
 2. Configuration
 
