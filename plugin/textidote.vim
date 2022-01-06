@@ -34,7 +34,7 @@ endif
 
 let g:textidote_ignore_rules = 'lt:en:EN_REPEATEDWORDS,sh:c:noin'
 let g:textidote_ignore_environments = 'tikzpicture,equation'
-let g:textidote_ignore_macros = ''
+let g:textidote_ignore_macros = 'array'
 
 hi def link TeXtidoteCmd           Comment
 hi def link TeXtidoteErrorCount    Title
