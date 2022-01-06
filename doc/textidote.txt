@@ -103,11 +103,11 @@ To make a specific choice:
 6. License                                                   *AntidoteLicense*
 
 ==============================================================================
-7. Changelog                                               *AntidoteChangelog*
+7. Changelog                                              *TeXtidoteChangelog*
 
 26/12/2021 Add this documentation
 20/12/2021 Add support for TeXtidote
 14/08/2018 Initial version
 
 ==============================================================================
-8. Credits                                                   *AntidoteCredits*
+8. Credits                                                  *TeXtidoteCredits*
