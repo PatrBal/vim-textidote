@@ -284,8 +284,7 @@ function textidote#Check(line1, line2) "{{{1
   " Final formatting
   silent! %substitute/\m\C. Suggestions: \[\([^]]*\)\]/" replacements="\1/
   silent! %substitute/\m\C\(([0-9]*)\|\.\) \(\[[^]]*\]\)/" ruleId="\2"/
-  silent! %print
-  " silent! %!cat
+  silent! %!cat
 
   " Loop on all errors in XML output of LanguageTool and
   " collect information about all errors in list s:errors
