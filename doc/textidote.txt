@@ -116,6 +116,7 @@ of the LanguageTool plugin.
 *g:textidote_ignore_environments*
 
 *g:textidote_ignore_macros*
+
 ==============================================================================
 6. License                                                  *TeXtidoteLicense*
 
