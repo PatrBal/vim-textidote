@@ -61,7 +61,7 @@ In addition, there are
 which respectively activates the checking and clears it.
 
 ==============================================================================
-4. Installation 
+4. Installation                                             *TeXtidoteInstall*
 
 4.1. Installing the plugin
 
