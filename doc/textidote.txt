@@ -100,6 +100,9 @@ To make a specific choice:
 ==============================================================================
 6. License                                                  *TeXtidoteLicense*
 
+Copyright (c) Patrick Ballard.  Distributed under the same terms as Vim itself.
+See `:help license`.
+
 ==============================================================================
 7. Changelog                                              *TeXtidoteChangelog*
 
