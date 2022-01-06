@@ -63,8 +63,7 @@ In addition, there are
 which respectively activates the checking and clears it.
 
 ==============================================================================
-
-4. Configuration
+4. Installation 
 
 Install `Antidote` and/or `TeXtidote`.
 * https://www.antidote.info/en
@@ -83,48 +82,6 @@ Install `Antidote` and/or `TeXtidote`.
   Must be either empty or one of the following: 'de', 'de_AT', 'de_CH', 
   'en', 'en_CA', 'en_UK', 'es', 'fr' ,'nl', 'pt', 'pl'.
   Default value: empty
-
-==============================================================================
-3. Interfacing Vim with Antidote                                  *AntidoteAn*
-
-------------------------------------------------------------------------------
-3.1. Spellchecking                                             *AntidoteSpell*
-
-The following command:
-`:[range]Antidote`
-run spellcheking of the specified range of the file in Antidote. Validation of
-the suggested corrections is operated within `Antidote`. When coming back to 
-Vim the option of either importing or discarding the validated corrections is
-proposed. If `[range]` is omitted, then the spellcheck is run on the whole 
-file.
-
-One can also use the mapping:
-`<Leader>an`
-in either visual or normal mode. In visual mode, the spellcheck is run on the
-selection and in normal mode it is run on the whole file.
-
-------------------------------------------------------------------------------
-3.2. Calling definitions                                         *AntidoteDef*
-
-The plugin provides a mapping for calling easily the definition of the current
-word under the cursor.
-
-`C-@` calls the definition in Antidote of the current word in normal and 
-visual modes.
-
-==============================================================================
-4. Spellchecking with TeXtidote                                  *AntidoteTeX*
-
-The following command:
-`:[range]TeXtidote`
-run spellcheking of the specified range of the file in `TeXtidote`. Suggested
-corrections are displayed in the default browser. If `[range]` is omitted, 
-then the spellcheck is run on the whole file.
-
-One can also use the mapping:
-`<Leader>te`
-in either visual or normal mode. In visual mode, the spellcheck is run on the
-selection and in normal mode it is run on the whole file.
 
 ==============================================================================
 5. Configuration                                              *AntidoteSwitch*
