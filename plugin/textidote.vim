@@ -1,4 +1,4 @@
-" Description: Grammar checker with TeXtidote from Vim
+" Description: Grammar checker of LaTeX files with TeXtidote from Vim
 " Author:      Patrick Ballard <patrick.ballard.paris@gmail.com>
 " Last Change: 06/01/2022
 "
