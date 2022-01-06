@@ -81,8 +81,8 @@ endfunction
 " Returns 0 if success, < 0 in case of error.
 function s:TeXtidoteSetUp() "{{{1
   let s:textidote_ignore_rules = exists("g:textidote_ignore_rules")
-  \ ? g:textidote_ignore_rules
-  \ : ''
+  \ ? g:textidote_ignore_rules : ''
+
   let s:textidote_ignore_environments = exists("g:textidote_ignore_environments")
   \ ? g:textidote_ignore_environments
   \ : ''
