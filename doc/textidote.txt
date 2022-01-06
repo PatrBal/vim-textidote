@@ -78,6 +78,14 @@ Alternatively, on Debian systems (Ubuntu and derivatives), you can install
 ==============================================================================
 5. Configuration                                             *TeXtidoteConfig*
 
+It is convenient to create a mapping in your |vimrc| to quickly invoke the
+plugin
+`vnoremap <silent> <Leader>te :'<,'>TeXtidoteToggle<CR>`
+`nnoremap <silent> <Leader>te :TeXtidoteToggle<CR>`
+
+Several global variables can be set in your |vimrc| to configure the behavior
+of the LanguageTool plugin.
+
 *g:antidote_textidote_application*
   Path to `textidote.jar`
   Default value: `'~/.vim/textidote.jar'`
