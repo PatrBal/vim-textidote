@@ -65,6 +65,9 @@ which respectively activates the checking and clears it.
 ==============================================================================
 4. Installation 
 
+------------------------------------------------------------------------------
+4.1. Installing the plugin
+
 Install `Antidote` and/or `TeXtidote`.
 * https://www.antidote.info/en
 * https://sylvainhalle.github.io/textidote
