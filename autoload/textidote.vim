@@ -199,210 +199,210 @@ endfunction
 " the range of line to check.
 " Returns 0 if success, < 0 in case of error.
 function textidote#Check(line1, line2) "{{{1
-  if s:TeXtidoteSetUp() < 0
-    return -1
-  endif
-  call textidote#Clear()
+	if s:TeXtidoteSetUp() < 0
+		return -1
+	endif
+	call textidote#Clear()
 
-  echon 'Thinking...'
+	echon 'Thinking...'
 
-  " Using window ID is more reliable than window number.
-  " But win_getid() does not exist in old version of Vim.
-  let s:textidote_text_winid = exists('*win_getid')
-  \                             ? win_getid() : winnr()
-  sil %y
-  botright new
-  set modifiable
-  let s:textidote_error_buffer = bufnr('%')
-  sil put!
+	" Using window ID is more reliable than window number.
+	" But win_getid() does not exist in old version of Vim.
+	let s:textidote_text_winid = exists('*win_getid')
+	\                             ? win_getid() : winnr()
+	sil %y
+	botright new
+	set modifiable
+	let s:textidote_error_buffer = bufnr('%')
+	sil put!
 
-  " TeXtidote/LanguageTool somehow gives incorrect line/column numbers when
-  " reading from stdin so we need to use a temporary file to get
-  " correct results.
-  let l:tmpfilename = tempname()
-  let l:tmperror    = tempname()
+	" TeXtidote/LanguageTool somehow gives incorrect line/column numbers when
+	" reading from stdin so we need to use a temporary file to get
+	" correct results.
+	let l:tmpfilename = tempname()
+	let l:tmperror    = tempname()
 
-  let l:range = a:line1 . ',' . a:line2
-  silent execute l:range . 'w!' . l:tmpfilename
+	let l:range = a:line1 . ',' . a:line2
+	silent execute l:range . 'w!' . l:tmpfilename
 
-  " Check if 'begin{document}' is in file, and otherwise set '--read-all' option
-  if match(readfile(l:tmpfilename) , "begin{document}")!=-1
-	  let l:option = ' --check '
-  else
-	  let l:option = ' --read-all --check '
-  endif 
+	" Check if 'begin{document}' is in file, and otherwise set '--read-all' option
+	if match(readfile(l:tmpfilename) , "begin{document}")!=-1
+		let l:option = ' --check '
+	else
+		let l:option = ' --read-all --check '
+	endif 
 
-  let l:textidote_cmd = exists("g:textidote_cmd")
-  \ ? g:textidote_cmd
-  \ : 'java -jar ' . s:textidote_jar
+	let l:textidote_cmd = exists("g:textidote_cmd")
+	\ ? g:textidote_cmd
+	\ : 'java -jar ' . s:textidote_jar
 
-  let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
-  silent execute '%!' . l:textidote_cmd_txt
+	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
+	silent execute '%!' . l:textidote_cmd_txt
 
-  " if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
-  if v:shell_error == 255
-    echoerr 'Command [' . l:textidote_cmd_txt . '] failed with error: '
-    \      . v:shell_error
-    if filereadable(l:tmperror)
-      echoerr string(readfile(l:tmperror))
-    endif
-    call delete(l:tmperror)
-    call textidote#Clear()
-    return -1
-  endif
-  call delete(l:tmperror)
+	" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
+	if v:shell_error == 255
+		echoerr 'Command [' . l:textidote_cmd_txt . '] failed with error: '
+		\      . v:shell_error
+		if filereadable(l:tmperror)
+			echoerr string(readfile(l:tmperror))
+		endif
+		call delete(l:tmperror)
+		call textidote#Clear()
+		return -1
+	endif
+	call delete(l:tmperror)
 
-  " The text report produced by TeXtidote is processed to match the format of
-  " the XML report produced by LanguageTool so that large parts of the code of
-  " vim-LanguageTool can be reused. 
+	" The text report produced by TeXtidote is processed to match the format of
+	" the XML report produced by LanguageTool so that large parts of the code of
+	" vim-LanguageTool can be reused. 
 
-  " Filter RichTextFormat markup
-  silent! %substitute/\m\%x1B\(\(\[[0-9]\{1,2\}\)\?\(;\)\?\([0-9]\{1,2\}\)\?\)\?[m,K,H,f,J]//g
-  " Reformat last field to extract 'contextoffset' and 'errorlength'
-  silent! %substitute/\v\C^( *)(\^+)$/\1,\2,trucdeouf/
-  silent! %!awk -F"," '{ if ($3=="trucdeouf")  print "contextoffset=\""length($1)"\" errorlength=\""length($2)"\"/>"; else print $0 }'
-  " Beginning of 'context' reformat. Adjust 'contextoffset' appropriately
-  silent! %global/\m\Ccontextoffset/-1s/\m^/context=/
-  silent! %global/\m\C^context=  /execute "normal j^1\<C-A>"
-  silent! %global/\m\C^context=  \t/execute "normal j^2\<C-X>"
-  silent! %substitute/\m\C^context=  \t/context=  /
-  " Escape special characters
-  silent! %vglobal/\m\C^contextoffset=/substitute/\V&/\&amp;/g
-  silent! %vglobal/\m\C^contextoffset=/substitute/\m\t/\&#x9;/g
-  silent! %vglobal/\m\C^contextoffset=/substitute/\V</\&lt;/g
-  silent! %vglobal/\m\C^contextoffset=/substitute/\V>/\&gt;/g
-  silent! %vglobal/\m\C^contextoffset=/substitute/\V'/\&apos;/g
-  silent! %vglobal/\m\C^contextoffset=/substitute/\V"/\&quot;/g
-  " Format start and end of each field
-  silent! %substitute/\v\C\* L([0-9]*)C([0-9]*)-L([0-9]*)C([0-9]*) /\1,\2,<error fromy="\1" fromx="\2" toy="\3" tox="\4" msg="/
-  " Finish context formatting
-  silent! %substitute/\m\C^context=  \(.*\)/context="...\1..." /
-  " Remove indenting spaces, join and sort
-  silent! %substitute/\m\C^  //
-  silent! %global/\m\C,<error fromy/ .,/\/>$/ join
-  silent! %!sort -t, -k 1n,1 -k 2n,2 
-  silent! %substitute/\m\C^[0-9]*,[0-9]*,<error/<error/
-  " Final formatting
-  silent! %substitute/\m\C. Suggestions: \[\([^]]*\)\]/" replacements="\1/
-  silent! %substitute/\m\C\(([0-9]*)\|\.\) \(\[[^]]*\]\)/" ruleId="\2"/
-  silent! %!cat
+	" Filter RichTextFormat markup
+	silent! %substitute/\m\%x1B\(\(\[[0-9]\{1,2\}\)\?\(;\)\?\([0-9]\{1,2\}\)\?\)\?[m,K,H,f,J]//g
+	" Reformat last field to extract 'contextoffset' and 'errorlength'
+	silent! %substitute/\v\C^( *)(\^+)$/\1,\2,trucdeouf/
+	silent! %!awk -F"," '{ if ($3=="trucdeouf")  print "contextoffset=\""length($1)"\" errorlength=\""length($2)"\"/>"; else print $0 }'
+	" Beginning of 'context' reformat. Adjust 'contextoffset' appropriately
+	silent! %global/\m\Ccontextoffset/-1s/\m^/context=/
+	silent! %global/\m\C^context=  /execute "normal j^1\<C-A>"
+	silent! %global/\m\C^context=  \t/execute "normal j^2\<C-X>"
+	silent! %substitute/\m\C^context=  \t/context=  /
+	" Escape special characters
+	silent! %vglobal/\m\C^contextoffset=/substitute/\V&/\&amp;/g
+	silent! %vglobal/\m\C^contextoffset=/substitute/\m\t/\&#x9;/g
+	silent! %vglobal/\m\C^contextoffset=/substitute/\V</\&lt;/g
+	silent! %vglobal/\m\C^contextoffset=/substitute/\V>/\&gt;/g
+	silent! %vglobal/\m\C^contextoffset=/substitute/\V'/\&apos;/g
+	silent! %vglobal/\m\C^contextoffset=/substitute/\V"/\&quot;/g
+	" Format start and end of each field
+	silent! %substitute/\v\C\* L([0-9]*)C([0-9]*)-L([0-9]*)C([0-9]*) /\1,\2,<error fromy="\1" fromx="\2" toy="\3" tox="\4" msg="/
+	" Finish context formatting
+	silent! %substitute/\m\C^context=  \(.*\)/context="...\1..." /
+	" Remove indenting spaces, join and sort
+	silent! %substitute/\m\C^  //
+	silent! %global/\m\C,<error fromy/ .,/\/>$/ join
+	silent! %!sort -t, -k 1n,1 -k 2n,2 
+	silent! %substitute/\m\C^[0-9]*,[0-9]*,<error/<error/
+	" Final formatting
+	silent! %substitute/\m\C. Suggestions: \[\([^]]*\)\]/" replacements="\1/
+	silent! %substitute/\m\C\(([0-9]*)\|\.\) \(\[[^]]*\]\)/" ruleId="\2"/
+	silent! %!cat
 
-  " Loop on all errors in XML output of LanguageTool and
-  " collect information about all errors in list s:errors
-  let s:errors = []
-  while search('^<error ', 'eW') > 0
-    let l:l = getline('.')
-    " The fromx and tox given by LanguageTool are not reliable.
-    " They are even sometimes negative!
+	" Loop on all errors in XML output of LanguageTool and
+	" collect information about all errors in list s:errors
+	let s:errors = []
+	while search('^<error ', 'eW') > 0
+		let l:l = getline('.')
+		" The fromx and tox given by LanguageTool are not reliable.
+		" They are even sometimes negative!
 
-    let l:error= {}
-    for l:k in [ 'fromy', 'fromx', 'toy', 'tox',
-    \            'msg', 'replacements', 'ruleId',
-    \            'context', 'contextoffset', 'errorlength' ]
-      let l:error[l:k] = s:ParseKeyValue(l:k, l:l)
-    endfor
+		let l:error= {}
+		for l:k in [ 'fromy', 'fromx', 'toy', 'tox',
+		\            'msg', 'replacements', 'ruleId',
+		\            'context', 'contextoffset', 'errorlength' ]
+			let l:error[l:k] = s:ParseKeyValue(l:k, l:l)
+		endfor
 
-    let l:error['fromy'] += a:line1 - 1
-    let l:error['toy']   += a:line1 - 1
+		let l:error['fromy'] += a:line1 - 1
+		let l:error['toy']   += a:line1 - 1
 
-    call add(s:errors, l:error)
-  endwhile
+		call add(s:errors, l:error)
+	endwhile
 
-  if s:textidote_win_height >= 0
-    " Reformat the output of LanguageTool (XML is not human friendly) and
-    " set up syntax highlighting in the buffer which shows all errors.
-    %d
-    call append(0, '# ' . l:textidote_cmd_txt)
-    set bt=nofile
-    setlocal nospell
-    syn clear
-    call matchadd('TeXtidoteCmd',        '\%1l.*')
-    call matchadd('TeXtidoteErrorCount', '^Error:\s\+\d\+/\d\+')
-    call matchadd('TeXtidoteLabel',      '^\(Context\|Message\|Correction\):')
+	if s:textidote_win_height >= 0
+		" Reformat the output of LanguageTool (XML is not human friendly) and
+		" set up syntax highlighting in the buffer which shows all errors.
+		%d
+		call append(0, '# ' . l:textidote_cmd_txt)
+		set bt=nofile
+		setlocal nospell
+		syn clear
+		call matchadd('TeXtidoteCmd',        '\%1l.*')
+		call matchadd('TeXtidoteErrorCount', '^Error:\s\+\d\+/\d\+')
+		call matchadd('TeXtidoteLabel',      '^\(Context\|Message\|Correction\):')
 
-    let l:i = 1
-    for l:error in s:errors
-      call append('$', 'Error:      '
-      \ . l:i . '/' . len(s:errors)
-      \ . ' '  . l:error['ruleId']
-      \ . ' @ ' . l:error['fromy'] . 'L ' . l:error['fromx'] . 'C')
-      call append('$', 'Message:    '     . l:error['msg'])
-      call append('$', 'Context:    ' . l:error['context'])
-      let l:re =
-      \   '\%'  . line('$') . 'l\%9c'
-      \ . '.\{' . (4 + l:error['contextoffset']) . '}\zs'
-      \ . '.\{' .     (l:error['errorlength']) . '}'
-      if l:error['ruleId'] =~# 'HUNSPELL_RULE\|HUNSPELL_NO_SUGGEST_RULE\|MORFOLOGIK_RULE_\|_SPELLING_RULE\|_SPELLER_RULE'
-        call matchadd('LanguageToolSpellingError', l:re)
-      else
-        call matchadd('LanguageToolGrammarError', l:re)
-      endif
-      if !empty(l:error['replacements'])
-        call append('$', 'Correction: ' . l:error['replacements'])
-      endif
-      call append('$', '')
-      let l:i += 1
-    endfor
-    exe "norm! z" . s:textidote_win_height . "\<CR>"
-    0
-    map <silent> <buffer> <CR> :call <sid>JumpToCurrentError()<CR>
-    redraw
-    echom 'Press <Enter> on error in scratch buffer to jump its location'
-    execute "normal! \<C-W>\<C-P>"
-  else
-    " Negative s:textidote_win_height -> no scratch window.
-    bd!
-    unlet! s:textidote_error_buffer
-  endif
+		let l:i = 1
+		for l:error in s:errors
+			call append('$', 'Error:      '
+			\ . l:i . '/' . len(s:errors)
+			\ . ' '  . l:error['ruleId']
+			\ . ' @ ' . l:error['fromy'] . 'L ' . l:error['fromx'] . 'C')
+			call append('$', 'Message:    '     . l:error['msg'])
+			call append('$', 'Context:    ' . l:error['context'])
+			let l:re =
+			\   '\%'  . line('$') . 'l\%9c'
+			\ . '.\{' . (4 + l:error['contextoffset']) . '}\zs'
+			\ . '.\{' .     (l:error['errorlength']) . '}'
+			if l:error['ruleId'] =~# 'HUNSPELL_RULE\|HUNSPELL_NO_SUGGEST_RULE\|MORFOLOGIK_RULE_\|_SPELLING_RULE\|_SPELLER_RULE'
+				call matchadd('LanguageToolSpellingError', l:re)
+			else
+				call matchadd('LanguageToolGrammarError', l:re)
+			endif
+			if !empty(l:error['replacements'])
+				call append('$', 'Correction: ' . l:error['replacements'])
+			endif
+			call append('$', '')
+			let l:i += 1
+		endfor
+		exe "norm! z" . s:textidote_win_height . "\<CR>"
+		0
+		map <silent> <buffer> <CR> :call <sid>JumpToCurrentError()<CR>
+		redraw
+		echom 'Press <Enter> on error in scratch buffer to jump its location'
+		execute "normal! \<C-W>\<C-P>"
+	else
+		" Negative s:textidote_win_height -> no scratch window.
+		bd!
+		unlet! s:textidote_error_buffer
+	endif
 
-  " Also highlight errors in original buffer and populate location list.
-  setlocal errorformat=%f:%l:%c:%m
-  for l:error in s:errors
-    let l:re = s:TeXtidoteHighlightRegex(l:error['fromy'],
-    \                                       l:error['context'],
-    \                                       l:error['contextoffset'],
-    \                                       l:error['errorlength'])
-    if l:error['ruleId'] =~# 'HUNSPELL_RULE\|HUNSPELL_NO_SUGGEST_RULE\|MORFOLOGIK_RULE_\|_SPELLING_RULE\|_SPELLER_RULE'
-      call matchadd('TeXtidoteSpellingError', l:re)
-    else
-      call matchadd('TeXtidoteGrammarError', l:re)
-    endif
-    laddexpr expand('%') . ':'
-    \ . l:error['fromy'] . ':'  . l:error['fromx'] . ':'
-    \ . l:error['ruleId'] . ' ' . l:error['msg']
-  endfor
+	" Also highlight errors in original buffer and populate location list.
+	setlocal errorformat=%f:%l:%c:%m
+	for l:error in s:errors
+		let l:re = s:TeXtidoteHighlightRegex(l:error['fromy'],
+		\                                       l:error['context'],
+		\                                       l:error['contextoffset'],
+		\                                       l:error['errorlength'])
+		if l:error['ruleId'] =~# 'HUNSPELL_RULE\|HUNSPELL_NO_SUGGEST_RULE\|MORFOLOGIK_RULE_\|_SPELLING_RULE\|_SPELLER_RULE'
+			call matchadd('TeXtidoteSpellingError', l:re)
+		else
+			call matchadd('TeXtidoteGrammarError', l:re)
+		endif
+		laddexpr expand('%') . ':'
+		\ . l:error['fromy'] . ':'  . l:error['fromx'] . ':'
+		\ . l:error['ruleId'] . ' ' . l:error['msg']
+	endfor
 
-  echon 'Press <Enter> on error in scratch buffer to jump its location'
-  
-  " Handle the optional additional html report.
-  if g:textidote_html_report == 1
-    let l:tmphtml = tempname()
+	echon 'Press <Enter> on error in scratch buffer to jump its location'
+	
+	" Handle the optional additional html report.
+	if g:textidote_html_report == 1
+		let l:tmphtml = tempname()
 	let l:tmphtml = l:tmphtml . '.html'
-    let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
+		let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
 	silent execute '!' . l:textidote_cmd_html
 
 	" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
 	if v:shell_error == 255
-      echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
-      \      . v:shell_error
-      if filereadable(l:tmperror)
-        echoerr string(readfile(l:tmperror))
-      endif
-      call delete(l:tmperror)
-      call textidote#Clear()
-      return -1
-    endif
-    call delete(l:tmperror)
-    
+			echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
+			\      . v:shell_error
+			if filereadable(l:tmperror)
+				echoerr string(readfile(l:tmperror))
+			endif
+			call delete(l:tmperror)
+			call textidote#Clear()
+			return -1
+		endif
+		call delete(l:tmperror)
+		
 	sleep 1000m
 	silent execute '!open ' . 'file://' . l:tmphtml
 	sleep 8000m
 	call delete(l:tmphtml)
-  endif
+	endif
 
-  call delete(l:tmpfilename)
-  let g:textidote_indicator = 1
-  return 0
+	call delete(l:tmpfilename)
+	let g:textidote_indicator = 1
+	return 0
 endfunction
 
 " This function clears syntax highlighting created by TeXtidote plugin
