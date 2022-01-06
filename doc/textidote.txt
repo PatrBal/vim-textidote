@@ -103,9 +103,11 @@ To make a specific choice:
 ==============================================================================
 7. Changelog                                              *TeXtidoteChangelog*
 
-26/12/2021 Add this documentation
-20/12/2021 Add support for TeXtidote
-14/08/2018 Initial version
+06/01/2022 Initial version
 
 ==============================================================================
 8. Credits                                                  *TeXtidoteCredits*
+
+This plugin is strongly based on the excellent plugin `vim-LanguageTool`. 
+Large parts of its code have been reused.
+
