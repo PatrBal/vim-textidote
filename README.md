@@ -9,8 +9,9 @@ The plugin [Vim-LanguageTool][Vim-LanguageTool] is a full-featured interface of 
 
 ## Installation
 
-Install using your favorite package manager, or use Vim's built-in package
-support:
+Download the latest `textidote.jar` from [TeXtidote][TeXtidote] and make sure you have Java version 8 or later installed on your system.
+
+Install `vim-textidote` using your favorite package manager, or use Vim's built-in package support:
 
     mkdir -p ~/.vim/pack/PatrBal/start
     cd ~/.vim/pack/PatrBal/start
@@ -24,7 +25,7 @@ If ommitted `[range]` is the whole file, except in the case where there is a vis
 
 
 ## Features
- - Spellcheck of either the entire buffer or part of it.
+ - Spell, grammar and style check of either the entire buffer or part of it.
  - Validated corrections in Antidote are reimported in Vim.
  - Corrections of TeXtidote are displayed in the default brower.
  - Show definition in Antidote of the current word.
