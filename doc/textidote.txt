@@ -11,8 +11,6 @@ CONTENTS                                                   *TeXtidoteContents*
 	3. Usage ............................................ |TeXtidoteUsage|
 	4. Installation ..................................... |TeXtidoteInstall|
     5. Configuration .................................... |TeXtidoteConfig|
-    4. Spellchecking with TeXtidote ..................... |TeXtidoteTeX|
-    5. Switching language ............................... |TeXtidoteSwitch|
     6. License .......................................... |TeXtidoteLicense|
     7. Changelog ........................................ |TeXtidoteChangelog|
     8. Credits .......................................... |TeXtidoteCredits|
@@ -78,10 +76,7 @@ Alternatively, on Debian systems (Ubuntu and derivatives), you can install
 `TeXtidote` using `dpkg`.
 
 ==============================================================================
-5. Configuration                                              *AntidoteSwitch*
-
-In `Antidote`, detection of language (english or french only) is performed 
-automatically.
+5. Configuration                                             *TeXtidoteConfig*
 
 *g:antidote_textidote_application*
   Path to `textidote.jar`
