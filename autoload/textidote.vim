@@ -1,6 +1,6 @@
 " Description: Grammar checker with TeXtidote from Vim
 " Author:      Patrick Ballard <patrick.ballard.paris@gmail.com>
-" Last Change: 05/01/2022
+" Last Change: 06/01/2022
 
 
 " Guess language from 'a:lang' (either 'spelllang' or 'v:lang')
