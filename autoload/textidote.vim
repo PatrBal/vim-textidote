@@ -164,31 +164,31 @@ endfunction
 " Jump to a grammar mistake (called when pressing <Enter>
 " on a particular error in scratch buffer).
 function <sid>JumpToCurrentError() "{{{1
-  let l:save_cursor = getpos('.')
-  norm! $
-  if search('^Error:\s\+', 'beW') > 0
-    let l:error_idx = expand('<cword>')
-    let l:error = s:errors[l:error_idx - 1]
-    let l:line = l:error['fromy']
-    let l:col  = l:error['fromx']
-    let l:rule = l:error['ruleId']
-    call setpos('.', l:save_cursor)
-    if exists('*win_gotoid')
-      call win_gotoid(s:textidote_text_winid)
-    else
-      exe s:textidote_text_winid . ' wincmd w'
-    endif
-    exe 'normal! ' . l:line . 'G0'
-    if l:col > 0
-      execute 'normal! ' . (l:col  - 1) . 'l'
-    endif
-
-    echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
-    \ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
-    normal! zz
-  else
-    call setpos('.', l:save_cursor)
-  endif
+	let l:save_cursor = getpos('.')
+	norm! $
+	if search('^Error:\s\+', 'beW') > 0
+		let l:error_idx = expand('<cword>')
+		let l:error = s:errors[l:error_idx - 1]
+		let l:line = l:error['fromy']
+		let l:col  = l:error['fromx']
+		let l:rule = l:error['ruleId']
+		call setpos('.', l:save_cursor)
+		if exists('*win_gotoid')
+			call win_gotoid(s:textidote_text_winid)
+		else
+			exe s:textidote_text_winid . ' wincmd w'
+		endif
+		exe 'normal! ' . l:line . 'G0'
+		if l:col > 0
+			execute 'normal! ' . (l:col  - 1) . 'l'
+		endif
+		
+		echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
+		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
+		normal! zz
+	else
+		call setpos('.', l:save_cursor)
+	endif
 endfunction
 
 " This function performs grammar checking of text in the current buffer.
