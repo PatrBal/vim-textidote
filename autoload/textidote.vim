@@ -114,11 +114,7 @@ function s:TeXtidoteSetUp() "{{{1
 	let g:textidote_first_language_option = ''
   else
 	let g:textidote_first_language_option = ' --firstlang ' . g:textidote_first_language
-  else
-	echom 'Unknown first language!'
-	finish
   endif
-
 
   let s:textidote_jar = exists("g:textidote_jar")
   \ ? g:textidote_jar
