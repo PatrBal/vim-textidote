@@ -4,7 +4,7 @@
 
 
 ==============================================================================
-CONTENTS                                                   *TeXtidoteContents*
+CONTENTS                                                     *TeXtidoteContents*
 
     1. Overview ......................................... |TeXtidoteOverview|
     2. Features ......................................... |TeXtidoteFeatures|
@@ -17,7 +17,7 @@ CONTENTS                                                   *TeXtidoteContents*
 
 
 ==============================================================================
-1. Overview                                                *TeXtidoteOverview*
+1. Overview                                                  *TeXtidoteOverview*
 
 This plugin integrates `TeXtidote` into Vim. `TeXtidote` provides online grammar
 and style checker for LaTeX documents, but also for Markdown. It is built on 
@@ -29,7 +29,7 @@ markup.
 *https://sylvainhalle.github.io/textidote*
 
 ==============================================================================
-2. Features                                                *TeXtidoteFeatures*
+2. Features                                                  *TeXtidoteFeatures*
 
  - Spelling, grammar and style checking of either the entire buffer or part of
    it.
@@ -42,7 +42,7 @@ markup.
    the default brower.
 
 ==============================================================================
-3. Usage                                                      *TeXtidoteUsage*
+3. Usage                                                        *TeXtidoteUsage*
 
 The plugin provides the new command
 `:[range]TeXtidoteToggle`
@@ -59,7 +59,7 @@ In addition, there are
 which respectively activates the checking and clears it.
 
 ==============================================================================
-4. Installation                                             *TeXtidoteInstall*
+4. Installation                                               *TeXtidoteInstall*
 
 Install `vim-textidote` using your favorite package manager, or use Vim's 
 built-in package support:
@@ -76,7 +76,7 @@ Alternatively, on Debian systems (Ubuntu and derivatives), you can install
 `TeXtidote` using `dpkg`.
 
 ==============================================================================
-5. Configuration                                             *TeXtidoteConfig*
+5. Configuration                                               *TeXtidoteConfig*
 
 It is convenient to create a mapping in your |vimrc| to quickly invoke the
 plugin
@@ -152,18 +152,18 @@ colorscheme:
   `:hi TeXtidoteSpellingError guisp=red  gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=red  term=underline cterm=none`
 
 ==============================================================================
-6. License                                                  *TeXtidoteLicense*
+6. License                                                    *TeXtidoteLicense*
 
 Copyright (c) Patrick Ballard.  Distributed under the same terms as Vim itself.
 See `:help license`.
 
 ==============================================================================
-7. Changelog                                              *TeXtidoteChangelog*
+7. Changelog                                                *TeXtidoteChangelog*
 
 06/01/2022 Initial version
 
 ==============================================================================
-8. Credits                                                  *TeXtidoteCredits*
+8. Credits                                                    *TeXtidoteCredits*
 
 This plugin is strongly based on the excellent plugin `vim-LanguageTool`. 
 Large parts of its code have been reused in this plugin.
