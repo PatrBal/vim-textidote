@@ -236,7 +236,7 @@ function textidote#Check(line1, line2) "{{{1
   \ ? g:textidote_cmd
   \ : 'java -jar ' . s:textidote_jar
 
-  let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
+  let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output plain ' . l:tmpfilename . ' 2> ' . l:tmperror
   silent execute '%!' . l:textidote_cmd_txt
 
   if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72
@@ -376,7 +376,7 @@ function textidote#Check(line1, line2) "{{{1
   if g:textidote_html_report == 1
     let l:tmphtml = tempname()
 	let l:tmphtml = l:tmphtml . '.html'
-    let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
+    let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
 	silent execute '!' . l:textidote_cmd_html
 
 	if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72
