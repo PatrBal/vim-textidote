@@ -19,7 +19,7 @@ CONTENTS                                                   *TeXtidoteContents*
 
 
 ==============================================================================
-1. Intro                                                       *AntidoteIntro*
+1. Intro                                                      *TeXtidoteIntro*
 
 This plugin integrates `TeXtidote` into Vim.  `TeXtidote` provides online 
 grammar and style checker for LaTeX documents, but also for Markdown.  It is 
