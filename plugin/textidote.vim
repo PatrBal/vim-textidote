@@ -32,6 +32,9 @@ if !exists('g:textidote_html_report')
 	let g:textidote_html_report = 0
 endif
 
+let g:textidote_ignore_rules = ''
+let g:textidote_ignore_environments = ''
+let g:textidote_ignore_macros = ''
 
 hi def link TeXtidoteCmd           Comment
 hi def link TeXtidoteErrorCount    Title
