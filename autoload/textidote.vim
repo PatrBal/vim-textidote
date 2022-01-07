@@ -309,7 +309,7 @@ function textidote#Check(line1, line2) "{{{1
 	endwhile
 
 	if s:textidote_win_height >= 0
-		" Reformat the output of LanguageTool (XML is not human friendly) and
+		" Reformat the output (XML is not human friendly) and
 		" set up syntax highlighting in the buffer which shows all errors.
 		%d
 		call append(0, '# ' . l:textidote_cmd_txt)
@@ -372,17 +372,18 @@ function textidote#Check(line1, line2) "{{{1
 		\ . l:error['ruleId'] . ' ' . l:error['msg']
 	endfor
 
-	echon 'Press <Enter> on error in scratch buffer to jump its location'
+	redraw
+	echom 'Press <Enter> on error in scratch buffer to jump its location'
 	
 	" Handle the optional additional html report.
 	if g:textidote_html_report == 1
 		let l:tmphtml = tempname()
-	let l:tmphtml = l:tmphtml . '.html'
+		let l:tmphtml = l:tmphtml . '.html'
 		let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
-	silent execute '!' . l:textidote_cmd_html
+		silent execute '!' . l:textidote_cmd_html
 
-	" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
-	if v:shell_error == 255
+		" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
+		if v:shell_error == 255
 			echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
 			\      . v:shell_error
 			if filereadable(l:tmperror)
@@ -394,10 +395,10 @@ function textidote#Check(line1, line2) "{{{1
 		endif
 		call delete(l:tmperror)
 		
-	sleep 1000m
-	silent execute '!open ' . 'file://' . l:tmphtml
-	sleep 8000m
-	call delete(l:tmphtml)
+		sleep 1000m
+		silent execute '!open ' . 'file://' . l:tmphtml
+		sleep 8000m
+		call delete(l:tmphtml)
 	endif
 
 	call delete(l:tmpfilename)
