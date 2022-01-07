@@ -333,9 +333,9 @@ function textidote#Check(line1, line2) "{{{1
 			\ . '.\{' . (4 + l:error['contextoffset']) . '}\zs'
 			\ . '.\{' .     (l:error['errorlength']) . '}'
 			if l:error['ruleId'] =~# 'HUNSPELL_RULE\|HUNSPELL_NO_SUGGEST_RULE\|MORFOLOGIK_RULE_\|_SPELLING_RULE\|_SPELLER_RULE'
-				call matchadd('LanguageToolSpellingError', l:re)
+				call matchadd('TeXtidoteSpellingError', l:re)
 			else
-				call matchadd('LanguageToolGrammarError', l:re)
+				call matchadd('TeXtidoteGrammarError', l:re)
 			endif
 			if !empty(l:error['replacements'])
 				call append('$', 'Correction: ' . l:error['replacements'])
