@@ -8,8 +8,10 @@ The plugin [vim-LanguageTool][vim-LanguageTool] is a full-featured interface of 
 
 ## Screenshots
 
+Example in Vim:
 ![Vim](./screenshots/Screenshot-vim.png)
 
+Html report in browser:
 ![Html](./screenshots/Screenshot-html.png)
 
 ## Installation
