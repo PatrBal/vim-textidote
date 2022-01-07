@@ -6,6 +6,11 @@ This plugin interfaces Vim with the [TeXtidote][TeXtidote] grammar checker.  TeX
 
 The plugin [vim-LanguageTool][vim-LanguageTool] is a full-featured interface of LanguageTool with Vim.  This plugin offers the same clean interface based on TeXtidote instead of LanguageTool. As a consequence, all the errors based on LaTeX or Markdown markup are skipped.
 
+## Screenshots
+
+![Vim](./screenshots/Screenshots-vim.png)
+
+![Html](./screenshots/Screenshots-html.png)
 
 ## Installation
 
