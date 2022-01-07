@@ -36,8 +36,8 @@ hi def link TeXtidoteCmd           Comment
 hi def link TeXtidoteErrorCount    Title
 hi def link TeXtidoteLabel         Label
 hi def link TeXtidoteUrl           Underlined
-hi def link TeXtidoteGrammarError  Error
-hi def link TeXtidoteSpellingError WarningMsg
+hi def link TeXtidoteGrammarError  WarningMsg
+hi def link TeXtidoteSpellingError Error
 
 " Menu items {{{1
 if has("gui_running") && has("menu") && &go =~# 'm'
