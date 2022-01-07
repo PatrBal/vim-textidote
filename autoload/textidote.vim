@@ -263,8 +263,8 @@ function textidote#Check(line1, line2) "{{{1
 	silent! %!awk -F"," '{ if ($3=="trucdeouf")  print "contextoffset=\""length($1)"\" errorlength=\""length($2)"\"/>"; else print $0 }'
 	" Beginning of 'context' reformat. Adjust 'contextoffset' appropriately
 	silent! %global/\m\Ccontextoffset/-1s/\m^/context=/
-	silent! %global/\m\C^context=  /execute "normal j^1\<C-A>"
-	silent! %global/\m\C^context=  \t/execute "normal j^2\<C-X>"
+	silent! %global/\m\C^context=  /execute "normal! j^1\<C-A>"
+	silent! %global/\m\C^context=  \t/execute "normal! j^2\<C-X>"
 	silent! %substitute/\m\C^context=  \t/context=  /
 	" Escape special characters
 	silent! %vglobal/\m\C^contextoffset=/substitute/\V&/\&amp;/g
