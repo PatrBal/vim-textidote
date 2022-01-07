@@ -409,28 +409,28 @@ endfunction
 " This function clears syntax highlighting created by TeXtidote plugin
 " and removes the scratch window containing grammar errors.
 function textidote#Clear() "{{{1
-  if exists('s:textidote_error_buffer')
-    if bufexists(s:textidote_error_buffer)
-      sil! exe "bd! " . s:textidote_error_buffer
-    endif
-  endif
-  if exists('s:textidote_text_winid')
-    let l:win = winnr()
-    " Using window ID is more reliable than window number.
-    " But win_getid() does not exist in old version of Vim.
-    if exists('*win_gotoid')
-      call win_gotoid(s:textidote_text_winid)
-    else
-      exe s:textidote_text_winid . ' wincmd w'
-    endif
-    call setmatches(filter(getmatches(), 'v:val["group"] !~# "TeXtidote.*Error"'))
-    lexpr ''
-    lclose
-    exe l:win . ' wincmd w'
-  endif
-  unlet! s:textidote_error_buffer
-  unlet! s:textidote_text_winid
-  let g:textidote_indicator = 0
+	if exists('s:textidote_error_buffer')
+		if bufexists(s:textidote_error_buffer)
+			sil! exe "bd! " . s:textidote_error_buffer
+		endif
+	endif
+	if exists('s:textidote_text_winid')
+		let l:win = winnr()
+		" Using window ID is more reliable than window number.
+		" But win_getid() does not exist in old version of Vim.
+		if exists('*win_gotoid')
+			call win_gotoid(s:textidote_text_winid)
+		else
+			exe s:textidote_text_winid . ' wincmd w'
+		endif
+		call setmatches(filter(getmatches(), 'v:val["group"] !~# "TeXtidote.*Error"'))
+		lexpr ''
+		lclose
+		exe l:win . ' wincmd w'
+	endif
+	unlet! s:textidote_error_buffer
+	unlet! s:textidote_text_winid
+	let g:textidote_indicator = 0
 endfunction
 
 function textidote#Toggle(line1, line2) "{{{1
