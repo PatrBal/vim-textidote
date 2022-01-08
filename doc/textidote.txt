@@ -38,7 +38,7 @@ markup.
    commands such as `:lopen` to open the location-list window, `:lne` to jump
    to the next error, etc.
  - Optionally, a full html report of TeXtidote analysis can be displayed in
-   the default brower.
+   the default browser.
 
 ==============================================================================
 3. Usage                                                        *TeXtidoteUsage*
