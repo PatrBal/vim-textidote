@@ -346,7 +346,7 @@ function textidote#Check(line1, line2) "{{{1
 		map <silent> <buffer> <CR> :call <sid>JumpToCurrentError()<CR>
 		file [TeXtidote]
 		redraw
-		echom 'Press <Enter> on error in scratch buffer to jump its location'
+		echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
 		execute "normal! \<C-W>\<C-P>"
 	else
 		" Negative s:textidote_win_height -> no scratch window.
@@ -372,7 +372,7 @@ function textidote#Check(line1, line2) "{{{1
 	endfor
 
 	redraw
-	echom 'Press <Enter> on error in scratch buffer to jump its location'
+	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
 	
 	" Handle the optional additional html report.
 	if g:textidote_html_report == 1
