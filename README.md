@@ -38,8 +38,8 @@ By default `[range]` is the whole buffer, except in the case where there is a vi
  - Optionally, a full html report of TeXtidote analysis can be displayed in the default browser.
 
 
-## Todo
- [] Make the grammar chech asynchonous on Neovim and Vim > 8.1
+## Open task
+[ ] Make the grammar chech asynchonous on Neovim and Vim > 8.1
 
 
 ## License
