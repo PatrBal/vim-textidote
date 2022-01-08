@@ -1,6 +1,6 @@
 " Description: Grammar checker of LaTeX files with TeXtidote from Vim
 " Author:      Patrick Ballard <patrick.ballard.paris@gmail.com>
-" Last Change: 06/01/2022
+" Last Change: 07/01/2022
 "
 " Long Description: {{{1
 "
