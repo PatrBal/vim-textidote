@@ -39,7 +39,7 @@ By default `[range]` is the whole buffer, except in the case where there is a vi
 
 
 ## Open task
-[ ] Make the grammar chech asynchonous on Neovim and Vim > 8.1
+ - [ ] Make the grammar chech asynchonous on Neovim and Vim > 8.1
 
 
 ## License
