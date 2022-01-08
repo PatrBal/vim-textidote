@@ -38,10 +38,6 @@ By default `[range]` is the whole buffer, except in the case where there is a vi
  - Optionally, a full html report of TeXtidote analysis can be displayed in the default browser.
 
 
-## Open task
- - [ ] Make the grammar checking asynchronous on Neovim and Vim > 8.1
-
-
 ## License
 
 Copyright (c) Patrick Ballard.  Distributed under the same terms as Vim itself.
