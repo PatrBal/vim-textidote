@@ -256,8 +256,6 @@ function textidote#Check(line1, line2) "{{{1
 	" the XML report produced by LanguageTool so that large parts of the code of
 	" vim-LanguageTool can be reused. 
 
-	" Filter RichTextFormat markup
-	" silent! %substitute/\m\%x1B\(\(\[[0-9]\{1,2\}\)\?\(;\)\?\([0-9]\{1,2\}\)\?\)\?[m,K,H,f,J]//g
 	" Reformat last field to extract 'contextoffset' and 'errorlength'
 	silent! %substitute/\v\C^( *)(\^+)$/\1,\2,trucdeouf/
 	silent! %!awk -F"," '{ if ($3=="trucdeouf")  print "contextoffset=\""length($1)"\" errorlength=\""length($2)"\"/>"; else print $0 }'
