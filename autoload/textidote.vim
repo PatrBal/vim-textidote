@@ -204,7 +204,7 @@ function textidote#Check(line1, line2) "{{{1
 	endif
 	call textidote#Clear()
 
-	echon 'Thinking...'
+	echon 'Calling TeXtidote...'
 
 	" Using window ID is more reliable than window number.
 	" But win_getid() does not exist in old version of Vim.
