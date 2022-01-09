@@ -49,5 +49,5 @@ See `:help license`.
 This plugin is strongly based on the excellent [vim-LanguageTool][vim-LanguageTool].  Large parts of its code have been reused.
 
 
-[TeXtidote]: https://sylvainhalle.github.io/textidote
+[TeXtidote]: https://github.com/sylvainhalle/textidote
 [vim-LanguageTool]: https://github.com/dpelle/vim-LanguageTool
