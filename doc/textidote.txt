@@ -69,7 +69,7 @@ built-in package support:
     `vim -u NONE -c "helptags vim-textidote/doc" -c q`
 
 You must also install `TeXtidote`. Download the latest `textidote.jar` from 
-*https://sylvainhalle.github.io/textidote*
+*https://github.com/sylvainhalle/textidote*
 and make sure that you have Java version 8 or later installed on your system. 
 Alternatively, on Debian systems (Ubuntu and derivatives), you can install 
 `TeXtidote` using `dpkg`.
