@@ -25,7 +25,7 @@ the original file before calling LanguageTool, but it keeps track of the
 relative position of words between the original and "clean text". In short, 
 `TeXtidote` is a version of LanguageTool made blind to LaTeX and Markdown 
 markup.
-*https://github.com/sylvainhalle/textidote*
+`https://github.com/sylvainhalle/textidote`
 
 ==============================================================================
 2. Features                                                  *TeXtidoteFeatures*
