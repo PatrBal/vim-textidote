@@ -5,7 +5,7 @@
 
 " Guess language from 'a:lang' (either 'spelllang' or 'v:lang')
 function s:FindLanguage(lang) "{{{1
-	" This replaces things like en-gb en_GB as expected by TeXtidote,
+	" This replaces things like en-gb with en_UK as expected by TeXtidote,
 	" only for languages that support variants in TeXtidote.
 	let l:language = substitute(substitute(a:lang,
 	\  '\(\a\{2,3}\)\(_\a\a\)\?.*',
