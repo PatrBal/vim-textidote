@@ -11,6 +11,9 @@ function s:FindLanguage(lang) "{{{1
 	\  '\(\a\{2,3}\)\(_\a\a\)\?.*',
 	\  '\=tolower(submatch(1)) . toupper(submatch(2))', ''),
 	\  '-', '_', '')
+	if l:language == "en_GB"
+		let l:language = "en_UK"
+	endif
 	
 	" All supported languages (with variants) by TeXtidote.
 	let l:supportedLanguages =  {
