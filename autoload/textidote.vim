@@ -19,7 +19,7 @@ function s:FindLanguage(lang) "{{{1
 	\  'de_CH' : 1,
 	\  'en'    : 1,
 	\  'en_CA' : 1,
-	\  'en_GB' : 1,
+	\  'en_UK' : 1,
 	\  'es'    : 1,
 	\  'fr'    : 1,
 	\  'nl'    : 1,
