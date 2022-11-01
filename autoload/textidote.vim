@@ -225,6 +225,8 @@ function textidote#Check(line1, line2) "{{{1
 
 	let l:range = a:line1 . ',' . a:line2
 	silent execute l:range . 'w!' . s:tmpfilename
+	let s:line1 = a:line1
+	let s:line2 = a:line2
 
 	" Check if 'begin{document}' is in file, and otherwise set '--read-all' option
 	if match(readfile(s:tmpfilename) , "begin{document}")!=-1
