@@ -212,9 +212,6 @@ function textidote#Check(line1, line2) "{{{1
 	" Store full path of current file
 	let s:current_file = expand('%:p')
 
-	" Store full path of the plugin
-	let l:filter_name = resolve(expand('<sfile>:p:h'))
-
 	" Using window ID is more reliable than window number.
 	" But win_getid() does not exist in old version of Vim.
 	let s:textidote_text_winid = exists('*win_getid')
@@ -248,7 +245,7 @@ function textidote#Check(line1, line2) "{{{1
 	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output plain '
 	let s:textidote_cmd_txt_name = l:textidote_cmd_txt . s:current_file 
 
-	echo l:filter_name
+	echo s:filter_name
 
 
 	let l:textidote_cmd_txt_complete = l:textidote_cmd_txt . l:tmpfilename . ' 2> ' . l:tmperror
