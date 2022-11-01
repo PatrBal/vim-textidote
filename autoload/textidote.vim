@@ -317,7 +317,7 @@ function textidote#Check(line1, line2) "{{{1
 		" Reformat the output (XML is not human friendly) and
 		" set up syntax highlighting in the buffer which shows all errors.
 		%d
-		call append(0, '# ' . l:textidote_cmd_text . s:current_file)
+		call append(0, '# ' . l:textidote_cmd_text . 'coucou')
 		set bt=nofile
 		setlocal nospell
 		syn clear
