@@ -250,8 +250,9 @@ function textidote#Check(line1, line2) "{{{1
 endfunction
 
 function textidote#Display(id, data, event) dict
-		echo s:textidote_output[0]
-		return
+	let s:textidote_output = join(a:data, "\n")
+	echo s:textidote_output
+	return
 	if s:textidote_output[0] =~# 'A linter for LaTeX documents'
 		echo s:textidote_output[0]
 		return
@@ -260,7 +261,6 @@ function textidote#Display(id, data, event) dict
 		echo s:textidote_output
 		return
 	endif
-	let s:textidote_output = join(a:data, "\n")
 
 	execute 'drop' s:current_file
 	" silent %yank
