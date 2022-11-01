@@ -31,4 +31,4 @@ silent! %substitute/\m\C^[0-9]*,[0-9]*,<error/<error/
 silent! %substitute/\m\C. Suggestions: \[\([^]]*\)\]/" replacements="\1/
 silent! %substitute/\m\C\(([0-9]*)\|\.\) \(\[[^]]*\]\)/" ruleId="\2"/
 write /dev/stdout
-quit'
+quit!
