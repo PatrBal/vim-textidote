@@ -210,7 +210,7 @@ function textidote#Check(line1, line2) "{{{1
 	echon 'Calling TeXtidote...'
 
 	" Get full path of current file
-	let s:fileName = expand('%:p')
+	let s:fileName = expand("%:p")
 	" Using window ID is more reliable than window number.
 	" But win_getid() does not exist in old version of Vim.
 	let s:textidote_text_winid = exists('*win_getid')
