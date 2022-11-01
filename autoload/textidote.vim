@@ -245,7 +245,7 @@ function textidote#Check(line1, line2) "{{{1
 
 	" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
 	if v:shell_error == 255
-		echoerr 'Command [' . l:textidote_cmd_txt . '] failed with error: '
+		echoerr 'Command [' . l:textidote_cmd_txt_complete . '] failed with error: '
 		\      . v:shell_error
 		if filereadable(l:tmperror)
 			echoerr string(readfile(l:tmperror))
