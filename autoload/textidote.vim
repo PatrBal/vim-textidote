@@ -247,7 +247,7 @@ function textidote#Check(line1, line2) "{{{1
 
 	" let s:textidote_output = system(l:textidote_cmd_txt_complete)
     " let id = jobstart(l:textidote_cmd_txt_complete, {'on_stdout': function('textidote#Display') } )
-    let id = jobstart(l:textidote_cmd_txt_complete )
+    let id = jobstart(l:textidote_cmd_txt_complete ,'nc')
 endfunction
 
 au JobActivity java* call textidote#Display()
