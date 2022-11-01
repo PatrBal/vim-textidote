@@ -257,6 +257,7 @@ function textidote#Display(id, data, event) dict
 	set modifiable
 	let s:textidote_error_buffer = bufnr('%')
 	silent execute 'put! =s:textidote_output'
+	return
 	silent execute '%print'
 
 	" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
