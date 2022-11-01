@@ -319,8 +319,8 @@ function textidote#Display(id, data, event) dict
 			let l:error[l:k] = s:ParseKeyValue(l:k, l:l)
 		endfor
 
-		let l:error['fromy'] += a:line1 - 1
-		let l:error['toy']   += a:line1 - 1
+		let l:error['fromy'] += s:line1 - 1
+		let l:error['toy']   += s:line1 - 1
 
 		call add(s:errors, l:error)
 	endwhile
