@@ -250,6 +250,8 @@ function textidote#Check(line1, line2) "{{{1
 endfunction
 
 function textidote#Display(id, data, event) dict
+		echo s:textidote_output[0]
+		return
 	if s:textidote_output[0] =~# 'A linter for LaTeX documents'
 		echo s:textidote_output[0]
 		return
