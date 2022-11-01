@@ -216,11 +216,11 @@ function textidote#Check(line1, line2) "{{{1
 	" But win_getid() does not exist in old version of Vim.
 	let s:textidote_text_winid = exists('*win_getid')
 	\                             ? win_getid() : winnr()
-	sil %y
+	silent %yank
 	botright new
 	set modifiable
 	let s:textidote_error_buffer = bufnr('%')
-	sil put!
+	silent put!
 
 	" TeXtidote/LanguageTool somehow gives incorrect line/column numbers when
 	" reading from stdin so we need to use a temporary file to get
