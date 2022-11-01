@@ -249,7 +249,7 @@ function textidote#Check(line1, line2) "{{{1
     let id = jobstart(l:textidote_cmd_txt_complete, {'on_stdout': function('textidote#Display') } )
 endfunction
 
-au JobActivity l:textidote_cmd_txt_complete call textidote#Display()
+au JobActivity java* call textidote#Display()
 
 " function textidote#Display(id, data, event) dict
 	" let s:textidote_output = join(a:data, "\n")
