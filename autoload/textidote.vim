@@ -239,7 +239,7 @@ function textidote#Check(line1, line2) "{{{1
 
 	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output plain '
 	let s:textidote_cmd_txt_name = l:textidote_cmd_txt . s:current_file 
-	let l:textidote_cmd_txt_complete = l:textidote_cmd_txt . s:tmpfilename . ' 2> ' . l:tmperror
+	let l:textidote_cmd_txt_complete = l:textidote_cmd_txt . s:tmpfilename . ' 2> ' . s:tmperror
 	" let l:filter_name = g:plugin_path . '/../script/textidote2lt.vim'
 	" let l:textidote_cmd_txt_async = l:textidote_cmd_txt_complete . " | command vim -esnN -u NONE -i NONE -c 'source " . l:filter_name . "' /dev/stdin"
 
@@ -260,14 +260,14 @@ function textidote#Display(id, data, event) dict
 	if v:shell_error == 255
 		echoerr 'Command [' . l:textidote_cmd_txt_complete . '] failed with error: '
 		\      . v:shell_error
-		if filereadable(l:tmperror)
-			echoerr string(readfile(l:tmperror))
+		if filereadable(s:tmperror)
+			echoerr string(readfile(s:tmperror))
 		endif
-		call delete(l:tmperror)
+		call delete(s:tmperror)
 		call textidote#Clear()
 		return -1
 	endif
-	call delete(l:tmperror)
+	call delete(s:tmperror)
 
 	" The text report produced by TeXtidote is processed to match the format of
 	" the XML report produced by LanguageTool so that large parts of the code of
@@ -395,21 +395,21 @@ function textidote#Display(id, data, event) dict
 	if g:textidote_html_report == 1
 		let l:tmphtml = tempname()
 		let l:tmphtml = l:tmphtml . '.html'
-		let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
+		let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . s:tmperror
 		silent execute '!' . l:textidote_cmd_html
 
 		" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
 		if v:shell_error == 255
 			echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
 			\      . v:shell_error
-			if filereadable(l:tmperror)
-				echoerr string(readfile(l:tmperror))
+			if filereadable(s:tmperror)
+				echoerr string(readfile(s:tmperror))
 			endif
-			call delete(l:tmperror)
+			call delete(s:tmperror)
 			call textidote#Clear()
 			return -1
 		endif
-		call delete(l:tmperror)
+		call delete(s:tmperror)
 		
 		sleep 1000m
 		silent execute '!open ' . 'file://' . l:tmphtml
