@@ -246,7 +246,7 @@ function textidote#Check(line1, line2) "{{{1
 	let s:textidote_cmd_txt_name = l:textidote_cmd_txt . s:current_file 
 	let l:textidote_cmd_txt_complete = l:textidote_cmd_txt . l:tmpfilename . ' 2> ' . l:tmperror
 	let l:filter_name = g:plugin_path . '/../script/textidote2lt.vim'
-	let l:textidote_cmd_txt_async = l:textidote_cmd_txt_complete . " | /opt/homebrew/bin/vim -esnN -u NONE -i NONE -c 'source " . l:filter_name . "' /dev/stdin"
+	let l:textidote_cmd_txt_async = l:textidote_cmd_txt_complete . " | command vim -esnN -u NONE -i NONE -c 'source " . l:filter_name . "' /dev/stdin"
 	echo l:textidote_cmd_txt_async
 
 	silent execute '%!' . l:textidote_cmd_txt_async
