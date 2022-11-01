@@ -251,9 +251,15 @@ endfunction
 
 function textidote#Display(id, data, event) dict
 	let s:textidote_output = join(a:data, "\n")
-	if s:textidote_output =~# 'A linter for LaTeX documents' ||  s:textidote_output =~# 'Total analysis time:'
+	if s:textidote_output =~# 'A linter for LaTeX documents'
+		echo s:textidote_output
 		return
 	endif
+	if s:textidote_output =~# 'Total analysis time:'
+		echo s:textidote_output
+		return
+	endif
+
 	execute 'drop' s:current_file
 	" silent %yank
 	botright new
