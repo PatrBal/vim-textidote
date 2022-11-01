@@ -250,15 +250,15 @@ function textidote#Check(line1, line2) "{{{1
 endfunction
 
 function textidote#Display(id, data, event) dict
+	if s:textidote_output[0] =~# 'A linter for LaTeX documents'
+		echo s:textidote_output[0]
+		return
+	endif
+	if s:textidote_output[1] =~# 'Total analysis time:'
+		echo s:textidote_output
+		return
+	endif
 	let s:textidote_output = join(a:data, "\n")
-	if s:textidote_output =~# 'A linter for LaTeX documents'
-		echo s:textidote_output
-		return
-	endif
-	if s:textidote_output =~# 'Total analysis time:'
-		echo s:textidote_output
-		return
-	endif
 
 	execute 'drop' s:current_file
 	" silent %yank
