@@ -243,14 +243,13 @@ function textidote#Check(line1, line2) "{{{1
 	" let l:filter_name = g:plugin_path . '/../script/textidote2lt.vim'
 	" let l:textidote_cmd_txt_async = l:textidote_cmd_txt_complete . " | command vim -esnN -u NONE -i NONE -c 'source " . l:filter_name . "' /dev/stdin"
 
-	" silent execute '%!' . l:textidote_cmd_txt_complete
-	let g:textidote_output = system(l:textidote_cmd_txt_complete)
+	let s:textidote_output = system(l:textidote_cmd_txt_complete)
 
 	silent %yank
 	botright new
 	set modifiable
 	let s:textidote_error_buffer = bufnr('%')
-	silent execute 'put! =g:textidote_output'
+	silent execute 'put! =s:textidote_output'
 	silent execute '%print'
 
 	" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
