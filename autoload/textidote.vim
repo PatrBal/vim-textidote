@@ -242,7 +242,6 @@ function textidote#Check(line1, line2) "{{{1
 	\ : 'java -jar ' . s:textidote_jar
 
 	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output plain '
-	let s:textidote_cmd_text_name = l:textidote_cmd_txt . s:current_file . ' salut'
 	let l:textidote_cmd_txt_complete = l:textidote_cmd_txt . l:tmpfilename . ' 2> ' . l:tmperror
 	silent execute '%!' . l:textidote_cmd_txt_complete
 
@@ -317,7 +316,7 @@ function textidote#Check(line1, line2) "{{{1
 		" Reformat the output (XML is not human friendly) and
 		" set up syntax highlighting in the buffer which shows all errors.
 		%d
-		call append(0, '# ' . s:textidote_cmd_text_name)
+		call append(0, '# ' . l:textidote_cmd_text . s:current_file)
 		set bt=nofile
 		setlocal nospell
 		syn clear
