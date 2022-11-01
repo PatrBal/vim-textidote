@@ -246,16 +246,13 @@ function textidote#Check(line1, line2) "{{{1
 	" let l:textidote_cmd_txt_async = l:textidote_cmd_txt_complete . " | command vim -esnN -u NONE -i NONE -c 'source " . l:filter_name . "' /dev/stdin"
 
 	" let s:textidote_output = system(l:textidote_cmd_txt_complete)
-    " let id = jobstart(l:textidote_cmd_txt_complete, {'on_stdout': function('textidote#Display') } )
-    let id = jobstart(l:textidote_cmd_txt_complete ,'nc')
+    let id = jobstart(l:textidote_cmd_txt_complete, {'on_stdout': function('textidote#Display') } )
 endfunction
 
 au JobActivity java* call textidote#Display()
 
-" function textidote#Display(id, data, event) dict
-	" let s:textidote_output = join(a:data, "\n")
-function textidote#Display()
-	let s:textidote_output = v:job_data[2]
+function! textidote#Display (id, data, event) dict
+	let s:textidote_output = join(a:data)
 	echo s:textidote_output
 	return
 	if s:textidote_output[0] =~# 'A linter for LaTeX documents'
