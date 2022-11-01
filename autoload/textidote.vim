@@ -245,7 +245,7 @@ function textidote#Check(line1, line2) "{{{1
 
 	let s:textidote_output = system(l:textidote_cmd_txt_complete)
 
-	silent %yank
+	" silent %yank
 	botright new
 	set modifiable
 	let s:textidote_error_buffer = bufnr('%')
