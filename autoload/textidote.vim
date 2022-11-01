@@ -252,7 +252,7 @@ function textidote#Check(line1, line2) "{{{1
 	let s:textidote_error_buffer = bufnr('%')
 	silent put!
 
-	silent execute '%echo g:textidote_output'
+	silent execute 'echo g:textidote_output'
 
 	" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
 	if v:shell_error == 255
