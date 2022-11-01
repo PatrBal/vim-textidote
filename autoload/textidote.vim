@@ -251,8 +251,8 @@ endfunction
 
 function textidote#Display(id, data, event) dict
 	let s:textidote_output = join(a:data, "\n")
-	drop s:current_file
-	silent %yank
+	execute 'drop' s:current_file
+	" silent %yank
 	botright new
 	set modifiable
 	let s:textidote_error_buffer = bufnr('%')
