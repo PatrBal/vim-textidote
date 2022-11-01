@@ -245,11 +245,10 @@ function textidote#Check(line1, line2) "{{{1
 	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output plain '
 	let s:textidote_cmd_txt_name = l:textidote_cmd_txt . s:current_file 
 	let l:textidote_cmd_txt_complete = l:textidote_cmd_txt . l:tmpfilename . ' 2> ' . l:tmperror
-	let l:filter_name = g:plugin_path . '/../script/textidote2lt.vim'
-	let l:textidote_cmd_txt_async = l:textidote_cmd_txt_complete . " | command vim -esnN -u NONE -i NONE -c 'source " . l:filter_name . "' /dev/stdin"
-	echo l:textidote_cmd_txt_async
+	" let l:filter_name = g:plugin_path . '/../script/textidote2lt.vim'
+	" let l:textidote_cmd_txt_async = l:textidote_cmd_txt_complete . " | command vim -esnN -u NONE -i NONE -c 'source " . l:filter_name . "' /dev/stdin"
 
-	silent execute '%!' . l:textidote_cmd_txt_async
+	silent execute '%!' . l:textidote_cmd_txt_complete
 
 	" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
 	if v:shell_error == 255
@@ -264,38 +263,38 @@ function textidote#Check(line1, line2) "{{{1
 	endif
 	call delete(l:tmperror)
 
-	" " The text report produced by TeXtidote is processed to match the format of
-	" " the XML report produced by LanguageTool so that large parts of the code of
-	" " vim-LanguageTool can be reused. 
+	" The text report produced by TeXtidote is processed to match the format of
+	" the XML report produced by LanguageTool so that large parts of the code of
+	" vim-LanguageTool can be reused. 
 
-	" " Reformat last field to extract 'contextoffset' and 'errorlength'
-	" silent! %substitute/\v\C^( *)(\^+)$/\1,\2,trucdeouf/
-	" silent! %!awk -F"," '{ if ($3=="trucdeouf")  print "contextoffset=\""length($1)"\" errorlength=\""length($2)"\"/>"; else print $0 }'
-	" " Beginning of 'context' reformat. Adjust 'contextoffset' appropriately
-	" silent! %global/\m\Ccontextoffset/-1s/\m^/context=/
-	" silent! %global/\m\C^context=  /execute "normal! j^1\<C-A>"
-	" silent! %global/\m\C^context=  \t/execute "normal! j^2\<C-X>"
-	" silent! %substitute/\m\C^context=  \t/context=  /
-	" " Escape special characters
-	" silent! %vglobal/\m\C^contextoffset=/substitute/\V&/\&amp;/g
-	" silent! %vglobal/\m\C^contextoffset=/substitute/\m\t/\&#x9;/g
-	" silent! %vglobal/\m\C^contextoffset=/substitute/\V</\&lt;/g
-	" silent! %vglobal/\m\C^contextoffset=/substitute/\V>/\&gt;/g
-	" silent! %vglobal/\m\C^contextoffset=/substitute/\V'/\&apos;/g
-	" silent! %vglobal/\m\C^contextoffset=/substitute/\V"/\&quot;/g
-	" " Format start and end of each field
-	" silent! %substitute/\v\C\* L([0-9]*)C([0-9]*)-L([0-9]*)C([0-9]*) /\1,\2,<error fromy="\1" fromx="\2" toy="\3" tox="\4" msg="/
-	" " Finish context formatting
-	" silent! %substitute/\m\C^context=  \(.*\)/context="...\1..." /
-	" " Remove indenting spaces, join and sort
-	" silent! %substitute/\m\C^  //
-	" silent! %global/\m\C,<error fromy/ .,/\/>$/ join
-	" silent! %!sort -t, -k 1n,1 -k 2n,2 
-	" silent! %substitute/\m\C^[0-9]*,[0-9]*,<error/<error/
-	" " Final formatting
-	" silent! %substitute/\m\C. Suggestions: \[\([^]]*\)\]/" replacements="\1/
-	" silent! %substitute/\m\C\(([0-9]*)\|\.\) \(\[[^]]*\]\)/" ruleId="\2"/
-	" silent! %!cat
+	" Reformat last field to extract 'contextoffset' and 'errorlength'
+	silent! %substitute/\v\C^( *)(\^+)$/\1,\2,trucdeouf/
+	silent! %!awk -F"," '{ if ($3=="trucdeouf")  print "contextoffset=\""length($1)"\" errorlength=\""length($2)"\"/>"; else print $0 }'
+	" Beginning of 'context' reformat. Adjust 'contextoffset' appropriately
+	silent! %global/\m\Ccontextoffset/-1s/\m^/context=/
+	silent! %global/\m\C^context=  /execute "normal! j^1\<C-A>"
+	silent! %global/\m\C^context=  \t/execute "normal! j^2\<C-X>"
+	silent! %substitute/\m\C^context=  \t/context=  /
+	" Escape special characters
+	silent! %vglobal/\m\C^contextoffset=/substitute/\V&/\&amp;/g
+	silent! %vglobal/\m\C^contextoffset=/substitute/\m\t/\&#x9;/g
+	silent! %vglobal/\m\C^contextoffset=/substitute/\V</\&lt;/g
+	silent! %vglobal/\m\C^contextoffset=/substitute/\V>/\&gt;/g
+	silent! %vglobal/\m\C^contextoffset=/substitute/\V'/\&apos;/g
+	silent! %vglobal/\m\C^contextoffset=/substitute/\V"/\&quot;/g
+	" Format start and end of each field
+	silent! %substitute/\v\C\* L([0-9]*)C([0-9]*)-L([0-9]*)C([0-9]*) /\1,\2,<error fromy="\1" fromx="\2" toy="\3" tox="\4" msg="/
+	" Finish context formatting
+	silent! %substitute/\m\C^context=  \(.*\)/context="...\1..." /
+	" Remove indenting spaces, join and sort
+	silent! %substitute/\m\C^  //
+	silent! %global/\m\C,<error fromy/ .,/\/>$/ join
+	silent! %!sort -t, -k 1n,1 -k 2n,2 
+	silent! %substitute/\m\C^[0-9]*,[0-9]*,<error/<error/
+	" Final formatting
+	silent! %substitute/\m\C. Suggestions: \[\([^]]*\)\]/" replacements="\1/
+	silent! %substitute/\m\C\(([0-9]*)\|\.\) \(\[[^]]*\]\)/" ruleId="\2"/
+	silent! %!cat
 
 	" Loop on all errors in XML output of LanguageTool and
 	" collect information about all errors in list s:errors
