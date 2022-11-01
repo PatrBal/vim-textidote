@@ -251,13 +251,15 @@ endfunction
 
 function textidote#Display(id, data, event) dict
 	let s:textidote_output = join(a:data, "\n")
+	if s:textidote_output =~# 'A linter for LaTeX documents' ||  s:textidote_output =~# 'Total analysis time:'
+		return
+	endif
 	execute 'drop' s:current_file
 	" silent %yank
 	botright new
 	set modifiable
 	let s:textidote_error_buffer = bufnr('%')
 	silent execute 'put! =s:textidote_output'
-	return
 	silent execute '%print'
 
 	" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
