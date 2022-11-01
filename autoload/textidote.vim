@@ -249,8 +249,12 @@ function textidote#Check(line1, line2) "{{{1
     let id = jobstart(l:textidote_cmd_txt_complete, {'on_stdout': function('textidote#Display') } )
 endfunction
 
-function textidote#Display(id, data, event) dict
-	let s:textidote_output = join(a:data, "\n")
+au JobActivity java call textidote#Display()
+
+" function textidote#Display(id, data, event) dict
+	" let s:textidote_output = join(a:data, "\n")
+function textidote#Display()
+	let s:textidote_output = v:job_data[2]
 	echo s:textidote_output
 	return
 	if s:textidote_output[0] =~# 'A linter for LaTeX documents'
