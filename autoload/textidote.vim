@@ -220,14 +220,14 @@ function textidote#Check(line1, line2) "{{{1
 	" TeXtidote/LanguageTool somehow gives incorrect line/column numbers when
 	" reading from stdin so we need to use a temporary file to get
 	" correct results.
-	let l:tmpfilename = tempname()
-	let l:tmperror    = tempname()
+	let s:tmpfilename = tempname()
+	let s:tmperror    = tempname()
 
 	let l:range = a:line1 . ',' . a:line2
-	silent execute l:range . 'w!' . l:tmpfilename
+	silent execute l:range . 'w!' . s:tmpfilename
 
 	" Check if 'begin{document}' is in file, and otherwise set '--read-all' option
-	if match(readfile(l:tmpfilename) , "begin{document}")!=-1
+	if match(readfile(s:tmpfilename) , "begin{document}")!=-1
 		let l:option = ' --no-color --check '
 	else
 		let l:option = ' --no-color --read-all --check '
@@ -239,7 +239,7 @@ function textidote#Check(line1, line2) "{{{1
 
 	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output plain '
 	let s:textidote_cmd_txt_name = l:textidote_cmd_txt . s:current_file 
-	let l:textidote_cmd_txt_complete = l:textidote_cmd_txt . l:tmpfilename . ' 2> ' . l:tmperror
+	let l:textidote_cmd_txt_complete = l:textidote_cmd_txt . s:tmpfilename . ' 2> ' . l:tmperror
 	" let l:filter_name = g:plugin_path . '/../script/textidote2lt.vim'
 	" let l:textidote_cmd_txt_async = l:textidote_cmd_txt_complete . " | command vim -esnN -u NONE -i NONE -c 'source " . l:filter_name . "' /dev/stdin"
 
@@ -395,7 +395,7 @@ function textidote#Display(id, data, event) dict
 	if g:textidote_html_report == 1
 		let l:tmphtml = tempname()
 		let l:tmphtml = l:tmphtml . '.html'
-		let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . l:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
+		let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . l:tmperror
 		silent execute '!' . l:textidote_cmd_html
 
 		" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
@@ -417,7 +417,7 @@ function textidote#Display(id, data, event) dict
 		call delete(l:tmphtml)
 	endif
 
-	call delete(l:tmpfilename)
+	call delete(s:tmpfilename)
 	let g:textidote_indicator = 1
 	return 0
 endfunction
