@@ -32,7 +32,7 @@ if !exists('g:textidote_html_report')
 endif
 
 " Store the full path of the plugin
-let s:filter_name = resolve(expand('<sfile>:p:h'))
+let g:plugin_path = resolve(expand('<sfile>:p:h'))
 
 hi def link TeXtidoteCmd           Comment
 hi def link TeXtidoteErrorCount    Title
