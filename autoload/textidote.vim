@@ -269,7 +269,7 @@ function textidote#Check(line1, line2) "{{{1
 	endif
 endfunction
 
-function! textidote#Display(id, data, event) dict
+function! textidote#Display(id, data, event) abort dict
 	if a:event ==# 'stdout' || a:event ==# 'stderr'
 		let s:textidote_output_new = join(a:data, "\n")
 		let s:textidote_output_list = [s:textidote_output,s:textidote_output_new]
@@ -425,7 +425,7 @@ function! textidote#Display(id, data, event) dict
 	return 0
 endfunction
 
-function! textidote#Browser(id, data, event) dict
+function! textidote#Browser(id, data, event) abort dict
 	if a:event == 'stderr'
 		" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93if a:event == 'stdout'
 		if v:shell_error == 255
