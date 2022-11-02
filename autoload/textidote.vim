@@ -453,8 +453,22 @@ function textidote#Browser(code)
 	endif
 	call delete(s:tmperrorhtml)
 
+	" Open html report in default browser
 	sleep 1000m
-	silent execute '!open ' . 'file://' . s:tmphtml
+	let l:start_default_browser_command = ''
+	if has('win32')
+	  let l:start_default_browser_command='!start '
+	else
+	  if has("unix")
+		let s:uname = system("uname")
+		if s:uname == "Darwin"
+		  let l:start_default_browser_command = '!open '
+		else
+		  let l:start_default_browser_command = 'xdg-open'
+		endif
+	  endif
+	endif
+	silent execute l:start_default_browser_command . 'file://' . s:tmphtml
 	sleep 8000m
 	call delete(s:tmphtml)
 endfunction
