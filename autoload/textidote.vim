@@ -248,10 +248,9 @@ function textidote#Check(line1, line2) "{{{1
 	if g:textidote_html_report == 1
 		let s:tmphtml = tempname()
 		let s:tmphtml = s:tmphtml . '.html'
-		echom 'Filename: ' . s:tmphtml . 'toto'
 		let s:tmperrorhtml = tempname()
 		let s:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
-		silent! execute '!cp ' . s:tmphtml . '/users/patrick.ballard/Desktop/test.html'
+		silent! execute '!cp ' . s:tmphtml . '/Users/patrick.ballard/Desktop/test.html'
 	endif
 
 	" Start the TeXtidote calls asynchroneusly
