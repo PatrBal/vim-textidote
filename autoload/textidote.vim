@@ -429,19 +429,26 @@ endfunction
 
 
 function! textidote#Browser(id, data, event) dict
-	" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
-	if v:shell_error == 255
-		echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
-		\      . v:shell_error
-		if filereadable(s:tmperror)
-			echoerr string(readfile(s:tmperror))
+	if a:event == 'stderr'
+		" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93if a:event == 'stdout'
+		if v:shell_error == 255
+			echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
+			\      . v:shell_error
+			if filereadable(s:tmperrorhtml)
+				echoerr string(readfile(s:tmperrorhtml))
+			endif
+			call delete(s:tmperrorhtml)
+			call textidote#Clear()
+			return -1
 		endif
-		call delete(s:tmperrorhtml)
-		call textidote#Clear()
-		return -1
+		return
 	endif
-	call delete(s:tmperrorhtml)
 	
+	if a:event == 'stdout'
+		return
+	endif
+
+	call delete(s:tmperrorhtml)
 	sleep 1000m
 	silent execute '!open ' . 'file://' . s:tmphtml
 	sleep 8000m
