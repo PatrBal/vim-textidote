@@ -277,7 +277,7 @@ function! textidote#Display(id, data, event) abort dict
 		return
 	endif
 
-	let self.exitval = a:data
+	let s:textidote_exit = a:data
 
 	execute 'drop' s:current_file
 	" silent %yank
@@ -287,9 +287,9 @@ function! textidote#Display(id, data, event) abort dict
 	silent execute 'put! =s:textidote_output'
 	silent execute '%print'
 
-	if self.exitval == 255
+	if s:textidote_exit == 255
 		echoerr 'Command [' . l:textidote_cmd_txt_complete . '] failed with error: '
-		\      . self.exitval
+		\      . s:textidote_exit
 		if filereadable(s:tmperror)
 			echoerr string(readfile(s:tmperror))
 		endif
@@ -431,11 +431,11 @@ function! textidote#Browser(id, data, event) abort dict
 		return
 	endif
 
-	let self.exitval = a:data
+	let s:textidote_exit_html = a:data
 
-	if self.exitval == 255
+	if s:textidote_exit_html == 255
 		echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
-		\      . self.exitval
+		\      . s:textidote_exit_html
 		if filereadable(s:tmperrorhtml)
 			echoerr string(readfile(s:tmperrorhtml))
 		endif
