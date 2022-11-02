@@ -247,15 +247,15 @@ function textidote#Check(line1, line2) "{{{1
 
 	" let s:textidote_output = system(l:textidote_cmd_txt_complete)
 	let s:callbacks = {
-      \ 'on_stdout': function('s:JobHandler'),
-      \ 'on_stderr': function('s:JobHandler'),
-      \ 'on_exit': function('s:JobHandler')
+      \ 'on_stdout': function('textidote#Display'),
+      \ 'on_stderr': function('textidote#Display'),
+      \ 'on_exit': function('textidote#Display')
       \ }
 	let s:textidote_output_list = []
     let id = jobstart(l:textidote_cmd_txt_complete, s:callbacks )
 endfunction
 
-function! textidote#Display (id, data, event) dict
+function! textidote#Display(id, data, event) dict
 	" let s:textidote_output = join(a:data, "\n")
 	if a:event == 'stdout'
 		call add(s:textidote_output_list, a:data)
