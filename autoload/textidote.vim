@@ -240,17 +240,16 @@ function textidote#Check(line1, line2) "{{{1
 	\ ? g:textidote_cmd
 	\ : 'java -jar ' . s:textidote_jar
 
-	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output plain '
-	let s:textidote_cmd_txt_name = l:textidote_cmd_txt . s:current_file 
-	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt . s:tmpfilename . ' 2> ' . s:tmperror
+	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option
+	let s:textidote_cmd_txt_name = l:textidote_cmd_txt  . ' --output plain ' . s:current_file 
+	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt  . ' --output plain ' . s:tmpfilename . ' 2> ' . s:tmperror
 
 	" Handle the optional additional html report.
 	if g:textidote_html_report == 1
 		let s:tmphtml = tempname()
 		let s:tmphtml = s:tmphtml . '.html'
 		let s:tmperrorhtml = tempname()
-		" let s:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
-		let s:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . s:tmphtml
+		let s:textidote_cmd_html = l:textidote_cmd_txt . ' --output html ' . s:tmpfilename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
 	endif
 
 	" Start the TeXtidote calls asynchroneusly
@@ -305,7 +304,6 @@ endfunction
 
 function! textidote#JobHandlerHtmlVim(job, status) abort
 	let s:textidote_exit_html = a:status
-	execute '!cp ' . s:tmphtml . ' /Users/patrick.ballard/Desktop/test.html'
 	" echom 'Exit code: ' . s:textidote_exit_html
 	call textidote#Browser(s:textidote_exit_html)
 endfunction
