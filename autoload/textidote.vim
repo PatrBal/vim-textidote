@@ -274,7 +274,8 @@ function textidote#Check(line1, line2) "{{{1
 			let s:textidote_cmd_html_list = split(l:textidote_cmd_txt,' ')
 			call extend(s:textidote_cmd_html_list,['--output','html',s:tmpfilename,' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml])
 			let s:callbackshtml = {
-				\ 'out_cb': funcref('textidote#JobHandlerHtmlVimNull'),
+				\ 'out_io': 'file',
+				\ 'out_name': '/dev/null',
 				\ 'exit_cb': funcref('textidote#JobHandlerHtmlVim')
 				\ }
 			echom s:textidote_cmd_html_list
@@ -308,10 +309,6 @@ function! textidote#JobHandlerHtmlVim(job, status) abort
 	let s:textidote_exit_html = a:status
 	echom 'Exit code: ' . s:textidote_exit_html
 	call textidote#Browser(s:textidote_exit_html)
-endfunction
-
-function! textidote#JobHandlerHtmlVimNull(job, status) abort
-	return
 endfunction
 
 function textidote#Display(data,code)
