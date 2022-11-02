@@ -263,7 +263,6 @@ function textidote#Check(line1, line2) "{{{1
 			let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
 			let s:callbackshtml = {
 			  \ 'on_stdout': funcref('textidote#JobHandlerHtmlNVim'),
-			  \ 'on_stderr': funcref('textidote#JobHandlerHtmlNVim'),
 			  \ 'on_exit': funcref('textidote#JobHandlerHtmlNVim')
 			  \ }
 			let s:idhtml = jobstart(l:textidote_cmd_html, s:callbackshtml )
