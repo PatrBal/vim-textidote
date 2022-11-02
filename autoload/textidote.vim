@@ -250,7 +250,8 @@ function textidote#Check(line1, line2) "{{{1
 endfunction
 
 function! textidote#Display (id, data, event) dict
-	" let s:textidote_output = join(a:data, "\n")
+	let s:textidote_output = a:data 
+	" join(a:data, "\n")
 	echo s:textidote_output[0] . s:textidote_output[1] . s:textidote_output[2] . s:textidote_output[3]
 	return
 	if s:textidote_output[0] =~# 'A linter for LaTeX documents'
