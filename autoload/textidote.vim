@@ -188,6 +188,7 @@ function <sid>JumpToCurrentError() "{{{1
 		
 		echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
+		normal! zv
 		normal! zz
 	else
 		call setpos('.', l:save_cursor)
