@@ -428,7 +428,7 @@ function! textidote#Display(id, data, event) dict
 endfunction
 
 
-function! textidote#Display#html(id, data, event) dict
+function! textidote#Display#Html(id, data, event) dict
 	" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
 	if v:shell_error == 255
 		echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
