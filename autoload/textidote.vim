@@ -270,9 +270,9 @@ function textidote#Check(line1, line2) "{{{1
 		endif
 	else
 		if g:textidote_html_report == 1
+			let exit = []
 			let s:callbackshtml = {
-			  \ 'on_stdout': funcref('textidote#JobHandlerHtmlNVim'),
-			  \ 'on_exit': funcref('textidote#JobHandlerHtmlNVim')
+			  \ 'exit_cb': funcref('textidote#JobHandlerHtmlVim')
 			  \ }
 			let s:idhtml = jobstart(s:textidote_cmd_html, s:callbackshtml )
 		endif
