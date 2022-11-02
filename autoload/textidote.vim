@@ -257,11 +257,11 @@ endfunction
 
 function! textidote#Display(id, data, event) dict
 	" let s:textidote_output = join(a:data, "\n")
-	if a:event == 'stdout'
+	if a:event == 'stdout' || a:event == 'stderr'
 		call add(s:textidote_output_list, a:data)
 	else
 		let s:textidote_output = join(s:textidote_output_list, "\n")
-		echo g:chunks
+		echo s:textidote_output
 	endif
 	return
 
