@@ -297,6 +297,7 @@ function! textidote#JobHandlerHtmlNVim(id, data, event) abort dict
 	endif
 
 	let s:textidote_exit_html = a:data
+	echom 'Exit code: ' . s:textidote_exit_html
 	call textidote#Browser(s:textidote_exit_html)
 endfunction
 
