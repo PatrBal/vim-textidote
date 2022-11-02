@@ -468,6 +468,7 @@ function textidote#Browser(code)
 		endif
 	  endif
 	endif
+	echo l:start_default_browser_command
 	silent execute l:start_default_browser_command . 'file://' . s:tmphtml
 	sleep 8000m
 	call delete(s:tmphtml)
