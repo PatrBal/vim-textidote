@@ -216,20 +216,18 @@ function textidote#Check(line1, line2) "{{{1
 	" Using window ID is more reliable than window number.
 	let s:textidote_text_winid = win_getid()
 
-	" TeXtidote/LanguageTool somehow gives incorrect line/column numbers when
-	" reading from stdin so we need to use a temporary file to get
-	" correct results.
-	let s:tmpfilename = tempname()
+	" Creating temporary files
+	let s:tmp_filename = tempname()
 	let s:tmpoutput = tempname()
 	let s:tmperror    = tempname()
 
 	let l:range = a:line1 . ',' . a:line2
-	silent execute l:range . 'w!' . s:tmpfilename
+	silent execute l:range . 'w!' . s:tmp_filename
 	let s:line1 = a:line1
 	let s:line2 = a:line2
 
 	" Check if 'begin{document}' is in file, and otherwise set '--read-all' option
-	if match(readfile(s:tmpfilename) , "begin{document}")!=-1
+	if match(readfile(s:tmp_filename) , "begin{document}")!=-1
 		let l:option = ' --no-color --check '
 	else
 		let l:option = ' --no-color --read-all --check '
@@ -241,14 +239,14 @@ function textidote#Check(line1, line2) "{{{1
 
 	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option
 	let s:textidote_cmd_txt_name = l:textidote_cmd_txt  . ' --output plain ' . s:current_file 
-	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt  . ' --output plain ' . s:tmpfilename . ' > ' . s:tmpoutput . ' 2> ' . s:tmperror
+	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt  . ' --output plain ' . s:tmp_filename . ' > ' . s:tmpoutput . ' 2> ' . s:tmperror
 
 	" Handle the optional additional html report.
 	if g:textidote_html_report == 1
 		let s:tmphtml = tempname()
 		let s:tmphtml = s:tmphtml . '.html'
 		let s:tmperrorhtml = tempname()
-		let s:textidote_cmd_html = l:textidote_cmd_txt . ' --output html ' . s:tmpfilename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
+		let s:textidote_cmd_html = l:textidote_cmd_txt . ' --output html ' . s:tmp_filename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
 	endif
 
 	" Start the TeXtidote calls asynchroneusly
@@ -279,7 +277,7 @@ function textidote#Check(line1, line2) "{{{1
 		let s:id = job_start(s:textidote_cmd_txt_name, s:callbacks )
 
 		if g:textidote_html_report == 1
-			let s:textidote_cmd_html = l:textidote_cmd_txt . ' --output html ' . s:tmpfilename
+			let s:textidote_cmd_html = l:textidote_cmd_txt . ' --output html ' . s:tmp_filename
 			let s:callbackshtml = {
 				\ 'out_io': 'file',
 				\ 'out_name': s:tmphtml,
@@ -465,7 +463,7 @@ function textidote#Display(data,code)
 	redraw
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
 
-	call delete(s:tmpfilename)
+	call delete(s:tmp_filename)
 	call delete(s:tmpoutput)
 	let g:textidote_indicator = 1
 	return 0
