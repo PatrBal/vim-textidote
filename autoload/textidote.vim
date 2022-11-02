@@ -219,7 +219,7 @@ function textidote#Check(line1, line2) "{{{1
 	" Creating temporary files
 	let s:tmp_filename = tempname()
 	let s:tmp_output = tempname()
-	let s:tmperror    = tempname()
+	let s:tmp_error    = tempname()
 
 	let l:range = a:line1 . ',' . a:line2
 	silent execute l:range . 'w!' . s:tmp_filename
@@ -239,14 +239,14 @@ function textidote#Check(line1, line2) "{{{1
 
 	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option
 	let s:textidote_cmd_txt_name = l:textidote_cmd_txt  . ' --output plain ' . s:current_file 
-	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt  . ' --output plain ' . s:tmp_filename . ' > ' . s:tmp_output . ' 2> ' . s:tmperror
+	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt  . ' --output plain ' . s:tmp_filename . ' > ' . s:tmp_output . ' 2> ' . s:tmp_error
 
 	" Handle the optional additional html report.
 	if g:textidote_html_report == 1
-		let s:tmphtml = tempname()
-		let s:tmphtml = s:tmphtml . '.html'
-		let s:tmperrorhtml = tempname()
-		let s:textidote_cmd_html = l:textidote_cmd_txt . ' --output html ' . s:tmp_filename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
+		let s:tmp_output_html = tempname()
+		let s:tmp_output_html = s:tmp_output_html . '.html'
+		let s:tmp_error_html = tempname()
+		let s:textidote_cmd_html = l:textidote_cmd_txt . ' --output html ' . s:tmp_filename . ' > ' . s:tmp_output_html . ' 2> ' . s:tmp_error_html
 	endif
 
 	" Start the TeXtidote calls asynchroneusly
@@ -271,7 +271,7 @@ function textidote#Check(line1, line2) "{{{1
 				\ 'out_io': 'file',
 				\ 'out_name': s:tmp_output,
 				\ 'err_io': 'file',
-				\ 'err_name': s:tmperror,
+				\ 'err_name': s:tmp_error,
 				\ 'exit_cb': funcref('textidote#JobHandlerVim')
 		  \ }
 		let s:id = job_start(s:textidote_cmd_txt_name, s:callbacks )
@@ -280,9 +280,9 @@ function textidote#Check(line1, line2) "{{{1
 			let s:textidote_cmd_html = l:textidote_cmd_txt . ' --output html ' . s:tmp_filename
 			let s:callbackshtml = {
 				\ 'out_io': 'file',
-				\ 'out_name': s:tmphtml,
+				\ 'out_name': s:tmp_output_html,
 				\ 'err_io': 'file',
-				\ 'err_name': s:tmperrorhtml,
+				\ 'err_name': s:tmp_error_html,
 				\ 'exit_cb': funcref('textidote#JobHandlerHtmlVim')
 				\ }
 			let s:idhtml = job_start(s:textidote_cmd_html, s:callbackshtml )
@@ -332,14 +332,14 @@ function textidote#Display(data,code)
 	if a:code > 125
 		echoerr 'Command [' . s:textidote_cmd_txt_complete . '] failed with error: '
 		\      . a:code
-		if filereadable(s:tmperror)
-			echoerr string(readfile(s:tmperror))
+		if filereadable(s:tmp_error)
+			echoerr string(readfile(s:tmp_error))
 		endif
-		call delete(s:tmperror)
+		call delete(s:tmp_error)
 		call textidote#Clear()
 		return -1
 	endif
-	call delete(s:tmperror)
+	call delete(s:tmp_error)
 
 	" The text report produced by TeXtidote is processed to match the format of
 	" the XML report produced by LanguageTool so that large parts of the code of
@@ -473,14 +473,14 @@ function textidote#Browser(code)
 	if a:code > 125
 		echoerr 'Command [' . s:textidote_cmd_html . '] failed with error: '
 		\      . a:code
-		if filereadable(s:tmperrorhtml)
-			echoerr string(readfile(s:tmperrorhtml))
+		if filereadable(s:tmp_error_html)
+			echoerr string(readfile(s:tmp_error_html))
 		endif
-		call delete(s:tmperrorhtml)
+		call delete(s:tmp_error_html)
 		call textidote#Clear()
 		return -1
 	endif
-	call delete(s:tmperrorhtml)
+	call delete(s:tmp_error_html)
 
 	" Open html report in default browser
 	sleep 1000m
@@ -499,9 +499,9 @@ function textidote#Browser(code)
 			endif
 		endif
 	endif
-	silent execute l:start_default_browser_command . 'file://' . s:tmphtml
+	silent execute l:start_default_browser_command . 'file://' . s:tmp_output_html
 	sleep 8000m
-	call delete(s:tmphtml)
+	call delete(s:tmp_output_html)
 endfunction
 
 
