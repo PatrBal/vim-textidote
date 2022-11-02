@@ -298,7 +298,6 @@ function! textidote#JobHandlerHtmlNVim(id, data, event) abort dict
 	if a:event ==# 'stdout'
 		return
 	endif
-
 	let s:textidote_exit_html = a:data
 	call textidote#Browser(s:textidote_exit_html)
 endfunction
