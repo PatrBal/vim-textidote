@@ -456,7 +456,7 @@ function textidote#Browser(code)
 	" Open html report in default browser
 	sleep 1000m
 	let l:start_default_browser_command = ''
-	if has('win32')
+	if has('win32unix') || has('win32') || has('win64')
 	  let l:start_default_browser_command = '!start '
 	else
 	  if has('unix')
