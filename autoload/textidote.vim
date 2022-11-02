@@ -222,6 +222,7 @@ function textidote#Check(line1, line2) "{{{1
 	" reading from stdin so we need to use a temporary file to get
 	" correct results.
 	let s:tmpfilename = tempname()
+	let s:tmpoutput = tempname()
 	let s:tmperror    = tempname()
 
 	let l:range = a:line1 . ',' . a:line2
@@ -242,7 +243,7 @@ function textidote#Check(line1, line2) "{{{1
 
 	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option
 	let s:textidote_cmd_txt_name = l:textidote_cmd_txt  . ' --output plain ' . s:current_file 
-	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt  . ' --output plain ' . s:tmpfilename . ' 2> ' . s:tmperror
+	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt  . ' --output plain ' . s:tmpfilename . ' > ' . s:tmpoutput . ' 2> ' . s:tmperror
 
 	" Handle the optional additional html report.
 	if g:textidote_html_report == 1
