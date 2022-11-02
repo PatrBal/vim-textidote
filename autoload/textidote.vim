@@ -245,7 +245,7 @@ function textidote#Check(line1, line2) "{{{1
 	let l:textidote_cmd_txt_complete = l:textidote_cmd_txt . s:tmpfilename . ' 2> ' . s:tmperror
 
 	let s:textidote_output = ''
-	if has()
+	if has('nvim')
 		" Calling TeXtidote asynchronously
 		let s:callbacks = {
 		  \ 'on_stdout': funcref('textidote#JobHandlerNVim'),
