@@ -279,6 +279,7 @@ function! textidote#JobHandlerNVim(id, data, event) abort dict
 		return
 	endif
 	let s:textidote_exit = a:data
+	echo 'Exit code: ' . s:textidote_exit
 	call textidote#Display(s:textidote_output,s:textidote_exit)
 endfunction
 
