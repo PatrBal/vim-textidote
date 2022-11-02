@@ -274,7 +274,7 @@ function textidote#Check(line1, line2) "{{{1
 				\ 'out_io': 'file',
 				\ 'out_name': s:tmperror,
 				\ 'err_io': 'file',
-				\ 'err_name': s:tmperror,
+				\ 'err_name': /dev/null,
 				\ 'exit_cb': funcref('textidote#JobHandlerVim')
 		  \ }
 		let s:id = job_start(s:textidote_cmd_txt_name, s:callbacks )
@@ -302,6 +302,11 @@ function! textidote#JobHandlerNVim(id, data, event) abort dict
 	endif
 	let s:textidote_exit = a:data
 	call textidote#Display(s:textidote_output,s:textidote_exit)
+endfunction
+
+function! textidote#JobHandlerVim(job, status) abort
+	let s:textidote_exit = a:status
+	call textidote#Display(s:textidote_exit_html)
 endfunction
 
 function! textidote#JobHandlerHtmlNVim(id, data, event) abort dict
