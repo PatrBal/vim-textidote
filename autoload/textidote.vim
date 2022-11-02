@@ -302,8 +302,8 @@ endfunction
 
 function! textidote#JobHandlerHtmlVim(job, status) abort
 	let s:textidote_exit_html = a:status
-	silent! execute '!cp ' . s:tmphtml . ' /Users/patrick.ballard/Desktop/test.html'
-	echom 'Exit code: ' . s:textidote_exit_html
+	execute '!cp ' . s:tmphtml . ' /Users/patrick.ballard/Desktop/test.html'
+	" echom 'Exit code: ' . s:textidote_exit_html
 	call textidote#Browser(s:textidote_exit_html)
 endfunction
 
