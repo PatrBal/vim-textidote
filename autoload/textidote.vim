@@ -246,22 +246,24 @@ function textidote#Check(line1, line2) "{{{1
 	" let l:textidote_cmd_txt_async = l:textidote_cmd_txt_complete . " | command vim -esnN -u NONE -i NONE -c 'source " . l:filter_name . "' /dev/stdin"
 
 	" let s:textidote_output = system(l:textidote_cmd_txt_complete)
-    let id = jobstart(l:textidote_cmd_txt_complete, {'on_stdout': function('textidote#Display') } )
+	let s:callbacks = {
+      \ 'on_stdout': function('s:JobHandler'),
+      \ 'on_stderr': function('s:JobHandler'),
+      \ 'on_exit': function('s:JobHandler')
+      \ }
+	let s:textidote_output_list = []
+    let id = jobstart(l:textidote_cmd_txt_complete, s:callbacks )
 endfunction
 
 function! textidote#Display (id, data, event) dict
-	let g:textidote_output = a:data
-	"join(a:data, "\n")
-	echo a:data[3]
+	" let s:textidote_output = join(a:data, "\n")
+	if a:event == 'stdout'
+		call add(s:textidote_output_list, a:data)
+	else
+		let s:textidote_output = join(s:textidote_output_list, "\n")
+		echo g:chunks
+	endif
 	return
-	if s:textidote_output[0] =~# 'A linter for LaTeX documents'
-		echo s:textidote_output[0]
-		return
-	endif
-	if s:textidote_output[1] =~# 'Total analysis time:'
-		echo s:textidote_output
-		return
-	endif
 
 	execute 'drop' s:current_file
 	" silent %yank
