@@ -253,7 +253,7 @@ function textidote#Check(line1, line2) "{{{1
 		  \ 'on_exit': funcref('textidote#JobHandlerNVim')
 		  \ }
 		let s:textidote_output = ''
-		let id = jobstart(l:textidote_cmd_txt_complete, s:callbacks )
+		let s:id = jobstart(l:textidote_cmd_txt_complete, s:callbacks )
 
 		" Handle the optional additional html report.
 		if g:textidote_html_report == 1
@@ -266,7 +266,7 @@ function textidote#Check(line1, line2) "{{{1
 			  \ 'on_stderr': funcref('textidote#JobHandlerHtmlNVim'),
 			  \ 'on_exit': funcref('textidote#JobHandlerHtmlNVim')
 			  \ }
-			let idhtml = jobstart(l:textidote_cmd_html, s:callbackshtml )
+			let s:idhtml = jobstart(l:textidote_cmd_html, s:callbackshtml )
 		endif
 	endif
 endfunction
