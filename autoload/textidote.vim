@@ -269,6 +269,14 @@ function textidote#Check(line1, line2) "{{{1
 			let s:idhtml = jobstart(s:textidote_cmd_html, s:callbackshtml )
 		endif
 	else
+		if g:textidote_html_report == 1
+			let s:callbackshtml = {
+			  \ 'on_stdout': funcref('textidote#JobHandlerHtmlNVim'),
+			  \ 'on_exit': funcref('textidote#JobHandlerHtmlNVim')
+			  \ }
+			let s:idhtml = jobstart(s:textidote_cmd_html, s:callbackshtml )
+		endif
+
 	endif
 endfunction
 
