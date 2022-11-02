@@ -300,7 +300,7 @@ function textidote#Display(data,code)
 	silent execute 'put! =a:data'
 	silent execute '%print'
 
-	if a:code > 125
+	if a:code > 75
 		echoerr 'Command [' . l:textidote_cmd_txt_complete . '] failed with error: '
 		\      . a:code
 		if filereadable(s:tmperror)
