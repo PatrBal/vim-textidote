@@ -274,7 +274,7 @@ function textidote#Check(line1, line2) "{{{1
 				\ 'out_io': 'file',
 				\ 'out_name': s:tmperror,
 				\ 'err_io': 'file',
-				\ 'err_name': /dev/null,
+				\ 'err_name': '/dev/null',
 				\ 'exit_cb': funcref('textidote#JobHandlerVim')
 		  \ }
 		let s:id = job_start(s:textidote_cmd_txt_name, s:callbacks )
