@@ -269,7 +269,6 @@ function textidote#Check(line1, line2) "{{{1
 		  \ }
 		let idhtml = jobstart(l:textidote_cmd_html, s:callbackshtml )
 	endif
-
 endfunction
 
 function! textidote#Display(id, data, event) dict
@@ -429,30 +428,25 @@ function! textidote#Display(id, data, event) dict
 endfunction
 
 
-
-
-
-		" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
-		if v:shell_error == 255
-			echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
-			\      . v:shell_error
-			if filereadable(s:tmperror)
-				echoerr string(readfile(s:tmperror))
-			endif
-			call delete(s:tmperror)
-			call textidote#Clear()
-			return -1
+function! textidote#Display#html(id, data, event) dict
+	" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
+	if v:shell_error == 255
+		echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
+		\      . v:shell_error
+		if filereadable(s:tmperror)
+			echoerr string(readfile(s:tmperror))
 		endif
-		call delete(s:tmperror)
-		
-		sleep 1000m
-		silent execute '!open ' . 'file://' . l:tmphtml
-		sleep 8000m
-		call delete(l:tmphtml)
+		call delete(s:tmperrorhtml)
+		call textidote#Clear()
+		return -1
 	endif
-
-
-
+	call delete(s:tmperrorhtml)
+	
+	sleep 1000m
+	silent execute '!open ' . 'file://' . s:tmphtml
+	sleep 8000m
+	call delete(s:tmphtml)
+endfunction
 
 
 " This function clears syntax highlighting created by TeXtidote plugin
