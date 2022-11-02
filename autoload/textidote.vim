@@ -243,6 +243,7 @@ function textidote#Check(line1, line2) "{{{1
 	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output plain '
 	let s:textidote_cmd_txt_name = l:textidote_cmd_txt . s:current_file 
 	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt . s:tmpfilename . ' 2> ' . s:tmperror
+	echo s:tmpfilename
 
 	" Handle the optional additional html report.
 	if g:textidote_html_report == 1
@@ -433,8 +434,7 @@ function textidote#Display(data,code)
 	endfor
 
 	redraw
-	" echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
-	echom s:textidote_cmd_txt_complete
+	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
 
 	call delete(s:tmpfilename)
 	let g:textidote_indicator = 1
