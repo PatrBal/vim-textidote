@@ -270,10 +270,10 @@ function textidote#Check(line1, line2) "{{{1
 		endif
 	else
 		if g:textidote_html_report == 1
-			" let exit = []
-			let s:textidote_cmd_html_list = split(l:textidote_cmd_txt,' ')
+			" let s:textidote_cmd_html_list = split(l:textidote_cmd_txt,' ')
 			" call extend(s:textidote_cmd_html_list,['--output','html',s:tmpfilename,' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml])
-			call extend(s:textidote_cmd_html_list,['--output','html',s:tmpfilename])
+			" call extend(s:textidote_cmd_html_list,['--output','html',s:tmpfilename])
+			let s:textidote_cmd_html = l:textidote_cmd_txt . ' --output html ' . s:tmpfilename
 			let s:callbackshtml = {
 				\ 'out_io': 'file',
 				\ 'out_name': s:tmphtml,
@@ -282,7 +282,7 @@ function textidote#Check(line1, line2) "{{{1
 				\ 'exit_cb': funcref('textidote#JobHandlerHtmlVim')
 				\ }
 			echom s:textidote_cmd_html_list
-			let s:idhtml = job_start(s:textidote_cmd_html_list, s:callbackshtml )
+			let s:idhtml = job_start(s:textidote_cmd_html, s:callbackshtml )
 		endif
 
 	endif
