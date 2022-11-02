@@ -39,6 +39,8 @@ markup.
    to the next error, etc.
  - Optionally, a full html report of TeXtidote analysis can be displayed in
    the default browser.
+ - The plugin makes asynchronous calls to TeXtidote, so that Vim (or Neovim) 
+   does not get frozen during the TeXtidote analysis.
 
 ==============================================================================
 3. Usage                                                        *TeXtidoteUsage*
