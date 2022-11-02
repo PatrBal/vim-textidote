@@ -258,7 +258,8 @@ endfunction
 function! textidote#Display(id, data, event) dict
 	let s:textidote_output_new = join(a:data, "\n")
 	if a:event == 'stdout' || a:event == 'stderr'
-		let s:textidote_output . "\n" . s:textidote_output_new
+		let s:textidote_output_list = [s:textidote_output,s:textidote_output_new]
+		let s:textidote_output = join(s:textidote_output_list, "\n")
 	else
 		echo s:textidote_output
 	endif
