@@ -251,22 +251,19 @@ function textidote#Check(line1, line2) "{{{1
       \ 'on_stderr': function('textidote#Display'),
       \ 'on_exit': function('textidote#Display')
       \ }
-	let s:textidote_output_list = []
+	let s:textidote_output = ''
     let id = jobstart(l:textidote_cmd_txt_complete, s:callbacks )
 endfunction
 
 function! textidote#Display(id, data, event) dict
-	if a:event == 'stdout' || a:event == 'stderr'
-		" let s:textidote_output_new = join(a:data, "\n")
-		call add(s:textidote_output_list, a:data)
-		" let s:textidote_output_list = [s:textidote_output,s:textidote_output_new]
-		" let s:textidote_output = join(s:textidote_output_list, "\n")
+	if a:event == 'stdout'
+		let s:textidote_output_new = join(a:data, "\n")
+		let s:textidote_output_list = [s:textidote_output,s:textidote_output_new]
+		let s:textidote_output = join(s:textidote_output_list, "\n")
 		return
 	endif
 
-	" call writefile(split(s:textidote_output, "\n", 1), glob('/Users/patrick.ballard/Desktop/test.txt'), 'b')
-	call writefile(s:textidote_output_list, glob('/Users/patrick.ballard/Desktop/test.txt'), 'b')
-	echo 'Fini!"
+	call writefile(split(s:textidote_output, "\n", 1), glob('/Users/patrick.ballard/Desktop/test.txt'), 'b')
 	return
 
 	execute 'drop' s:current_file
