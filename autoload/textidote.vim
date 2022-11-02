@@ -280,6 +280,15 @@ function! textidote#JobHandlerNVim(id, data, event) abort dict
 	call textidote#Display(s:textidote_output,s:textidote_exit)
 endfunction
 
+function! textidote#Browser(id, data, event) abort dict
+	if a:event ==# 'stdout' || a:event ==# 'stderr'
+		return
+	endif
+
+	let s:textidote_exit_html = a:data
+	call textidote#Browser(s:textidote_exit_html)
+endfunction
+
 function textidote#Display(data,code)
 	execute 'drop' s:current_file
 	" silent %yank
@@ -428,16 +437,10 @@ function textidote#Display(data,code)
 	return 0
 endfunction
 
-function! textidote#Browser(id, data, event) abort dict
-	if a:event ==# 'stdout' || a:event ==# 'stderr'
-		return
-	endif
-
-	let s:textidote_exit_html = a:data
-
-	if s:textidote_exit_html == 255
+function textidote#Browser(code)
+	if a:code == 255
 		echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
-		\      . s:textidote_exit_html
+		\      . a:code
 		if filereadable(s:tmperrorhtml)
 			echoerr string(readfile(s:tmperrorhtml))
 		endif
