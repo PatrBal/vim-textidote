@@ -279,7 +279,6 @@ function! textidote#JobHandlerNVim(id, data, event) abort dict
 		return
 	endif
 	let s:textidote_exit = a:data
-	echo 'Exit code: ' . s:textidote_exit
 	call textidote#Display(s:textidote_output,s:textidote_exit)
 endfunction
 
@@ -408,6 +407,7 @@ function textidote#Display(data,code)
 		file [TeXtidote]
 		redraw
 		echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
+		echo 'Exit code: ' . a:code
 		execute "normal! \<C-W>\<C-P>"
 	else
 		" Negative s:textidote_win_height -> no scratch window.
