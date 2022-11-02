@@ -461,14 +461,14 @@ function textidote#Browser(code)
 	elseif has('win32unix')
 		let l:start_default_browser_command = '!cygstart '
 	else
-	  if has('unix')
-		let s:uname = system('uname')
-		if s:uname =~# 'Darwin'
-		  let l:start_default_browser_command = '!open '
-		else
-		  let l:start_default_browser_command = '!xdg-open '
+		if has('unix')
+			let s:uname = system('uname')
+			if s:uname =~# 'Darwin'
+				let l:start_default_browser_command = '!open '
+			else
+				let l:start_default_browser_command = '!xdg-open '
+			endif
 		endif
-	  endif
 	endif
 	silent execute l:start_default_browser_command . 'file://' . s:tmphtml
 	sleep 8000m
