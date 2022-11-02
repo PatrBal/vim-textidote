@@ -260,12 +260,12 @@ function textidote#Check(line1, line2) "{{{1
 			let s:tmphtml = tempname()
 			let s:tmphtml = s:tmphtml . '.html'
 			let s:tmperrorhtml = tempname()
-			let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
+			let s:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
 			let s:callbackshtml = {
 			  \ 'on_stdout': funcref('textidote#JobHandlerHtmlNVim'),
 			  \ 'on_exit': funcref('textidote#JobHandlerHtmlNVim')
 			  \ }
-			let s:idhtml = jobstart(l:textidote_cmd_html, s:callbackshtml )
+			let s:idhtml = jobstart(s:textidote_cmd_html, s:callbackshtml )
 		endif
 	else
 	endif
@@ -300,7 +300,7 @@ function textidote#Display(data,code)
 	silent execute 'put! =a:data'
 	silent execute '%print'
 
-	if a:code > 75
+	if a:code > 125
 		echoerr 'Command [' . s:textidote_cmd_txt_complete . '] failed with error: '
 		\      . a:code
 		if filereadable(s:tmperror)
@@ -442,7 +442,7 @@ endfunction
 
 function textidote#Browser(code)
 	if a:code > 125
-		echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
+		echoerr 'Command [' . s:textidote_cmd_html . '] failed with error: '
 		\      . a:code
 		if filereadable(s:tmperrorhtml)
 			echoerr string(readfile(s:tmperrorhtml))
