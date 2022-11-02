@@ -277,6 +277,8 @@ function! textidote#Display(id, data, event) abort dict
 		return
 	endif
 
+	let self.exitval = a:data
+
 	execute 'drop' s:current_file
 	" silent %yank
 	botright new
@@ -285,10 +287,9 @@ function! textidote#Display(id, data, event) abort dict
 	silent execute 'put! =s:textidote_output'
 	silent execute '%print'
 
-	" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
-	if v:shell_error == 255
+	if self.exitval == 255
 		echoerr 'Command [' . l:textidote_cmd_txt_complete . '] failed with error: '
-		\      . v:shell_error
+		\      . self.exitval
 		if filereadable(s:tmperror)
 			echoerr string(readfile(s:tmperror))
 		endif
@@ -426,26 +427,24 @@ function! textidote#Display(id, data, event) abort dict
 endfunction
 
 function! textidote#Browser(id, data, event) abort dict
-	if a:event == 'stderr'
-		" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93if a:event == 'stdout'
-		if v:shell_error == 255
-			echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
-			\      . v:shell_error
-			if filereadable(s:tmperrorhtml)
-				echoerr string(readfile(s:tmperrorhtml))
-			endif
-			call delete(s:tmperrorhtml)
-			call textidote#Clear()
-			return -1
-		endif
-		return
-	endif
-	
-	if a:event == 'stdout'
+	if a:event ==# 'stdout' || a:event ==# 'stderr'
 		return
 	endif
 
+	let self.exitval = a:data
+
+	if self.exitval == 255
+		echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
+		\      . self.exitval
+		if filereadable(s:tmperrorhtml)
+			echoerr string(readfile(s:tmperrorhtml))
+		endif
+		call delete(s:tmperrorhtml)
+		call textidote#Clear()
+		return -1
+	endif
 	call delete(s:tmperrorhtml)
+
 	sleep 1000m
 	silent execute '!open ' . 'file://' . s:tmphtml
 	sleep 8000m
