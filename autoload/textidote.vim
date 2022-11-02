@@ -433,7 +433,6 @@ function textidote#Display(data,code)
 
 	redraw
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
-	echo 'Exit code: ' . a:code
 
 	call delete(s:tmpfilename)
 	let g:textidote_indicator = 1
