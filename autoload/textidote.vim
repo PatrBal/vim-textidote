@@ -296,12 +296,14 @@ endfunction
 
 function! textidote#JobHandlerNVim(id, data, event) abort dict
 	if a:event ==# 'stdout'
-		let s:textidote_output_new = join(a:data, "\n")
-		let s:textidote_output_list = [s:textidote_output,s:textidote_output_new]
-		let s:textidote_output = join(s:textidote_output_list, '')
+		" let s:textidote_output_new = join(a:data, "\n")
+		" let s:textidote_output_list = [s:textidote_output,s:textidote_output_new]
+		" let s:textidote_output = join(s:textidote_output_list, '')
 		return
 	endif
 	let s:textidote_exit = a:data
+	let s:textidote_output_list = readfile(s:tmperror)
+	let s:textidote_output = join(s:textidote_output_list, "\n")
 	call textidote#Display(s:textidote_output,s:textidote_exit)
 endfunction
 
