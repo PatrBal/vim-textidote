@@ -277,7 +277,6 @@ function textidote#Check(line1, line2) "{{{1
 			  \ 'exit_cb': funcref('textidote#JobHandlerHtmlVim')
 			  \ }
 			echom s:textidote_cmd_html_list
-			return
 			let s:idhtml = job_start(s:textidote_cmd_html_list, s:callbackshtml )
 		endif
 
