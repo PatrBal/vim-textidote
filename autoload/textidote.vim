@@ -270,7 +270,7 @@ function textidote#Check(line1, line2) "{{{1
 		endif
 	else
 		if g:textidote_html_report == 1
-			let exit = []
+			" let exit = []
 			let s:callbackshtml = {
 			  \ 'exit_cb': funcref('textidote#JobHandlerHtmlVim')
 			  \ }
@@ -297,6 +297,11 @@ function! textidote#JobHandlerHtmlNVim(id, data, event) abort dict
 	endif
 
 	let s:textidote_exit_html = a:data
+	call textidote#Browser(s:textidote_exit_html)
+endfunction
+
+function! textidote#JobHandlerHtmlVim(job, status) abort
+	let s:textidote_exit_html = a:status
 	call textidote#Browser(s:textidote_exit_html)
 endfunction
 
