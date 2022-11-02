@@ -270,10 +270,10 @@ function textidote#Check(line1, line2) "{{{1
 endfunction
 
 function! textidote#Display(id, data, event) dict
-	if a:event == 'stdout' || a:event == 'stderr'
+	if a:event ==# 'stdout' || a:event ==# 'stderr'
 		let s:textidote_output_new = join(a:data, "\n")
 		let s:textidote_output_list = [s:textidote_output,s:textidote_output_new]
-		let s:textidote_output = join(s:textidote_output_list, "")
+		let s:textidote_output = join(s:textidote_output_list, '')
 		return
 	endif
 
