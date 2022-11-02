@@ -459,9 +459,9 @@ function textidote#Browser(code)
 	if has('win32')
 	  let l:start_default_browser_command='!start '
 	else
-	  if has("unix")
-		let s:uname = system("uname")
-		if s:uname == "Darwin"
+	  if has('unix')
+		let s:uname = system('uname')
+		if s:uname ==~ 'Darwin'
 		  let l:start_default_browser_command = '!open '
 		else
 		  let l:start_default_browser_command = '!xdg-open '
