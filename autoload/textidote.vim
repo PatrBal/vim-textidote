@@ -272,11 +272,11 @@ function textidote#Check(line1, line2) "{{{1
 		if g:textidote_html_report == 1
 			" let exit = []
 			let s:textidote_cmd_html_list = split(l:textidote_cmd_txt,' ')
-			" call extend(s:textidote_cmd_html_list,['--output','html',s:tmpfilename,' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml])
-			call extend(s:textidote_cmd_html_list,['--output','html',s:tmpfilename,' > ' . s:tmphtml])
+			call extend(s:textidote_cmd_html_list,['--output','html',s:tmpfilename,' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml])
 			let s:callbackshtml = {
-			  \ 'exit_cb': funcref('textidote#JobHandlerHtmlVim')
-			  \ }
+				\ 'out_cb': funcref('textidote#JobHandlerHtmlVim'),
+				\ 'exit_cb': funcref('textidote#JobHandlerHtmlVim')
+				\ }
 			echom s:textidote_cmd_html_list
 			let s:idhtml = job_start(s:textidote_cmd_html_list, s:callbackshtml )
 		endif
