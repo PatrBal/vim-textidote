@@ -269,6 +269,16 @@ function textidote#Check(line1, line2) "{{{1
 			let s:idhtml = jobstart(s:textidote_cmd_html, s:callbackshtml )
 		endif
 	else
+		" We are in regular Vim
+		let s:callbacks = {
+				\ 'out_io': 'file',
+				\ 'out_name': s:tmperror,
+				\ 'err_io': 'file',
+				\ 'err_name': s:tmperror,
+				\ 'exit_cb': funcref('textidote#JobHandlerVim')
+		  \ }
+		let s:id = job_start(s:textidote_cmd_txt_name, s:callbacks )
+
 		if g:textidote_html_report == 1
 			let s:textidote_cmd_html = l:textidote_cmd_txt . ' --output html ' . s:tmpfilename
 			let s:callbackshtml = {
