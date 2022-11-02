@@ -251,7 +251,7 @@ function textidote#Check(line1, line2) "{{{1
       \ 'on_stderr': function('textidote#Display'),
       \ 'on_exit': function('textidote#Display')
       \ }
-	let s:textidote_output = ''
+	let s:textidote_output_list = []
     let id = jobstart(l:textidote_cmd_txt_complete, s:callbacks )
 endfunction
 
