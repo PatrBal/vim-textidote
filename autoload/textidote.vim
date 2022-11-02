@@ -264,8 +264,6 @@ function! textidote#Display(id, data, event) dict
 	endif
 
 	call writefile(split(s:textidote_output, "\n", 1), glob('/Users/patrick.ballard/Desktop/test.txt'), 'b')
-	echo 'Fini'
-	return
 
 	execute 'drop' s:current_file
 	" silent %yank
