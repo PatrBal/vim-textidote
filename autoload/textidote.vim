@@ -242,7 +242,7 @@ function textidote#Check(line1, line2) "{{{1
 
 	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output plain '
 	let s:textidote_cmd_txt_name = l:textidote_cmd_txt . s:current_file 
-	let l:textidote_cmd_txt_complete = l:textidote_cmd_txt . s:tmpfilename . ' 2> ' . s:tmperror
+	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt . s:tmpfilename . ' 2> ' . s:tmperror
 
 	let s:textidote_output = ''
 	if has('nvim')
@@ -253,7 +253,7 @@ function textidote#Check(line1, line2) "{{{1
 		  \ 'on_exit': funcref('textidote#JobHandlerNVim')
 		  \ }
 		let s:textidote_output = ''
-		let s:id = jobstart(l:textidote_cmd_txt_complete, s:callbacks )
+		let s:id = jobstart(s:textidote_cmd_txt_complete, s:callbacks )
 
 		" Handle the optional additional html report.
 		if g:textidote_html_report == 1
@@ -301,7 +301,7 @@ function textidote#Display(data,code)
 	silent execute '%print'
 
 	if a:code > 75
-		echoerr 'Command [' . l:textidote_cmd_txt_complete . '] failed with error: '
+		echoerr 'Command [' . s:textidote_cmd_txt_complete . '] failed with error: '
 		\      . a:code
 		if filereadable(s:tmperror)
 			echoerr string(readfile(s:tmperror))
