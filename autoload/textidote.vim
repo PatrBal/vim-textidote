@@ -427,7 +427,6 @@ function! textidote#Display(id, data, event) dict
 	return 0
 endfunction
 
-
 function! textidote#Browser(id, data, event) dict
 	if a:event == 'stderr'
 		" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93if a:event == 'stdout'
