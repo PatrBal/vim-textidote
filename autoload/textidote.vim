@@ -263,9 +263,9 @@ function textidote#Check(line1, line2) "{{{1
 		let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
 		" silent execute '!' . l:textidote_cmd_html
 		let s:callbackshtml = {
-		  \ 'on_stdout': function('textidote#Display#html'),
-		  \ 'on_stderr': function('textidote#Display#html'),
-		  \ 'on_exit': function('textidote#Display#html')
+		  \ 'on_stdout': function('textidote#Display#Html'),
+		  \ 'on_stderr': function('textidote#Display#Html'),
+		  \ 'on_exit': function('textidote#Display#Html')
 		  \ }
 		let idhtml = jobstart(l:textidote_cmd_html, s:callbackshtml )
 	endif
