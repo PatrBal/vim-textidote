@@ -249,7 +249,7 @@ function textidote#Check(line1, line2) "{{{1
 		" Calling TeXtidote asynchronously
 		let s:callbacks = {
 		  \ 'on_stdout': funcref('textidote#JobHandlerNVim'),
-		  \ 'on_stderr': funcref('textidote#JobHandlerNVim'),
+		  " \ 'on_stderr': funcref('textidote#JobHandlerNVim'),
 		  \ 'on_exit': funcref('textidote#JobHandlerNVim')
 		  \ }
 		let s:textidote_output = ''
@@ -273,7 +273,8 @@ function textidote#Check(line1, line2) "{{{1
 endfunction
 
 function! textidote#JobHandlerNVim(id, data, event) abort dict
-	if a:event ==# 'stdout' || a:event ==# 'stderr'
+	" if a:event ==# 'stdout' || a:event ==# 'stderr'
+	if a:event ==# 'stdout'
 		let s:textidote_output_new = join(a:data, "\n")
 		let s:textidote_output_list = [s:textidote_output,s:textidote_output_new]
 		let s:textidote_output = join(s:textidote_output_list, '')
