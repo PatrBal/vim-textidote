@@ -162,6 +162,7 @@ See `:help license`.
 7. Changelog                                                *TeXtidoteChangelog*
 
 06/01/2022 Initial version
+02/11/2022 Asynchronous version
 
 ==============================================================================
 8. Credits                                                    *TeXtidoteCredits*
