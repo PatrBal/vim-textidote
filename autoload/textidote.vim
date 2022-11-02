@@ -251,7 +251,7 @@ endfunction
 
 function! textidote#Display (id, data, event) dict
 	let g:textidote_output = a:data
-	join(a:data, "\n")
+	"join(a:data, "\n")
 	echo a:data[3]
 	return
 	if s:textidote_output[0] =~# 'A linter for LaTeX documents'
