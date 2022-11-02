@@ -263,9 +263,9 @@ function textidote#Check(line1, line2) "{{{1
 		let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
 		" silent execute '!' . l:textidote_cmd_html
 		let s:callbackshtml = {
-		  \ 'on_stdout': function('textidote#Display#Html'),
-		  \ 'on_stderr': function('textidote#Display#Html'),
-		  \ 'on_exit': function('textidote#Display#Html')
+		  \ 'on_stdout': function('textidote#Browser'),
+		  \ 'on_stderr': function('textidote#Browser'),
+		  \ 'on_exit': function('textidote#Browser')
 		  \ }
 		let idhtml = jobstart(l:textidote_cmd_html, s:callbackshtml )
 	endif
@@ -428,7 +428,7 @@ function! textidote#Display(id, data, event) dict
 endfunction
 
 
-function! textidote#Display#Html(id, data, event) dict
+function! textidote#Browser(id, data, event) dict
 	" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
 	if v:shell_error == 255
 		echoerr 'Command [' . l:textidote_cmd_html . '] failed with error: '
