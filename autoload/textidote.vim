@@ -195,13 +195,6 @@ function <sid>JumpToCurrentError() "{{{1
 	endif
 endfunction
 
-" This function performs grammar checking of text in the current buffer.
-" It highlights grammar mistakes in current buffer and opens a scratch
-" window with all errors found.  It also populates the location-list of
-" the window with all errors.
-" a:line1 and a:line2 parameters are the first and last line number of
-" the range of line to check.
-" Returns 0 if success, < 0 in case of error.
 function textidote#Check(line1, line2) "{{{1
 	if s:TeXtidoteSetUp() < 0
 		return -1
@@ -320,6 +313,11 @@ function! textidote#JobHandlerHtmlVim(job, status) abort
 	call textidote#Browser(s:textidote_exit_html)
 endfunction
 
+" This function highlights grammar mistakes in current buffer and opens
+" a scratch window with all errors found.  It also populates the location-list
+" of the window with all errors.
+" s:line1 and s:line2 parameters are the first and last line number of
+" the range of line to check.
 function textidote#Display(data,code)
 	execute 'drop' s:current_file
 	" silent %yank
@@ -374,8 +372,8 @@ function textidote#Display(data,code)
 	silent! %substitute/\m\C\(([0-9]*)\|\.\) \(\[[^]]*\]\)/" ruleId="\2"/
 	silent! %!cat
 
-	" Loop on all errors in XML output of LanguageTool and
-	" collect information about all errors in list s:errors
+	" Loop on all errors in XML output and collect information about all errors
+	" in list s:errors
 	let s:errors = []
 	while search('^<error ', 'eW') > 0
 		let l:l = getline('.')
@@ -469,6 +467,7 @@ function textidote#Display(data,code)
 	return 0
 endfunction
 
+" This function open the optional htmpl report in the default browser 
 function textidote#Browser(code)
 	if a:code > 125
 		echoerr 'Command [' . s:textidote_cmd_html . '] failed with error: '
