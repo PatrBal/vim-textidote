@@ -433,7 +433,8 @@ function textidote#Display(data,code)
 	endfor
 
 	redraw
-	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
+	" echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
+	echom s:textidote_cmd_txt_complete
 
 	call delete(s:tmpfilename)
 	let g:textidote_indicator = 1
