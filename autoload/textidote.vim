@@ -261,9 +261,9 @@ function textidote#Check(line1, line2) "{{{1
 		let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
 		" silent execute '!' . l:textidote_cmd_html
 		let s:callbackshtml = {
-		  \ 'on_stdout': funcref('textidote#Browser'),
-		  \ 'on_stderr': funcref('textidote#Browser'),
-		  \ 'on_exit': funcref('textidote#Browser')
+		  \ 'on_stdout': funcref('textidote#JobHandlerHtmlNVim'),
+		  \ 'on_stderr': funcref('textidote#JobHandlerHtmlNVim'),
+		  \ 'on_exit': funcref('textidote#JobHandlerHtmlNVim')
 		  \ }
 		let idhtml = jobstart(l:textidote_cmd_html, s:callbackshtml )
 	endif
@@ -280,7 +280,7 @@ function! textidote#JobHandlerNVim(id, data, event) abort dict
 	call textidote#Display(s:textidote_output,s:textidote_exit)
 endfunction
 
-function! textidote#Browser(id, data, event) abort dict
+function! textidote#JobHandlerHtmlNVim(id, data, event) abort dict
 	if a:event ==# 'stdout' || a:event ==# 'stderr'
 		return
 	endif
