@@ -243,10 +243,8 @@ function textidote#Check(line1, line2) "{{{1
 	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output plain '
 	let s:textidote_cmd_txt_name = l:textidote_cmd_txt . s:current_file 
 	let l:textidote_cmd_txt_complete = l:textidote_cmd_txt . s:tmpfilename . ' 2> ' . s:tmperror
-	" let l:filter_name = g:plugin_path . '/../script/textidote2lt.vim'
-	" let l:textidote_cmd_txt_async = l:textidote_cmd_txt_complete . " | command vim -esnN -u NONE -i NONE -c 'source " . l:filter_name . "' /dev/stdin"
 
-	" let s:textidote_output = system(l:textidote_cmd_txt_complete)
+	" Calling TeXtidote asynchronously
 	let s:callbacks = {
       \ 'on_stdout': function('textidote#Display'),
       \ 'on_stderr': function('textidote#Display'),
