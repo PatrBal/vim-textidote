@@ -280,7 +280,6 @@ function textidote#Check(line1, line2) "{{{1
 				\ }
 			let s:idhtml = job_start(s:textidote_cmd_html, s:callbackshtml )
 		endif
-
 	endif
 endfunction
 
