@@ -457,11 +457,11 @@ function textidote#Browser(code)
 	sleep 1000m
 	let l:start_default_browser_command = ''
 	if has('win32')
-	  let l:start_default_browser_command='!start '
+	  let l:start_default_browser_command = '!start '
 	else
 	  if has('unix')
 		let s:uname = system('uname')
-		if s:uname ==~ 'Darwin'
+		if s:uname ==# 'Darwin'
 		  let l:start_default_browser_command = '!open '
 		else
 		  let l:start_default_browser_command = '!xdg-open '
