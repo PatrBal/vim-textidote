@@ -254,6 +254,22 @@ function textidote#Check(line1, line2) "{{{1
       \ }
 	let s:textidote_output = ''
     let id = jobstart(l:textidote_cmd_txt_complete, s:callbacks )
+
+	" Handle the optional additional html report.
+	if g:textidote_html_report == 1
+		let s:tmphtml = tempname()
+		let s:tmphtml = s:tmphtml . '.html'
+		let s:tmperrorhtml = tempname()
+		let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
+		" silent execute '!' . l:textidote_cmd_html
+		let s:callbackshtml = {
+		  \ 'on_stdout': function('textidote#Display#html'),
+		  \ 'on_stderr': function('textidote#Display#html'),
+		  \ 'on_exit': function('textidote#Display#html')
+		  \ }
+		let idhtml = jobstart(l:textidote_cmd_html, s:callbackshtml )
+	endif
+
 endfunction
 
 function! textidote#Display(id, data, event) dict
@@ -406,13 +422,15 @@ function! textidote#Display(id, data, event) dict
 
 	redraw
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
-	
-	" Handle the optional additional html report.
-	if g:textidote_html_report == 1
-		let l:tmphtml = tempname()
-		let l:tmphtml = l:tmphtml . '.html'
-		let l:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . l:tmphtml . ' 2> ' . s:tmperror
-		silent execute '!' . l:textidote_cmd_html
+
+	call delete(s:tmpfilename)
+	let g:textidote_indicator = 1
+	return 0
+endfunction
+
+
+
+
 
 		" if v:shell_error && v:shell_error != 102 && v:shell_error != 13 && v:shell_error != 72 && v:shell_error != 249 && v:shell_error != 46 && v:shell_error != 93
 		if v:shell_error == 255
@@ -433,10 +451,9 @@ function! textidote#Display(id, data, event) dict
 		call delete(l:tmphtml)
 	endif
 
-	call delete(s:tmpfilename)
-	let g:textidote_indicator = 1
-	return 0
-endfunction
+
+
+
 
 " This function clears syntax highlighting created by TeXtidote plugin
 " and removes the scratch window containing grammar errors.
