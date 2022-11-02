@@ -516,12 +516,7 @@ function textidote#Clear() "{{{1
 	if exists('s:textidote_text_winid')
 		let l:win = winnr()
 		" Using window ID is more reliable than window number.
-		" But win_getid() does not exist in old version of Vim.
-		if exists('*win_gotoid')
-			call win_gotoid(s:textidote_text_winid)
-		else
-			exe s:textidote_text_winid . ' wincmd w'
-		endif
+		call win_gotoid(s:textidote_text_winid)
 		call setmatches(filter(getmatches(), 'v:val["group"] !~# "TeXtidote.*Error"'))
 		lexpr ''
 		lclose
