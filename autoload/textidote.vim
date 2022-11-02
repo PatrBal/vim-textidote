@@ -464,7 +464,7 @@ function textidote#Browser(code)
 		if s:uname == "Darwin"
 		  let l:start_default_browser_command = '!open '
 		else
-		  let l:start_default_browser_command = 'xdg-open'
+		  let l:start_default_browser_command = '!xdg-open '
 		endif
 	  endif
 	endif
