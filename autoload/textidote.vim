@@ -218,7 +218,7 @@ function textidote#Check(line1, line2) "{{{1
 
 	" Creating temporary files
 	let s:tmp_filename = tempname()
-	let s:tmpoutput = tempname()
+	let s:tmp_output = tempname()
 	let s:tmperror    = tempname()
 
 	let l:range = a:line1 . ',' . a:line2
@@ -239,7 +239,7 @@ function textidote#Check(line1, line2) "{{{1
 
 	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option
 	let s:textidote_cmd_txt_name = l:textidote_cmd_txt  . ' --output plain ' . s:current_file 
-	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt  . ' --output plain ' . s:tmp_filename . ' > ' . s:tmpoutput . ' 2> ' . s:tmperror
+	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt  . ' --output plain ' . s:tmp_filename . ' > ' . s:tmp_output . ' 2> ' . s:tmperror
 
 	" Handle the optional additional html report.
 	if g:textidote_html_report == 1
@@ -269,7 +269,7 @@ function textidote#Check(line1, line2) "{{{1
 		" We are in regular Vim
 		let s:callbacks = {
 				\ 'out_io': 'file',
-				\ 'out_name': s:tmpoutput,
+				\ 'out_name': s:tmp_output,
 				\ 'err_io': 'file',
 				\ 'err_name': s:tmperror,
 				\ 'exit_cb': funcref('textidote#JobHandlerVim')
@@ -295,14 +295,14 @@ function! textidote#JobHandlerNVim(id, data, event) abort dict
 		return
 	endif
 	let s:textidote_exit = a:data
-	let s:textidote_output_list = readfile(s:tmpoutput)
+	let s:textidote_output_list = readfile(s:tmp_output)
 	let s:textidote_output = join(s:textidote_output_list, "\n")
 	call textidote#Display(s:textidote_output,s:textidote_exit)
 endfunction
 
 function! textidote#JobHandlerVim(job, status) abort
 	let s:textidote_exit = a:status
-	let s:textidote_output_list = readfile(s:tmpoutput)
+	let s:textidote_output_list = readfile(s:tmp_output)
 	let s:textidote_output = join(s:textidote_output_list, "\n")
 	call textidote#Display(s:textidote_output,s:textidote_exit)
 endfunction
@@ -464,7 +464,7 @@ function textidote#Display(data,code)
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
 
 	call delete(s:tmp_filename)
-	call delete(s:tmpoutput)
+	call delete(s:tmp_output)
 	let g:textidote_indicator = 1
 	return 0
 endfunction
