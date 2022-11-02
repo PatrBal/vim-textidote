@@ -270,9 +270,6 @@ function textidote#Check(line1, line2) "{{{1
 		endif
 	else
 		if g:textidote_html_report == 1
-			" let s:textidote_cmd_html_list = split(l:textidote_cmd_txt,' ')
-			" call extend(s:textidote_cmd_html_list,['--output','html',s:tmpfilename,' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml])
-			" call extend(s:textidote_cmd_html_list,['--output','html',s:tmpfilename])
 			let s:textidote_cmd_html = l:textidote_cmd_txt . ' --output html ' . s:tmpfilename
 			let s:callbackshtml = {
 				\ 'out_io': 'file',
