@@ -247,9 +247,9 @@ function textidote#Check(line1, line2) "{{{1
 	let s:textidote_output = ''
 	if has('nvim')
 		" Calling TeXtidote asynchronously
+		  " \ 'on_stderr': funcref('textidote#JobHandlerNVim'),
 		let s:callbacks = {
 		  \ 'on_stdout': funcref('textidote#JobHandlerNVim'),
-		  " \ 'on_stderr': funcref('textidote#JobHandlerNVim'),
 		  \ 'on_exit': funcref('textidote#JobHandlerNVim')
 		  \ }
 		let s:textidote_output = ''
