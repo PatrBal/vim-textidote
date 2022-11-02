@@ -260,10 +260,8 @@ function! textidote#Display(id, data, event) dict
 		let s:textidote_output_new = join(a:data, "\n")
 		let s:textidote_output_list = [s:textidote_output,s:textidote_output_new]
 		let s:textidote_output = join(s:textidote_output_list, "\n")
-	else
-		echo s:textidote_output
+		return
 	endif
-	return
 
 	execute 'drop' s:current_file
 	" silent %yank
