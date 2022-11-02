@@ -246,9 +246,9 @@ function textidote#Check(line1, line2) "{{{1
 
 	" Calling TeXtidote asynchronously
 	let s:callbacks = {
-      \ 'on_stdout': funcref('textidote#Display'),
-      \ 'on_stderr': funcref('textidote#Display'),
-      \ 'on_exit': funcref('textidote#Display')
+      \ 'on_stdout': funcref('textidote#JobHandlerNVim'),
+      \ 'on_stderr': funcref('textidote#JobHandlerNVim'),
+      \ 'on_exit': funcref('textidote#JobHandlerNVim')
       \ }
 	let s:textidote_output = ''
     let id = jobstart(l:textidote_cmd_txt_complete, s:callbacks )
@@ -269,27 +269,29 @@ function textidote#Check(line1, line2) "{{{1
 	endif
 endfunction
 
-function! textidote#Display(id, data, event) abort dict
+function! textidote#JobHandlerNVim(id, data, event) abort dict
 	if a:event ==# 'stdout' || a:event ==# 'stderr'
 		let s:textidote_output_new = join(a:data, "\n")
 		let s:textidote_output_list = [s:textidote_output,s:textidote_output_new]
 		let s:textidote_output = join(s:textidote_output_list, '')
 		return
 	endif
-
 	let s:textidote_exit = a:data
+	call textidote#Display(s:textidote_output,s:textidote_exit)
+endfunction
 
+function textidote#Display(data,code)
 	execute 'drop' s:current_file
 	" silent %yank
 	botright new
 	set modifiable
 	let s:textidote_error_buffer = bufnr('%')
-	silent execute 'put! =s:textidote_output'
+	silent execute 'put! =a:data'
 	silent execute '%print'
 
-	if s:textidote_exit == 255
+	if a:code == 255
 		echoerr 'Command [' . l:textidote_cmd_txt_complete . '] failed with error: '
-		\      . s:textidote_exit
+		\      . a:code
 		if filereadable(s:tmperror)
 			echoerr string(readfile(s:tmperror))
 		endif
