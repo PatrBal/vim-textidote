@@ -302,7 +302,7 @@ function! textidote#JobHandlerNVim(id, data, event) abort dict
 		return
 	endif
 	let s:textidote_exit = a:data
-	let s:textidote_output_list = readfile(s:tmperror)
+	let s:textidote_output_list = readfile(s:tmpoutput)
 	let s:textidote_output = join(s:textidote_output_list, "\n")
 	call textidote#Display(s:textidote_output,s:textidote_exit)
 endfunction
@@ -471,6 +471,7 @@ function textidote#Display(data,code)
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
 
 	call delete(s:tmpfilename)
+	call delete(s:tmpoutput)
 	let g:textidote_indicator = 1
 	return 0
 endfunction
