@@ -244,23 +244,24 @@ function textidote#Check(line1, line2) "{{{1
 	let s:textidote_cmd_txt_name = l:textidote_cmd_txt . s:current_file 
 	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt . s:tmpfilename . ' 2> ' . s:tmperror
 
+	" Handle the optional additional html report.
+	if g:textidote_html_report == 1
+		let s:tmphtml = tempname()
+		let s:tmphtml = s:tmphtml . '.html'
+		let s:tmperrorhtml = tempname()
+		let s:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
+	endif
+
+	" Start the TeXtidote calls asynchronlusly
 	let s:textidote_output = ''
 	if has('nvim')
-		" Calling TeXtidote asynchronously
-		  " \ 'on_stderr': funcref('textidote#JobHandlerNVim'),
 		let s:callbacks = {
 		  \ 'on_stdout': funcref('textidote#JobHandlerNVim'),
 		  \ 'on_exit': funcref('textidote#JobHandlerNVim')
 		  \ }
-		let s:textidote_output = ''
 		let s:id = jobstart(s:textidote_cmd_txt_complete, s:callbacks )
 
-		" Handle the optional additional html report.
 		if g:textidote_html_report == 1
-			let s:tmphtml = tempname()
-			let s:tmphtml = s:tmphtml . '.html'
-			let s:tmperrorhtml = tempname()
-			let s:textidote_cmd_html = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . ' --output html ' . s:tmpfilename . ' > ' . s:tmphtml . ' 2> ' . s:tmperrorhtml
 			let s:callbackshtml = {
 			  \ 'on_stdout': funcref('textidote#JobHandlerHtmlNVim'),
 			  \ 'on_exit': funcref('textidote#JobHandlerHtmlNVim')
