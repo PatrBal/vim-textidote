@@ -251,16 +251,15 @@ function textidote#Check(line1, line2) "{{{1
       \ 'on_stderr': function('textidote#Display'),
       \ 'on_exit': function('textidote#Display')
       \ }
-	let s:textidote_output_list = []
+	let s:textidote_output = ''
     let id = jobstart(l:textidote_cmd_txt_complete, s:callbacks )
 endfunction
 
 function! textidote#Display(id, data, event) dict
 	" let s:textidote_output = join(a:data, "\n")
 	if a:event == 'stdout' || a:event == 'stderr'
-		call add(s:textidote_output_list, a:data)
+		let s:textidote_output . "\n" . join(a:data, "\n")
 	else
-		let s:textidote_output = join(s:textidote_output_list, "\n")
 		echo s:textidote_output
 	endif
 	return
