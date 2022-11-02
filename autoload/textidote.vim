@@ -271,6 +271,8 @@ function textidote#Check(line1, line2) "{{{1
 	else
 		if g:textidote_html_report == 1
 			" let exit = []
+			let s:textidote_cmd_html_list = split(l:textidote_cmd_txt,' ')
+
 			let s:callbackshtml = {
 			  \ 'exit_cb': funcref('textidote#JobHandlerHtmlVim')
 			  \ }
