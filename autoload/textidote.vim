@@ -256,9 +256,9 @@ function textidote#Check(line1, line2) "{{{1
 endfunction
 
 function! textidote#Display(id, data, event) dict
-	" let s:textidote_output = join(a:data, "\n")
+	let s:textidote_output_new = join(a:data, "\n")
 	if a:event == 'stdout' || a:event == 'stderr'
-		let s:textidote_output . "\n" . join(a:data, "\n")
+		let s:textidote_output . "\n" . s:textidote_output_new
 	else
 		echo s:textidote_output
 	endif
