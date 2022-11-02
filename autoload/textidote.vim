@@ -308,7 +308,7 @@ function! textidote#JobHandlerVim(job, status) abort
 	let s:textidote_exit = a:status
 	let s:textidote_output_list = readfile{s:tmperror}
 	let s:textidote_output = join(s:textidote_output_list, "\n")
-	call textidote#Display(s:textidote_exit_html)
+	call textidote#Display(s:textidote_output,s:textidote_exit)
 endfunction
 
 function! textidote#JobHandlerHtmlNVim(id, data, event) abort dict
