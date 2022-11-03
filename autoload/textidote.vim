@@ -397,7 +397,7 @@ function textidote#Display(data,code)
 		" set up syntax highlighting in the buffer which shows all errors.
 		%d
 		call append(0, '# ' . s:textidote_cmd_txt_name)
-		set bt=nofile
+		set buftype=nofile
 		setlocal nospell
 		syn clear
 		call matchadd('TeXtidoteCmd',        '\%1l.*')
