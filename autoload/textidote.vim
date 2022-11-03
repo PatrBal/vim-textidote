@@ -83,15 +83,15 @@ endfunction
 " Set up configuration.
 " Returns 0 if success, < 0 in case of error.
 function s:TeXtidoteSetUp() "{{{1
-	let s:textidote_dictionary = exists("g:textidote_dictionary")
+	let s:textidote_dictionary = exists('g:textidote_dictionary')
 	\ ? g:textidote_dictionary : ''
-	let s:textidote_ignore_rules = exists("g:textidote_ignore_rules")
+	let s:textidote_ignore_rules = exists('g:textidote_ignore_rules')
 	\ ? g:textidote_ignore_rules : ''
-	let s:textidote_ignore_environments = exists("g:textidote_ignore_environments")
+	let s:textidote_ignore_environments = exists('g:textidote_ignore_environments')
 	\ ? g:textidote_ignore_environments : ''
-	let s:textidote_ignore_macros = exists("g:textidote_ignore_macros")
+	let s:textidote_ignore_macros = exists('g:textidote_ignore_macros')
 	\ ? g:textidote_ignore_macros : ''
-	let s:textidote_win_height = exists("g:textidote_win_height")
+	let s:textidote_win_height = exists('g:textidote_win_height')
 	\ ? g:textidote_win_height
 	\ : 14
 	let s:textidote_encoding = &fenc ? &fenc : &enc
