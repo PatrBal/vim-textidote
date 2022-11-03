@@ -85,7 +85,7 @@ plugin
 `nnoremap <silent> <Leader>te :TeXtidoteToggle<CR>`
 
 Several global variables can be set in your |vimrc| to configure the behavior
-of the LanguageTool plugin.
+of the TeXtidote plugin.
 
 *g:textidote_jar*
   Path to `textidote.jar`
