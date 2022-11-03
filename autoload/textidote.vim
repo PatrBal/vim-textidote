@@ -508,7 +508,7 @@ endfunction
 function textidote#Clear() "{{{1
 	if exists('s:textidote_error_buffer')
 		if bufexists(s:textidote_error_buffer)
-			silent! execute "bdelete! " . s:textidote_error_buffer
+			silent! execute 'bdelete! ' . s:textidote_error_buffer
 		endif
 	endif
 	if exists('s:textidote_text_winid')
