@@ -94,38 +94,38 @@ function s:TeXtidoteSetUp() "{{{1
 	let s:textidote_win_height = exists('g:textidote_win_height')
 	\ ? g:textidote_win_height
 	\ : 14
-	let s:textidote_encoding = &fenc ? &fenc : &enc
+	let s:textidote_encoding = &fileencoding ? &fileencoding : &encoding
 	
-	if s:textidote_dictionary == ''
+	if s:textidote_dictionary ==# ''
 		let s:textidote_dictionary_option = ''
 	else
 		let s:textidote_dictionary_option = ' --dict ' . s:textidote_dictionary
 	endif
-	if s:textidote_ignore_rules == ''
+	if s:textidote_ignore_rules ==# ''
 		let s:textidote_ignore_rules_option = ''
 	else
 		let s:textidote_ignore_rules_option = ' --ignore ' . s:textidote_ignore_rules
 	endif
-	if s:textidote_ignore_environments == ''
+	if s:textidote_ignore_environments ==# ''
 		let s:textidote_ignore_environments_option = ''
 	else
 		let s:textidote_ignore_environments_option = ' --remove ' . s:textidote_ignore_environments
 	endif
-	if s:textidote_ignore_macros == ''
+	if s:textidote_ignore_macros ==# ''
 		let s:textidote_ignore_macros_option = ''
 	else
 		let s:textidote_ignore_macros_option = ' --remove-macros ' . s:textidote_ignore_macros
 	endif
 	
 	" Setting up language...
-	if exists("g:textidote_lang")
+	if exists('g:textidote_lang')
 		let s:textidote_lang = g:textidote_lang
 	else
 		" Trying to guess language from 'spelllang' or 'v:lang'.
 		let s:textidote_lang = s:FindLanguage(&spelllang)
-		if s:textidote_lang == ''
+		if s:textidote_lang ==# ''
 			let s:textidote_lang = s:FindLanguage(v:lang)
-			if s:textidote_lang == ''
+			if s:textidote_lang ==# ''
 				echoerr 'Failed to guess language from spelllang=['
 				\ . &spelllang . '] or from v:lang=[' . v:lang . ']. '
 				\ . 'Defauling to US English (en). '
@@ -139,24 +139,24 @@ function s:TeXtidoteSetUp() "{{{1
 		let g:textidote_first_language = ''
 	endif
 	let g:textidote_first_language = s:FindLanguage(g:textidote_first_language)
-	if g:textidote_first_language == ''
+	if g:textidote_first_language ==# ''
 		let s:textidote_first_language_option = ''
 	else
 		let s:textidote_first_language_option = ' --firstlang ' . g:textidote_first_language
 	endif
 	
-	let s:textidote_jar = exists("g:textidote_jar")
+	let s:textidote_jar = exists('g:textidote_jar')
 	\ ? g:textidote_jar
 	\ : $HOME . '/.vim/textidote.jar'
 	
-	if !exists("g:textidote_cmd") && !filereadable(s:textidote_jar)
+	if !exists('g:textidote_cmd') && !filereadable(s:textidote_jar)
 		" Hmmm, can't find the jar file.  Try again with expand() in case user
 		" set it up as: let g:textidote_jar = '$HOME/.vim/textidote.jar'
 		let l:textidote_jar = expand(s:textidote_jar)
 		if !filereadable(expand(l:textidote_jar))
-			echomsg "TeXtidote cannot be found at: " . s:textidote_jar
-			echomsg "You need to install TeXtidote and/or set up g:textidote_jar"
-			echomsg "to indicate the location of the textidote.jar file."
+			echomsg 'TeXtidote cannot be found at: ' . s:textidote_jar
+			echomsg 'You need to install TeXtidote and/or set up g:textidote_jar'
+			echomsg 'to indicate the location of the textidote.jar file.'
 			return -1
 		endif
 		let s:textidote_jar = l:textidote_jar
