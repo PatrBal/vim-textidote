@@ -320,7 +320,6 @@ endfunction
 " the range of line to check.
 function textidote#Display(data,code)
 	execute 'drop' s:current_file
-	" silent %yank
 	botright new
 	set modifiable
 	let s:textidote_error_buffer = bufnr('%')
