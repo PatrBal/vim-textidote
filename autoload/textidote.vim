@@ -220,13 +220,13 @@ function textidote#Check(line1, line2) "{{{1
 	let s:line2 = a:line2
 
 	" Check if 'begin{document}' is in file, and otherwise set '--read-all' option
-	if match(readfile(s:tmp_filename) , "begin{document}")!=-1
+	if match(readfile(s:tmp_filename) , 'begin{document}')!=-1
 		let l:option = ' --no-color --check '
 	else
 		let l:option = ' --no-color --read-all --check '
 	endif 
 
-	let l:textidote_cmd = exists("g:textidote_cmd")
+	let l:textidote_cmd = exists('g:textidote_cmd')
 	\ ? g:textidote_cmd
 	\ : 'java -jar ' . s:textidote_jar
 
@@ -427,7 +427,7 @@ function textidote#Display(data,code)
 			call append('$', '')
 			let l:i += 1
 		endfor
-		execute "normal! z" . s:textidote_win_height . "\<CR>"
+		execute 'normal! z' . s:textidote_win_height . "\<CR>"
 		0
 		map <silent> <buffer> <CR> :call <sid>JumpToCurrentError()<CR>
 		file [TeXtidote]
