@@ -427,7 +427,7 @@ function textidote#Display(data,code)
 			call append('$', '')
 			let l:i += 1
 		endfor
-		exe "norm! z" . s:textidote_win_height . "\<CR>"
+		execute "normal! z" . s:textidote_win_height . "\<CR>"
 		0
 		map <silent> <buffer> <CR> :call <sid>JumpToCurrentError()<CR>
 		file [TeXtidote]
