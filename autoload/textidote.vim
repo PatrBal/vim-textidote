@@ -168,7 +168,7 @@ endfunction
 " on a particular error in scratch buffer).
 function <sid>JumpToCurrentError() "{{{1
 	let l:save_cursor = getpos('.')
-	norm! $
+	normal! $
 	if search('^Error:\s\+', 'beW') > 0
 		let l:error_idx = expand('<cword>')
 		let l:error = s:errors[l:error_idx - 1]
