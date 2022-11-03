@@ -179,7 +179,7 @@ function <sid>JumpToCurrentError() "{{{1
 		if exists('*win_gotoid')
 			call win_gotoid(s:textidote_text_winid)
 		else
-			exe s:textidote_text_winid . ' wincmd w'
+			execute s:textidote_text_winid . ' wincmd w'
 		endif
 		execute 'normal! ' . l:line . 'G0'
 		if l:col > 0
@@ -508,7 +508,7 @@ endfunction
 function textidote#Clear() "{{{1
 	if exists('s:textidote_error_buffer')
 		if bufexists(s:textidote_error_buffer)
-			sil! exe "bd! " . s:textidote_error_buffer
+			silent! execute "bdelete! " . s:textidote_error_buffer
 		endif
 	endif
 	if exists('s:textidote_text_winid')
@@ -518,7 +518,7 @@ function textidote#Clear() "{{{1
 		call setmatches(filter(getmatches(), 'v:val["group"] !~# "TeXtidote.*Error"'))
 		lexpr ''
 		lclose
-		exe l:win . ' wincmd w'
+		execute l:win . ' wincmd w'
 	endif
 	unlet! s:textidote_error_buffer
 	unlet! s:textidote_text_winid
