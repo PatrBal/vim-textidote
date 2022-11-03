@@ -436,7 +436,7 @@ function textidote#Display(data,code)
 		execute "normal! \<C-W>\<C-P>"
 	else
 		" Negative s:textidote_win_height -> no scratch window.
-		bd!
+		bdelete!
 		unlet! s:textidote_error_buffer
 	endif
 
