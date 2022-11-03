@@ -181,7 +181,7 @@ function <sid>JumpToCurrentError() "{{{1
 		else
 			exe s:textidote_text_winid . ' wincmd w'
 		endif
-		exe 'normal! ' . l:line . 'G0'
+		execute 'normal! ' . l:line . 'G0'
 		if l:col > 0
 			execute 'normal! ' . (l:col  - 1) . 'l'
 		endif
