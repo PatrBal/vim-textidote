@@ -326,7 +326,7 @@ endfunction
 " s:line1 and s:line2 parameters are the first and last line number of
 " the range of line to check.
 function textidote#Display(data,code)
-	if a:code > 125
+	if a:code == 255
 		echoerr 'Command [' . s:textidote_cmd_txt_complete . '] failed with error: '
 		\      . a:code
 		if filereadable(s:tmp_error)
@@ -475,7 +475,7 @@ endfunction
 
 " This function open the optional htmpl report in the default browser 
 function textidote#Browser(code)
-	if a:code > 125
+	if a:code == 255
 		echoerr 'Command [' . s:textidote_cmd_html . '] failed with error: '
 		\      . a:code
 		if filereadable(s:tmp_error_html)
