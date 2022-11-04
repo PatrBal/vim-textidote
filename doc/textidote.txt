@@ -135,7 +135,21 @@ of the TeXtidote plugin.
 *g:textidote_ignore_macros*
   Same as above with macros instead of environments.
   Default value: empty
-  Example: `:let g:textidote_ignore_macros = 'textsc'`
+  Example: `:let g:textidote_ignore_macros = 'qed,textsc'`
+
+*g:textidote_replacements*
+  Before TeXtidote analyses a file, you can ask it to apply a set of
+  find/replace operations (for example, to replace a macro by some predefined
+  character string). You can write these patterns into a text file. This file
+  must be a plain text file containing the find replace patterns. It is
+  formatted as follows.
+  `# Empty lines beginning with a pound sign are ignored`
+  `# Search and replace patterns are separated by a tab`
+  `# Patterns can also be regular expressions`
+  `abc\d+[^x]	123`
+  `foo		bar`
+  Default value: empty
+  Example: `:let g:textidote_replacements = '~/.vim/remplacements.txt'`
 
 
 You can also customize the following syntax highlighting groups:
