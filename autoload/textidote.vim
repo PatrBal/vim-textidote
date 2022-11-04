@@ -85,6 +85,8 @@ endfunction
 function s:TeXtidoteSetUp() "{{{1
 	let s:textidote_dictionary = exists('g:textidote_dictionary')
 	\ ? g:textidote_dictionary : ''
+	let s:textidote_replacements = exists('g:textidote_dictionary')
+	\ ? g:textidote_replacements : ''
 	let s:textidote_ignore_rules = exists('g:textidote_ignore_rules')
 	\ ? g:textidote_ignore_rules : ''
 	let s:textidote_ignore_environments = exists('g:textidote_ignore_environments')
@@ -100,6 +102,11 @@ function s:TeXtidoteSetUp() "{{{1
 		let s:textidote_dictionary_option = ''
 	else
 		let s:textidote_dictionary_option = ' --dict ' . s:textidote_dictionary
+	endif
+	if s:textidote_replacements ==# ''
+		let s:textidote_replacements_option = ''
+	else
+		let s:textidote_replacements_option = ' --replace ' . s:textidote_replacements
 	endif
 	if s:textidote_ignore_rules ==# ''
 		let s:textidote_ignore_rules_option = ''
