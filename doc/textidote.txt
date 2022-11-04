@@ -117,7 +117,7 @@ of the TeXtidote plugin.
   file contain a list of words to be ignored, with each word on a separate
   line.  
   Default value: empty
-  Example: `:let g:textidote_dictionary = $HOME . '.vim/dico.txt'`
+  Example: `:let g:textidote_dictionary = '~/.vim/dico.txt'`
 
 *g:textidote_ignore_rules*
   You may want to ignore some of TeXtidote's advice. You can do so by 
@@ -127,7 +127,8 @@ of the TeXtidote plugin.
   Example: `:let g:textidote_ignore_rules = 'lt:en:EN_REPEATEDWORDS,sh:c:noin'`
 
 *g:textidote_ignore_environments*
-  TeXtidote can be instructed to remove user-specified environments.
+  TeXtidote can be instructed to remove user-specified environments (including
+  all text lines between `\begin{...}` and `\end{...}`).
   Default value: empty
   Example: `:let g:textidote_ignore_environments = 'tikzpicture,equation'`
 
