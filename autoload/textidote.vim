@@ -326,13 +326,6 @@ endfunction
 " s:line1 and s:line2 parameters are the first and last line number of
 " the range of line to check.
 function textidote#Display(data,code)
-	execute 'drop' s:current_file
-	botright new
-	set modifiable
-	let s:textidote_error_buffer = bufnr('%')
-	silent execute 'put! =a:data'
-	silent execute '%print'
-
 	if a:code > 125
 		echoerr 'Command [' . s:textidote_cmd_txt_complete . '] failed with error: '
 		\      . a:code
@@ -344,6 +337,13 @@ function textidote#Display(data,code)
 		return -1
 	endif
 	call delete(s:tmp_error)
+
+	execute 'drop' s:current_file
+	botright new
+	set modifiable
+	let s:textidote_error_buffer = bufnr('%')
+	silent execute 'put! =a:data'
+	silent execute '%print'
 
 	" The text report produced by TeXtidote is processed to match the format of
 	" the XML report produced by LanguageTool so that large parts of the code of
