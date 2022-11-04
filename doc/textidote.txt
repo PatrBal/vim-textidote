@@ -49,7 +49,7 @@ The plugin provides the new command
 `:[range]TeXtidoteToggle`
 where the default `[range]` is the whole buffer, except in the case where there
 is a visual selection which is then taken as the default `[range]`. This command
-launch the checking of `[range` by TeXtidote, highlights the corresponding
+launch the checking of `[range]` by TeXtidote, highlights the corresponding
 errors and open the scratch buffer listing all the errors. Subsequent
 invocation of the same command closes the scratch buffer and clears the error
 highlighting.
