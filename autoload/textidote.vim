@@ -237,7 +237,7 @@ function textidote#Check(line1, line2) "{{{1
 	\ ? g:textidote_cmd
 	\ : 'java -jar ' . s:textidote_jar
 
-	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option . s:textidote_replacements_option
+	let l:textidote_cmd_txt = l:textidote_cmd . l:option . s:textidote_lang . s:textidote_first_language_option . ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option . s:textidote_ignore_rules_option . s:textidote_ignore_environments_option . s:textidote_ignore_macros_option
 	let s:textidote_cmd_txt_name = l:textidote_cmd_txt  . ' --output plain ' . s:current_file 
 	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt  . ' --output plain ' . s:tmp_filename . ' > ' . s:tmp_output . ' 2> ' . s:tmp_error
 
