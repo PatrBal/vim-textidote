@@ -34,7 +34,7 @@ By default `[range]` is the whole buffer, except in the case where there is a vi
 
 ## Features
  - Spell, grammar and style checking of either the entire buffer or part of it.
- - A scratch buffer shows up, listing all the errors.  Pressing <Enter> on an error in the error scratch buffer will jump to that error.
+ - A scratch buffer shows up, listing all the errors.  Navigate the error using `[[` and `]]` and hit `<Enter>` on an error in the error scratch buffer to jump to that error.
  - The location-list is populated, so that you can use location-list Vim commands such as `:lopen` to open the location-list window, `:lne` to jump to the next error, etc.
  - Optionally, a full html report of TeXtidote analysis can be displayed in the default browser.
 
