@@ -2,6 +2,7 @@
 *textidote*
 *TeXtidote*
 
+For Neovim and Vim version above 8.0
 
 ==============================================================================
 CONTENTS                                                     *TeXtidoteContents*
