@@ -437,6 +437,9 @@ function textidote#Display(data,code)
 		execute 'normal! z' . s:textidote_win_height . "\<CR>"
 		0
 		map <silent> <buffer> <CR> :call <sid>JumpToCurrentError()<CR>
+		nnoremap <buffer><silent> ]] :call search('^Context:\s\+', 'n')<CR>
+		nnoremap <buffer><silent> [[ :call search('^Context:\s\+', 'bn')<CR>
+
 		file [TeXtidote]
 		redraw
 		echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
