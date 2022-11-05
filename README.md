@@ -25,8 +25,7 @@ Install `vim-textidote` using your favorite package manager, or use Vim's built-
 
 Download the latest `textidote.jar` from [TeXtidote][TeXtidote] and make sure that you have Java version 8 or later installed on your system. Specify the location of the file `textidote.jar` in your $HOME/.vimrc file. Example:
 
-
-
+	let g:textidote_jar = '/Users/patrick.ballard/.vim/textidote.jar'
 
 ## Usage
 `:[range]TeXtidoteToggle`  
