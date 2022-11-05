@@ -16,14 +16,16 @@ Html report in browser:
 
 ## Installation
 
-Download the latest `textidote.jar` from [TeXtidote][TeXtidote] and make sure that you have Java version 8 or later installed on your system.
-
 Install `vim-textidote` using your favorite package manager, or use Vim's built-in package support:
 
     mkdir -p ~/.vim/pack/PatrBal/start
     cd ~/.vim/pack/PatrBal/start
     git clone https://github.com/PatrBal/vim-textidote
     vim -u NONE -c "helptags vim-textidote/doc" -c q
+
+Download the latest `textidote.jar` from [TeXtidote][TeXtidote] and make sure that you have Java version 8 or later installed on your system. Specify the location of the file `textidote.jar` in your $HOME/.vimrc file. Example:
+
+
 
 
 ## Usage
