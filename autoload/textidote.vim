@@ -213,8 +213,11 @@ function <sid>JumpToCurrentError() "{{{1
 			nnoremap <buffer> <Tab> ea<C-X><C-U>
 		else
 			let &completefunc = s:completefunc_orig
-			nnoremap <Tab> ea<C-X><C-U>
-			nunmap <Tab>
+			if exists(s:mapTab_orig)
+				execute 'nnoremap <Tab> ' . s:mapTab_orig
+			else
+				silent!nunmap <Tab>
+			endif
 		endif
 
 		" Open the folds to reveal the cursor line and display that line in
