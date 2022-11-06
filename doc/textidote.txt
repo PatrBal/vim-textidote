@@ -76,7 +76,7 @@ You must also install `TeXtidote`. Download the latest `textidote.jar` from
 |https://github.com/sylvainhalle/textidote|
 and make sure that you have Java version 8 or later installed on your system. 
 Alternatively, on Debian systems (Ubuntu and derivatives), you can install 
-`TeXtidote` using `dpkg`, and on macOS, using `homebrew`. In that later case,
+`TeXtidote` using `dpkg`, and on macOS, using `homebrew`. In that latter case,
 the path to the `textidote.jar` in the `.vimrc` should be provided as:
 `let g:textidote_jar = '/opt/homebrew/var/homebrew/linked/textidote/libexec/textidote.jar'`
 `let g:textidote_jar = '/usr/local/var/homebrew/linked/textidote/libexec/textidote.jar'`
