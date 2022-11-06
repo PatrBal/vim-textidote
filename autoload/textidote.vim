@@ -459,8 +459,8 @@ function textidote#Display(data,code)
 		execute 'normal! z' . s:textidote_win_height . "\<CR>"
 		0
 		nnoremap <buffer><silent> <CR> :call <sid>JumpToCurrentError()<CR>
-		nnoremap <buffer><silent> ]] :call search('^Context:\s\+')<CR>
-		nnoremap <buffer><silent> [[ :call search('^Context:\s\+', 'b')<CR>
+		nnoremap <buffer><silent> ] :call search('^Context:\s\+')<CR>
+		nnoremap <buffer><silent> [ :call search('^Context:\s\+', 'b')<CR>
 
 		file [TeXtidote]
 		redraw
