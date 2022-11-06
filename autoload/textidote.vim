@@ -195,12 +195,20 @@ function <sid>JumpToCurrentError() "{{{1
 		
 		" echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
 		" \ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
-		let l:suggestions_list = split(l:error['replacements'],', ')
 		echon l:suggestions_list
 		normal! zv
 		normal! zz
 	else
 		call setpos('.', l:save_cursor)
+	endif
+endfunction
+
+function <sid>textidote#suggestions(findstart, base)
+	if a:findstart
+		return l:col
+	else
+		let l:suggestions_list = split(l:error['replacements'],', ')
+		return l:suggestions_list
 	endif
 endfunction
 
