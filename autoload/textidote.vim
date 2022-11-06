@@ -210,13 +210,13 @@ function <sid>JumpToCurrentError() "{{{1
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=Suggestions
-			nnoremap <buffer> <Tab> ea<C-X><C-U>
+			nnoremap <Tab> ea<C-X><C-U>
 		else
 			let &completefunc = s:completefunc_orig
 			if exists('s:mapTab_orig')
 				execute 'nnoremap <Tab> ' . s:mapTab_orig
 			else
-				silent!nunmap <buffer> <Tab>
+				silent!nunmap <Tab>
 			endif
 		endif
 
