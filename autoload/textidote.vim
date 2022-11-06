@@ -273,7 +273,8 @@ function textidote#Check(line1, line2) "{{{1
 		let s:tmp_output_html = tempname()
 		let s:tmp_output_html = s:tmp_output_html . '.html'
 		let s:tmp_error_html = tempname()
-		let s:textidote_cmd_html = l:textidote_cmd_txt . ' --output html ' . s:tmp_filename . ' > ' . s:tmp_output_html . ' 2> ' . s:tmp_error_html
+		let s:textidote_cmd_html = l:textidote_cmd_txt . ' --output html ' . s:tmp_filename .
+			\ ' > ' . s:tmp_output_html . ' 2> ' . s:tmp_error_html
 	endif
 
 	" Start the TeXtidote calls asynchroneusly
