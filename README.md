@@ -2,7 +2,7 @@
 
 ## Description
 
-This plugin interfaces Vim with the [TeXtidote][TeXtidote] grammar checker.  TeXtidote is an open source spelling, grammar and style checker for multiple languages based on LanguageTool.  TeXtidote is built on top of LanguageTool and is able to remove LaTeX and Markdown markup before grammar checking, while keeping track of the relative position of words between the original and "clean text". In short, TeXtidote is a version of LanguageTool made blind to LaTeX and Markdown markup.
+This plugin interfaces Vim and Neovim with the [TeXtidote][TeXtidote] grammar checker.  TeXtidote is an open source spelling, grammar and style checker for multiple languages based on LanguageTool.  TeXtidote is built on top of LanguageTool and is able to remove LaTeX and Markdown markup before grammar checking, while keeping track of the relative position of words between the original and "clean text". In short, TeXtidote is a version of LanguageTool made blind to LaTeX and Markdown markup.
 
 The plugin [vim-LanguageTool][vim-LanguageTool] is a full-featured interface of LanguageTool with Vim.  This plugin offers the same clean interface based on TeXtidote instead of LanguageTool. As a consequence, all the errors based on LaTeX or Markdown markup are skipped.  In addition, the plugin is now able to make asynchronous calls to TeXtidote, both in Neovim and regular Vim, so that Vim (or Neovim) does not get frozen during the TeXtidote analysis (which can take a while).  As a consequence, the plugin requires Vim 8 or higher.
 
@@ -34,7 +34,7 @@ By default `[range]` is the whole buffer, except in the case where there is a vi
 
 ## Features
  - Spell, grammar and style checking of either the entire buffer or part of it.
- - A scratch buffer shows up, listing all the errors.  Navigate the errors in the scratch buffer using `[[` and `]]`, hit `<Enter>` on an error in the scratch buffer to jump to that error and, then, hit `<Tab>` to fix it.
+ - A scratch buffer shows up, listing all the errors.  Navigate the errors in the scratch buffer using `[[` and `]]`, hit `<Enter>` on an error in the scratch buffer to jump to that error where you can hit `<Tab>` to fix it.
  - The location-list is populated, so that you can use location-list Vim commands such as `:lopen` to open the location-list window, `:lne` to jump to the next error, etc.
  - Optionally, a full html report of TeXtidote analysis can be displayed in the default browser.
 
