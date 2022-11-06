@@ -169,6 +169,7 @@ function s:TeXtidoteSetUp() "{{{1
 		let s:textidote_jar = l:textidote_jar
 	endif
 
+	" Storing &completefunc to restore it after grammar check
 	let s:completefunc_orig = &completefunc
 	return 0
 endfunction
@@ -198,6 +199,8 @@ function <sid>JumpToCurrentError() "{{{1
 		echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
 
+		" Populate the suggestion list and setup the completion trigger by
+		" <Tab>
 		if !empty(l:error['replacements'])
 			let s:col = l:col - 1
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
@@ -209,6 +212,9 @@ function <sid>JumpToCurrentError() "{{{1
 			nnoremap <Tab> ea<C-X><C-U>
 			nunmap <Tab>
 		endif
+
+		" Open the folds to reveal the cursor line and display that line in
+		" the middle of the window
 		normal! zv
 		normal! zz
 	else
@@ -216,6 +222,8 @@ function <sid>JumpToCurrentError() "{{{1
 	endif
 endfunction
 
+" This function provides the completion with the suggestion list for the
+" current error
 function Suggestions(findstart, base)
 	if a:findstart
 		return s:col
