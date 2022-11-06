@@ -195,6 +195,9 @@ function <sid>JumpToCurrentError() "{{{1
 		
 		echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
+
+		let s:col = l:col
+		let s:suggestions_list = split(l:error['replacements'],', ')
 		setlocal completefunc=Suggestions
 		normal! zv
 		normal! zz
@@ -205,10 +208,9 @@ endfunction
 
 function Suggestions(findstart, base)
 	if a:findstart
-		return l:col
+		return s:col
 	else
-		let l:suggestions_list = split(l:error['replacements'],', ')
-		return l:suggestions_list
+		return s:suggestions_list
 	endif
 endfunction
 
