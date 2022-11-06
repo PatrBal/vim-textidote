@@ -76,7 +76,7 @@ You must also install `TeXtidote`. Download the latest `textidote.jar` from
 |https://github.com/sylvainhalle/textidote|
 and make sure that you have Java version 8 or later installed on your system. 
 Alternatively, on Debian systems (Ubuntu and derivatives), you can install 
-`TeXtidote` using `dpkg`.
+`TeXtidote` using `dpkg`, and on macOS, using `homebrew`.
 
 ==============================================================================
 5. Configuration                                               *TeXtidoteConfig*
