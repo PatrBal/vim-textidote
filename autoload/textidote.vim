@@ -216,6 +216,7 @@ function <sid>JumpToCurrentError() "{{{1
 			if exists('s:mapTab_orig')
 				execute 'nnoremap <Tab> ' . s:mapTab_orig
 			else
+				silent!nunmap ea<C-X><C-U>
 				silent!nunmap <Tab>
 			endif
 		endif
