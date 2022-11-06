@@ -197,7 +197,8 @@ function <sid>JumpToCurrentError() "{{{1
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
 
 		let s:col = l:col - 1
-		let s:suggestions_list = split(l:error['replacements'],', ')
+		let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
+		let s:suggestions_list = split(l:suggestions,', ')
 		setlocal completefunc=Suggestions
 		normal! zv
 		normal! zz
