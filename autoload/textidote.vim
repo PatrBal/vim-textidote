@@ -547,6 +547,7 @@ function textidote#Clear() "{{{1
 	endif
 	unlet! s:textidote_error_buffer
 	unlet! s:textidote_text_winid
+	setlocal completefunc=s:completefunc_orig
 	let g:textidote_indicator = 0
 endfunction
 
