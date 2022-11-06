@@ -170,9 +170,7 @@ function s:TeXtidoteSetUp() "{{{1
 	endif
 
 	" Storing &completefunc and nmap of <Tab> to restore them after grammar check
-	if !empty(&completefunc)
-		let s:completefunc_orig = &completefunc
-	endif
+	let s:completefunc_orig = &completefunc
 	if !empty(maparg('<Tab>', 'n'))
 		let s:mapTab_orig = maparg('<C-c>', 'n', 0, 1)
 	endif
