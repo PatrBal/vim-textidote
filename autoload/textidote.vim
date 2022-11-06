@@ -249,7 +249,7 @@ function textidote#Check(line1, line2) "{{{1
 
 	" Store full path of current file
 	let s:current_file = expand('%:p')
-	execute 'autocmd BufDelete ' . s:current_file . ' call textidote#Clear()'
+	" execute 'autocmd BufDelete ' . s:current_file . ' call textidote#Clear()'
 
 	" Using window ID is more reliable than window number.
 	let s:textidote_text_winid = win_getid()
