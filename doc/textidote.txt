@@ -33,9 +33,9 @@ markup.
 
  - Spelling, grammar and style checking of either the entire buffer or part of
    it.
- - A scratch buffer shows up, listing all the errors. Navigate the errors in the
-   scratch buffer with `[[` and `]]`. Press `<Enter>` on an error scratch buffer to
-   jump to that error and, then, hit `<Tab>` to fix it.
+ - A scratch buffer shows up, listing all the errors. Navigate the errors in
+   the scratch buffer with `[[` and `]]`. Press `<Enter>` on an error in the 
+   scratch buffer to jump to that error and, then, hit `<Tab>` to fix it.
  - The location-list is populated, so that you can use location-list Vim
    commands such as `:lopen` to open the location-list window, `:lne` to jump
    to the next error, etc.
