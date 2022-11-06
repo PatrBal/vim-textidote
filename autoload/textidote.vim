@@ -200,16 +200,16 @@ function <sid>JumpToCurrentError() "{{{1
 	else
 		call setpos('.', l:save_cursor)
 	endif
+	function Suggestions(findstart, base)
+		if a:findstart
+			return l:col
+		else
+			let l:suggestions_list = split(l:error['replacements'],', ')
+			return l:suggestions_list
+		endif
+	endfunction
 endfunction
 
-function Suggestions(findstart, base)
-	if a:findstart
-		return l:col
-	else
-		let l:suggestions_list = split(l:error['replacements'],', ')
-		return l:suggestions_list
-	endif
-endfunction
 
 function textidote#Check(line1, line2) "{{{1
 	if s:TeXtidoteSetUp() < 0
