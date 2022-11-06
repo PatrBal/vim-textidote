@@ -206,6 +206,7 @@ function <sid>JumpToCurrentError() "{{{1
 			nnoremap <Tab> :normal!ea<C-X><C-U>
 		else
 			setlocal completefunc=s:completefunc_orig
+			nunmap <Tab>
 		endif
 		normal! zv
 		normal! zz
