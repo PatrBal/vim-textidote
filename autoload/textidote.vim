@@ -193,9 +193,8 @@ function <sid>JumpToCurrentError() "{{{1
 			execute 'normal! ' . (l:col  - 1) . 'l'
 		endif
 		
-		" echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
-		" \ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
-		echon l:suggestions_list
+		echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
+		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
 		normal! zv
 		normal! zz
 	else
