@@ -205,7 +205,7 @@ function <sid>JumpToCurrentError() "{{{1
 			setlocal completefunc=Suggestions
 			nnoremap <Tab> ea<C-X><C-U>
 		else
-			setlocal completefunc=s:completefunc_orig
+			set &completefunc = s:completefunc_orig
 			nunmap <Tab>
 		endif
 		normal! zv
@@ -553,7 +553,7 @@ function textidote#Clear() "{{{1
 	endif
 	unlet! s:textidote_error_buffer
 	unlet! s:textidote_text_winid
-	let &completefunc=s:completefunc_orig
+	let &completefunc = s:completefunc_orig
 	let g:textidote_indicator = 0
 endfunction
 
