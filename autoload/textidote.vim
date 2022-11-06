@@ -206,6 +206,7 @@ function <sid>JumpToCurrentError() "{{{1
 			nnoremap <Tab> ea<C-X><C-U>
 		else
 			let &completefunc = s:completefunc_orig
+			nnoremap <Tab> ea<C-X><C-U>
 			nunmap <Tab>
 		endif
 		normal! zv
