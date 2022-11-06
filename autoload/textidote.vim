@@ -213,7 +213,7 @@ function <sid>JumpToCurrentError() "{{{1
 			nnoremap <buffer> <Tab> ea<C-X><C-U>
 		else
 			let &completefunc = s:completefunc_orig
-			if exists(s:mapTab_orig)
+			if exists('s:mapTab_orig')
 				execute 'nnoremap <Tab> ' . s:mapTab_orig
 			else
 				silent!nunmap <Tab>
@@ -578,7 +578,7 @@ function textidote#Clear() "{{{1
 	unlet! s:textidote_text_winid
 
 	let &completefunc = s:completefunc_orig
-	if exists(s:mapTab_orig)
+	if exists('s:mapTab_orig')
 		execute 'nnoremap <Tab> ' . s:mapTab_orig
 	else
 		silent!nunmap <Tab>
