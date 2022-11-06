@@ -203,7 +203,7 @@ function <sid>JumpToCurrentError() "{{{1
 	endif
 endfunction
 
-function <sid>textidote#Suggestions(findstart, base)
+function <sid>Suggestions(findstart, base)
 	if a:findstart
 		return l:col
 	else
