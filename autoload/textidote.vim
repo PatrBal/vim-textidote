@@ -168,6 +168,8 @@ function s:TeXtidoteSetUp() "{{{1
 		endif
 		let s:textidote_jar = l:textidote_jar
 	endif
+
+	let s:completefunc_orig = &completefunc
 	return 0
 endfunction
 
