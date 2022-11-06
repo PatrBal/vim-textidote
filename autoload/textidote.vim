@@ -210,13 +210,13 @@ function <sid>JumpToCurrentError() "{{{1
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=Suggestions
-			nnoremap <Tab> ea<C-X><C-U>
+			nnoremap <buffer> <Tab> ea<C-X><C-U>
 		else
 			let &completefunc = s:completefunc_orig
 			if exists('s:mapTab_orig')
-				execute 'nnoremap <Tab> ' . s:mapTab_orig
+				execute 'nnoremap <buffer> <Tab> ' . s:mapTab_orig
 			else
-				silent!nunmap <Tab>
+				silent!nunmap <buffer> <Tab>
 			endif
 		endif
 
@@ -576,11 +576,12 @@ function textidote#Clear() "{{{1
 	unlet! s:textidote_error_buffer
 	unlet! s:textidote_text_winid
 
+	execute 'drop' s:current_file
 	let &completefunc = s:completefunc_orig
 	if exists('s:mapTab_orig')
-		execute 'nnoremap <Tab> ' . s:mapTab_orig
+		execute 'nnoremap <buffer> <Tab> ' . s:mapTab_orig
 	else
-		silent!nunmap <Tab>
+		silent!nunmap <buffer> <Tab>
 	endif
 
 	let g:textidote_indicator = 0
