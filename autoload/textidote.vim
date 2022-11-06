@@ -198,10 +198,15 @@ function <sid>JumpToCurrentError() "{{{1
 		echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
 
-		let s:col = l:col - 1
-		let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
-		let s:suggestions_list = split(l:suggestions,', ')
-		setlocal completefunc=Suggestions
+		if !empty(l:error['replacements'])
+			let s:col = l:col - 1
+			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
+			let s:suggestions_list = split(l:suggestions,', ')
+			setlocal completefunc=Suggestions
+			nnoremap <Tab> :normal!ea<C-X><C-U>
+		else
+			setlocal completefunc=s:completefunc_orig
+		endif
 		normal! zv
 		normal! zz
 	else
