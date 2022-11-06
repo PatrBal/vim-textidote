@@ -195,21 +195,22 @@ function <sid>JumpToCurrentError() "{{{1
 		
 		echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
+		setlocal completefunc=<sid>Suggestions
 		normal! zv
 		normal! zz
 	else
 		call setpos('.', l:save_cursor)
 	endif
-	function Suggestions(findstart, base)
-		if a:findstart
-			return l:col
-		else
-			let l:suggestions_list = split(l:error['replacements'],', ')
-			return l:suggestions_list
-		endif
-	endfunction
 endfunction
 
+function <sid>Suggestions(findstart, base)
+	if a:findstart
+		return l:col
+	else
+		let l:suggestions_list = split(l:error['replacements'],', ')
+		return l:suggestions_list
+	endif
+endfunction
 
 function textidote#Check(line1, line2) "{{{1
 	if s:TeXtidoteSetUp() < 0
