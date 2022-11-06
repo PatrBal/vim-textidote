@@ -409,7 +409,7 @@ function textidote#Display(data,code)
 
 		let l:error= {}
 		for l:k in [ 'fromy', 'fromx', 'toy', 'tox',
-		\            'msg', 'replacements', 'ruleId',
+		\           'msg', 'replacements', 'ruleId',
 		\            'context', 'contextoffset', 'errorlength' ]
 			let l:error[l:k] = s:ParseKeyValue(l:k, l:l)
 		endfor
@@ -489,6 +489,7 @@ function textidote#Display(data,code)
 	endfor
 
 	redraw
+	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
 
 	call delete(s:tmp_filename)
