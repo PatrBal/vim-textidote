@@ -556,7 +556,6 @@ function textidote#Browser(code)
 	call delete(s:tmp_output_html)
 endfunction
 
-
 " This function clears syntax highlighting created by TeXtidote plugin
 " and removes the scratch window containing grammar errors.
 function textidote#Clear() "{{{1
