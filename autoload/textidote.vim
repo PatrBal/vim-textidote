@@ -205,7 +205,7 @@ function <sid>JumpToCurrentError() "{{{1
 			setlocal completefunc=Suggestions
 			nnoremap <Tab> ea<C-X><C-U>
 		else
-			set &completefunc = s:completefunc_orig
+			let &completefunc = s:completefunc_orig
 			nunmap <Tab>
 		endif
 		normal! zv
