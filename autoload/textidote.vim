@@ -583,6 +583,7 @@ function textidote#Clear() "{{{1
 	else
 		silent!nunmap <Tab>
 	endif
+
 	let g:textidote_indicator = 0
 endfunction
 
