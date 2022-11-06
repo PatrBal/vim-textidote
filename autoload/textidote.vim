@@ -202,7 +202,7 @@ function <sid>JumpToCurrentError() "{{{1
 	endif
 endfunction
 
-function <sid>Suggestions(findstart, base)
+function Suggestions(findstart, base)
 	if a:findstart
 		return l:col
 	else
