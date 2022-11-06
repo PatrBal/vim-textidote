@@ -196,7 +196,7 @@ function <sid>JumpToCurrentError() "{{{1
 		echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
 
-		let s:col = l:col
+		let s:col = l:col - 1
 		let s:suggestions_list = split(l:error['replacements'],', ')
 		setlocal completefunc=Suggestions
 		normal! zv
