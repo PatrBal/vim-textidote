@@ -169,8 +169,14 @@ function s:TeXtidoteSetUp() "{{{1
 		let s:textidote_jar = l:textidote_jar
 	endif
 
-	" Storing &completefunc to restore it after grammar check
-	let s:completefunc_orig = &completefunc
+	" Storing &completefunc and nmap of <Tab> to restore them after grammar check
+	if !empty(&completefunc)
+		let s:completefunc_orig = &completefunc
+	endif
+	if !empty(maparg('<Tab>', 'n'))
+		let s:mapTab_orig = maparg('<C-c>', 'n', 0, 1)
+	endif
+
 	return 0
 endfunction
 
