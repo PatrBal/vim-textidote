@@ -195,7 +195,7 @@ function <sid>JumpToCurrentError() "{{{1
 		
 		echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
-		setlocal completefunc=<sid>Suggestions
+		setlocal completefunc=Suggestions
 		normal! zv
 		normal! zz
 	else
@@ -203,7 +203,7 @@ function <sid>JumpToCurrentError() "{{{1
 	endif
 endfunction
 
-function <sid>Suggestions(findstart, base)
+function Suggestions(findstart, base)
 	if a:findstart
 		return l:col
 	else
