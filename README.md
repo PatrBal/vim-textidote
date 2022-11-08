@@ -39,6 +39,10 @@ By default `[range]` is the whole buffer, except in the case where there is a vi
  - Optionally, a full html report of TeXtidote analysis can be displayed in the default browser.
 
 
+## Alternative
+
+A very good alternative is to use the [LTeX][LTeX] language server, for example with `coc.nvim`. It is also based on LanguageTool and is aware of LaTeX or Markdown markup. It provides grammar checking *as you type*, but does not currently offer quick fixes.
+
 ## License
 
 Copyright (c) Patrick Ballard.  Distributed under the same terms as Vim itself.
@@ -52,3 +56,4 @@ This plugin is strongly based on the excellent [vim-LanguageTool][vim-LanguageTo
 
 [TeXtidote]: https://github.com/sylvainhalle/textidote
 [vim-LanguageTool]: https://github.com/dpelle/vim-LanguageTool
+[LTeX]: https://valentjn.github.io/ltex
