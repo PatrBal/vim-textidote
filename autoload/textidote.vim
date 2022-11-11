@@ -239,6 +239,10 @@ function textidote#Suggestions(findstart, base)
 	endif
 endfunction
 
+function textidote#pum()
+	execute normal!ea<C-X><C-U>
+endfunction
+
 function textidote#Check(line1, line2) "{{{1
 	if s:TeXtidoteSetUp() < 0
 		return -1
