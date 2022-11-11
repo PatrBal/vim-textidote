@@ -209,7 +209,7 @@ function <sid>JumpToCurrentError() "{{{1
 			let s:col = l:col - 1
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
-			setlocal completefunc=Suggestions
+			setlocal completefunc=textidote#Suggestions
 			nnoremap <buffer> <Tab> ea<C-X><C-U>
 		else
 			let &completefunc = s:completefunc_orig
@@ -231,7 +231,7 @@ endfunction
 
 " This function provides the completion with the suggestion list for the
 " current error
-function Suggestions(findstart, base)
+function textidote#Suggestions(findstart, base)
 	if a:findstart
 		return s:col
 	else
