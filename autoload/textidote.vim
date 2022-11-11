@@ -219,7 +219,7 @@ function <sid>JumpToCurrentError() "{{{1
 		" the middle of the window
 		normal! zv
 		normal! zz
-		autocmd CursorMoved <buffer> ++once call textidote#unmapTab()
+		autocmd CursorMoved <buffer> ++once echom 'Salut'
 	else
 		call setpos('.', l:save_cursor)
 	endif
