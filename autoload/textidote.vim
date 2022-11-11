@@ -210,7 +210,7 @@ function <sid>JumpToCurrentError() "{{{1
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=textidote#Suggestions
-			nnoremap <buffer> <Tab> :call textidote#pum()<CR>
+			nnoremap <buffer> <Tab> ea<C-X><C-U>
 		else
 			let &completefunc = s:completefunc_orig
 			if exists('s:mapTab_orig')
@@ -237,10 +237,6 @@ function textidote#Suggestions(findstart, base)
 	else
 		return s:suggestions_list
 	endif
-endfunction
-
-function textidote#pum()
-	execute "normal ea\<C-X>\<C-U>"
 endfunction
 
 function textidote#Check(line1, line2) "{{{1
