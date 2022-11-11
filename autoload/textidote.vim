@@ -216,7 +216,7 @@ function <sid>JumpToCurrentError() "{{{1
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=textidote#Suggestions
 			nnoremap <buffer> <Tab> ea<C-X><C-U>
-			autocmd WinScrolled * ++once call textidote#unmapTab()
+			" autocmd WinScrolled * ++once call textidote#unmapTab()
 		else
 			call textidote#unmapTab()
 		endif
