@@ -216,6 +216,7 @@ function <sid>JumpToCurrentError() "{{{1
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=textidote#Suggestions
 			nnoremap <buffer> <Tab> ea<C-X><C-U>
+			" Quick fix <Tab> should be one-shot
 			autocmd InsertLeave * ++once call textidote#unmapTab()
 		else
 			call textidote#unmapTab()
@@ -235,6 +236,7 @@ function textidote#Suggestions(findstart, base)
 	endif
 endfunction
 
+" This function restore <Tab> to its original mapping (if any).
 function textidote#unmapTab()
 	let &completefunc = s:completefunc_orig
 	if exists('s:mapTab_orig')
