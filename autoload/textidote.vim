@@ -203,6 +203,11 @@ function <sid>JumpToCurrentError() "{{{1
 		echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
 
+		" Open the folds to reveal the cursor line and display that line in
+		" the middle of the window
+		normal! zv
+		normal! zz
+
 		" Populate the suggestion list and setup the completion trigger by
 		" <Tab>
 		if !empty(l:error['replacements'])
@@ -211,18 +216,13 @@ function <sid>JumpToCurrentError() "{{{1
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=textidote#Suggestions
 			nnoremap <buffer> <Tab> ea<C-X><C-U>
+			autocmd CursorMoved <buffer> ++once echom 'Salut'
 		else
 			call textidote#unmapTab()
 		endif
-
-		" Open the folds to reveal the cursor line and display that line in
-		" the middle of the window
-		" normal! zv
-		" normal! zz
 	else
 		call setpos('.', l:save_cursor)
 	endif
-	autocmd CursorMoved <buffer> ++once echom 'Salut'
 endfunction
 
 " This function provides the completion with the suggestion list for the
