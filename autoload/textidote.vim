@@ -217,8 +217,8 @@ function <sid>JumpToCurrentError() "{{{1
 
 		" Open the folds to reveal the cursor line and display that line in
 		" the middle of the window
-		normal! zv
-		normal! zz
+		" normal! zv
+		" normal! zz
 	else
 		call setpos('.', l:save_cursor)
 	endif
