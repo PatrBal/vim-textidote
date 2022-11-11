@@ -215,7 +215,7 @@ function <sid>JumpToCurrentError() "{{{1
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=textidote#Suggestions
-			nnoremap <buffer> <Tab> :silent!nunmap <buffer> <Tab>\<CR>ea<C-X><C-U>
+			nnoremap <buffer> <Tab> :silent!"nunmap <buffer> <Tab>"\<CR>ea<C-X><C-U>
 			" autocmd WinScrolled * ++once call textidote#unmapTab()
 		else
 			call textidote#unmapTab()
