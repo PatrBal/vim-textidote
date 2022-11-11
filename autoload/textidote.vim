@@ -212,12 +212,7 @@ function <sid>JumpToCurrentError() "{{{1
 			setlocal completefunc=textidote#Suggestions
 			nnoremap <buffer> <Tab> ea<C-X><C-U>
 		else
-			let &completefunc = s:completefunc_orig
-			if exists('s:mapTab_orig')
-				execute 'nnoremap <buffer> <Tab> ' . s:mapTab_orig
-			else
-				silent!nunmap <buffer> <Tab>
-			endif
+			call textidote#unmapTab()
 		endif
 
 		" Open the folds to reveal the cursor line and display that line in
@@ -236,6 +231,15 @@ function textidote#Suggestions(findstart, base)
 		return s:col
 	else
 		return s:suggestions_list
+	endif
+endfunction
+
+function textidote#unmapTab()
+	let &completefunc = s:completefunc_orig
+	if exists('s:mapTab_orig')
+		execute 'nnoremap <buffer> <Tab> ' . s:mapTab_orig
+	else
+		silent!nunmap <buffer> <Tab>
 	endif
 endfunction
 
