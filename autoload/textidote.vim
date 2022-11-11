@@ -240,7 +240,7 @@ function textidote#Suggestions(findstart, base)
 endfunction
 
 function textidote#pum()
-	execute "normal ea\<C-X>\<C-U>"
+	execute "normal ea\<C-X>\<C-U>\<C-N>\<C-P>"
 endfunction
 
 function textidote#Check(line1, line2) "{{{1
