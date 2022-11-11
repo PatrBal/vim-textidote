@@ -39,8 +39,8 @@ markup.
    shortcut opens a pop-up menu that you can navigate either with `<C-N>` (next)
    and `<C-P>` (previous), or `<Down>` and `<Up>`. Confirm a suggestion with `<C-Y>`
    (yes) or discard all suggestions with `<C-E>` (exit). The shortcut `<Tab>` is
-   only active after a jump from the scratch window and should not interfere with
-   any other use of <Tab>.
+   only active after a jump from the scratch window and should not interfere
+   with any other use of <Tab>.
  - The location-list is populated, so that you can use location-list Vim
    commands such as `:lopen` to open the location-list window, `:lne` to jump
    to the next error, etc.
