@@ -236,9 +236,10 @@ function textidote#Suggestions(findstart, base)
 	if a:findstart
 		return s:col
 	else
-		let l:currentCol = virtcol('.')
+		let l:currentCol = col('.')
 		let l:currentLine = line('.')
 		echom 'Column ' . l:currentCol . ' in [ ' . s:colStart . ' , ' . s:colEnd . ' ]'
+		echom 'Line ' . l:currentLine . ' in [ ' . s:lineStart . ' , ' . s:lineEnd . ' ]'
 		if l:currentLine >= s:lineStart && l:currentLine <= s:lineEnd && l:currentCol >= s:colStart && l:currentCol <= s:colEnd
 			return s:suggestions_list
 		else
