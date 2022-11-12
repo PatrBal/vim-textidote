@@ -236,7 +236,7 @@ function textidote#Suggestions(findstart, base)
 	if a:findstart
 		return s:col
 	else
-		let l:currentCol = col('.')
+		let l:currentCol = virtcol('.')
 		let l:currentLine = line('.')
 		echom 'Column ' . l:currentCol . ' in [ ' . s:colStart . ' , ' . s:colEnd . ' ]'
 		if l:currentLine >= s:lineStart && l:currentLine <= s:lineEnd && l:currentCol >= s:colStart && l:currentCol <= s:colEnd
