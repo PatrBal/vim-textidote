@@ -232,7 +232,8 @@ function textidote#Suggestions(findstart, base)
 	if a:findstart
 		return s:col
 	else
-		return s:suggestions_list
+		" return s:suggestions_list
+		return []
 	endif
 endfunction
 
