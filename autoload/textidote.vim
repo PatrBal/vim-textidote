@@ -212,6 +212,10 @@ function <sid>JumpToCurrentError() "{{{1
 		" <Tab>
 		if !empty(l:error['replacements'])
 			let s:col = l:col - 1
+			let s:colStart = l:error['fromx']
+			let s:colEnd = l:error['tox']
+			let s:lineStart = l:error['fromy']
+			let s:lineEnd = l:error['toy']
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=textidote#Suggestions
@@ -232,7 +236,13 @@ function textidote#Suggestions(findstart, base)
 	if a:findstart
 		return s:col
 	else
-		return s:suggestions_list
+		let l:currentCol = col('.')
+		let l:currentLine = line('.')
+		if l:currentLine >= s:lineStart && l:currentLine <= s:lineEnd && l:currentCol >= s:colStart && l:currentCol <= s:colEnd
+			return s:suggestions_list
+		else
+			return []
+		endif
 	endif
 endfunction
 
