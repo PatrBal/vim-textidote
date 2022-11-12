@@ -237,7 +237,7 @@ function textidote#Suggestions(findstart, base)
 		return s:col
 	else
 		let l:currentCol = col('.')
-		let l:currentLine = line('.') + 1
+		let l:currentLine = line('.')
 		if l:currentLine >= s:lineStart && l:currentLine <= s:lineEnd
 			return s:suggestions_list
 		else
