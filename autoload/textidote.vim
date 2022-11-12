@@ -236,8 +236,13 @@ function textidote#Suggestions(findstart, base)
 	if a:findstart
 		return s:col
 	else
-		" return s:suggestions_list
-		return []
+		let l:currentCol = col('.')
+		let l:currentLine = line('.') + 1
+		if l:currentLine >= s:lineStart && l:currentLine <= s:lineEnd
+			return s:suggestions_list
+		else
+			return []
+		endif
 	endif
 endfunction
 
