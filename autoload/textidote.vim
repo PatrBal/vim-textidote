@@ -268,8 +268,6 @@ endfunction
 function! textidote#QuickFix()
 	if s:replace == 1
 		normal!  ea<C-X><C-U>
-	else
-		call textidote#unmapTab()
 	endif
 endfunction
 
