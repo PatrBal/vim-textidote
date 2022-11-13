@@ -236,9 +236,8 @@ function <sid>JumpToCurrentError() "{{{1
 	endif
 endfunction
 
-" This function returns the index of the next error form the position in
-" original buffer
-function! textidote#IndexError()
+" The following two functions enable navigation of errors in original buffer
+function! textidote#MoveForwardOrigBuffer()
 	let s:cursorPosOrigBuffer = getpos('.')
 	let l:test = 0
 	let l:i = 1
@@ -265,12 +264,7 @@ function! textidote#IndexError()
 	if l:i > len(s:errors)
 		let l:i = 2
 	endif
-	return l:i - 1
-endfunction
-
-" The following two functions enable navigation of errors in original buffer
-function! textidote#MoveForwardOrigBuffer()
-	let l:indNextError = textidote#IndexError()
+	let l:indNextError = l:i - 1
 	" echom 'Line and column of previous error: ' . get(get(s:errors,l:i-2,0),'fromy',0) . ', ' . get(get(s:errors,l:i-2,0),'fromx',0)
 	" echom 'Cursor position: ' . string(get(s:cursorPosOrigBuffer,1,0)) . ', ' . string(get(s:cursorPosOrigBuffer,2,0))
 	" echom 'Error last character: ' . string(get(get(s:errors,l:i-1,0),'toy',0)) . ', ' . string(get(get(s:errors,l:i-1,0),'tox',0))
@@ -281,8 +275,34 @@ function! textidote#MoveForwardOrigBuffer()
 endfunction
 
 function! textidote#MoveBackwardOrigBuffer()
-	let l:indNextError = textidote#IndexError()
-	let l:indPrevError = l:indNextError - 1
+	let s:cursorPosOrigBuffer = getpos('.')
+	let l:test = 0
+	let l:i = len(s:errors)
+	while l:test == 0
+		if l:i >= 1
+			if get(get(s:errors,l:i-1,0),'fromy',0) > get(s:cursorPosOrigBuffer,1,0)
+				let l:test = 0
+			else
+				if get(get(s:errors,l:i-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:i-1,0),'fromx',0) > get(s:cursorPosOrigBuffer,2,0)
+					let l:test = 0
+				else
+					if get(get(s:errors,l:i-1,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:i-1,0),'tox',0) >= get(s:cursorPosOrigBuffer,2,0)
+						let l:test = 0
+					else
+						let l:test = 1
+					endif
+				endif
+			endif
+		else
+			let l:test = 1
+		endif
+		let l:i -= 1
+	endwhile
+	if l:i < 1
+		let l:i = len(s:errors) -1
+	endif
+
+	let l:indPrevError = l:i + 1
 	drop [TeXtidote]
 	call search('^Error:\s\+' . string(l:indPrevError) . '/', 'b')
 	normal! zt
