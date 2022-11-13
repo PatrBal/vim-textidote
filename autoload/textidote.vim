@@ -236,17 +236,17 @@ function <sid>JumpToCurrentError() "{{{1
 	endif
 endfunction
 
-function textidote#MoveForwardOrigBuffer()
+function! textidote#MoveForwardOrigBuffer()
 	echom 'Move forward'
 endfunction
 
-function textidote#MoveForwardOrigBuffer()
+function! textidote#MoveForwardOrigBuffer()
 	echom 'Move backward'
 endfunction
 
 " This function provides the completion with the suggestion list for the
 " current error
-function textidote#Suggestions(findstart, base)
+function! textidote#Suggestions(findstart, base)
 	if a:findstart
 		return s:col
 	else
@@ -261,7 +261,7 @@ function textidote#Suggestions(findstart, base)
 endfunction
 
 " This function restore <Tab> to its original mapping (if any).
-function textidote#unmapTab()
+function! textidote#unmapTab()
 	let &completefunc = s:completefunc_orig
 	if exists('s:mapTab_orig')
 		execute 'nnoremap <buffer> <Tab> ' . s:mapTab_orig
