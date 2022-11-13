@@ -246,7 +246,7 @@ function! textidote#MoveForwardOrigBuffer()
 	echom 'Line and column of previous error: ' . get(get(s:errors,l:i-2,0),'fromy',0) . ', ' . get(get(s:errors,l:i-2,0),'fromx',0)
 	drop [TeXtidote]
 	" call search('^Error:\s\+')
-	call search('^Error:\s\+' . string(l:i - 1) . '/')
+	call search('^Error:\s\+' . string(l:i) . '/')
 	normal! zt
 	call <sid>JumpToCurrentError()
 endfunction
