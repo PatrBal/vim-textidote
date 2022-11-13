@@ -535,6 +535,7 @@ function textidote#Display(data,code)
 	endfor
 
 	redraw
+	echom 'The buffer is: ' . expand('%:p')
 	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
 
