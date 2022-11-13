@@ -240,7 +240,8 @@ endfunction
 function! textidote#MoveForwardOrigBuffer()
 	let s:cursorPosOrigBuffer = getpos('.')	
 	let l:i = 1
-	while (l:i <= len(s:errors)) && ((get(get(s:errors,l:i-1,0),'fromy',0) < get(s:cursorPosOrigBuffer,1,0)) || (get(get(s:errors,l:i-1,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:i-1,0),'fromx',0) < get(s:cursorPosOrigBuffer,2,0)))
+	while (l:i <= len(s:errors)) && 
+				\ ((get(get(s:errors,l:i-1,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0)) || (get(get(s:errors,l:i-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:i-1,0),'tox',0) < get(s:cursorPosOrigBuffer,2,0)))
 		let l:i += 1
 	endwhile
 	if l:i > len(s:errors)
