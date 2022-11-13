@@ -217,7 +217,6 @@ function <sid>JumpToCurrentError() "{{{1
 		" Populate the suggestion list and setup the completion trigger by
 		" <Tab>
 		if !empty(l:error['replacements'])
-			let s:replace = 1
 			let s:col = l:col - 1
 			let s:colStart = l:error['fromx']
 			let s:colEnd = l:error['tox']
@@ -225,12 +224,12 @@ function <sid>JumpToCurrentError() "{{{1
 			let s:lineEnd = l:error['toy']
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
-			" nnoremap <buffer> <Tab> ea<C-X><C-U>
+			setlocal completefunc=textidote#Suggestions
+			nnoremap <buffer> <Tab> ea<C-X><C-U>
 			" Quick fix <Tab> should be one-shot
-			" autocmd InsertLeave * ++once call textidote#unmapTab()
+			autocmd InsertLeave * ++once call textidote#unmapTab()
 		else
-			let s:replace = 0
-			" call textidote#unmapTab()
+			call textidote#unmapTab()
 		endif
 	else
 		call setpos('.', l:save_cursor)
@@ -261,17 +260,6 @@ endfunction
 function! textidote#MoveBackwardScratchBuffer()
 	call search('^Error:\s\+', 'b')
 	normal! zt
-endfunction
-
-" The following function performs completion fix
-function! textidote#QuickFix()
-	if s:replace == 1
-		setlocal completefunc=textidote#Suggestions
-		normal!  ea<C-X><C-U>
-	else
-		let &completefunc = s:completefunc_orig
-		call textidote#unmapTab()
-	endif
 endfunction
 
 " This function provides the completion with the suggestion list for the
@@ -578,7 +566,6 @@ function textidote#Display(data,code)
 	" Set move forward and backward mapping in original buffer
 	nnoremap <buffer> ]] :call textidote#MoveForwardOrigBuffer()<CR>
 	nnoremap <buffer> [[ :call textidote#MoveBackwardOrigBuffer()<CR>
-	nnoremap <buffer> <Tab> :call textidote#QuickFix()<CR>
 	
 	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
