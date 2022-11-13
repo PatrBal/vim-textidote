@@ -224,10 +224,10 @@ function <sid>JumpToCurrentError() "{{{1
 			let s:lineEnd = l:error['toy']
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
-			setlocal completefunc=textidote#Suggestions
+			" setlocal completefunc=textidote#Suggestions
 			nnoremap <buffer> <Tab> ea<C-X><C-U>
 			" Quick fix <Tab> should be one-shot
-			autocmd InsertLeave * ++once call textidote#unmapTab()
+			" autocmd InsertLeave * ++once call textidote#unmapTab()
 		else
 			call textidote#unmapTab()
 		endif
@@ -264,7 +264,7 @@ endfunction
 
 " The following function performs completion fix
 function! textidote#QuickFix()
-
+	normal!  ea<C-X><C-U>
 endfunction
 
 " This function provides the completion with the suggestion list for the
