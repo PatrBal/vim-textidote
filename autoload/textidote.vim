@@ -236,6 +236,14 @@ function <sid>JumpToCurrentError() "{{{1
 	endif
 endfunction
 
+function <sid>MoveForward()
+	echom 'Move forward'
+endfunction
+
+function <sid>MoveForward()
+	echom 'Move backward'
+endfunction
+
 " This function provides the completion with the suggestion list for the
 " current error
 function textidote#Suggestions(findstart, base)
