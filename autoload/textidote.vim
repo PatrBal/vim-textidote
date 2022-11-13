@@ -298,7 +298,7 @@ function! textidote#MoveBackwardOrigBuffer()
 		endif
 		let l:i -= 1
 	endwhile
-	if l:i < 1
+	if l:i < 0
 		let l:i = len(s:errors) - 1
 	endif
 
