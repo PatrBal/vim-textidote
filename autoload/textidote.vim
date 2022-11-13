@@ -236,8 +236,9 @@ function <sid>JumpToCurrentError() "{{{1
 	endif
 endfunction
 
-" The following two functions enable navigation of errors in original buffer
-function! textidote#MoveForwardOrigBuffer()
+" This function returns the index of the next error form the position in
+" original buffer
+function! textidote#IndexError()
 	let s:cursorPosOrigBuffer = getpos('.')
 	let l:test = 0
 	let l:i = 1
@@ -264,12 +265,17 @@ function! textidote#MoveForwardOrigBuffer()
 	if l:i > len(s:errors)
 		let l:i = 2
 	endif
+	return l:i - 1
+endfunction
+
+" The following two functions enable navigation of errors in original buffer
+function! textidote#MoveForwardOrigBuffer()
+	let l:indNextError = textidote#IndexError()
 	" echom 'Line and column of previous error: ' . get(get(s:errors,l:i-2,0),'fromy',0) . ', ' . get(get(s:errors,l:i-2,0),'fromx',0)
 	" echom 'Cursor position: ' . string(get(s:cursorPosOrigBuffer,1,0)) . ', ' . string(get(s:cursorPosOrigBuffer,2,0))
 	" echom 'Error last character: ' . string(get(get(s:errors,l:i-1,0),'toy',0)) . ', ' . string(get(get(s:errors,l:i-1,0),'tox',0))
 	drop [TeXtidote]
-	" call search('^Error:\s\+')
-	call search('^Error:\s\+' . string(l:i-1) . '/')
+	call search('^Error:\s\+' . string(l:indNextError) . '/')
 	normal! zt
 	call <sid>JumpToCurrentError()
 endfunction
