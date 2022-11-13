@@ -126,7 +126,7 @@ of the TeXtidote plugin.
 *g:textidote_dictionary*
   If you have a list of words that you want TeXtidote to ignore when checking
   spelling, you can specify a dictionary file. This file must be a plain text
-  file contain a list of words to be ignored, with each word on a separate
+  file containing a list of words to be ignored, with each word on a separate
   line.  
   Default value: empty
   Example: `:let g:textidote_dictionary = '~/.vim/dico.txt'`
