@@ -607,6 +607,16 @@ function textidote#Clear() "{{{1
 	else
 		silent!nunmap <buffer> <Tab>
 	endif
+	if exists('s:mapForward_orig')
+		execute 'nnoremap <buffer> ]] ' . s:mapForward_orig
+	else
+		silent!nunmap <buffer> ]]
+	endif
+	if exists('s:mapBackward_orig')
+		execute 'nnoremap <buffer> [[ ' . s:mapBackward_orig
+	else
+		silent!nunmap <buffer> [[
+	endif
 
 	let g:textidote_indicator = 0
 endfunction
