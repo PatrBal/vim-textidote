@@ -262,7 +262,7 @@ function! textidote#MoveForwardOrigBuffer()
 		let l:i += 1
 	endwhile
 	if l:i > len(s:errors)
-		let l:i = 1
+		let l:i = 2
 	endif
 	" echom 'Line and column of previous error: ' . get(get(s:errors,l:i-2,0),'fromy',0) . ', ' . get(get(s:errors,l:i-2,0),'fromx',0)
 	" echom 'Cursor position: ' . string(get(s:cursorPosOrigBuffer,1,0)) . ', ' . string(get(s:cursorPosOrigBuffer,2,0))
