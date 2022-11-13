@@ -236,6 +236,7 @@ function <sid>JumpToCurrentError() "{{{1
 	endif
 endfunction
 
+" The following two functions enable navigation of errors in original buffer
 function! textidote#MoveForwardOrigBuffer()
 	drop [TeXtidote]
 	call search('^Context:\s\+')
