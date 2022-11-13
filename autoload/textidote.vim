@@ -518,6 +518,7 @@ function textidote#Display(data,code)
 		file [TeXtidote]
 		redraw
 		echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
+		execute 'drop ' . s:current_file
 		" execute "normal! \<C-W>\<C-P>"
 	else
 		" Negative s:textidote_win_height -> no scratch window.
