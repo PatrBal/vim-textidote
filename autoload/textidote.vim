@@ -240,10 +240,10 @@ endfunction
 function! textidote#MoveForwardOrigBuffer()
 	let s:cursorPosOrigBuffer = getpos('.')	
 	let l:i = 1
-	while get(get(s:errors,l:i-1,0),'fromy',0) < get(s:cursorPosOrigBuffer,1,0)
+	while get(get(s:errors,l:i-1,0),'fromy',0) < get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:i-1,0),'fromx',0) < get(s:cursorPosOrigBuffer,2,0)
 		let l:i += 1
 	endwhile
-	echom 'Line of previous error: ' . get(get(s:errors,l:i-2,0),'fromy',0)
+	echom 'Line and column of previous error: ' . get(get(s:errors,l:i-2,0),'fromy',0) . ', ' . get(get(s:errors,l:i-2,0),'fromx',0)
 	drop [TeXtidote]
 	call search('^Error:\s\+')
 	normal! zt
