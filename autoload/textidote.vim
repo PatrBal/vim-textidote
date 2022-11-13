@@ -533,7 +533,7 @@ function textidote#Display(data,code)
 		nnoremap <buffer><silent> [[ :call textidote#MoveBackwardScratchBuffer()<CR>
 
 		file [TeXtidote]
-		setlocal scrolloff=0
+		setlocal scrolloff=1
 		call search('^Error:\s\+')
 		redraw
 		echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
