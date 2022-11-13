@@ -266,7 +266,11 @@ endfunction
 
 " The following function performs completion fix
 function! textidote#QuickFix()
-	normal!  ea<C-X><C-U>
+	if s:replace == 1
+		normal!  ea<C-X><C-U>
+	else
+		call textidote#unmapTab()
+	endif
 endfunction
 
 " This function provides the completion with the suggestion list for the
