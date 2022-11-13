@@ -248,8 +248,9 @@ function! textidote#MoveForwardOrigBuffer()
 		let l:i = 1 
 	endif
 	" echom 'Line and column of previous error: ' . get(get(s:errors,l:i-2,0),'fromy',0) . ', ' . get(get(s:errors,l:i-2,0),'fromx',0)
-	echom 'Cursor position: ' . string(get(s:cursorPosOrigBuffer,1,0))) . ', ' . string(get(s:cursorPosOrigBuffer,2,0)))
+	echom 'Cursor position: ' . string(get(s:cursorPosOrigBuffer,1,0)) . ', ' . string(get(s:cursorPosOrigBuffer,2,0))
 	drop [TeXtidote]
+	echom 'Error last character: ' . string(get(get(s:errors,l:i-1,0),'toy',0)) . ', ' . string(get(get(s:errors,l:i-1,0),'tox',0))
 	" call search('^Error:\s\+')
 	call search('^Error:\s\+' . string(l:i) . '/')
 	normal! zt
