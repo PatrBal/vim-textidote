@@ -240,9 +240,12 @@ endfunction
 function! textidote#MoveForwardOrigBuffer()
 	let s:cursorPosOrigBuffer = getpos('.')	
 	let l:i = 1
-	while (get(get(s:errors,l:i-1,0),'fromy',0) < get(s:cursorPosOrigBuffer,1,0)) || (get(get(s:errors,l:i-1,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:i-1,0),'fromx',0) < get(s:cursorPosOrigBuffer,2,0))
+	while (l:i <= len(s:errors)) && ((get(get(s:errors,l:i-1,0),'fromy',0) < get(s:cursorPosOrigBuffer,1,0)) || (get(get(s:errors,l:i-1,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:i-1,0),'fromx',0) < get(s:cursorPosOrigBuffer,2,0)))
 		let l:i += 1
 	endwhile
+	if l:i > len(s:errors)
+		let l:i = 1 
+	endif
 	echom 'Line and column of previous error: ' . get(get(s:errors,l:i-2,0),'fromy',0) . ', ' . get(get(s:errors,l:i-2,0),'fromx',0)
 	drop [TeXtidote]
 	" call search('^Error:\s\+')
