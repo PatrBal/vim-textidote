@@ -281,8 +281,10 @@ function! textidote#MoveForwardOrigBuffer()
 endfunction
 
 function! textidote#MoveBackwardOrigBuffer()
+	let l:indNextError = textidote#IndexError()
+	let l:indPrevError = l:indNextError - 1
 	drop [TeXtidote]
-	call search('^Error:\s\+', 'b')
+	call search('^Error:\s\+' . string(l:indPrevError), 'b')
 	normal! zt
 	call <sid>JumpToCurrentError()
 endfunction
