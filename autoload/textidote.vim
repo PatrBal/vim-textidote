@@ -523,6 +523,7 @@ function textidote#Display(data,code)
 		nnoremap <buffer><silent> [[ :call search('^Context:\s\+', 'b')<CR>
 
 		file [TeXtidote]
+		call search('^Context:\s\+')
 		redraw
 		echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
 		execute 'drop ' . s:current_file
