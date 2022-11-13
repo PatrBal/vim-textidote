@@ -236,11 +236,11 @@ function <sid>JumpToCurrentError() "{{{1
 	endif
 endfunction
 
-function <sid>MoveForwardOrigBuffer()
+function textidote#MoveForwardOrigBuffer()
 	echom 'Move forward'
 endfunction
 
-function <sid>MoveForwardOrigBuffer()
+function textidote#MoveForwardOrigBuffer()
 	echom 'Move backward'
 endfunction
 
@@ -544,8 +544,8 @@ function textidote#Display(data,code)
 
 	redraw
 	" Set move forward and backward mapping in original buffer
-	nnoremap <buffer> ]] :call <sid>MoveForwardOrigBuffer()<CR>
-	nnoremap <buffer> [[ :call <sid>MoveBackwardOrigBuffer()<CR>
+	nnoremap <buffer> ]] :call textidote#MoveForwardOrigBuffer()<CR>
+	nnoremap <buffer> [[ :call textidote#MoveBackwardOrigBuffer()<CR>
 	
 	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
