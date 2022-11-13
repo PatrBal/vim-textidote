@@ -261,6 +261,12 @@ function! textidote#MoveBackwardScratchBuffer()
 	call search('^Error:\s\+', 'b')
 	normal! zt
 endfunction
+
+" The following function performs completion fix
+function! textidote#QuickFix()
+
+endfunction
+
 " This function provides the completion with the suggestion list for the
 " current error
 function! textidote#Suggestions(findstart, base)
@@ -563,8 +569,10 @@ function textidote#Display(data,code)
 
 	redraw
 	" Set move forward and backward mapping in original buffer
+	setlocal completefunc=textidote#Suggestions
 	nnoremap <buffer> ]] :call textidote#MoveForwardOrigBuffer()<CR>
 	nnoremap <buffer> [[ :call textidote#MoveBackwardOrigBuffer()<CR>
+	nnoremap <buffer> <Tab> :call textidote#QuickFix()<CR>
 	
 	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
