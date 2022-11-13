@@ -254,9 +254,6 @@ function! textidote#MoveForwardOrigBuffer()
 					else
 						let l:test = 1
 					endif
-				else
-					if 
-					let l:test = 1
 				endif
 			endif
 		else
