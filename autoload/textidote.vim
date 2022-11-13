@@ -413,7 +413,7 @@ function textidote#Display(data,code)
 	endif
 	call delete(s:tmp_error)
 
-	execute 'drop' s:current_file
+	execute 'drop ' . s:current_file
 	botright new
 	set modifiable
 	let s:textidote_error_buffer = bufnr('%')
@@ -518,7 +518,7 @@ function textidote#Display(data,code)
 		file [TeXtidote]
 		redraw
 		echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
-		execute "normal! \<C-W>\<C-P>"
+		" execute "normal! \<C-W>\<C-P>"
 	else
 		" Negative s:textidote_win_height -> no scratch window.
 		bdelete!
