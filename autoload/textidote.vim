@@ -239,12 +239,14 @@ endfunction
 function! textidote#MoveForwardOrigBuffer()
 	drop [TeXtidote]
 	call search('^Context:\s\+')
+	normal! zt
 	call <sid>JumpToCurrentError()
 endfunction
 
 function! textidote#MoveBackwardOrigBuffer()
 	drop [TeXtidote]
 	call search('^Context:\s\+', 'b')
+	normal! zt
 	call <sid>JumpToCurrentError()
 endfunction
 
