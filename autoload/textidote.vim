@@ -237,11 +237,11 @@ function <sid>JumpToCurrentError() "{{{1
 endfunction
 
 function! textidote#MoveForwardOrigBuffer()
-	echom 'Move forward'
+	drop [TeXtidote]
 endfunction
 
 function! textidote#MoveBackwardOrigBuffer()
-	echom 'Move backward'
+	drop [TeXtidote]
 endfunction
 
 " This function provides the completion with the suggestion list for the
@@ -519,7 +519,6 @@ function textidote#Display(data,code)
 		redraw
 		echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
 		execute 'drop ' . s:current_file
-		" execute "normal! \<C-W>\<C-P>"
 	else
 		" Negative s:textidote_win_height -> no scratch window.
 		bdelete!
