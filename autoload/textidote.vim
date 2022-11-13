@@ -177,14 +177,14 @@ function s:TeXtidoteSetUp() "{{{1
 	" if !empty(maparg(']]', 'n'))
 	" 	let s:mapForward_orig = maparg(']]', 'n')
 	" endif
-	if !empty(maparg('>', 'n'))
-		let s:mapForward_orig = maparg('>', 'n')
+	if !empty(maparg(']', 'n'))
+		let s:mapForward_orig = maparg(']', 'n')
 	endif
 	" if !empty(maparg('[[', 'n'))
 	" 	let s:mapBackward_orig = maparg('[[', 'n')
 	" endif
-	if !empty(maparg('<', 'n'))
-		let s:mapBackward_orig = maparg('<', 'n')
+	if !empty(maparg('[', 'n'))
+		let s:mapBackward_orig = maparg('[', 'n')
 	endif
 
 	return 0
@@ -595,9 +595,9 @@ function textidote#Display(data,code)
 		0
 		nnoremap <buffer><silent> <CR> :call <sid>JumpToCurrentError()<CR>
 		" nnoremap <buffer><silent> ]] :call textidote#MoveForwardScratchBuffer()<CR>
-		nnoremap <buffer><silent> > :call textidote#MoveForwardScratchBuffer()<CR>
+		nnoremap <buffer><silent><nowait> ] :call textidote#MoveForwardScratchBuffer()<CR>
 		" nnoremap <buffer><silent> [[ :call textidote#MoveBackwardScratchBuffer()<CR>
-		nnoremap <buffer><silent> < :call textidote#MoveBackwardScratchBuffer()<CR>
+		nnoremap <buffer><silent><nowait> [ :call textidote#MoveBackwardScratchBuffer()<CR>
 
 		file [TeXtidote]
 		setlocal scrolloff=1
@@ -630,8 +630,8 @@ function textidote#Display(data,code)
 
 	redraw
 	" Set move forward and backward mapping in original buffer
-	nnoremap <buffer> > :call textidote#MoveForwardOrigBuffer()<CR>
-	nnoremap <buffer> [[ :call textidote#MoveBackwardOrigBuffer()<CR>
+	nnoremap <buffer><nowait> ] :call textidote#MoveForwardOrigBuffer()<CR>
+	nnoremap <buffer><nowait> [ :call textidote#MoveBackwardOrigBuffer()<CR>
 	
 	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
@@ -711,9 +711,9 @@ function textidote#Clear() "{{{1
 	" 	silent!nunmap <buffer> ]]
 	" endif
 	if exists('s:mapForward_orig')
-		execute 'nnoremap <buffer> > ' . s:mapForward_orig
+		execute 'nnoremap <buffer> ] ' . s:mapForward_orig
 	else
-		silent!nunmap <buffer> >
+		silent!nunmap <buffer> ]
 	endif
 	" if exists('s:mapBackward_orig')
 	" 	execute 'nnoremap <buffer> [[ ' . s:mapBackward_orig
@@ -721,9 +721,9 @@ function textidote#Clear() "{{{1
 	" 	silent!nunmap <buffer> [[
 	" endif
 	if exists('s:mapBackward_orig')
-		execute 'nnoremap <buffer> < ' . s:mapBackward_orig
+		execute 'nnoremap <buffer> [ ' . s:mapBackward_orig
 	else
-		silent!nunmap <buffer> <
+		silent!nunmap <buffer> [
 	endif
 
 	let g:textidote_indicator = 0
