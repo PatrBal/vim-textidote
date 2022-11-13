@@ -240,7 +240,7 @@ function! textidote#MoveForwardOrigBuffer()
 	echom 'Move forward'
 endfunction
 
-function! textidote#MoveForwardOrigBuffer()
+function! textidote#MoveBackwardOrigBuffer()
 	echom 'Move backward'
 endfunction
 
