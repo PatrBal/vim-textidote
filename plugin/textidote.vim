@@ -34,12 +34,13 @@ endif
 " Store the full path of the plugin
 let g:plugin_path = resolve(expand('<sfile>:p:h'))
 
-hi def link TeXtidoteCmd           Comment
-hi def link TeXtidoteErrorCount    Title
-hi def link TeXtidoteLabel         Label
-hi def link TeXtidoteUrl           Underlined
-hi def link TeXtidoteGrammarError  WarningMsg
-hi def link TeXtidoteSpellingError Error
+highlight default link TeXtidoteCmd           	Comment
+highlight default link TeXtidoteErrorCount    	Title
+highlight default link TeXtidoteLabel         	Label
+highlight default link TeXtidoteUrl           	Underlined
+highlight default link TeXtidoteGrammarError 	WarningMsg
+highlight default link TeXtidoteSpellingError 	Error
+highlight default link TeXtidoteSearch			Search
 
 " Menu items {{{1
 if has("gui_running") && has("menu") && &go =~# 'm'
