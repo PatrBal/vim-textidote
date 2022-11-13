@@ -174,8 +174,11 @@ function s:TeXtidoteSetUp() "{{{1
 	if !empty(maparg('<Tab>', 'n'))
 		let s:mapTab_orig = maparg('<Tab>', 'n')
 	endif
-	if !empty(maparg(']]', 'n'))
-		let s:mapForward_orig = maparg(']]', 'n')
+	" if !empty(maparg(']]', 'n'))
+	" 	let s:mapForward_orig = maparg(']]', 'n')
+	" endif
+	if !empty(maparg('>', 'n'))
+		let s:mapForward_orig = maparg('>', 'n')
 	endif
 	if !empty(maparg('[[', 'n'))
 		let s:mapBackward_orig = maparg('[[', 'n')
@@ -588,7 +591,8 @@ function textidote#Display(data,code)
 		execute 'normal! z' . s:textidote_win_height . "\<CR>"
 		0
 		nnoremap <buffer><silent> <CR> :call <sid>JumpToCurrentError()<CR>
-		nnoremap <buffer><silent> ]] :call textidote#MoveForwardScratchBuffer()<CR>
+		" nnoremap <buffer><silent> ]] :call textidote#MoveForwardScratchBuffer()<CR>
+		nnoremap <buffer><silent> > :call textidote#MoveForwardScratchBuffer()<CR>
 		nnoremap <buffer><silent> [[ :call textidote#MoveBackwardScratchBuffer()<CR>
 
 		file [TeXtidote]
@@ -622,7 +626,7 @@ function textidote#Display(data,code)
 
 	redraw
 	" Set move forward and backward mapping in original buffer
-	nnoremap <buffer> ]] :call textidote#MoveForwardOrigBuffer()<CR>
+	nnoremap <buffer> > :call textidote#MoveForwardOrigBuffer()<CR>
 	nnoremap <buffer> [[ :call textidote#MoveBackwardOrigBuffer()<CR>
 	
 	drop [TeXtidote]
@@ -697,10 +701,15 @@ function textidote#Clear() "{{{1
 	else
 		silent!nunmap <buffer> <Tab>
 	endif
+	" if exists('s:mapForward_orig')
+	" 	execute 'nnoremap <buffer> ]] ' . s:mapForward_orig
+	" else
+	" 	silent!nunmap <buffer> ]]
+	" endif
 	if exists('s:mapForward_orig')
-		execute 'nnoremap <buffer> ]] ' . s:mapForward_orig
+		execute 'nnoremap <buffer> > ' . s:mapForward_orig
 	else
-		silent!nunmap <buffer> ]]
+		silent!nunmap <buffer> >
 	endif
 	if exists('s:mapBackward_orig')
 		execute 'nnoremap <buffer> [[ ' . s:mapBackward_orig
