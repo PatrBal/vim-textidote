@@ -251,6 +251,16 @@ function! textidote#MoveBackwardOrigBuffer()
 	call <sid>JumpToCurrentError()
 endfunction
 
+" The following two functions enable navigation of errors in scratch buffer
+function! textidote#MoveForwardScratchBuffer()
+	call search('^Error:\s\+')
+	normal! zt
+endfunction
+
+function! textidote#MoveBackwardScratchBuffer()
+	call search('^Error:\s\+', 'b')
+	normal! zt
+endfunction
 " This function provides the completion with the suggestion list for the
 " current error
 function! textidote#Suggestions(findstart, base)
@@ -519,8 +529,8 @@ function textidote#Display(data,code)
 		execute 'normal! z' . s:textidote_win_height . "\<CR>"
 		0
 		nnoremap <buffer><silent> <CR> :call <sid>JumpToCurrentError()<CR>
-		nnoremap <buffer><silent> ]] :call search('^Error:\s\+')<CR>
-		nnoremap <buffer><silent> [[ :call search('^Error:\s\+', 'b')<CR>
+		nnoremap <buffer><silent> ]] :call textidote#MoveForwardScratchBuffer()<CR>
+		nnoremap <buffer><silent> [[ :call textidote#MoveBackwardScratchBuffer()<CR>
 
 		file [TeXtidote]
 		setlocal scrolloff=0
