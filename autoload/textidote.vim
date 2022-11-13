@@ -217,6 +217,7 @@ function <sid>JumpToCurrentError() "{{{1
 		" Populate the suggestion list and setup the completion trigger by
 		" <Tab>
 		if !empty(l:error['replacements'])
+			let s:replace = 1
 			let s:col = l:col - 1
 			let s:colStart = l:error['fromx']
 			let s:colEnd = l:error['tox']
@@ -225,11 +226,12 @@ function <sid>JumpToCurrentError() "{{{1
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
 			" setlocal completefunc=textidote#Suggestions
-			nnoremap <buffer> <Tab> ea<C-X><C-U>
+			" nnoremap <buffer> <Tab> ea<C-X><C-U>
 			" Quick fix <Tab> should be one-shot
 			" autocmd InsertLeave * ++once call textidote#unmapTab()
 		else
-			call textidote#unmapTab()
+			let s:replace = 0
+			" call textidote#unmapTab()
 		endif
 	else
 		call setpos('.', l:save_cursor)
