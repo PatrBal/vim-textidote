@@ -31,8 +31,8 @@ markup.
 ==============================================================================
 2. Features                                                  *TeXtidoteFeatures*
 
- - Asynchronous spelling, grammar and style checking of either the entire buffer
-   or part of it.
+ - Asynchronous spell, grammar and style checking of either the entire buffer or
+   part of it.
  - A scratch buffer shows up, listing all the errors. Navigate the errors with 
    `[[` and `]]`, both in the scratch buffer and the original buffer. Press <CR> 
    on an error in the scratch buffer to jump to that error. Hit <Tab> to fix
