@@ -83,8 +83,10 @@ and make sure that you have Java version 8 or later installed on your system.
 Alternatively, on Debian systems (Ubuntu and derivatives), you can install 
 `TeXtidote` using `dpkg`, and on macOS, using `homebrew`. In that latter case,
 the path to the `textidote.jar` in the `.vimrc` should be provided as:
-`let g:textidote_jar = '/opt/homebrew/var/homebrew/linked/textidote/libexec/textidote.jar'`
-`let g:textidote_jar = '/usr/local/var/homebrew/linked/textidote/libexec/textidote.jar'`
+`let g:textidote_jar =`
+		`\ '/opt/homebrew/var/homebrew/linked/textidote/libexec/textidote.jar'`
+`let g:textidote_jar =`
+		`\ '/usr/local/var/homebrew/linked/textidote/libexec/textidote.jar'`
 with silicon and intel homebrew, respectively. In my experience, the homebrew
 `TeXtidote` is twice faster than the `textidote.jar` from the website.
 
