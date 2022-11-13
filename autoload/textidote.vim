@@ -238,10 +238,12 @@ endfunction
 
 function! textidote#MoveForwardOrigBuffer()
 	drop [TeXtidote]
+	call search('^Context:\s\+')
 endfunction
 
 function! textidote#MoveBackwardOrigBuffer()
 	drop [TeXtidote]
+	call search('^Context:\s\+', 'b')
 endfunction
 
 " This function provides the completion with the suggestion list for the
