@@ -238,19 +238,32 @@ endfunction
 
 " The following two functions enable navigation of errors in original buffer
 function! textidote#MoveForwardOrigBuffer()
-	let s:cursorPosOrigBuffer = getpos('.')	
+	let s:cursorPosOrigBuffer = getpos('.')
+	let l:test = 0
 	let l:i = 1
-	while (l:i <= len(s:errors)) && 
-				\ ( (get(get(s:errors,l:i-1,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0)) || (get(get(s:errors,l:i-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:i-1,0),'tox',0) < get(s:cursorPosOrigBuffer,2,0) ) )
+	while l:test == 0
+		if l:i <= len(s:errors)
+			if get(get(s:errors,l:i-1,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0)
+				let l:test = 0
+			else
+				if get(get(s:errors,l:i-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:i-1,0),'tox',0) < get(s:cursorPosOrigBuffer,2,0)
+					let l:test = 0
+				else
+					let l:test = 1
+				endif
+			endif
+		else
+			l:test = 1
+		endif
 		let l:i += 1
 	endwhile
 	if l:i > len(s:errors)
-		let l:i = 1 
+		let l:i = 1
 	endif
 	" echom 'Line and column of previous error: ' . get(get(s:errors,l:i-2,0),'fromy',0) . ', ' . get(get(s:errors,l:i-2,0),'fromx',0)
-	echom 'Cursor position: ' . string(get(s:cursorPosOrigBuffer,1,0)) . ', ' . string(get(s:cursorPosOrigBuffer,2,0))
+	" echom 'Cursor position: ' . string(get(s:cursorPosOrigBuffer,1,0)) . ', ' . string(get(s:cursorPosOrigBuffer,2,0))
+	" echom 'Error last character: ' . string(get(get(s:errors,l:i-1,0),'toy',0)) . ', ' . string(get(get(s:errors,l:i-1,0),'tox',0))
 	drop [TeXtidote]
-	echom 'Error last character: ' . string(get(get(s:errors,l:i-1,0),'toy',0)) . ', ' . string(get(get(s:errors,l:i-1,0),'tox',0))
 	" call search('^Error:\s\+')
 	call search('^Error:\s\+' . string(l:i) . '/')
 	normal! zt
