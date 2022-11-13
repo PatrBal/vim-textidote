@@ -535,7 +535,10 @@ function textidote#Display(data,code)
 	endfor
 
 	redraw
-	echom 'The buffer is: ' . expand('%:p')
+	" Set move forward and backward mapping in original buffer
+	nnoremap <buffer> ]] :call <sid>MoveForward()<CR>
+	nnoremap <buffer> [[ :call <sid>MoveBackward()<CR>
+	
 	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
 
