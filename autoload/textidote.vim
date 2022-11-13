@@ -253,7 +253,7 @@ function! textidote#MoveForwardOrigBuffer()
 				endif
 			endif
 		else
-			l:test = 1
+			let l:test = 1
 		endif
 		let l:i += 1
 	endwhile
