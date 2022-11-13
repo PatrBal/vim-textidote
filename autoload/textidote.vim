@@ -239,14 +239,14 @@ endfunction
 " The following two functions enable navigation of errors in original buffer
 function! textidote#MoveForwardOrigBuffer()
 	drop [TeXtidote]
-	call search('^Context:\s\+')
+	call search('^Error:\s\+')
 	normal! zt
 	call <sid>JumpToCurrentError()
 endfunction
 
 function! textidote#MoveBackwardOrigBuffer()
 	drop [TeXtidote]
-	call search('^Context:\s\+', 'b')
+	call search('^Error:\s\+', 'b')
 	normal! zt
 	call <sid>JumpToCurrentError()
 endfunction
@@ -519,11 +519,12 @@ function textidote#Display(data,code)
 		execute 'normal! z' . s:textidote_win_height . "\<CR>"
 		0
 		nnoremap <buffer><silent> <CR> :call <sid>JumpToCurrentError()<CR>
-		nnoremap <buffer><silent> ]] :call search('^Context:\s\+')<CR>
-		nnoremap <buffer><silent> [[ :call search('^Context:\s\+', 'b')<CR>
+		nnoremap <buffer><silent> ]] :call search('^Error:\s\+')<CR>
+		nnoremap <buffer><silent> [[ :call search('^Error:\s\+', 'b')<CR>
 
 		file [TeXtidote]
-		call search('^Context:\s\+')
+		setlocal scrolloff=0
+		call search('^Error:\s\+')
 		redraw
 		echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
 		execute 'drop ' . s:current_file
