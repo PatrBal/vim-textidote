@@ -269,6 +269,7 @@ function! textidote#QuickFix()
 		setlocal completefunc=textidote#Suggestions
 		normal!  ea<C-X><C-U>
 	else
+		let &completefunc = s:completefunc_orig
 		call textidote#unmapTab()
 	endif
 endfunction
