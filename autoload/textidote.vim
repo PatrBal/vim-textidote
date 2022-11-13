@@ -268,6 +268,8 @@ function! textidote#QuickFix()
 	if s:replace == 1
 		setlocal completefunc=textidote#Suggestions
 		normal!  ea<C-X><C-U>
+	else
+		call textidote#unmapTab()
 	endif
 endfunction
 
@@ -573,7 +575,6 @@ function textidote#Display(data,code)
 
 	redraw
 	" Set move forward and backward mapping in original buffer
-	setlocal completefunc=textidote#Suggestions
 	nnoremap <buffer> ]] :call textidote#MoveForwardOrigBuffer()<CR>
 	nnoremap <buffer> [[ :call textidote#MoveBackwardOrigBuffer()<CR>
 	nnoremap <buffer> <Tab> :call textidote#QuickFix()<CR>
