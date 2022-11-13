@@ -187,6 +187,7 @@ See `:help license`.
 ==============================================================================
 7. Changelog                                                *TeXtidoteChangelog*
 
+13/11/2022 Add navigation of errors also in the original buffer
 06/11/2022 Add navigation of errors and completion fix
 02/11/2022 Asynchronous version
 06/01/2022 Initial version
