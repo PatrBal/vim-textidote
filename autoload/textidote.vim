@@ -360,8 +360,10 @@ function! textidote#QuickFix()
 		call search('^Error:\s\+' . string(l:indCurrentError) . '/')
 		normal! zt
 		call <sid>JumpToCurrentError()
+		let @" = "<C-X><C-U>"
 	else
 		" The cursor is not on an error
+		let @" = "<Esc>:call setpos('.', l:save_cursor)<CR>"
 	endif
 endfunction
 
