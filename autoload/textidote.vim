@@ -391,16 +391,6 @@ function! textidote#Suggestions(findstart, base)
 	endif
 endfunction
 
-" This function restore <Tab> to its original mapping (if any).
-function! textidote#unmapTab()
-	let &completefunc = s:completefunc_orig
-	if exists('s:mapTab_orig')
-		execute 'nnoremap <buffer> <Tab> ' . s:mapTab_orig
-	else
-		silent!nunmap <buffer> <Tab>
-	endif
-endfunction
-
 function textidote#Check(line1, line2) "{{{1
 	if s:TeXtidoteSetUp() < 0
 		return -1
