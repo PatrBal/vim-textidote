@@ -665,7 +665,7 @@ function textidote#Display(data,code)
 	" fix <Tab>
 	nmap <buffer><nowait> ] :call textidote#MoveForwardOrigBuffer()<CR>
 	nmap <buffer><nowait> [ :call textidote#MoveBackwardOrigBuffer()<CR>
-	nmap <buffer><silent><nowait> ¶ : call textidote#QuickFix()<CR>
+	nmap <buffer><silent><nowait> <CR> : call textidote#QuickFix()<CR>
 	nmap <buffer><silent> <Tab> ¶ea<C-R>"
 	
 	drop [TeXtidote]
@@ -751,9 +751,9 @@ function textidote#Clear() "{{{1
 		silent!nunmap <buffer> [
 	endif
 	if exists('s:mapAux_orig')
-		execute 'nnoremap <buffer> ¶' . s:mapAux_orig
+		execute 'nnoremap <buffer> <CR>' . s:mapAux_orig
 	else
-		silent!nunmap <buffer> ¶
+		silent!nunmap <buffer> <CR>
 	endif
 
 	let g:textidote_indicator = 0
