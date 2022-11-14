@@ -172,19 +172,19 @@ function s:TeXtidoteSetUp() "{{{1
 	" Storing &completefunc and shortcuts to restore them after grammar check
 	let s:completefunc_orig = &completefunc
 	if !empty(maparg('<Tab>', 'n'))
-		let s:mapTab_orig = maparg('<Tab>', 'n')
+		let s:mapTab_orig = maparg('<Tab>', 'n', 0, 1)
 	endif
 	if !empty(maparg(']', 'n'))
-		let s:mapForward_orig = maparg(']', 'n')
+		let s:mapForward_orig = maparg(']', 'n', 0, 1)
 	endif
 	if !empty(maparg('[', 'n'))
-		let s:mapBackward_orig = maparg('[', 'n')
+		let s:mapBackward_orig = maparg('[', 'n', 0, 1)
 	endif
 	if !empty(maparg('¶', 'n'))
-		let s:mapAux_orig = maparg('¶', 'n')
+		let s:mapAux_orig = maparg('¶', 'n', 0, 1)
 	endif
 	if !empty(maparg('\<CR>', 'n'))
-		let s:mapRet_orig = maparg('\<CR>', 'n')
+		let s:mapRet_orig = maparg('\<CR>', 'n', 0, 1)
 	endif
 
 	return 0
@@ -735,27 +735,27 @@ function textidote#Clear() "{{{1
 	execute 'drop' s:current_file
 	let &completefunc = s:completefunc_orig
 	if exists('s:mapTab_orig')
-		execute 'nnoremap <buffer> <Tab> ' . s:mapTab_orig
+		execute 'nnoremap <Tab> ' . s:mapTab_orig
 	else
 		silent!nunmap <buffer> <Tab>
 	endif
 	if exists('s:mapForward_orig')
-		execute 'nnoremap <buffer> ] ' . s:mapForward_orig
+		execute 'nnoremap ] ' . s:mapForward_orig
 	else
 		silent!nunmap <buffer> ]
 	endif
 	if exists('s:mapBackward_orig')
-		execute 'nnoremap <buffer> [ ' . s:mapBackward_orig
+		execute 'nnoremap [ ' . s:mapBackward_orig
 	else
 		silent!nunmap <buffer> [
 	endif
 	if exists('s:mapAux_orig')
-		execute 'nnoremap <buffer> ¶' . s:mapAux_orig
+		execute 'nnoremap ¶' . s:mapAux_orig
 	else
 		silent!nunmap <buffer> ¶
 	endif
 	if exists('s:mapRet_orig')
-		execute 'nnoremap <buffer> <CR>' . s:mapRet_orig
+		execute 'nnoremap <CR>' . s:mapRet_orig
 	else
 		silent!nunmap <buffer> <CR>
 	endif
