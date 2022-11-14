@@ -231,7 +231,7 @@ function <sid>JumpToCurrentError() "{{{1
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=textidote#Suggestions
-			nmap <buffer> <Tab> ea<C-X><C-U>
+			nmap <buffer> <Tab> []ea<C-X><C-U>
 			" Quick fix <Tab> should be one-shot
 			autocmd InsertLeave * ++once call textidote#unmapTab()
 		else
@@ -595,9 +595,9 @@ function textidote#Display(data,code)
 		0
 		nnoremap <buffer><silent> <CR> :call <sid>JumpToCurrentError()<CR>
 		" nnoremap <buffer><silent> ]] :call textidote#MoveForwardScratchBuffer()<CR>
-		nnoremap <buffer><silent><nowait> ] :call textidote#MoveForwardScratchBuffer()<CR>
+		nmap <buffer><silent><nowait> ] :call textidote#MoveForwardScratchBuffer()<CR>
 		" nnoremap <buffer><silent> [[ :call textidote#MoveBackwardScratchBuffer()<CR>
-		nnoremap <buffer><silent><nowait> [ :call textidote#MoveBackwardScratchBuffer()<CR>
+		nmap <buffer><silent><nowait> [ :call textidote#MoveBackwardScratchBuffer()<CR>
 
 		file [TeXtidote]
 		setlocal scrolloff=1
@@ -630,8 +630,8 @@ function textidote#Display(data,code)
 
 	redraw
 	" Set move forward and backward mapping in original buffer
-	nnoremap <buffer><nowait> ] :call textidote#MoveForwardOrigBuffer()<CR>
-	nnoremap <buffer><nowait> [ :call textidote#MoveBackwardOrigBuffer()<CR>
+	nmap <buffer><nowait> ] :call textidote#MoveForwardOrigBuffer()<CR>
+	nmap <buffer><nowait> [ :call textidote#MoveBackwardOrigBuffer()<CR>
 	
 	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
