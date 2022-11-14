@@ -180,8 +180,11 @@ function s:TeXtidoteSetUp() "{{{1
 	if !empty(maparg('[', 'n'))
 		let s:mapBackward_orig = maparg('[', 'n')
 	endif
+	if !empty(maparg('¶', 'n'))
+		let s:mapAux_orig = maparg('¶', 'n')
+	endif
 	if !empty(maparg('<CR>', 'n'))
-		let s:mapAux_orig = maparg('<CR>', 'n')
+		let s:mapRet_orig = maparg('<CR>', 'n')
 	endif
 
 	return 0
@@ -665,7 +668,8 @@ function textidote#Display(data,code)
 	" fix <Tab>
 	nmap <buffer><nowait> ] :call textidote#MoveForwardOrigBuffer()<CR>
 	nmap <buffer><nowait> [ :call textidote#MoveBackwardOrigBuffer()<CR>
-	nmap <buffer><silent><nowait> <CR> : call textidote#QuickFix()<CR>
+	nmap <buffer><silent><nowait> ¶ : call textidote#QuickFix()<CR>
+	nmap <buffer><silent> <CR> ¶
 	nmap <buffer><silent> <Tab> ¶ea<C-R>"
 	
 	drop [TeXtidote]
