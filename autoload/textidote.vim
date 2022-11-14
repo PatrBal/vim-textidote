@@ -265,10 +265,10 @@ function! textidote#MoveForwardOrigBuffer()
 		endif
 		let l:i += 1
 	endwhile
-	if l:i > len(s:errors)
-		let l:i = 2
-	endif
 	let l:indNextError = l:i - 1
+	if l:i > len(s:errors)
+		let l:indNextError = 1
+	endif
 	drop [TeXtidote]
 	call search('^Error:\s\+' . string(l:indNextError) . '/')
 	normal! zt
