@@ -349,7 +349,7 @@ function! textidote#QuickFix()
 			endif
 		endif
 	endif
-	if l:test == 1
+	if l:test == 1 && !empty(get(get(s:errors,l:indCurrentError-1,0),'replacements',0))
 		" The cursor is on error l:indCurrentError
 		drop [TeXtidote]
 		call search('^Error:\s\+' . string(l:indCurrentError) . '/')
@@ -357,7 +357,7 @@ function! textidote#QuickFix()
 		call <sid>JumpToCurrentError()
 		let @" = "\<C-X>\<C-U>"
 	else
-		" The cursor is not on an error
+		" The cursor is not on an error or it is on an error that has no replacement
 		let s:cursorLineOrigBuffer = get(s:cursorPosOrigBuffer,1,0)
 		let s:cursorColOrigBuffer = get(s:cursorPosOrigBuffer,2,0)
 		let @" = "\<Esc>:call cursor(" . s:cursorLineOrigBuffer . "," . s:cursorColOrigBuffer . ")\<CR>lh"
