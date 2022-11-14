@@ -366,7 +366,9 @@ function! textidote#QuickFix()
 		let @" = "\<C-X>\<C-U>"
 	else
 		" The cursor is not on an error
-		let @" = "\<Esc>:call cursor(get(s:cursorPosOrigBuffer,1,0),get(s:cursorPosOrigBuffer,2,0))\<CR>"
+		let s:cursorLineOrigBuffer = get(s:cursorPosOrigBuffer,1,0)
+		let s:cursorColOrigBuffer = get(s:cursorPosOrigBuffer,2,0)
+		let @" = "\<Esc>:call cursor(" . s:cursorLineOrigBuffer . "," . s:cursorColOrigBuffer . ")\<CR>"
 	endif
 endfunction
 
