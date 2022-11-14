@@ -266,7 +266,7 @@ function! textidote#MoveForwardOrigBuffer()
 		let l:i += 1
 	endwhile
 	let l:indNextError = l:i - 1
-	if l:i > len(s:errors)
+	if l:indNextError > len(s:errors)
 		let l:indNextError = 1
 	endif
 	drop [TeXtidote]
