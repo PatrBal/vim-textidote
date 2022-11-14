@@ -231,9 +231,9 @@ function <sid>JumpToCurrentError() "{{{1
 			" nmap <buffer> <Tab> ¶ea<C-X><C-U>
 			nmap <buffer> <Tab> ¶ea<C-R>"
 			" Quick fix <Tab> should be one-shot
-			autocmd InsertLeave * ++once call textidote#unmapTab()
+			" autocmd InsertLeave * ++once call textidote#unmapTab()
 		else
-			call textidote#unmapTab()
+			" call textidote#unmapTab()
 		endif
 	else
 		call setpos('.', l:save_cursor)
