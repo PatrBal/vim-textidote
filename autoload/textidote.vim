@@ -180,6 +180,9 @@ function s:TeXtidoteSetUp() "{{{1
 	if !empty(maparg('[', 'n'))
 		let s:mapBackward_orig = maparg('[', 'n')
 	endif
+	if !empty(maparg('][', 'n'))
+		let s:mapForBack_orig = maparg('][', 'n')
+	endif
 
 	return 0
 endfunction
@@ -699,21 +702,16 @@ function textidote#Clear() "{{{1
 	else
 		silent!nunmap <buffer> <Tab>
 	endif
-	" if exists('s:mapForward_orig')
-	" 	execute 'nnoremap <buffer> ]] ' . s:mapForward_orig
-	" else
-	" 	silent!nunmap <buffer> ]]
-	" endif
 	if exists('s:mapForward_orig')
 		execute 'nnoremap <buffer> ] ' . s:mapForward_orig
 	else
 		silent!nunmap <buffer> ]
 	endif
-	" if exists('s:mapBackward_orig')
-	" 	execute 'nnoremap <buffer> [[ ' . s:mapBackward_orig
-	" else
-	" 	silent!nunmap <buffer> [[
-	" endif
+	if exists('s:mapForBack_orig')
+		execute 'nnoremap <buffer> ][ ' . s:mapForBack_orig
+	else
+		silent!nunmap <buffer> ][
+	endif
 	if exists('s:mapBackward_orig')
 		execute 'nnoremap <buffer> [ ' . s:mapBackward_orig
 	else
