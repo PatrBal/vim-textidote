@@ -366,18 +366,20 @@ function! textidote#QuickFix()
 		call <sid>JumpToCurrentError()
 		if !empty(get(get(s:errors,l:indCurrentError-1,0),'replacements',0))
 			" The error has replacements indeed
-			let @" = "\<C-X>\<C-U>"
+			let @" = "\<Esc>ea\<C-X>\<C-U>"
 		else
 			" The error has no replacement
 			let s:cursorLineOrigBuffer = get(s:cursorPosOrigBuffer,1,0)
 			let s:cursorColOrigBuffer = get(s:cursorPosOrigBuffer,2,0)
-			let @" = "\<Esc>:call cursor(" . s:cursorLineOrigBuffer . "," . s:cursorColOrigBuffer . ")\<CR>lh"
+			" let @" = "\<Esc>:call cursor(" . s:cursorLineOrigBuffer . "," . s:cursorColOrigBuffer . ")\<CR>lh"
+			let @" = "\<Esc>"
 		endif
 	else
 		" The cursor is not on an error or it is on an error that has no replacement
 		let s:cursorLineOrigBuffer = get(s:cursorPosOrigBuffer,1,0)
 		let s:cursorColOrigBuffer = get(s:cursorPosOrigBuffer,2,0)
-		let @" = "\<Esc>:call cursor(" . s:cursorLineOrigBuffer . "," . s:cursorColOrigBuffer . ")\<CR>lh"
+		" let @" = "\<Esc>:call cursor(" . s:cursorLineOrigBuffer . "," . s:cursorColOrigBuffer . ")\<CR>lh"
+		let @" = "\<Esc>"
 	endif
 endfunction
 
@@ -684,7 +686,7 @@ function textidote#Display(data,code)
 	nmap <buffer><nowait> [ :call textidote#MoveBackwardOrigBuffer()<CR>
 	nmap <buffer><silent><nowait> ¶ : call textidote#QuickFix()<CR>
 	nmap <buffer><silent> <CR> ¶
-	nmap <buffer><silent> <Tab> ¶ea<C-R>"
+	nmap <buffer><silent> <Tab> ¶i<C-R>"
 	
 	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
