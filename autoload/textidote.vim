@@ -340,6 +340,25 @@ function! textidote#QuickFix()
 	if l:indCurrentError < 1
 		let l:indCurrentError = len(s:errors)
 	endif
+	let l:test = 0
+	if get(get(s:errors,l:indCurrentError-1,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0) || get(get(s:errors,l:indCurrentError-1,0),'fromy',0) > get(s:cursorPosOrigBuffer,1,0)
+		let l:test = 0
+	else
+		if get(get(s:errors,l:indCurrentError-1,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:indCurrentError-1,0),'fromx',0) > get(s:cursorPosOrigBuffer,2,0)
+			let l:test = 0
+		else
+			if get(get(s:errors,l:indCurrentError-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:indCurrentError-1,0),'tox',0) < get(s:cursorPosOrigBuffer,2,0)
+				let l:test = 0
+			else
+				let l:text = 1
+			endif
+		endif
+	endif
+	if l:test = 0
+		" The cursor is on error l:indCurrentError
+	else
+		" The cursor is not on an error
+	endif
 endfunction
 
 " The following two functions enable navigation of errors in scratch buffer
