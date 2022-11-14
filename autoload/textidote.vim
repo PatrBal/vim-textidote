@@ -228,12 +228,6 @@ function <sid>JumpToCurrentError() "{{{1
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=textidote#Suggestions
-			" nmap <buffer> <Tab> ¶ea<C-X><C-U>
-			nnoremap <buffer> <Tab> ¶ea<C-R>"
-			" Quick fix <Tab> should be one-shot
-			" autocmd InsertLeave * ++once call textidote#unmapTab()
-		" else
-			" call textidote#unmapTab()
 		endif
 	else
 		call setpos('.', l:save_cursor)
@@ -682,10 +676,12 @@ function textidote#Display(data,code)
 	endfor
 
 	redraw
-	" Set move forward and backward mapping in original buffer
+	" Set move forward and backward mapping in original buffer and also quick
+	" fix <Tab>
 	nmap <buffer><nowait> ] :call textidote#MoveForwardOrigBuffer()<CR>
 	nmap <buffer><nowait> [ :call textidote#MoveBackwardOrigBuffer()<CR>
 	nmap <buffer><nowait> ¶ :call textidote#QuickFix()<CR>
+	nmap <buffer> <Tab> ¶ea<C-R>"
 	
 	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
