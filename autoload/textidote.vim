@@ -342,7 +342,7 @@ function! textidote#QuickFix()
 		let l:indCurrentError = len(s:errors)
 	endif
 	let l:test = 0
-	if get(get(s:errors,l:indCurrentError-1,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0) || get(get(s:errors,l:indCurrentError,0),'fromy',0) > get(s:cursorPosOrigBuffer,1,0)
+	if get(get(s:errors,l:indCurrentError,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0) || get(get(s:errors,l:indCurrentError,0),'fromy',0) > get(s:cursorPosOrigBuffer,1,0)
 		let l:test = 0
 	else
 		if get(get(s:errors,l:indCurrentError,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:indCurrentError,0),'fromx',0) > get(s:cursorPosOrigBuffer,2,0)
