@@ -184,7 +184,7 @@ function s:TeXtidoteSetUp() "{{{1
 		let s:mapAux_orig = maparg('¶', 'n')
 	endif
 	if !empty(maparg('<CR>', 'n'))
-		let s:mapRet_orig = maparg('<CR>', 'n')
+		let g:mapRet_orig = maparg('<CR>', 'n')
 	endif
 
 	return 0
@@ -759,8 +759,9 @@ function textidote#Clear() "{{{1
 	else
 		silent!nunmap <buffer> ¶
 	endif
-	if exists('s:mapRet_orig')
-		execute 'nnoremap <buffer> <CR>' . s:mapRet_orig
+	if exists('g:mapRet_orig')
+		execute 'nnoremap <buffer> <CR>' . g:mapRet_orig
+		unlet g:mapRet_orig
 	else
 		silent!nunmap <buffer> <CR>
 	endif
