@@ -228,7 +228,7 @@ function <sid>JumpToCurrentError() "{{{1
 			" The dirty trick 3b]3w[jk ensure the reinitialization of the
 			" completion when the cursor has been manually put on a word
 			" before <Tab> hit. 
-			nmap <buffer> <Tab> 3b]3w[jkea<C-X><C-U>
+			nmap <buffer> <Tab> 7b]7w[jkea<C-X><C-U>
 			" Quick fix <Tab> should be one-shot
 			autocmd InsertLeave * ++once call textidote#unmapTab()
 		else
