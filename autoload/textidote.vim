@@ -358,7 +358,6 @@ function! textidote#QuickFix()
 		" The cursor is not on an error
 		let s:cursorLineOrigBuffer = get(s:cursorPosOrigBuffer,1,0)
 		let s:cursorColOrigBuffer = get(s:cursorPosOrigBuffer,2,0)
-		" let @" = "\<Esc>" . s:cursorLineOrigBuffer . "G" . s:cursorColOrigBuffer . "|"
 		let @" = "\<Esc>:call cursor(" . s:cursorLineOrigBuffer . "," . s:cursorColOrigBuffer . ")\<CR>lh"
 	endif
 endfunction
