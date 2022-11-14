@@ -180,10 +180,6 @@ function s:TeXtidoteSetUp() "{{{1
 	if !empty(maparg('[', 'n'))
 		let s:mapBackward_orig = maparg('[', 'n')
 	endif
-	if !empty(maparg('][', 'n'))
-		let s:mapForBack_orig = maparg('][', 'n')
-		nunmap ][
-	endif
 
 	return 0
 endfunction
