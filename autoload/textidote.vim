@@ -333,8 +333,12 @@ function! textidote#QuickFix()
 		let l:i += 1
 	endwhile
 	let l:indNextError = l:i - 1
+	let l:indCurrentError = l:indNextError - 1
 	if l:indNextError > len(s:errors)
 		let l:indNextError = 1
+	endif
+	if l:indCurrentError < 1
+		let l:indCurrentError = len(s:errors)
 	endif
 endfunction
 
