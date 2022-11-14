@@ -301,6 +301,8 @@ function! textidote#MoveBackwardOrigBuffer()
 	call <sid>JumpToCurrentError()
 endfunction
 
+" This function decides if the <Tab> shortcut will open the pop-up menu or do nothing...
+" It checks whether the cursor is inside an error of the original buffer or not.
 function! textidote#QuickFix()
 	let s:cursorPosOrigBuffer = getpos('.')
 	let l:test = 0
@@ -383,6 +385,7 @@ function! textidote#Suggestions(findstart, base)
 	endif
 endfunction
 
+" This function is reponsible for calling TeXtidote.
 function textidote#Check(line1, line2) "{{{1
 	if s:TeXtidoteSetUp() < 0
 		return -1
