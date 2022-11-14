@@ -227,7 +227,7 @@ function <sid>JumpToCurrentError() "{{{1
 			setlocal completefunc=textidote#Suggestions
 			"  
 			nmap <buffer> <Tab> 3b]3w[jkea<C-X><C-U>
-			Quick fix <Tab> should be one-shot
+			" Quick fix <Tab> should be one-shot
 			autocmd InsertLeave * ++once call textidote#unmapTab()
 		else
 			call textidote#unmapTab()
