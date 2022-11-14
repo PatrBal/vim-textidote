@@ -308,6 +308,10 @@ function! textidote#MoveBackwardOrigBuffer()
 	call <sid>JumpToCurrentError()
 endfunction
 
+function! textidote#QuickFix()
+
+endfunction
+
 " The following two functions enable navigation of errors in scratch buffer
 function! textidote#MoveForwardScratchBuffer()
 	call search('^Error:\s\+')
@@ -623,6 +627,7 @@ function textidote#Display(data,code)
 	" Set move forward and backward mapping in original buffer
 	nmap <buffer><nowait> ] :call textidote#MoveForwardOrigBuffer()<CR>
 	nmap <buffer><nowait> [ :call textidote#MoveBackwardOrigBuffer()<CR>
+	nmap <buffer><nowait> ¶ :call textidote#QuickFix()<CR>
 	
 	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
