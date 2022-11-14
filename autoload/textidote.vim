@@ -299,11 +299,10 @@ function! textidote#MoveBackwardOrigBuffer()
 		endif
 		let l:i -= 1
 	endwhile
-	if l:i < 0
-		let l:i = len(s:errors) - 1
-	endif
-
 	let l:indPrevError = l:i + 1
+	if l:indPrevError < 1
+		let l:indPrevError = len(s:errors)
+	endif
 	drop [TeXtidote]
 	call search('^Error:\s\+' . string(l:indPrevError) . '/', 'b')
 	normal! zt
