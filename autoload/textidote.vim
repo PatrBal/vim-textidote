@@ -369,16 +369,10 @@ function! textidote#QuickFix()
 			let @" = "\<Esc>ea\<C-X>\<C-U>"
 		else
 			" The error has no replacement
-			let s:cursorLineOrigBuffer = get(s:cursorPosOrigBuffer,1,0)
-			let s:cursorColOrigBuffer = get(s:cursorPosOrigBuffer,2,0)
-			" let @" = "\<Esc>:call cursor(" . s:cursorLineOrigBuffer . "," . s:cursorColOrigBuffer . ")\<CR>lh"
 			let @" = "\<Esc>"
 		endif
 	else
 		" The cursor is not on an error or it is on an error that has no replacement
-		let s:cursorLineOrigBuffer = get(s:cursorPosOrigBuffer,1,0)
-		let s:cursorColOrigBuffer = get(s:cursorPosOrigBuffer,2,0)
-		" let @" = "\<Esc>:call cursor(" . s:cursorLineOrigBuffer . "," . s:cursorColOrigBuffer . ")\<CR>lh"
 		let @" = "\<Esc>"
 	endif
 endfunction
