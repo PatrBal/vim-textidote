@@ -627,6 +627,7 @@ function textidote#Display(data,code)
 		endfor
 		execute 'normal! z' . s:textidote_win_height . "\<CR>"
 		0
+		" Setting the shortcuts in the TeXtidote buffer (scratch) 
 		nnoremap <buffer><silent> <CR> :call <sid>JumpToCurrentError()<CR>
 		nnoremap <buffer><silent><nowait> ] :call textidote#MoveForwardScratchBuffer()<CR>
 		nnoremap <buffer><silent><nowait> [ :call textidote#MoveBackwardScratchBuffer()<CR>
