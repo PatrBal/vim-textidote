@@ -182,6 +182,7 @@ function s:TeXtidoteSetUp() "{{{1
 	endif
 	if !empty(maparg('][', 'n'))
 		let s:mapForBack_orig = maparg('][', 'n')
+		nunmap ][
 	endif
 
 	return 0
