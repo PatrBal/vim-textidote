@@ -183,8 +183,8 @@ function s:TeXtidoteSetUp() "{{{1
 	if !empty(maparg('¶', 'n'))
 		let s:mapAux_orig = maparg('¶', 'n')
 	endif
-	if !empty(maparg('<CR>', 'n'))
-		let s:mapRet_orig = maparg('<CR>', 'n')
+	if !empty(maparg('\<CR>', 'n'))
+		let s:mapRet_orig = maparg('\<CR>', 'n')
 	endif
 
 	return 0
