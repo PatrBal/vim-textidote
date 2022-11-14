@@ -2,7 +2,7 @@
 
 ## Description
 
-This plugin interfaces Vim and Neovim with the [TeXtidote][TeXtidote] grammar checker.  TeXtidote is an open source spelling, grammar and style checker for multiple languages based on LanguageTool.  TeXtidote is built on top of LanguageTool and is able to remove LaTeX and Markdown markup before grammar checking, while keeping track of the relative position of words between the original and "clean text". In short, TeXtidote is a version of LanguageTool made blind to LaTeX and Markdown markup.
+This plugin interfaces Vim and Neovim with the [TeXtidote][TeXtidote] grammar checker.  TeXtidote is an open source spelling, grammar and style checker for multiple languages based on [LanguageTool][LanguageTool].  TeXtidote is built on top of LanguageTool and is able to remove LaTeX and Markdown markup before grammar checking, while keeping track of the relative position of words between the original and "clean text". In short, TeXtidote is a version of LanguageTool made blind to LaTeX and Markdown markup.
 
 This plugin provides asynchronous integration of TeXtidote, with highlighting of the errors and warnings. It offers also easy and intuitive navigation of the errors, as well as quick fixes by `<Tab>` completion.
 
@@ -56,5 +56,6 @@ This plugin is strongly based on the excellent [vim-LanguageTool][vim-LanguageTo
 
 
 [TeXtidote]: https://github.com/sylvainhalle/textidote
+[LanguageTool]: https://languagetool.org
 [vim-LanguageTool]: https://github.com/dpelle/vim-LanguageTool
 [LTeX]: https://valentjn.github.io/ltex
