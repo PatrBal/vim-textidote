@@ -357,7 +357,6 @@ function! textidote#QuickFix()
 	endif
 	echom 'indCurrentError: ' . l:indCurrentError
 	echom 'Cursor: ' . get(s:cursorPosOrigBuffer,1,0) . ', ' . get(s:cursorPosOrigBuffer,2,0)
-	echom 'StartError: ' .  . ', ' . 
 	if l:test == 1
 		" The cursor is on error l:indCurrentError
 		drop [TeXtidote]
