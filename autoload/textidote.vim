@@ -711,6 +711,11 @@ function textidote#Clear() "{{{1
 	else
 		silent!nunmap <buffer> [
 	endif
+	if exists('s:mapAux_orig')
+		execute 'nnoremap <buffer> ¶' . s:mapAux_orig
+	else
+		silent!nunmap <buffer> ¶
+	endif
 
 	let g:textidote_indicator = 0
 endfunction
