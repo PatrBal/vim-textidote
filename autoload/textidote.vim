@@ -1,6 +1,6 @@
 " Description: Grammar checker of LaTeX files with TeXtidote from Vim
 " Author:      Patrick Ballard <patrick.ballard.paris@gmail.com>
-" Last Change: 13/11/2022
+" Last Change: 14/11/2022
 
 
 " Guess language from 'a:lang' (either 'spelllang' or 'v:lang')
@@ -192,7 +192,7 @@ endfunction
 
 " Jump to a grammar mistake (called when pressing <Enter>
 " on a particular error in scratch buffer).
-function <sid>JumpToCurrentError() "{{{1
+function <sid>JumpToCurrentError()
 	let l:save_cursor = getpos('.')
 	normal! $
 	if search('^Error:\s\+', 'beW') > 0
