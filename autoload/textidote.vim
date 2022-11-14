@@ -229,10 +229,10 @@ function <sid>JumpToCurrentError() "{{{1
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=textidote#Suggestions
 			" nmap <buffer> <Tab> ¶ea<C-X><C-U>
-			nmap <buffer> <Tab> ¶ea<C-R>"
+			nnoremap <buffer> <Tab> ¶ea<C-R>"
 			" Quick fix <Tab> should be one-shot
 			" autocmd InsertLeave * ++once call textidote#unmapTab()
-		else
+		" else
 			" call textidote#unmapTab()
 		endif
 	else
@@ -355,9 +355,6 @@ function! textidote#QuickFix()
 			endif
 		endif
 	endif
-	echom 'indCurrentError: ' . l:indCurrentError
-	echom 'Cursor: ' . get(s:cursorPosOrigBuffer,1,0) . ', ' . get(s:cursorPosOrigBuffer,2,0)
-	echom 'StartError: ' . get(get(s:errors,l:indCurrentError-1,0),'fromy',0) . ', ' . get(get(s:errors,l:indCurrentError-1,0),'fromx',0)
 	if l:test == 1
 		" The cursor is on error l:indCurrentError
 		drop [TeXtidote]
