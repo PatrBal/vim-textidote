@@ -225,15 +225,14 @@ function <sid>JumpToCurrentError() "{{{1
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=textidote#Suggestions
-			" The dirty trick 3b]3w[jk ensure the reinitialization of the
+			" The dirty trick 5b]5w[jk ensure the reinitialization of the
 			" completion when the cursor has been manually put on a word
 			" before <Tab> hit. 
-			nmap <buffer> <Tab> 7b]7w[jkea<C-X><C-U>
+			nmap <buffer> <Tab> 5b]5w[jkea<C-X><C-U>
 			" Quick fix <Tab> should be one-shot
 			autocmd InsertLeave * ++once call textidote#unmapTab()
 		else
 			call textidote#unmapTab()
-			" let &completefunc = s:completefunc_orig
 		endif
 	else
 		call setpos('.', l:save_cursor)
