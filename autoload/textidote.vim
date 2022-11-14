@@ -355,7 +355,7 @@ function! textidote#QuickFix()
 			endif
 		endif
 	endif
-	if l:test == 0
+	if l:test == 1
 		" The cursor is on error l:indCurrentError
 		drop [TeXtidote]
 		call search('^Error:\s\+' . string(l:indCurrentError) . '/')
