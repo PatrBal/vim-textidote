@@ -225,7 +225,7 @@ function <sid>JumpToCurrentError() "{{{1
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=textidote#Suggestions
-			nmap <buffer> <Tab> ][ea<C-X><C-U>
+			nmap <buffer> <Tab> ]"_p[ea<C-X><C-U>
 			" Quick fix <Tab> should be one-shot
 			autocmd InsertLeave * ++once call textidote#unmapTab()
 		else
@@ -703,11 +703,6 @@ function textidote#Clear() "{{{1
 		execute 'nnoremap <buffer> ] ' . s:mapForward_orig
 	else
 		silent!nunmap <buffer> ]
-	endif
-	if exists('s:mapForBack_orig')
-		execute 'nnoremap <buffer> ][ ' . s:mapForBack_orig
-	else
-		silent!nunmap <buffer> ][
 	endif
 	if exists('s:mapBackward_orig')
 		execute 'nnoremap <buffer> [ ' . s:mapBackward_orig
