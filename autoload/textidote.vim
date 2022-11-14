@@ -342,13 +342,13 @@ function! textidote#QuickFix()
 		let l:indCurrentError = len(s:errors)
 	endif
 	let l:test = 0
-	if get(get(s:errors,l:indCurrentError,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0) || get(get(s:errors,l:indCurrentError,0),'fromy',0) > get(s:cursorPosOrigBuffer,1,0)
+	if get(get(s:errors,l:indCurrentError-1,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0) || get(get(s:errors,l:indCurrentError-1,0),'fromy',0) > get(s:cursorPosOrigBuffer,1,0)
 		let l:test = 0
 	else
-		if get(get(s:errors,l:indCurrentError,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:indCurrentError,0),'fromx',0) > get(s:cursorPosOrigBuffer,2,0)
+		if get(get(s:errors,l:indCurrentError-1,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:indCurrentError-1,0),'fromx',0) > get(s:cursorPosOrigBuffer,2,0)
 			let l:test = 0
 		else
-			if get(get(s:errors,l:indCurrentError-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:indCurrentError,0),'tox',0) < get(s:cursorPosOrigBuffer,2,0)
+			if get(get(s:errors,l:indCurrentError-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:indCurrentError-1,0),'tox',0) < get(s:cursorPosOrigBuffer,2,0)
 				let l:test = 0
 			else
 				let l:text = 1
@@ -357,7 +357,7 @@ function! textidote#QuickFix()
 	endif
 	echom 'indCurrentError: ' . l:indCurrentError
 	echom 'Cursor: ' . get(s:cursorPosOrigBuffer,1,0) . ', ' . get(s:cursorPosOrigBuffer,2,0)
-	echom 'StartError: ' . get(get(s:errors,l:indCurrentError,0),'fromy',0) . ', ' . get(get(s:errors,l:indCurrentError,0),'fromx',0)
+	echom 'StartError: ' . get(get(s:errors,l:indCurrentError-1,0),'fromy',0) . ', ' . get(get(s:errors,l:indCurrentError-1,0),'fromx',0)
 	if l:test == 1
 		" The cursor is on error l:indCurrentError
 		drop [TeXtidote]
