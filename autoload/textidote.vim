@@ -686,7 +686,7 @@ function textidote#Display(data,code)
 	nmap <buffer><nowait> [ :call textidote#MoveBackwardOrigBuffer()<CR>
 	nmap <buffer><silent><nowait> ¶ : call textidote#QuickFix()<CR>
 	nmap <buffer><silent> <CR> ¶
-	nmap <buffer><silent> <Tab> ¶i<C-R>"
+	nmap <buffer><silent> <Tab> ¶a<C-R>"
 	
 	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
