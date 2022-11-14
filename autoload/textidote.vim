@@ -220,16 +220,11 @@ function <sid>JumpToCurrentError() "{{{1
 		normal! zv
 		normal! zz
 
-		" Populate the suggestion list and setup the completion trigger by
-		" <Tab>
+		" Populate the suggestion list
 		if !empty(l:error['replacements'])
-			let s:col = l:col - 1
-			let s:colStart = l:error['fromx']
-			let s:colEnd = l:error['tox']
-			let s:lineStart = l:error['fromy']
-			let s:lineEnd = l:error['toy']
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
+			let s:col = l:col - 1
 			setlocal completefunc=textidote#Suggestions
 		endif
 	else
