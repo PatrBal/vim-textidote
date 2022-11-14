@@ -174,15 +174,9 @@ function s:TeXtidoteSetUp() "{{{1
 	if !empty(maparg('<Tab>', 'n'))
 		let s:mapTab_orig = maparg('<Tab>', 'n')
 	endif
-	" if !empty(maparg(']]', 'n'))
-	" 	let s:mapForward_orig = maparg(']]', 'n')
-	" endif
 	if !empty(maparg(']', 'n'))
 		let s:mapForward_orig = maparg(']', 'n')
 	endif
-	" if !empty(maparg('[[', 'n'))
-	" 	let s:mapBackward_orig = maparg('[[', 'n')
-	" endif
 	if !empty(maparg('[', 'n'))
 		let s:mapBackward_orig = maparg('[', 'n')
 	endif
@@ -231,7 +225,7 @@ function <sid>JumpToCurrentError() "{{{1
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=textidote#Suggestions
-			nmap <buffer> <Tab> []ea<C-X><C-U>
+			nmap <buffer> <Tab> ][ea<C-X><C-U>
 			" Quick fix <Tab> should be one-shot
 			autocmd InsertLeave * ++once call textidote#unmapTab()
 		else
