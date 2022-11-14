@@ -351,7 +351,7 @@ function! textidote#QuickFix()
 			if get(get(s:errors,l:indCurrentError-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0) && get(get(s:errors,l:indCurrentError-1,0),'tox',0) < get(s:cursorPosOrigBuffer,2,0)
 				let l:test = 0
 			else
-				let l:text = 1
+				let l:test = 1
 			endif
 		endif
 	endif
