@@ -225,12 +225,11 @@ function <sid>JumpToCurrentError() "{{{1
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
 			setlocal completefunc=textidote#Suggestions
-			"  
-			nmap <buffer> <Tab> ]jk[ea<C-X><C-U>
 			" Quick fix <Tab> should be one-shot
-			autocmd InsertLeave * ++once call textidote#unmapTab()
+			" autocmd InsertLeave * ++once call textidote#unmapTab()
 		else
-			call textidote#unmapTab()
+			" call textidote#unmapTab()
+			let &completefunc = s:completefunc_orig
 		endif
 	else
 		call setpos('.', l:save_cursor)
@@ -266,9 +265,6 @@ function! textidote#MoveForwardOrigBuffer()
 		let l:i = 2
 	endif
 	let l:indNextError = l:i - 1
-	" echom 'Line and column of previous error: ' . get(get(s:errors,l:i-2,0),'fromy',0) . ', ' . get(get(s:errors,l:i-2,0),'fromx',0)
-	" echom 'Cursor position: ' . string(get(s:cursorPosOrigBuffer,1,0)) . ', ' . string(get(s:cursorPosOrigBuffer,2,0))
-	" echom 'Error last character: ' . string(get(get(s:errors,l:i-1,0),'toy',0)) . ', ' . string(get(get(s:errors,l:i-1,0),'tox',0))
 	drop [TeXtidote]
 	call search('^Error:\s\+' . string(l:indNextError) . '/')
 	normal! zt
@@ -627,6 +623,8 @@ function textidote#Display(data,code)
 	" Set move forward and backward mapping in original buffer
 	nmap <buffer><nowait> ] :call textidote#MoveForwardOrigBuffer()<CR>
 	nmap <buffer><nowait> [ :call textidote#MoveBackwardOrigBuffer()<CR>
+	"  
+	nmap <buffer> <Tab> ]jk[ea<C-X><C-U>
 	
 	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
