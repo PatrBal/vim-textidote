@@ -585,9 +585,7 @@ function textidote#Display(data,code)
 		execute 'normal! z' . s:textidote_win_height . "\<CR>"
 		0
 		nnoremap <buffer><silent> <CR> :call <sid>JumpToCurrentError()<CR>
-		" nnoremap <buffer><silent> ]] :call textidote#MoveForwardScratchBuffer()<CR>
 		nmap <buffer><silent><nowait> ] :call textidote#MoveForwardScratchBuffer()<CR>
-		" nnoremap <buffer><silent> [[ :call textidote#MoveBackwardScratchBuffer()<CR>
 		nmap <buffer><silent><nowait> [ :call textidote#MoveBackwardScratchBuffer()<CR>
 
 		file [TeXtidote]
@@ -624,7 +622,7 @@ function textidote#Display(data,code)
 	nmap <buffer><nowait> ] :call textidote#MoveForwardOrigBuffer()<CR>
 	nmap <buffer><nowait> [ :call textidote#MoveBackwardOrigBuffer()<CR>
 	"  
-	nmap <buffer> <Tab> ]jk[ea<C-X><C-U>
+	nmap <buffer> <Tab> ]lh[ea<C-X><C-U>
 	
 	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
