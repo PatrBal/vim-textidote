@@ -34,10 +34,10 @@ markup.
  - Asynchronous spell, grammar and style checking of either the entire buffer
    or part of it, with highlight of all the errors and warnings.
  - A scratch buffer shows up, listing all the errors. Navigate the errors with 
-   `[` and `]`, both in the scratch buffer and the original buffer. Press <CR> 
-   on an error in the scratch buffer to jump to that error. Hit <Tab> to fix
-   it. The <Tab> shortcut opens a pop-up menu that you can navigate either
-   with <C-N> (next) and <C-P> (previous), or <Down> and <Up>. Confirm a
+   `[` and `]`, both in the scratch buffer and the original buffer. Press <CR> on
+   an error in the scratch buffer to jump to that error. Hit <Tab> to fix it.
+   The <Tab> shortcut opens a pop-up menu that you can navigate either with
+   <C-N> (next) and <C-P> (previous), or <Down> and <Up>. Confirm a
    suggestion with <C-Y> (yes) or discard all suggestions with <C-E> (exit).
    The shortcut <Tab> is one-shot and should not interfere with any other use
    of <Tab>. All the original mappings of `[`, `]` and <Tab> are restored when
