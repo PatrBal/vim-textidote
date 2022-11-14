@@ -355,6 +355,7 @@ function! textidote#QuickFix()
 			endif
 		endif
 	endif
+	echom 'indCurrentError: ' . l:indCurrentError
 	if l:test == 1
 		" The cursor is on error l:indCurrentError
 		drop [TeXtidote]
@@ -364,7 +365,7 @@ function! textidote#QuickFix()
 		let @" = "\<C-X>\<C-U>"
 	else
 		" The cursor is not on an error
-		let @" = "\<Esc>:call setpos('.', s:cursorPosOrigBuffer)<CR>"
+		let @" = "\<Esc>:call setpos('.', s:cursorPosOrigBuffer)\<CR>"
 	endif
 endfunction
 
