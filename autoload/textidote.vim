@@ -665,7 +665,7 @@ function textidote#Display(data,code)
 	" fix <Tab>
 	nmap <buffer><nowait> ] :call textidote#MoveForwardOrigBuffer()<CR>
 	nmap <buffer><nowait> [ :call textidote#MoveBackwardOrigBuffer()<CR>
-	nmap <buffer><nowait> ¶ :silent call textidote#QuickFix()<CR>
+	nmap <buffer><silent><nowait> ¶ : call textidote#QuickFix()<CR>
 	nmap <buffer> <Tab> ¶ea<C-R>"
 	
 	drop [TeXtidote]
