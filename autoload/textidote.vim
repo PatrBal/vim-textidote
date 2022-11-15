@@ -395,7 +395,7 @@ function! textidote#Suggestions(findstart, base)
 	endif
 endfunction
 
-" This function is reponsible for calling TeXtidote.
+" This function is reponsible for calling TeXtidote asynchronously
 function textidote#Check(line1, line2) "{{{1
 	if s:TeXtidoteSetUp() < 0
 		return -1
@@ -688,7 +688,7 @@ function textidote#Display(data,code)
 	return 0
 endfunction
 
-" This function open the optional htmpl report in the default browser 
+" This function open the optional html report in the default browser 
 function textidote#Browser(code)
 	if a:code == 255
 		echoerr 'Command [' . s:textidote_cmd_html . '] failed with error: '
