@@ -211,7 +211,7 @@ function <sid>JumpToCurrentError()
 		" if l:col > 0
 		" 	execute 'normal! ' . (l:col  - 1) . 'l'
 		" endif
-		call cursor(l:line,l:col-1)
+		call cursor(l:line,l:col)
 		
 		echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
