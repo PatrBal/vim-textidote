@@ -396,7 +396,7 @@ function! textidote#Suggestions(findstart, base)
 endfunction
 
 " This function is reponsible for calling TeXtidote asynchronously
-function textidote#Check(line1, line2) "{{{1
+function textidote#Check(line1, line2) 
 	if s:TeXtidoteSetUp() < 0
 		return -1
 	endif
@@ -726,7 +726,7 @@ endfunction
 
 " This function clears syntax highlighting created by TeXtidote plugin
 " and removes the scratch window containing grammar errors.
-function textidote#Clear() "{{{1
+function textidote#Clear() 
 	if exists('s:textidote_error_buffer')
 		if bufexists(s:textidote_error_buffer)
 			silent! execute 'bdelete! ' . s:textidote_error_buffer
@@ -775,7 +775,7 @@ function textidote#Clear() "{{{1
 	let g:textidote_indicator = 0
 endfunction
 
-function textidote#Toggle(line1, line2) "{{{1
+function textidote#Toggle(line1, line2) 
 	if g:textidote_indicator
 		call textidote#Clear()
 	else
