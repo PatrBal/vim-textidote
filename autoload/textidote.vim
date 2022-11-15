@@ -207,10 +207,11 @@ function <sid>JumpToCurrentError()
 		else
 			execute s:textidote_text_winid . ' wincmd w'
 		endif
-		execute 'normal! ' . l:line . 'G0'
-		if l:col > 0
-			execute 'normal! ' . (l:col  - 1) . 'l'
-		endif
+		" execute 'normal! ' . l:line . 'G0'
+		" if l:col > 0
+		" 	execute 'normal! ' . (l:col  - 1) . 'l'
+		" endif
+		call cursor(l:line,l:col-1)
 		
 		echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
