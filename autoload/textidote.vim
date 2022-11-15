@@ -4,7 +4,7 @@
 
 
 " Guess language from 'a:lang' (either 'spelllang' or 'v:lang')
-function s:FindLanguage(lang) "{{{1
+function s:FindLanguage(lang) 
 	" This replaces things like en-gb with en_UK as expected by TeXtidote,
 	" only for languages that support variants in TeXtidote.
 	let l:language = substitute(substitute(a:lang,
