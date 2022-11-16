@@ -631,7 +631,11 @@ function textidote#Check(line1, line2)
 
 	call textidote#Clear()
 
-	echon 'Calling TeXtidote...'
+	if s:textidote_checker =~# 'textidote'
+		echon 'Calling TeXtidote...'
+	else
+		echon 'Calling LanguageTool...'
+	endif
 
 	" Using window ID is more reliable than window number.
 	let s:textidote_text_winid = win_getid()
