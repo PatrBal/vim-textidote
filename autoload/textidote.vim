@@ -415,13 +415,13 @@ function! textidote#MoveBackwardOrigBuffer()
 		normal! zt
 		call <sid>JumpToCurrentError()
 	else
-		let l:error = s:errors[l:indNextError - 1]
+		let l:error = s:errors[l:indPrevError - 1]
 		let l:line = l:error['fromy']
 		let l:col  = l:error['fromx']
 		let l:rule = l:error['ruleId']
 		call cursor(l:line,l:col)
 		
-		echon 'Jump to error ' . l:indNextError . '/' . len(s:errors)
+		echon 'Jump to error ' . l:indPrevError . '/' . len(s:errors)
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
 
 		" Open the folds to reveal the cursor line and display that line in
