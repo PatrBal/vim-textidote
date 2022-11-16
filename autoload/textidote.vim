@@ -31,7 +31,61 @@ function s:FindLanguage(lang,checker)
 		\  'pt'    : 1,
 		\}
 	else
-
+		" This replaces things like en_gb en-GB as expected by LanguageTool,
+		" only for languages that support variants in LanguageTool.
+		let l:language = substitute(substitute(a:lang,
+		\  '\(\a\{2,3}\)\(_\a\a\)\?.*',
+		\  '\=tolower(submatch(1)) . toupper(submatch(2))', ''),
+		\  '_', '-', '')
+		
+		" All supported languages (with variants) by LanguageTool.
+		let l:supportedLanguages =  {
+		\  'ar'    : 1,
+		\  'ast'   : 1,
+		\  'be'    : 1,
+		\  'br'    : 1,
+		\  'ca'    : 1,
+		\  'cs'    : 1,
+		\  'da'    : 1,
+		\  'de'    : 1,
+		\  'de-AT' : 1,
+		\  'de-CH' : 1,
+		\  'de-DE' : 1,
+		\  'el'    : 1,
+		\  'en'    : 1,
+		\  'en-AU' : 1,
+		\  'en-CA' : 1,
+		\  'en-GB' : 1,
+		\  'en-NZ' : 1,
+		\  'en-US' : 1,
+		\  'en-ZA' : 1,
+		\  'eo'    : 1,
+		\  'es'    : 1,
+		\  'fa'    : 1,
+		\  'fr'    : 1,
+		\  'ga'    : 1,
+		\  'gl'    : 1,
+		\  'it'    : 1,
+		\  'ja'    : 1,
+		\  'km'    : 1,
+		\  'lt'    : 1,
+		\  'nl'    : 1,
+		\  'pl'    : 1,
+		\  'pt'    : 1,
+		\  'pt-AO' : 1,
+		\  'pt-BR' : 1,
+		\  'pt-MZ' : 1,
+		\  'pt-PT' : 1,
+		\  'ro'    : 1,
+		\  'ru'    : 1,
+		\  'sk'    : 1,
+		\  'sl'    : 1,
+		\  'sv'    : 1,
+		\  'ta'    : 1,
+		\  'tl'    : 1,
+		\  'uk'    : 1,
+		\  'zh'    : 1
+		\}
 	endif
 
 	if has_key(l:supportedLanguages, l:language)
@@ -138,20 +192,20 @@ function s:TeXtidoteSetUp() "{{{1
 	
 	" Setting up language...
 	if exists('g:textidote_lang')
-		let s:textidote_lang = g:textidote_lang
+		let s:textidote_lang = s:FindLanguage(g:textidote_lang,s:textidote_checker)
 	else
 		" Trying to guess language from 'spelllang' or 'v:lang'.
-		let s:textidote_lang = s:FindLanguage(&spelllang)
+		let s:textidote_lang = s:FindLanguage(&spelllang,s:textidote_checker)
 		if s:textidote_lang ==# ''
-			let s:textidote_lang = s:FindLanguage(v:lang)
-			if s:textidote_lang ==# ''
-				echoerr 'Failed to guess language from spelllang=['
-				\ . &spelllang . '] or from v:lang=[' . v:lang . ']. '
-				\ . 'Defauling to US English (en). '
-				\ . 'See ":help TeXtidote" regarding setting g:textidote_lang.'
-				let s:textidote_lang = 'en'
-			endif
+			let s:textidote_lang = s:FindLanguage(v:lang,s:textidote_checkero)
 		endif
+	endif
+	if s:textidote_lang ==# ''
+		echoerr 'Failed to guess language from spelllang=['
+		\ . &spelllang . '] or from v:lang=[' . v:lang . ']. '
+		\ . 'Defauling to US English (en). '
+		\ . 'See ":help TeXtidote" regarding setting g:textidote_lang.'
+		let s:textidote_lang = 'en'
 	endif
 	
 	if !exists('g:textidote_first_language')
