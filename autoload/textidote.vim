@@ -831,7 +831,11 @@ function textidote#Display(data,code)
 		call add(s:errors, l:error)
 	endwhile
 
-	file [TeXtidote]
+	if s:textidote_checker =~# 'textidote'
+		file [TeXtidote]
+	else
+		file [LanguageTool]
+	endif
 	setlocal scrolloff=1
 
 	if s:textidote_win_height >= 0
