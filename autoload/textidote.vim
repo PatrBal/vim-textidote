@@ -282,11 +282,31 @@ function <sid>DiscardCurrentError()
 			let l:i += 1
 		endfor
 		execute 'normal! z' . s:textidote_win_height . "\<CR>"
+
+			" Also highlight errors in original buffer and populate location list.
+		setlocal errorformat=%f:%l:%c:%m
+		for l:error in s:errors
+			let l:re = s:TeXtidoteHighlightRegex(l:error['fromy'],
+			\                                       l:error['context'],
+			\                                       l:error['contextoffset'],
+			\                                       l:error['errorlength'])
+			if l:error['ruleId'] =~# 'HUNSPELL_RULE\|HUNSPELL_NO_SUGGEST_RULE\|MORFOLOGIK_RULE_\|_SPELLING_RULE\|_SPELLER_RULE'
+				call matchadd('TeXtidoteSpellingError', l:re)
+			else
+				call matchadd('TeXtidoteGrammarError', l:re)
+			endif
+			laddexpr expand('%') . ':'
+			\ . l:error['fromy'] . ':'  . l:error['fromx'] . ':'
+			\ . l:error['ruleId'] . ' ' . l:error['msg']
+		endfor
+		redraw
+
+		drop [TeXtidote]
+		echon 'Error ' . l:error_idx . ' discarded.'
 		if search('^Error:\s\+') > 0
 			call search('^Error:\s\+' . l:error_idx . '/')
 			normal! zt
 		endif
-		echon 'Error ' . l:error_idx . ' discarded.'
 	endif
 endfunction
 
