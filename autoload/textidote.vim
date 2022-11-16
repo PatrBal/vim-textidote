@@ -760,6 +760,7 @@ function textidote#Display(data,code)
 	if s:textidote_win_height >= 0
 		" Reformat the output (XML is not human friendly) and
 		" set up syntax highlighting in the buffer which shows all errors.
+		drop [TeXtidote]
 		%d
 		call append(0, '# ' . s:textidote_cmd_txt_name)
 		set buftype=nofile
