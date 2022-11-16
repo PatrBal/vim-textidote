@@ -402,8 +402,7 @@ function textidote#Check(line1, line2)
 	endif
 
 	" Store full path of current file
-	let s:current_file = expand('%:p')
-
+	let s:current_file = fnameescape(expand('%:p'))
 
 	call textidote#Clear()
 
