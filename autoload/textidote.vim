@@ -295,7 +295,6 @@ function <sid>DiscardCurrentError()
 		call win_gotoid(s:textidote_text_winid)
 		call setmatches(filter(getmatches(), 'v:val["group"] !~# "TeXtidote.*Error"'))
 
-		setlocal errorformat=%f:%l:%c:%m
 		for l:error in s:errors
 			let l:re = s:TeXtidoteHighlightRegex(l:error['fromy'],
 			\                                       l:error['context'],
@@ -306,9 +305,6 @@ function <sid>DiscardCurrentError()
 			else
 				call matchadd('TeXtidoteGrammarError', l:re)
 			endif
-			laddexpr expand('%') . ':'
-			\ . l:error['fromy'] . ':'  . l:error['fromx'] . ':'
-			\ . l:error['ruleId'] . ' ' . l:error['msg']
 		endfor
 		redraw
 
