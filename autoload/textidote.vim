@@ -194,9 +194,9 @@ function s:TeXtidoteSetUp() "{{{1
 endfunction
 
 "
-function
+" function
 
-endfunction
+" endfunction
 
 " Jump to a grammar mistake (called when pressing <Enter>
 " on a particular error in scratch buffer).
