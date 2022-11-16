@@ -248,6 +248,7 @@ function <sid>DiscardCurrentError()
 		else
 			let s:errors = []
 		endif
+		echom 'New number of errors: ' . len(s:errors)
 		" syn clear
 		" call matchadd('TeXtidoteCmd',        '\%1l.*')
 		" call matchadd('TeXtidoteErrorCount', '^Error:\s\+\d\+/\d\+')
