@@ -798,7 +798,8 @@ function textidote#Display(data,code)
 	endfor
 
 	redraw
-	" Set move forward and backward mapping in original buffer and also quickfix <Tab>
+
+	" Set the mappings in original buffer
 	nmap <buffer><silent><nowait> ] :call textidote#MoveForwardOrigBuffer()<CR>
 	nmap <buffer><silent><nowait> [ :call textidote#MoveBackwardOrigBuffer()<CR>
 	nmap <buffer><silent><nowait> ¶ :call textidote#QuickFix()<CR>
