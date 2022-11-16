@@ -417,7 +417,7 @@ function textidote#Check(line1, line2)
 	let s:tmp_error    = tempname()
 
 	let l:range = a:line1 . ',' . a:line2
-	silent execute l:range . 'w!' . s:tmp_filename
+	silent execute l:range . 'write! "' . s:tmp_filename . '"'
 	let s:line1 = a:line1
 	let s:line2 = a:line2
 
