@@ -96,8 +96,8 @@ function s:TeXtidoteSetUp() "{{{1
 	let s:textidote_win_height = exists('g:textidote_win_height')
 	\ ? g:textidote_win_height
 	\ : 14
-	let s:textidote_checker = (exists('g:textidote_checker') && g:textidote_checker =~? 'languagetool')
-	\ ? "languagetool'
+	let s:textidote_checker = exists('g:textidote_checker') && g:textidote_checker =~? 'languagetool'
+	\ ? 'languagetool'
 	\ : 'textidote'
 	let s:textidote_encoding = &fileencoding ? &fileencoding : &encoding
 	
