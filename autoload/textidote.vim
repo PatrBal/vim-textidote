@@ -4,31 +4,35 @@
 
 
 " Guess language from 'a:lang' (either 'spelllang' or 'v:lang')
-function s:FindLanguage(lang) 
-	" This replaces things like en-gb with en_UK as expected by TeXtidote,
-	" only for languages that support variants in TeXtidote.
-	let l:language = substitute(substitute(a:lang,
-	\  '\(\a\{2,3}\)\(_\a\a\)\?.*',
-	\  '\=tolower(submatch(1)) . toupper(submatch(2))', ''),
-	\  '-', '_', '')
-	if l:language ==? 'en_GB'
-		let l:language = 'en_UK'
+function s:FindLanguage(lang,checker) 
+	if a:checker =~# 'textidote'
+		" This replaces things like en-gb with en_UK as expected by TeXtidote,
+		" only for languages that support variants in TeXtidote.
+		let l:language = substitute(substitute(a:lang,
+		\  '\(\a\{2,3}\)\(_\a\a\)\?.*',
+		\  '\=tolower(submatch(1)) . toupper(submatch(2))', ''),
+		\  '-', '_', '')
+		if l:language ==? 'en_GB'
+			let l:language = 'en_UK'
+		endif
+		
+		" All supported languages (with variants) by TeXtidote.
+		let l:supportedLanguages =  {
+		\  'de'    : 1,
+		\  'de_AT' : 1,
+		\  'de_CH' : 1,
+		\  'en'    : 1,
+		\  'en_CA' : 1,
+		\  'en_UK' : 1,
+		\  'es'    : 1,
+		\  'fr'    : 1,
+		\  'nl'    : 1,
+		\  'pl'    : 1,
+		\  'pt'    : 1,
+		\}
+	else
+
 	endif
-	
-	" All supported languages (with variants) by TeXtidote.
-	let l:supportedLanguages =  {
-	\  'de'    : 1,
-	\  'de_AT' : 1,
-	\  'de_CH' : 1,
-	\  'en'    : 1,
-	\  'en_CA' : 1,
-	\  'en_UK' : 1,
-	\  'es'    : 1,
-	\  'fr'    : 1,
-	\  'nl'    : 1,
-	\  'pl'    : 1,
-	\  'pt'    : 1,
-	\}
 
 	if has_key(l:supportedLanguages, l:language)
 		return l:language
