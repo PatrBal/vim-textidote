@@ -591,7 +591,11 @@ function! textidote#DiscardError()
 	if l:test >= 1
 		" The cursor is on error l:test
 		if s:textidote_win_height >= 0
-			drop [TeXtidote]
+			if s:textidote_checker =~# 'textidote'
+				drop [TeXtidote]
+			else
+				drop [LanguageTool]
+			endif
 			call search('^Error:\s\+' . string(l:test) . '/' , 'W')
 			call <sid>DiscardCurrentError()
 		else
