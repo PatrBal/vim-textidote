@@ -229,8 +229,12 @@ function <sid>JumpToCurrentError()
 	endif
 endfunction
 
-function! <sid>JumpToCurrentError()
-
+function <sid>DiscardCurrentError()
+	normal! $
+	if search('^Error:\s\+', 'beW') > 0
+		let l:error_idx = expand('<cword>')
+		echon 'Error ' . l:error_idx . 'discarded.'
+	endif
 endfunction
 
 " The following two functions enable navigation of errors in original buffer
