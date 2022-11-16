@@ -284,7 +284,6 @@ function <sid>DiscardCurrentError()
 			call append('$', '')
 			let l:i += 1
 		endfor
-		" execute 'normal! z' . s:textidote_win_height . "\<CR>"
 
 		" Also highlight errors in original buffer and populate location list.
 		call win_gotoid(s:textidote_text_winid)
