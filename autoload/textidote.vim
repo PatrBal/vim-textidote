@@ -386,6 +386,17 @@ function! textidote#MoveBackwardOrigBuffer()
 	call <sid>JumpToCurrentError()
 endfunction
 
+" The following two functions enable navigation of errors in scratch buffer
+function! textidote#MoveForwardScratchBuffer()
+	call search('^Error:\s\+')
+	normal! zt
+endfunction
+
+function! textidote#MoveBackwardScratchBuffer()
+	call search('^Error:\s\+', 'b')
+	normal! zt
+endfunction
+
 " This function decides if the <Tab> shortcut will open the pop-up menu or do nothing...
 " It checks whether the cursor is inside an error of the original buffer or not.
 function! textidote#QuickFix()
@@ -456,17 +467,6 @@ function! textidote#QuickFix()
 		" The cursor is not on an error or it is on an error that has no replacement
 		let @" = "\<Esc>"
 	endif
-endfunction
-
-" The following two functions enable navigation of errors in scratch buffer
-function! textidote#MoveForwardScratchBuffer()
-	call search('^Error:\s\+')
-	normal! zt
-endfunction
-
-function! textidote#MoveBackwardScratchBuffer()
-	call search('^Error:\s\+', 'b')
-	normal! zt
 endfunction
 
 " This function provides the completion with the suggestion list for the
