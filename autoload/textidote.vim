@@ -241,6 +241,7 @@ function <sid>DiscardCurrentError()
 			else
 				if l:error_idx == l:error_nbr_orig
 					let s:errors = s:errors[0:l:error_nbr_orig - 2]
+					let l:error_idx = l:error_idx - 1
 				else
 					let s:errors = s:errors[0:l:error_idx - 2] + s:errors[l:error_idx:l:error_nbr_orig - 1]
 				endif
@@ -248,6 +249,11 @@ function <sid>DiscardCurrentError()
 		else
 			let s:errors = []
 		endif
+		%d
+		call append(0, '# ' . s:textidote_cmd_txt_name)
+		set buftype=nofile
+		setlocal nospell
+
 		echom 'New number of errors: ' . len(s:errors)
 		syn clear
 		call matchadd('TeXtidoteCmd',        '\%1l.*')
@@ -277,7 +283,11 @@ function <sid>DiscardCurrentError()
 			call append('$', '')
 			let l:i += 1
 		endfor
-		redraw
+		execute 'normal! z' . s:textidote_win_height . "\<CR>"
+		if search('^Error:\s\+') > 0
+			call search('^Error:\s\+' . l:error_idx . '/')
+			normal! zt
+		endif
 	endif
 endfunction
 
