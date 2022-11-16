@@ -237,12 +237,12 @@ function <sid>DiscardCurrentError()
 		echon 'Error ' . l:error_idx . 'discarded.'
 		if l:error_nbr_orig > 1
 			if l:error_idx == 1
-				let s:errors = s:errors:[1:l:error_nbr_orig - 1]
+				let s:errors = s:errors[1:l:error_nbr_orig - 1]
 			else
 				if l:error_idx == l:error_nbr_orig
-					let s:errors = s:errors:[0:l:error_nbr_orig - 2]
+					let s:errors = s:errors[0:l:error_nbr_orig - 2]
 				else
-					let s:errors = s:errors:[0:l:error_idx - 2] + s:errors:[l:error_idx:l:error_nbr_orig - 1]
+					let s:errors = s:errors[0:l:error_idx - 2] + s:errors[l:error_idx:l:error_nbr_orig - 1]
 				endif
 			endif
 		else
