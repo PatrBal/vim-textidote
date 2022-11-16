@@ -196,6 +196,7 @@ endfunction
 "
 function! textidote#formatScratchBuffer()
 	drop [TeXtidote]
+	call setmatches(filter(getmatches(), 'v:val["group"] !~# "TeXtidote.*Error"'))
 	%d
 	call append(0, '# ' . s:textidote_cmd_txt_name)
 	set buftype=nofile
