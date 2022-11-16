@@ -559,9 +559,13 @@ function! textidote#DiscardError()
 	let l:test = textidote#FindErrorIndex(s:cursorPosOrigBuffer)
 	if l:test >= 1
 		" The cursor is on error l:test
-		drop [TeXtidote]
-		call search('^Error:\s\+' . string(l:test) . '/' , 'W')
-		call <sid>DiscardCurrentError()
+		if s:textidote_win_height >= 0
+			drop [TeXtidote]
+			call search('^Error:\s\+' . string(l:test) . '/' , 'W')
+			call <sid>DiscardCurrentError()
+		else
+
+		endif
 	endif
 	execute 'drop' s:current_file
 	call setpos('.', s:cursorPosOrigBuffer)
