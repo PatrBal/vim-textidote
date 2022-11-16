@@ -234,6 +234,9 @@ function! textidote#formatScratchBuffer()
 		if !empty(l:error['replacements'])
 			call append('$', 'Correction: ' . l:error['replacements'])
 		endif
+		if !empty(l:error['url'])
+			call append('$', 'URL:        ' . l:error['url'])
+		endif
 		call append('$', '')
 		let l:i += 1
 	endfor
