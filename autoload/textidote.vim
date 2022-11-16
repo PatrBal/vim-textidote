@@ -821,7 +821,7 @@ function textidote#Display(data,code)
 		let l:error= {}
 		for l:k in [ 'fromy', 'fromx', 'toy', 'tox',
 		\           'msg', 'replacements', 'ruleId',
-		\            'context', 'contextoffset', 'errorlength' ]
+		\            'context', 'contextoffset', 'errorlength', 'url' ]
 			let l:error[l:k] = s:ParseKeyValue(l:k, l:l)
 		endfor
 
