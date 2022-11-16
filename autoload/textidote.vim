@@ -922,6 +922,11 @@ function textidote#Clear()
 	else
 		silent!nunmap <buffer> <CR>
 	endif
+	if exists('s:mapBSp_orig')
+		execute 'nnoremap <BS>' . s:mapBSp_orig
+	else
+		silent!nunmap <buffer> <BS>
+	endif
 
 	let g:textidote_indicator = 0
 endfunction
