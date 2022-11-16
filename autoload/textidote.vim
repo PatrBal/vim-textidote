@@ -765,9 +765,11 @@ function textidote#Display(data,code)
 	nmap <buffer><silent> <CR> ¶
 	nmap <buffer><silent> <Tab> ¶a<C-R>"
 	nmap <buffer><silent> <BS> :call textidote#DiscardError()<CR>
-	
-	drop [TeXtidote]
-	echom 'Press <BS> on error to discard it, <CR> to jump its location, and then <Tab> to fix it.'
+
+	if s:textidote_win_height >= 0
+		drop [TeXtidote]
+		echom 'Press <BS> on error to discard it, <CR> to jump its location, and then <Tab> to fix it.'
+	endif
 
 	call delete(s:tmp_filename)
 	call delete(s:tmp_output)
