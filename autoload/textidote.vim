@@ -403,7 +403,6 @@ function textidote#Check(line1, line2)
 
 	" Store full path of current file
 	let s:current_file = expand('%:p')
-	" let s:current_file = fnameescape(expand('%:p'))
 
 	call textidote#Clear()
 
@@ -418,7 +417,7 @@ function textidote#Check(line1, line2)
 	let s:tmp_error    = tempname()
 
 	let l:range = a:line1 . ',' . a:line2
-	silent execute l:range . 'write! "' . s:tmp_filename . '"'
+	silent execute l:range . 'write!' . s:tmp_filename
 	let s:line1 = a:line1
 	let s:line2 = a:line2
 
