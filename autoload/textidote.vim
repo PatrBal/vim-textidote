@@ -127,6 +127,7 @@ function s:TeXtidoteSetUp() "{{{1
 		let s:textidote_ignore_macros_option = ' --remove-macros ' . s:textidote_ignore_macros
 	endif
 	" Html report only possible when the checker is TeXtidote
+	let g:textidote_html_report = g:textidote_html_report == 0 ? 0 : 1 
 	if g:textidote_html_report == 1 && s:textidote_checker =~# 'languagetool'
 		let g:textidote_html_report = 0
 	endif
