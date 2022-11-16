@@ -248,7 +248,7 @@ function <sid>DiscardCurrentError()
 		else
 			let s:errors = []
 		endif
-		%d
+		silent %d
 		call append(0, '# ' . s:textidote_cmd_txt_name)
 		set buftype=nofile
 		setlocal nospell
