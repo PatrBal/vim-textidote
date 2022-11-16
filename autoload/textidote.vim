@@ -282,7 +282,6 @@ function <sid>DiscardCurrentError()
 			let l:i += 1
 		endfor
 		" execute 'normal! z' . s:textidote_win_height . "\<CR>"
-		execute normal! gg
 
 			" Also highlight errors in original buffer and populate location list.
 		setlocal errorformat=%f:%l:%c:%m
