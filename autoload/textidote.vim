@@ -203,7 +203,11 @@ endfunction
 
 " This function generates the content of the Scratch buffer and highlight it
 function! textidote#formatScratchBuffer()
-	drop [TeXtidote]
+	if s:textidote_checker =~# 'textidote'
+		drop [TeXtidote]
+	else
+		drop [LanguageTool]
+	endif
 	call setmatches(filter(getmatches(), 'v:val["group"] !~# "TeXtidote.*Error"'))
 	%d
 	call append(0, '# ' . s:textidote_cmd_txt_name)
