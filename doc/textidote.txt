@@ -173,6 +173,13 @@ of the TeXtidote plugin.
 Fine tuning of the above options turns out to be very effective in filtering
 only the meaningful errors and warnings from TeXtidote.
 
+A typical efficient workflow with `vim-TeXtidote` is to get a `reasonable'
+number of errors (say, less than 100), either by fine tuning the above options
+or by visual selecting an appropriate range of text before invoking TeXtidote.
+Then, the errors can be quickly browsed to discard the non-relevant ones (for
+example, the proper nouns) and to narrow the errors to a small amount (say,
+less than 20) and, then, fix them.
+
 You can also customize the following syntax highlighting groups:
 
   `TeXtidoteCmd`
