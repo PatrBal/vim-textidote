@@ -402,23 +402,22 @@ function! textidote#MoveBackwardScratchBuffer()
 	normal! zt
 endfunction
 
-" This function decides if the <Tab> shortcut will open the pop-up menu or do nothing...
-" It checks whether the cursor is inside an error of the original buffer or not.
-function! textidote#QuickFix()
-	let s:cursorPosOrigBuffer = getpos('.')
+" This function returns 0 if the cursor in the original buffer is not on an
+" errer, and the index of that error otherwise
+function! textidote#FindErrorIndex(cursorPos)
 	let l:test = 0
 	let l:i = 1
 	while l:test == 0
 		if l:i <= len(s:errors)
-			if get(get(s:errors,l:i-1,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0)
+			if get(get(s:errors,l:i-1,0),'toy',0) < get(a:cursorPos,1,0)
 				let l:test = 0
 			else
-				if get(get(s:errors,l:i-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0)
-							\ && get(get(s:errors,l:i-1,0),'tox',0) < get(s:cursorPosOrigBuffer,2,0)
+				if get(get(s:errors,l:i-1,0),'toy',0) == get(a:cursorPos,1,0)
+							\ && get(get(s:errors,l:i-1,0),'tox',0) < get(a:cursorPos,2,0)
 					let l:test = 0
 				else
-					if get(get(s:errors,l:i-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0)
-								\ && get(get(s:errors,l:i-1,0),'fromx',0) <= get(s:cursorPosOrigBuffer,2,0)
+					if get(get(s:errors,l:i-1,0),'toy',0) == get(a:cursorPos,1,0)
+								\ && get(get(s:errors,l:i-1,0),'fromx',0) <= get(a:cursorPos,2,0)
 						let l:test = 0
 					else
 						let l:test = 1
@@ -439,29 +438,88 @@ function! textidote#QuickFix()
 		let l:indCurrentError = len(s:errors)
 	endif
 	let l:test = 0
-	if get(get(s:errors,l:indCurrentError-1,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0)
-				\ || get(get(s:errors,l:indCurrentError-1,0),'fromy',0) > get(s:cursorPosOrigBuffer,1,0)
+	if get(get(s:errors,l:indCurrentError-1,0),'toy',0) < get(a:cursorPos,1,0)
+				\ || get(get(s:errors,l:indCurrentError-1,0),'fromy',0) > get(a:cursorPos,1,0)
 		let l:test = 0
 	else
-		if get(get(s:errors,l:indCurrentError-1,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0)
-					\ && get(get(s:errors,l:indCurrentError-1,0),'fromx',0) > get(s:cursorPosOrigBuffer,2,0)
+		if get(get(s:errors,l:indCurrentError-1,0),'fromy',0) == get(a:cursorPos,1,0)
+					\ && get(get(s:errors,l:indCurrentError-1,0),'fromx',0) > get(a:cursorPos,2,0)
 			let l:test = 0
 		else
-			if get(get(s:errors,l:indCurrentError-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0)
-						\ && get(get(s:errors,l:indCurrentError-1,0),'tox',0) < get(s:cursorPosOrigBuffer,2,0)
+			if get(get(s:errors,l:indCurrentError-1,0),'toy',0) == get(a:cursorPos,1,0)
+						\ && get(get(s:errors,l:indCurrentError-1,0),'tox',0) < get(a:cursorPos,2,0)
 				let l:test = 0
 			else
 				let l:test = 1
 			endif
 		endif
 	endif
-	if l:test == 1
-		" The cursor is on error l:indCurrentError
+    if l:test == 1
+		let l:test = l:indCurrentError
+	endif
+	return l:test
+endfunction
+
+" This function decides if the <Tab> shortcut will open the pop-up menu or do nothing...
+" It checks whether the cursor is inside an error of the original buffer or not.
+function! textidote#QuickFix()
+	let s:cursorPosOrigBuffer = getpos('.')
+	" let l:test = 0
+	" let l:i = 1
+	" while l:test == 0
+	" 	if l:i <= len(s:errors)
+	" 		if get(get(s:errors,l:i-1,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0)
+	" 			let l:test = 0
+	" 		else
+	" 			if get(get(s:errors,l:i-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0)
+	" 						\ && get(get(s:errors,l:i-1,0),'tox',0) < get(s:cursorPosOrigBuffer,2,0)
+	" 				let l:test = 0
+	" 			else
+	" 				if get(get(s:errors,l:i-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0)
+	" 							\ && get(get(s:errors,l:i-1,0),'fromx',0) <= get(s:cursorPosOrigBuffer,2,0)
+	" 					let l:test = 0
+	" 				else
+	" 					let l:test = 1
+	" 				endif
+	" 			endif
+	" 		endif
+	" 	else
+	" 		let l:test = 1
+	" 	endif
+	" 	let l:i += 1
+	" endwhile
+	" let l:indNextError = l:i - 1
+	" let l:indCurrentError = l:indNextError - 1
+	" if l:indNextError > len(s:errors)
+	" 	let l:indNextError = 1
+	" endif
+	" if l:indCurrentError < 1
+	" 	let l:indCurrentError = len(s:errors)
+	" endif
+	" let l:test = 0
+	" if get(get(s:errors,l:indCurrentError-1,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0)
+	" 			\ || get(get(s:errors,l:indCurrentError-1,0),'fromy',0) > get(s:cursorPosOrigBuffer,1,0)
+	" 	let l:test = 0
+	" else
+	" 	if get(get(s:errors,l:indCurrentError-1,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0)
+	" 				\ && get(get(s:errors,l:indCurrentError-1,0),'fromx',0) > get(s:cursorPosOrigBuffer,2,0)
+	" 		let l:test = 0
+	" 	else
+	" 		if get(get(s:errors,l:indCurrentError-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0)
+	" 					\ && get(get(s:errors,l:indCurrentError-1,0),'tox',0) < get(s:cursorPosOrigBuffer,2,0)
+	" 			let l:test = 0
+	" 		else
+	" 			let l:test = 1
+	" 		endif
+	" 	endif
+	" endif
+	if l:test >= 1
+		" The cursor is on error l:test
 		drop [TeXtidote]
-		call search('^Error:\s\+' . string(l:indCurrentError) . '/')
+		call search('^Error:\s\+' . string(l:test) . '/')
 		normal! zt
 		call <sid>JumpToCurrentError()
-		if !empty(get(get(s:errors,l:indCurrentError-1,0),'replacements',0))
+		if !empty(get(get(s:errors,l:test-1,0),'replacements',0))
 			" The error has replacements indeed
 			let @" = "\<Esc>ea\<C-X>\<C-U>"
 		else
