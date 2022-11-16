@@ -564,7 +564,21 @@ function! textidote#DiscardError()
 			call search('^Error:\s\+' . string(l:test) . '/' , 'W')
 			call <sid>DiscardCurrentError()
 		else
-
+			let l:error_nbr_orig = len(s:errors)
+			if l:error_nbr_orig > 1
+				if l:test == 1
+					let s:errors = s:errors[1:l:error_nbr_orig - 1]
+				else
+					if l:test == l:error_nbr_orig
+						let s:errors = s:errors[0:l:error_nbr_orig - 2]
+						let l:test = l:test - 1
+					else
+						let s:errors = s:errors[0:l:test - 2] + s:errors[l:test:l:error_nbr_orig - 1]
+					endif
+				endif
+			else
+				let s:errors = []
+			endif
 		endif
 	endif
 	execute 'drop' s:current_file
