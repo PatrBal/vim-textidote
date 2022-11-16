@@ -254,7 +254,6 @@ function <sid>DiscardCurrentError()
 		set buftype=nofile
 		setlocal nospell
 
-		echom 'New number of errors: ' . len(s:errors)
 		syn clear
 		call matchadd('TeXtidoteCmd',        '\%1l.*')
 		call matchadd('TeXtidoteErrorCount', '^Error:\s\+\d\+/\d\+')
