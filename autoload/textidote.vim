@@ -290,39 +290,6 @@ function <sid>DiscardCurrentError()
 		endif
 
 		call textidote#formatScratchBuffer()
-		" silent %d
-		" call append(0, '# ' . s:textidote_cmd_txt_name)
-		" set buftype=nofile
-		" setlocal nospell
-
-		" syn clear
-		" call matchadd('TeXtidoteCmd',        '\%1l.*')
-		" call matchadd('TeXtidoteErrorCount', '^Error:\s\+\d\+/\d\+')
-		" call matchadd('TeXtidoteLabel',      '^\(Context\|Message\|Correction\):')
-
-		" let l:i = 1
-		" for l:error in s:errors
-		" 	call append('$', 'Error:      '
-		" 	\ . l:i . '/' . len(s:errors)
-		" 	\ . ' '  . l:error['ruleId']
-		" 	\ . ' @ ' . l:error['fromy'] . 'L ' . l:error['fromx'] . 'C')
-		" 	call append('$', 'Message:    '     . l:error['msg'])
-		" 	call append('$', 'Context:    ' . l:error['context'])
-		" 	let l:re =
-		" 	\   '\%'  . line('$') . 'l\%9c'
-		" 	\ . '.\{' . (4 + l:error['contextoffset']) . '}\zs'
-		" 	\ . '.\{' .     (l:error['errorlength']) . '}'
-		" 	if l:error['ruleId'] =~# 'HUNSPELL_RULE\|HUNSPELL_NO_SUGGEST_RULE\|MORFOLOGIK_RULE_\|_SPELLING_RULE\|_SPELLER_RULE'
-		" 		call matchadd('TeXtidoteSpellingError', l:re)
-		" 	else
-		" 		call matchadd('TeXtidoteGrammarError', l:re)
-		" 	endif
-		" 	if !empty(l:error['replacements'])
-		" 		call append('$', 'Correction: ' . l:error['replacements'])
-		" 	endif
-		" 	call append('$', '')
-		" 	let l:i += 1
-		" endfor
 
 		" Also highlight errors in original buffer and populate location list.
 		call win_gotoid(s:textidote_text_winid)
@@ -795,39 +762,6 @@ function textidote#Display(data,code)
 		" Reformat the output (XML is not human friendly) and
 		" set up syntax highlighting in the buffer which shows all errors.
 		call textidote#formatScratchBuffer()
-		" drop [TeXtidote]
-		" %d
-		" call append(0, '# ' . s:textidote_cmd_txt_name)
-		" set buftype=nofile
-		" setlocal nospell
-		" syn clear
-		" call matchadd('TeXtidoteCmd',        '\%1l.*')
-		" call matchadd('TeXtidoteErrorCount', '^Error:\s\+\d\+/\d\+')
-		" call matchadd('TeXtidoteLabel',      '^\(Context\|Message\|Correction\):')
-
-		" let l:i = 1
-		" for l:error in s:errors
-		" 	call append('$', 'Error:      '
-		" 	\ . l:i . '/' . len(s:errors)
-		" 	\ . ' '  . l:error['ruleId']
-		" 	\ . ' @ ' . l:error['fromy'] . 'L ' . l:error['fromx'] . 'C')
-		" 	call append('$', 'Message:    '     . l:error['msg'])
-		" 	call append('$', 'Context:    ' . l:error['context'])
-		" 	let l:re =
-		" 	\   '\%'  . line('$') . 'l\%9c'
-		" 	\ . '.\{' . (4 + l:error['contextoffset']) . '}\zs'
-		" 	\ . '.\{' .     (l:error['errorlength']) . '}'
-		" 	if l:error['ruleId'] =~# 'HUNSPELL_RULE\|HUNSPELL_NO_SUGGEST_RULE\|MORFOLOGIK_RULE_\|_SPELLING_RULE\|_SPELLER_RULE'
-		" 		call matchadd('TeXtidoteSpellingError', l:re)
-		" 	else
-		" 		call matchadd('TeXtidoteGrammarError', l:re)
-		" 	endif
-		" 	if !empty(l:error['replacements'])
-		" 		call append('$', 'Correction: ' . l:error['replacements'])
-		" 	endif
-		" 	call append('$', '')
-		" 	let l:i += 1
-		" endfor
 		execute 'normal! z' . s:textidote_win_height . "\<CR>"
 		call search('^Error:\s\+')
 		redraw
