@@ -531,6 +531,7 @@ function! textidote#DiscardError()
 		call search('^Error:\s\+' . string(l:indCurrentError) . '/' , 'W')
 		call <sid>DiscardCurrentError()
 	endif
+	execute 'drop' s:current_file
 	call setpos('.', s:cursorPosOrigBuffer)
 endfunction
 
