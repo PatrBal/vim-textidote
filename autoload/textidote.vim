@@ -528,7 +528,7 @@ function! textidote#DiscardError()
 	if l:test == 1
 		" The cursor is on error l:indCurrentError
 		drop [TeXtidote]
-		call search('^Error:\s\+' . string(l:indCurrentError) . '/')
+		call search('^Error:\s\+' . string(l:indCurrentError) . '/' , 'W')
 		call <sid>DiscardCurrentError()
 	endif
 	call setpos('.', s:cursorPosOrigBuffer)
@@ -828,7 +828,7 @@ function textidote#Display(data,code)
 	nmap <buffer><silent><nowait> ¶ :call textidote#QuickFix()<CR>
 	nmap <buffer><silent> <CR> ¶
 	nmap <buffer><silent> <Tab> ¶a<C-R>"
-	nmap <buffer><nowait> <BS> :call textidote#DiscardError()<CR>
+	nmap <buffer><silent> <BS> :call textidote#DiscardError()<CR>
 	
 	drop [TeXtidote]
 	echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
