@@ -871,6 +871,8 @@ function textidote#Display(data,code)
 	if s:textidote_win_height >= 0
 		drop [TeXtidote]
 		echom 'Press <BS> on error to discard it, <CR> to jump its location, and then <Tab> to fix it.'
+	else
+		echon 'Navigate errors with ] and [. Press <Tab> on error to fix it and <BS> to discard it.'
 	endif
 
 	call delete(s:tmp_filename)
