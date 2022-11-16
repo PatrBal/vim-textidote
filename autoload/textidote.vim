@@ -229,6 +229,10 @@ function <sid>JumpToCurrentError()
 	endif
 endfunction
 
+function! <sid>JumpToCurrentError()
+
+endfunction
+
 " The following two functions enable navigation of errors in original buffer
 function! textidote#MoveForwardOrigBuffer()
 	let s:cursorPosOrigBuffer = getpos('.')
@@ -639,6 +643,7 @@ function textidote#Display(data,code)
 		0
 		" Setting the shortcuts in the TeXtidote buffer (scratch) 
 		nnoremap <buffer><silent> <CR> :call <sid>JumpToCurrentError()<CR>
+		nnoremap <buffer><silent> <BS> :call <sid>DiscardCurrentError()<CR>
 		nnoremap <buffer><silent><nowait> ] :call textidote#MoveForwardScratchBuffer()<CR>
 		nnoremap <buffer><silent><nowait> [ :call textidote#MoveBackwardScratchBuffer()<CR>
 
