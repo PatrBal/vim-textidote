@@ -193,7 +193,7 @@ function s:TeXtidoteSetUp() "{{{1
 	return 0
 endfunction
 
-"
+" This function generates the content of the Scratch buffer and highlight it
 function! textidote#formatScratchBuffer()
 	drop [TeXtidote]
 	call setmatches(filter(getmatches(), 'v:val["group"] !~# "TeXtidote.*Error"'))
