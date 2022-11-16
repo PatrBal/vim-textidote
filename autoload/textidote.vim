@@ -890,7 +890,11 @@ function textidote#Display(data,code)
 	nmap <buffer><silent> <BS> :call textidote#DiscardError()<CR>
 
 	if s:textidote_win_height >= 0
-		drop [TeXtidote]
+		if s:textidote_checker =~# 'textidote'
+			drop [TeXtidote]
+		else
+			drop [LanguageTool]
+		endif
 		echom 'Press <BS> on error to discard it, <CR> to jump its location, and then <Tab> to fix it.'
 	else
 		echon 'Navigate errors with ] and [. Press <Tab> on error to fix it and <BS> to discard it.'
