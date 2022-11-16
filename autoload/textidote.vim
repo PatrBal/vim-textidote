@@ -515,10 +515,30 @@ function! textidote#QuickFix()
 	let l:test = textidote#FindErrorIndex(s:cursorPosOrigBuffer)
 	if l:test >= 1
 		" The cursor is on error l:test
-		drop [TeXtidote]
-		call search('^Error:\s\+' . string(l:test) . '/')
-		normal! zt
-		call <sid>JumpToCurrentError()
+		if s:textidote_win_height >= 0
+			drop [TeXtidote]
+			call search('^Error:\s\+' . string(l:test) . '/')
+			normal! zt
+			call <sid>JumpToCurrentError()
+		else
+			let l:error = s:errors[l:test - 1]
+			let l:line = l:error['fromy']
+			let l:col  = l:error['fromx']
+			call cursor(l:line,l:col)
+			
+			" Open the folds to reveal the cursor line and display that line in
+			" the middle of the window
+			normal! zv
+			normal! zz
+
+			" Populate the suggestion list
+			if !empty(l:error['replacements'])
+				let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
+				let s:suggestions_list = split(l:suggestions,', ')
+				let s:col = l:col - 1
+				setlocal completefunc=textidote#Suggestions
+			endif
+		endif
 		if !empty(get(get(s:errors,l:test-1,0),'replacements',0))
 			" The error has replacements indeed
 			let @" = "\<Esc>ea\<C-X>\<C-U>"
