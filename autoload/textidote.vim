@@ -234,7 +234,6 @@ function <sid>DiscardCurrentError()
 	if search('^Error:\s\+', 'beW') > 0
 		let l:error_idx = expand('<cword>')
 		let l:error_nbr_orig = len(s:errors)
-		echon 'Error ' . l:error_idx . ' discarded.'
 		if l:error_nbr_orig > 1
 			if l:error_idx == 1
 				let s:errors = s:errors[1:l:error_nbr_orig - 1]
@@ -287,6 +286,7 @@ function <sid>DiscardCurrentError()
 			call search('^Error:\s\+' . l:error_idx . '/')
 			normal! zt
 		endif
+		echon 'Error ' . l:error_idx . ' discarded.'
 	endif
 endfunction
 
