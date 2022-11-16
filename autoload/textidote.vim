@@ -193,6 +193,11 @@ function s:TeXtidoteSetUp() "{{{1
 	return 0
 endfunction
 
+"
+function
+
+endfunction
+
 " Jump to a grammar mistake (called when pressing <Enter>
 " on a particular error in scratch buffer).
 function <sid>JumpToCurrentError()
