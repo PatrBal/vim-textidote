@@ -469,6 +469,68 @@ function! textidote#QuickFix()
 	endif
 endfunction
 
+" This function discard the current error in the original buffer if the cursor
+" is on an error and do nothing otherwise
+function! textidote#DiscardError()
+	let s:cursorPosOrigBuffer = getpos('.')
+	let l:test = 0
+	let l:i = 1
+	while l:test == 0
+		if l:i <= len(s:errors)
+			if get(get(s:errors,l:i-1,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0)
+				let l:test = 0
+			else
+				if get(get(s:errors,l:i-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0)
+							\ && get(get(s:errors,l:i-1,0),'tox',0) < get(s:cursorPosOrigBuffer,2,0)
+					let l:test = 0
+				else
+					if get(get(s:errors,l:i-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0)
+								\ && get(get(s:errors,l:i-1,0),'fromx',0) <= get(s:cursorPosOrigBuffer,2,0)
+						let l:test = 0
+					else
+						let l:test = 1
+					endif
+				endif
+			endif
+		else
+			let l:test = 1
+		endif
+		let l:i += 1
+	endwhile
+	let l:indNextError = l:i - 1
+	let l:indCurrentError = l:indNextError - 1
+	if l:indNextError > len(s:errors)
+		let l:indNextError = 1
+	endif
+	if l:indCurrentError < 1
+		let l:indCurrentError = len(s:errors)
+	endif
+	let l:test = 0
+	if get(get(s:errors,l:indCurrentError-1,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0)
+				\ || get(get(s:errors,l:indCurrentError-1,0),'fromy',0) > get(s:cursorPosOrigBuffer,1,0)
+		let l:test = 0
+	else
+		if get(get(s:errors,l:indCurrentError-1,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0)
+					\ && get(get(s:errors,l:indCurrentError-1,0),'fromx',0) > get(s:cursorPosOrigBuffer,2,0)
+			let l:test = 0
+		else
+			if get(get(s:errors,l:indCurrentError-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0)
+						\ && get(get(s:errors,l:indCurrentError-1,0),'tox',0) < get(s:cursorPosOrigBuffer,2,0)
+				let l:test = 0
+			else
+				let l:test = 1
+			endif
+		endif
+	endif
+	if l:test == 1
+		" The cursor is on error l:indCurrentError
+		drop [TeXtidote]
+		call search('^Error:\s\+' . string(l:indCurrentError) . '/')
+		call <sid>DiscardCurrentError()
+	endif
+	call setpos('.', s:cursorPosOrigBuffer)
+endfunction
+
 " This function provides the completion with the suggestion list for the
 " current error
 function! textidote#Suggestions(findstart, base)
