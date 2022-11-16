@@ -731,7 +731,6 @@ function textidote#Display(data,code)
 		nnoremap <buffer><silent><nowait> ] :call textidote#MoveForwardScratchBuffer()<CR>
 		nnoremap <buffer><silent><nowait> [ :call textidote#MoveBackwardScratchBuffer()<CR>
 
-		" echom 'Press <BS> on error to discard it, <CR> to jump its location, and then <Tab> to fix it.'
 		execute 'drop ' . s:current_file
 	else
 		" Negative s:textidote_win_height -> no scratch window.
