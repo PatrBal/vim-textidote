@@ -403,6 +403,8 @@ function textidote#Check(line1, line2)
 
 	" Store full path of current file
 	let s:current_file = expand('%:p')
+	let s:current_file = '"' . s:current_file .'"'
+
 
 	call textidote#Clear()
 
