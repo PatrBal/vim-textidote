@@ -513,6 +513,7 @@ function! textidote#QuickFix()
 	" 		endif
 	" 	endif
 	" endif
+	let l:test = textidote#FindErrorIndex(s:cursorPosOrigBuffer)
 	if l:test >= 1
 		" The cursor is on error l:test
 		drop [TeXtidote]
