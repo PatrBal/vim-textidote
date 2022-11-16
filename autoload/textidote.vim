@@ -126,6 +126,10 @@ function s:TeXtidoteSetUp() "{{{1
 	else
 		let s:textidote_ignore_macros_option = ' --remove-macros ' . s:textidote_ignore_macros
 	endif
+	" Html report only possible when the checker is TeXtidote
+	if g:textidote_html_report == 1 && s:textidote_checker =~# 'languagetool'
+		let g:textidote_html_report = 0
+	endif
 	
 	" Setting up language...
 	if exists('g:textidote_lang')
