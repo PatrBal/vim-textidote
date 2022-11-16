@@ -325,7 +325,11 @@ function <sid>DiscardCurrentError()
 		redraw
 
 		echon 'Error ' . l:error_idx . ' discarded.'
-		drop [TeXtidote]
+		if s:textidote_checker =~# 'textidote'
+			drop [TeXtidote]
+		else
+			drop [LanguageTool]
+		endif
 		if search('^Error:\s\+') > 0
 			call search('^Error:\s\+' . l:error_idx . '/')
 			normal! zt
