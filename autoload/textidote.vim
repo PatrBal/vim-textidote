@@ -754,6 +754,9 @@ function textidote#Display(data,code)
 		call add(s:errors, l:error)
 	endwhile
 
+	file [TeXtidote]
+	setlocal scrolloff=1
+
 	if s:textidote_win_height >= 0
 		" Reformat the output (XML is not human friendly) and
 		" set up syntax highlighting in the buffer which shows all errors.
@@ -790,6 +793,8 @@ function textidote#Display(data,code)
 			let l:i += 1
 		endfor
 		execute 'normal! z' . s:textidote_win_height . "\<CR>"
+		call search('^Error:\s\+')
+		redraw
 
 		" Setting the shortcuts in the TeXtidote buffer (scratch) 
 		nnoremap <buffer><silent> <CR> :call <sid>JumpToCurrentError()<CR>
@@ -797,10 +802,6 @@ function textidote#Display(data,code)
 		nnoremap <buffer><silent><nowait> ] :call textidote#MoveForwardScratchBuffer()<CR>
 		nnoremap <buffer><silent><nowait> [ :call textidote#MoveBackwardScratchBuffer()<CR>
 
-		file [TeXtidote]
-		setlocal scrolloff=1
-		call search('^Error:\s\+')
-		redraw
 		echom 'Press <Enter> on error in [TeXtidote] buffer to jump its location'
 		execute 'drop ' . s:current_file
 	else
