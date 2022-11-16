@@ -349,10 +349,34 @@ function! textidote#MoveForwardOrigBuffer()
 	if l:indNextError > len(s:errors)
 		let l:indNextError = 1
 	endif
-	drop [TeXtidote]
-	call search('^Error:\s\+' . string(l:indNextError) . '/')
-	normal! zt
-	call <sid>JumpToCurrentError()
+	if s:textidote_win_height >= 0
+		drop [TeXtidote]
+		call search('^Error:\s\+' . string(l:indNextError) . '/')
+		normal! zt
+		call <sid>JumpToCurrentError()
+	else
+		let l:error = s:errors[l:indNextError - 1]
+		let l:line = l:error['fromy']
+		let l:col  = l:error['fromx']
+		let l:rule = l:error['ruleId']
+		call cursor(l:line,l:col)
+		
+		echon 'Jump to error ' . l:indNextError . '/' . len(s:errors)
+		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
+
+		" Open the folds to reveal the cursor line and display that line in
+		" the middle of the window
+		normal! zv
+		normal! zz
+
+		" Populate the suggestion list
+		if !empty(l:error['replacements'])
+			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
+			let s:suggestions_list = split(l:suggestions,', ')
+			let s:col = l:col - 1
+			setlocal completefunc=textidote#Suggestions
+		endif
+	endif
 endfunction
 
 function! textidote#MoveBackwardOrigBuffer()
