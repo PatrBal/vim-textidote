@@ -735,25 +735,37 @@ function textidote#Check(line1, line2)
 	let s:line1 = a:line1
 	let s:line2 = a:line2
 
-	" Check if 'begin{document}' is in file, and otherwise set '--read-all' option
-	if match(readfile(s:tmp_filename) , 'begin{document}')!=-1
-		let l:option = ' --no-color --check '
-	else
-		let l:option = ' --no-color --read-all --check '
-	endif 
-
 	let l:textidote_cmd = exists('g:textidote_cmd')
 	\ ? g:textidote_cmd
 	\ : 'java -jar ' . s:textidote_jar
 
-	let l:textidote_cmd_txt = l:textidote_cmd . l:option .
-			\ s:textidote_lang . s:textidote_first_language_option .
-			\ ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option .
-			\ s:textidote_ignore_rules_option . s:textidote_ignore_environments_option .
-			\ s:textidote_ignore_macros_option . s:textidote_replacements_option
-	let s:textidote_cmd_txt_name = l:textidote_cmd_txt  . ' --output plain ' . s:current_file 
-	let s:textidote_cmd_txt_complete = l:textidote_cmd_txt  . ' --output plain ' .
-			\ s:tmp_filename . ' > ' . s:tmp_output . ' 2> ' . s:tmp_error
+	if textidote_checker =~# 'textidote'
+		" Check if 'begin{document}' is in file, and otherwise set '--read-all' option
+		if match(readfile(s:tmp_filename) , 'begin{document}')!=-1
+			let l:option = ' --no-color --check '
+		else
+			let l:option = ' --no-color --read-all --check '
+		endif 
+
+		let l:textidote_cmd_txt = l:textidote_cmd . l:option .
+				\ s:textidote_lang . s:textidote_first_language_option .
+				\ ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option .
+				\ s:textidote_ignore_rules_option . s:textidote_ignore_environments_option .
+				\ s:textidote_ignore_macros_option . s:textidote_replacements_option
+		let s:textidote_cmd_txt_name = l:textidote_cmd_txt  . ' --output plain ' . s:current_file 
+		let s:textidote_cmd_txt_complete = l:textidote_cmd_txt  . ' --output plain ' .
+				\ s:tmp_filename . ' > ' . s:tmp_output . ' 2> ' . s:tmp_error
+	else
+		let l:textidote_cmd_txt = l:textidote_cmd
+				\ . ' -c '    . s:textidote_encoding
+				\ . (empty(s:languagetool_disable_rules) ? '' : ' -d '.s:languagetool_disable_rules)
+				\ . (empty(s:languagetool_enable_rules) ?  '' : ' -e '.s:languagetool_enable_rules)
+				\ . (empty(s:languagetool_disable_categories) ? '' : ' --disablecategories '.s:languagetool_disable_categories)
+				\ . (empty(s:languagetool_enable_categories) ?  '' : ' --enablecategories '.s:languagetool_enable_categories)
+				\ . ' -l '    . s:languagetool_lang
+				\ . ' --api ' . l:tmpfilename
+				\ . ' 2> '    . l:tmperror
+	endif
 
 	" Handle the optional additional html report.
 	if g:textidote_html_report == 1
