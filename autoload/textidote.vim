@@ -292,7 +292,7 @@ function <sid>DiscardCurrentError()
 
 		call textidote#formatScratchBuffer()
 
-		" Also highlight errors in original buffer and populate location list.
+		" Also highlight errors in original buffer
 		call win_gotoid(s:textidote_text_winid)
 		call setmatches(filter(getmatches(), 'v:val["group"] !~# "TeXtidote.*Error"'))
 
@@ -309,8 +309,8 @@ function <sid>DiscardCurrentError()
 		endfor
 		redraw
 
-		drop [TeXtidote]
 		echon 'Error ' . l:error_idx . ' discarded.'
+		drop [TeXtidote]
 		if search('^Error:\s\+') > 0
 			call search('^Error:\s\+' . l:error_idx . '/')
 			normal! zt
@@ -579,6 +579,23 @@ function! textidote#DiscardError()
 			else
 				let s:errors = []
 			endif
+
+			call setmatches(filter(getmatches(), 'v:val["group"] !~# "TeXtidote.*Error"'))
+
+			for l:error in s:errors
+				let l:re = s:TeXtidoteHighlightRegex(l:error['fromy'],
+				\                                       l:error['context'],
+				\                                       l:error['contextoffset'],
+				\                                       l:error['errorlength'])
+				if l:error['ruleId'] =~# 'HUNSPELL_RULE\|HUNSPELL_NO_SUGGEST_RULE\|MORFOLOGIK_RULE_\|_SPELLING_RULE\|_SPELLER_RULE'
+					call matchadd('TeXtidoteSpellingError', l:re)
+				else
+					call matchadd('TeXtidoteGrammarError', l:re)
+				endif
+			endfor
+			redraw
+
+			echon 'Error ' . l:test . ' discarded.'
 		endif
 	endif
 	execute 'drop' s:current_file
