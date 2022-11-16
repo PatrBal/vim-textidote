@@ -790,7 +790,7 @@ function textidote#Display(data,code)
 			let l:i += 1
 		endfor
 		execute 'normal! z' . s:textidote_win_height . "\<CR>"
-		0
+
 		" Setting the shortcuts in the TeXtidote buffer (scratch) 
 		nnoremap <buffer><silent> <CR> :call <sid>JumpToCurrentError()<CR>
 		nnoremap <buffer><silent> <BS> :call <sid>DiscardCurrentError()<CR>
