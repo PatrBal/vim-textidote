@@ -215,6 +215,7 @@ of the TeXtidote plugin.
   or give frequent positive. Those rules can be enabled by setting the
   g:languagetool_enable_rules variable. 
   Example: `:let g:languagetool_enable_rules=PASSIVE_VOICE`
+  Default value: empty
 
 *g:languagetool_disable_categories*
   This variable specifies checker rule-categories which are disabled.
