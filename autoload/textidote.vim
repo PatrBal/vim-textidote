@@ -5,7 +5,7 @@
 
 " Guess language from 'a:lang' (either 'spelllang' or 'v:lang')
 function s:FindLanguage(lang,checker) 
-	if a:checker =~# 'textidote'
+	if a:checker =~? 'textidote'
 		" This replaces things like en-gb with en_UK as expected by TeXtidote,
 		" only for languages that support variants in TeXtidote.
 		let l:language = substitute(substitute(a:lang,
@@ -214,7 +214,7 @@ function s:TeXtidoteSetUp() "{{{1
 		endif
 	endif
 	if s:textidote_lang ==# ''
-		if s:textidote_checker =~# 'textidote'
+		if s:textidote_checker =~? 'textidote'
 			echoerr 'Failed to guess language from spelllang=['
 			\ . &spelllang . '] or from v:lang=[' . v:lang . ']. '
 			\ . 'Defauling to US English (en). '
@@ -282,7 +282,7 @@ endfunction
 
 " This function generates the content of the Scratch buffer and highlight it
 function! textidote#formatScratchBuffer()
-	if s:textidote_checker =~# 'textidote'
+	if s:textidote_checker =~? 'textidote'
 		drop [TeXtidote]
 	else
 		drop [LanguageTool]
@@ -405,7 +405,7 @@ function <sid>DiscardCurrentError()
 		redraw
 
 		echon 'Error ' . l:error_idx . ' discarded.'
-		if s:textidote_checker =~# 'textidote'
+		if s:textidote_checker =~? 'textidote'
 			drop [TeXtidote]
 		else
 			drop [LanguageTool]
@@ -449,7 +449,7 @@ function! textidote#MoveForwardOrigBuffer()
 		let l:indNextError = 1
 	endif
 	if s:textidote_win_height >= 0
-		if s:textidote_checker =~# 'textidote'
+		if s:textidote_checker =~? 'textidote'
 			drop [TeXtidote]
 		else
 			drop [LanguageTool]
@@ -513,7 +513,7 @@ function! textidote#MoveBackwardOrigBuffer()
 		let l:indPrevError = len(s:errors)
 	endif
 	if s:textidote_win_height >= 0
-		if s:textidote_checker =~# 'textidote'
+		if s:textidote_checker =~? 'textidote'
 			drop [TeXtidote]
 		else
 			drop [LanguageTool]
@@ -623,7 +623,7 @@ function! textidote#QuickFix()
 	if l:test >= 1
 		" The cursor is on error l:test
 		if s:textidote_win_height >= 0
-			if s:textidote_checker =~# 'textidote'
+			if s:textidote_checker =~? 'textidote'
 				drop [TeXtidote]
 			else
 				drop [LanguageTool]
@@ -671,7 +671,7 @@ function! textidote#DiscardError()
 	if l:test >= 1
 		" The cursor is on error l:test
 		if s:textidote_win_height >= 0
-			if s:textidote_checker =~# 'textidote'
+			if s:textidote_checker =~? 'textidote'
 				drop [TeXtidote]
 			else
 				drop [LanguageTool]
@@ -738,7 +738,7 @@ function textidote#Check(line1, line2)
 
 	call textidote#Clear()
 
-	if s:textidote_checker =~# 'textidote'
+	if s:textidote_checker =~? 'textidote'
 		echon 'Calling TeXtidote...'
 	else
 		echon 'Calling LanguageTool...'
@@ -1017,7 +1017,7 @@ function textidote#Display(data,code)
 	nmap <buffer><silent> <BS> :call textidote#DiscardError()<CR>
 
 	if s:textidote_win_height >= 0
-		if s:textidote_checker =~# 'textidote'
+		if s:textidote_checker =~? 'textidote'
 			drop [TeXtidote]
 		else
 			drop [LanguageTool]
