@@ -944,9 +944,9 @@ function textidote#Display(data,code)
 			let l:error['fromy'] += s:line1 - 1
 			let l:error['toy']   += s:line1 - 1
 		else
-			let l:error['fromy'] += a:line1
+			let l:error['fromy'] += s:line1
 			let l:error['fromx'] += 1
-			let l:error['toy']   += a:line1
+			let l:error['toy']   += s:line1
 			let l:error['tox']   += 1
 		endif
 
