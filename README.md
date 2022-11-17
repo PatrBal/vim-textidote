@@ -43,7 +43,7 @@ By default `[range]` is the whole buffer, except in the case where there is a vi
 
 A very good alternative is to use the [LTeX][LTeX] language server with `coc.nvim`. It is also based on LanguageTool and is aware of LaTeX or Markdown markup. It provides grammar checking *as you type*, but does not currently offer suggestions or quick fixes with `coc.nvim`. `LTeX` can be both an alternative to `vim-textidote` or an addition.
 
-Another alternative is the plugin [vim-grammarous][vim-grammarous]. This plugin is based on LanguageTool only, so that it is unaware of LaTeX/Markdown markup. Otherwise, its features are somewhat similar to those of `vim-textidote`.
+Another alternative is the plugin [vim-grammarous][vim-grammarous]. This plugin is based on LanguageTool only, so that it is unaware of the LaTeX/Markdown markup. Otherwise, its features are somewhat similar to those of `vim-textidote`.
 
 
 ## License
