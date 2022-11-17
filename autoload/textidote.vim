@@ -739,6 +739,7 @@ function textidote#Check(line1, line2)
 	\ ? g:textidote_cmd
 	\ : 'java -jar ' . s:textidote_jar
 
+	" Build of the full command to be run
 	if textidote_checker =~# 'textidote'
 		" Check if 'begin{document}' is in file, and otherwise set '--read-all' option
 		if match(readfile(s:tmp_filename) , 'begin{document}')!=-1
@@ -752,8 +753,8 @@ function textidote#Check(line1, line2)
 				\ ' --encoding ' . s:textidote_encoding . s:textidote_dictionary_option .
 				\ s:textidote_ignore_rules_option . s:textidote_ignore_environments_option .
 				\ s:textidote_ignore_macros_option . s:textidote_replacements_option
-		let s:textidote_cmd_txt_name = l:textidote_cmd_txt  . ' --output plain ' . s:current_file 
-		let s:textidote_cmd_txt_complete = l:textidote_cmd_txt  . ' --output plain ' .
+		let s:textidote_cmd_txt_name = l:textidote_cmd_txt . ' --output plain ' . s:current_file 
+		let s:textidote_cmd_txt_complete = l:textidote_cmd_txt . ' --output plain ' .
 				\ s:tmp_filename . ' > ' . s:tmp_output . ' 2> ' . s:tmp_error
 	else
 		let l:textidote_cmd_txt = l:textidote_cmd
@@ -762,9 +763,12 @@ function textidote#Check(line1, line2)
 				\ . (empty(s:languagetool_enable_rules) ?  '' : ' -e '.s:languagetool_enable_rules)
 				\ . (empty(s:languagetool_disable_categories) ? '' : ' --disablecategories '.s:languagetool_disable_categories)
 				\ . (empty(s:languagetool_enable_categories) ?  '' : ' --enablecategories '.s:languagetool_enable_categories)
-				\ . ' -l '    . s:languagetool_lang
-				\ . ' --api ' . l:tmpfilename
-				\ . ' 2> '    . l:tmperror
+				\ . ' -l '    . s:textidote_lang
+		let s:textidote_cmd_txt_name = l:textidote_cmd_txt . ' --api ' . s:current_file
+		let s:textidote_cmd_txt_complete = l:textidote_cmd_txt:w
+				\ . ' --api ' . s:tmp_filename
+				\ . ' > ' . s:tmp_output
+				\ . ' 2> '    . s:tmp_error
 	endif
 
 	" Handle the optional additional html report.
