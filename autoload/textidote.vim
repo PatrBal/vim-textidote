@@ -753,7 +753,7 @@ function textidote#Check(line1, line2)
 	\ : 'java -jar ' . s:textidote_jar
 
 	" Build of the full command to be run
-	if textidote_checker =~# 'textidote'
+	if s:textidote_checker =~# 'textidote'
 		" Check if 'begin{document}' is in file, and otherwise set '--read-all' option
 		if match(readfile(s:tmp_filename) , 'begin{document}')!=-1
 			let l:option = ' --no-color --check '
