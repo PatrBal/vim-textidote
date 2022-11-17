@@ -224,7 +224,7 @@ of the TeXtidote plugin.
   This variable specifies checker rule-categories which are enabled.
   Default value: empty
 
-|Important remark:|
+|Important| |remark|
 
 Fine-tuning of the above options turns out to be very effective in filtering
 only the meaningful errors and warnings from TeXtidote.
