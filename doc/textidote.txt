@@ -148,11 +148,21 @@ of the TeXtidote plugin.
   Example: `:let g:textidote_first_language = 'fr'`
 
 *g:textidote_lang*
-  The language code to use for the TeXtidote checker. If undefined, the
-  plugin tries to guess the language of the Vim spelling checker
-  'spelllang' or v:lang. If neither work, the plugin defaults to
-  English US (en). The valid language codes are: `de`, `de_AT`, `de_CH`, 
+  The language code to use. If undefined, the plugin tries to guess the
+  language of the Vim spelling checker 'spelllang' or v:lang. If neither
+  work, the plugin defaults to English US (`en` with `TeXtidote` and `en-US`
+  with LanguageTool`). 
+  The valid language codes with `TeXtidote` are: `de`, `de_AT`, `de_CH`, 
   `en`, `en_CA`, `en_UK`, `es`, `fr` ,`nl`, `pt`, `pl`.
+  The valid language codes with `LanguageTool` are: `ar`, `ast`, `be`, `br`,
+  `ca`, `cs`, `da`, `de`, `de-AT`, `de-CH`, `de-DE`, `el`, `en`, `en-AU`,
+  `en-CA`, `en-GB`, `en-NZ`, `en-US`, `en-ZA`, `eo`, `es`, `fa`, `fr`, `ga`,
+  `gl`, `it`, `ja`, `km`, `nl`, `pl`, `pt`, `pt-BR`, `pt-MZ`, `pt-PT`, `ro`, 
+  `ru`, `sk`, `sl`, `sr`, `sr-BA`, `sr-HR`, `sr-ME`, `sr-SR`, `sv`, `ta`,
+  `tl`, `uk`, `zh`.
+  For `LanguageTool` only and languages with variants, it is necessary to
+  specify the variant in order for LanguageTool to signal spelling errors, 
+  otherwise only grammar mistakes are pointed out.
 
 *g:textidote_dictionary*
   If you have a list of words that you want TeXtidote to ignore when checking
@@ -194,6 +204,25 @@ of the TeXtidote plugin.
   Default value: empty
   Example: `:let g:textidote_replacements = '~/.vim/remplacements.txt'`
 
+*g:languagetool_disable_rules*
+  This variable specifies checker rules to disable. The set of disabled rule
+  must be comma separated.
+  Default value: WHITESPACE_RULE,EN_QUOTES
+
+*g:languagetool_enable_rules*
+  Some LanguageTool rules are disabled by default (rules that contain
+  default="off" in grammar.xml) because they might be stylistic, nitpicky
+  or give frequent positive. Those rules can be enabled by setting the
+  g:languagetool_enable_rules variable. 
+  Example: `:let g:languagetool_enable_rules=PASSIVE_VOICE`
+
+*g:languagetool_disable_categories*
+  This variable specifies checker rule-categories which are disabled.
+
+*g:languagetool_enable_categories*
+  This variable specifies checker rule-categories which are enabled.
+
+|Important remark:|
 
 Fine-tuning of the above options turns out to be very effective in filtering
 only the meaningful errors and warnings from TeXtidote.
