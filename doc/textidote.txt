@@ -148,9 +148,9 @@ of the TeXtidote plugin.
   The valid language codes with `TeXtidote` are: `de`, `de_AT`, `de_CH`, 
   `en`, `en_CA`, `en_UK`, `es`, `fr` ,`nl`, `pt`, `pl`.
   The valid language codes with `LanguageTool` are: `ar`, `ast`, `be`, `br`, `ca`, `cs`,
-  `da`, `de`, `de-AT`, `de-CH`, `de-DE`, `el`, `en`, `en-AU`, `en-CA`, `en-GB`, `en-NZ`, `en-US`, `en-ZA`,
-  `eo`, `es`, `fa`, `fr`, `ga`, `gl`, `it`, `ja`, `km`, `nl`, `pl`, `pt`, `pt-BR`, `pt-MZ`, `pt-PT`, `ro`,
-  `ru`, `sk`, `sl`, `sr`, `sr-BA`, `sr-HR`, `sr-ME`, `sr-SR`, `sv`, `ta`,`tl`, `uk`, `zh`.
+  `da`, `de`, `de-AT`, `de-CH`, `de-DE`, `el`, `en`, `en-AU`, `en-CA`, `en-GB`, `en-NZ`, `en-US`,
+  `en-ZA`, `eo`, `es`, `fa`, `fr`, `ga`, `gl`, `it`, `ja`, `km`, `nl`, `pl`, `pt`, `pt-BR`, `pt-MZ`, `pt-PT`,
+  `ro`, `ru`, `sk`, `sl`, `sr`, `sr-BA`, `sr-HR`, `sr-ME`, `sr-SR`, `sv`, `ta`,`tl`, `uk`, `zh`.
   For `LanguageTool` only and languages with variants, it is necessary to
   specify the variant in order for LanguageTool to signal spelling errors, 
   otherwise only grammar mistakes are pointed out.
