@@ -157,8 +157,8 @@ of the TeXtidote plugin.
 
 *g:textidote_first_language*
   Define your first language to enable the checking for false friends.
-  Must be either empty or one of the following: `de`, `de_AT`, `de_CH`, 
-  `en`, `en_CA`, `en_UK`, `es`, `fr` ,`nl`, `pt`, `pl`.
+  Must be either empty or one of the following: `de`, `de_AT`, `de_CH`, `en`, `en_CA`,
+  `en_UK`, `es`, `fr` ,`nl`, `pt`, `pl`.
   Default value: empty
   Example: `:let g:textidote_first_language = 'fr'`
 
