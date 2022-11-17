@@ -99,6 +99,12 @@ the path to the `textidote.jar` in the `.vimrc` should be provided as:
 with silicon and intel homebrew, respectively. In my experience, the homebrew
 `TeXtidote` is twice faster than the `textidote.jar` from the website.
 
+If you want to be able to invoke directly `LanguageTool` instead of `TeXtidote`,
+you must download the latest `languagetool-commandline.jar` from
+|https://languagetool.org/download|
+which also requires Java version 8 or later. Again, it is also available from
+`dpkg` on Debian systems and from `homebrew` on macOS.
+
 ==============================================================================
 5. Configuration                                               *TeXtidoteConfig*
 
@@ -111,12 +117,19 @@ Several global variables can be set in your |vimrc| to configure the behavior
 of the TeXtidote plugin.
 
 *g:textidote_jar*
-  Path to `textidote.jar`
+  Path to either `textidote.jar` or `languagetool-commandline.jar`
   Default value: `$HOME/.vim/textidote.jar`
+
+*g:textidote_checker*
+  Set it to `'languagetool'` or `'LanguageTool'` if you want to use
+  `LanguageTool` as the checker. Leave it unset or set it to `'textidote`' or
+  `'TeXtidote'` otherwise.
+  Default value: `'textidote'`
 
 *g:textidote_html_report*
   Set to `1` if you want to have a html TeXtidote report showing up in your
-  default browser, in addition to the scratch buffer in Vim.
+  default browser, in addition to the scratch buffer in Vim. This option is
+  only available when TeXtidote is the checker (it defaults to 0 otherwise).
   Default value: `0`
   Example: `:let g:textidote_html_report = 1`
 
