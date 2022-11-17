@@ -184,11 +184,6 @@ function s:TeXtidoteSetUp() "{{{1
 	else
 		let s:textidote_ignore_macros_option = ' --remove-macros ' . s:textidote_ignore_macros
 	endif
-	" Html report only possible when the checker is TeXtidote
-	let g:textidote_html_report = g:textidote_html_report == 0 ? 0 : 1 
-	if g:textidote_html_report == 1 && s:textidote_checker =~# 'languagetool'
-		let g:textidote_html_report = 0
-	endif
 	
 	let s:languagetool_disable_rules = exists('g:languagetool_disable_rules')
 		\ ? g:languagetool_disable_rules
@@ -231,6 +226,12 @@ function s:TeXtidoteSetUp() "{{{1
 			echomsg 'Please rename it as "textidote.jar" or "languagetool-commandline.jar"'
 			return -1
 		endif
+	endif
+
+	" Html report only possible when the checker is TeXtidote
+	let g:textidote_html_report = g:textidote_html_report == 0 ? 0 : 1 
+	if g:textidote_html_report == 1 && s:textidote_checker =~# 'languagetool'
+		let g:textidote_html_report = 0
 	endif
 
 	" Setting up language...
