@@ -123,9 +123,9 @@ of the TeXtidote plugin.
   the `.jar` files!
   Default value: `$HOME/.vim/textidote.jar`
   Examples:
-  `let g:textidote_jar =`
+  `:let g:textidote_jar =`
 	`\ '/opt/homebrew/var/homebrew/linked/textidote/libexec/textidote.jar'`
-  `let g:textidote_jar =`
+  `:let g:textidote_jar =`
 	`\ '/opt/homebrew/var/homebrew/linked/languagetool/libexec/languagetool-commandline.jar'`
 
 *g:textidote_html_report*
