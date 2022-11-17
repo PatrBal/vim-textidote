@@ -205,6 +205,8 @@ of the TeXtidote plugin.
 *g:languagetool_disable_rules*
   This variable specifies checker rules to disable. The set of disabled rule
   must be comma separated.
+  Example: `:let g:languagetool_disable_rules='WHITESPACE_RULE,EN_QUOTES,
+  			FRENCH_WHITESPACE,UPPERCASE_SENTENCE_START,APOS'`
   Default value: WHITESPACE_RULE,EN_QUOTES
 
 *g:languagetool_enable_rules*
@@ -216,9 +218,11 @@ of the TeXtidote plugin.
 
 *g:languagetool_disable_categories*
   This variable specifies checker rule-categories which are disabled.
+  Default value: empty
 
 *g:languagetool_enable_categories*
   This variable specifies checker rule-categories which are enabled.
+  Default value: empty
 
 |Important remark:|
 
