@@ -948,7 +948,7 @@ function textidote#Display(data,code)
 			let l:error[l:k] = s:ParseKeyValue(l:k, l:l)
 		endfor
 
-		if s:textidote_checker ==? 'textidote'
+		if s:textidote_checker =~? 'textidote'
 			let l:error['fromy'] += s:line1 - 1
 			let l:error['toy']   += s:line1 - 1
 		else
@@ -961,7 +961,7 @@ function textidote#Display(data,code)
 		call add(s:errors, l:error)
 	endwhile
 
-	if s:textidote_checker =~# 'textidote'
+	if s:textidote_checker =~? 'textidote'
 		file [TeXtidote]
 	else
 		file [LanguageTool]
