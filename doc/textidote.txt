@@ -122,6 +122,11 @@ of the TeXtidote plugin.
   checker you are using among TeXtidote or LanguageTool. So, do not rename the 
   `.jar` files!
   Default value: `$HOME/.vim/textidote.jar`
+  Examples:
+  `let g:textidote_jar =`
+	`\ '/opt/homebrew/var/homebrew/linked/textidote/libexec/textidote.jar'`
+  `let g:textidote_jar =`
+	`\ '/opt/homebrew/var/homebrew/linked/languagetool/libexec/languagetool-commandline.jar'`
 
 *g:textidote_html_report*
   Set to `1` if you want to have a html TeXtidote report showing up in your
