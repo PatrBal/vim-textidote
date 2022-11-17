@@ -224,7 +224,7 @@ function s:TeXtidoteSetUp() "{{{1
 	if !exists('g:textidote_first_language')
 		let g:textidote_first_language = ''
 	endif
-	let g:textidote_first_language = s:FindLanguage(g:textidote_first_language)
+	let g:textidote_first_language = s:FindLanguage(g:textidote_first_language,s:textidote_checker)
 	if g:textidote_first_language ==# ''
 		let s:textidote_first_language_option = ''
 	else
