@@ -119,7 +119,7 @@ of the TeXtidote plugin.
 *g:textidote_jar*
   Path to either `textidote.jar` or `languagetool-commandline.jar`. The name
   of the `.jar` file will also be used by `vim-textidote` to understand which
-  checker you are using among TeXtidote or LanguageTool. So, do not rename the 
+  checker you are using among TeXtidote and LanguageTool. So, do not rename the 
   `.jar` files!
   Default value: `$HOME/.vim/textidote.jar`
   Examples:
