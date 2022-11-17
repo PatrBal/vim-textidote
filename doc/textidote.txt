@@ -224,7 +224,7 @@ of the TeXtidote plugin.
   This variable specifies checker rule-categories which are enabled.
   Default value: empty
 
-|Important| |remark|
+|Important| |remarks|
 
 Fine-tuning of the above options turns out to be very effective in filtering
 only the meaningful errors and warnings from TeXtidote.
@@ -235,6 +235,10 @@ options or by visual selecting an appropriate range of text before invoking
 TeXtidote. Then, the errors can be quickly browsed to discard the non-relevant
 ones (for example, the proper nouns) and to narrow the errors to a small amount
 (say, less than 20) and, then, fix them.
+
+TeXtitode has real added-value for LaTeX and Markdown files. For other formats,
+such as `html` files, the good choice is probably to fall back to LanguageTool
+which is really faster than TeXtidote.
 
 You can also customize the following syntax highlighting groups:
 
