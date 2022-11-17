@@ -214,11 +214,19 @@ function s:TeXtidoteSetUp() "{{{1
 		endif
 	endif
 	if s:textidote_lang ==# ''
-		echoerr 'Failed to guess language from spelllang=['
-		\ . &spelllang . '] or from v:lang=[' . v:lang . ']. '
-		\ . 'Defauling to US English (en). '
-		\ . 'See ":help TeXtidote" regarding setting g:textidote_lang.'
-		let s:textidote_lang = 'en'
+		if s:textidote_checker =~# 'textidote'
+			echoerr 'Failed to guess language from spelllang=['
+			\ . &spelllang . '] or from v:lang=[' . v:lang . ']. '
+			\ . 'Defauling to US English (en). '
+			\ . 'See ":help TeXtidote" regarding setting g:textidote_lang.'
+			let s:textidote_lang = 'en'
+		else
+			echoerr 'Failed to guess language from spelllang=['
+			\ . &spelllang . '] or from v:lang=[' . v:lang . ']. '
+			\ . 'Defauling to US English (en-US). '
+			\ . 'See ":help TeXtidote" regarding setting g:textidote_lang.'
+			let s:textidote_lang = 'en-US'
+		endif
 	endif
 	
 	if !exists('g:textidote_first_language')
