@@ -1,6 +1,6 @@
 " Description: Grammar checker of LaTeX files with TeXtidote from Vim
 " Author:      Patrick Ballard <patrick.ballard.paris@gmail.com>
-" Last Change: 15/11/2022
+" Last Change: 17/11/2022
 
 
 " Guess language from 'a:lang' (either 'spelllang' or 'v:lang')
@@ -190,16 +190,16 @@ function s:TeXtidoteSetUp() "{{{1
 		let g:textidote_html_report = 0
 	endif
 	
-	let s:languagetool_disable_rules = exists("g:languagetool_disable_rules")
+	let s:languagetool_disable_rules = exists('g:languagetool_disable_rules')
 		\ ? g:languagetool_disable_rules
 		\ : 'WHITESPACE_RULE,EN_QUOTES'
-		let s:languagetool_enable_rules = exists("g:languagetool_enable_rules")
+		let s:languagetool_enable_rules = exists('g:languagetool_enable_rules')
 		\ ? g:languagetool_enable_rules
 		\ : ''
-		let s:languagetool_disable_categories = exists("g:languagetool_disable_categories")
+		let s:languagetool_disable_categories = exists('g:languagetool_disable_categories')
 		\ ? g:languagetool_disable_categories
 		\ : ''
-		let s:languagetool_enable_categories = exists("g:languagetool_enable_categories")
+		let s:languagetool_enable_categories = exists('g:languagetool_enable_categories')
 		\ ? g:languagetool_enable_categories
 		\ : ''
 
@@ -210,7 +210,7 @@ function s:TeXtidoteSetUp() "{{{1
 		" Trying to guess language from 'spelllang' or 'v:lang'.
 		let s:textidote_lang = s:FindLanguage(&spelllang,s:textidote_checker)
 		if s:textidote_lang ==# ''
-			let s:textidote_lang = s:FindLanguage(v:lang,s:textidote_checkero)
+			let s:textidote_lang = s:FindLanguage(v:lang,s:textidote_checker)
 		endif
 	endif
 	if s:textidote_lang ==# ''
