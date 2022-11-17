@@ -27,9 +27,9 @@ track of the relative position of words between the original and "clean text".
 In short, `TeXtidote` is a version of `LanguageTool` made blind to LaTeX and
 Markdown markup.
 
-This plugin also integrates `LanguageTool` into Vim and
-Neovim, which was already made available by other good plugins (e.g., 
-`vim-grammarous` or `vim-LanguageTool`)
+This plugin also integrates `LanguageTool` into Vim and Neovim, which was
+already made available by other good plugins (e.g., `vim-grammarous` or
+`vim-LanguageTool`)
 
 |https://github.com/sylvainhalle/textidote|
 |https://languagetool.org|
