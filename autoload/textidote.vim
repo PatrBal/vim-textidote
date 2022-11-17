@@ -154,9 +154,9 @@ function s:TeXtidoteSetUp() "{{{1
 	let s:textidote_win_height = exists('g:textidote_win_height')
 	\ ? g:textidote_win_height
 	\ : 14
-	let s:textidote_checker = exists('g:textidote_checker') && g:textidote_checker =~? 'languagetool'
-	\ ? 'languagetool'
-	\ : 'textidote'
+	" let s:textidote_checker = exists('g:textidote_checker') && g:textidote_checker =~? 'languagetool'
+	" \ ? 'languagetool'
+	" \ : 'textidote'
 	let s:textidote_encoding = &fileencoding ? &fileencoding : &encoding
 	
 	if s:textidote_dictionary ==# ''
@@ -254,6 +254,18 @@ function s:TeXtidoteSetUp() "{{{1
 			return -1
 		endif
 		let s:textidote_jar = l:textidote_jar
+	endif
+
+	if s:textidote_jar =~? 'textidote'
+		let s:textidote_checker = 'textidote'
+	else
+		if s:textidote_jar =~? 'languagetool'
+			let s:textidote_checker = 'languagetool'
+		else
+			echomsg 'TeXtidote or LanguageTool? Could not guess from the name of the .jar file.'
+			echomsg 'Please rename it as "textidote.jar" or "languagetool-commandline.jar"'
+			return -1
+		endif
 	endif
 
 	" Storing &completefunc and shortcuts to restore them after grammar check
