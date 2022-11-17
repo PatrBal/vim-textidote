@@ -203,6 +203,36 @@ function s:TeXtidoteSetUp() "{{{1
 		\ ? g:languagetool_enable_categories
 		\ : ''
 
+	" Finding the .jar file and finding out if the checker is TeXtidote or LanguageTool
+	let s:textidote_jar = exists('g:textidote_jar')
+	\ ? g:textidote_jar
+	\ : $HOME . '/.vim/textidote.jar'
+	
+	if !exists('g:textidote_jar') && !filereadable(s:textidote_jar)
+		" Hmmm, can't find the jar file.  Try again with expand() in case user
+		" set it up as: let g:textidote_jar = '$HOME/.vim/textidote.jar'
+		let l:textidote_jar = expand(s:textidote_jar)
+		if !filereadable(expand(l:textidote_jar))
+			echomsg 'TeXtidote/LanguageTool cannot be found at: ' . s:textidote_jar
+			echomsg 'You need to install TeXtidot/LanguageToole and/or set up g:textidote_jar'
+			echomsg 'to indicate the location of the textidote.jar/languagetool.jar file.'
+			return -1
+		endif
+		let s:textidote_jar = l:textidote_jar
+	endif
+
+	if s:textidote_jar =~? 'textidote'
+		let s:textidote_checker = 'textidote'
+	else
+		if s:textidote_jar =~? 'languagetool'
+			let s:textidote_checker = 'languagetool'
+		else
+			echomsg 'TeXtidote or LanguageTool? Could not guess from the name of the .jar file.'
+			echomsg 'Please rename it as "textidote.jar" or "languagetool-commandline.jar"'
+			return -1
+		endif
+	endif
+
 	" Setting up language...
 	if exists('g:textidote_lang')
 		let s:textidote_lang = s:FindLanguage(g:textidote_lang,s:textidote_checker)
@@ -239,35 +269,6 @@ function s:TeXtidoteSetUp() "{{{1
 		let s:textidote_first_language_option = ' --firstlang ' . g:textidote_first_language
 	endif
 	
-	let s:textidote_jar = exists('g:textidote_jar')
-	\ ? g:textidote_jar
-	\ : $HOME . '/.vim/textidote.jar'
-	
-	if !exists('g:textidote_jar') && !filereadable(s:textidote_jar)
-		" Hmmm, can't find the jar file.  Try again with expand() in case user
-		" set it up as: let g:textidote_jar = '$HOME/.vim/textidote.jar'
-		let l:textidote_jar = expand(s:textidote_jar)
-		if !filereadable(expand(l:textidote_jar))
-			echomsg 'TeXtidote/LanguageTool cannot be found at: ' . s:textidote_jar
-			echomsg 'You need to install TeXtidot/LanguageToole and/or set up g:textidote_jar'
-			echomsg 'to indicate the location of the textidote.jar/languagetool.jar file.'
-			return -1
-		endif
-		let s:textidote_jar = l:textidote_jar
-	endif
-
-	if s:textidote_jar =~? 'textidote'
-		let s:textidote_checker = 'textidote'
-	else
-		if s:textidote_jar =~? 'languagetool'
-			let s:textidote_checker = 'languagetool'
-		else
-			echomsg 'TeXtidote or LanguageTool? Could not guess from the name of the .jar file.'
-			echomsg 'Please rename it as "textidote.jar" or "languagetool-commandline.jar"'
-			return -1
-		endif
-	endif
-
 	" Storing &completefunc and shortcuts to restore them after grammar check
 	let s:completefunc_orig = &completefunc
 	if !empty(maparg('<Tab>', 'n'))
