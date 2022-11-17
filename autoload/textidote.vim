@@ -190,6 +190,19 @@ function s:TeXtidoteSetUp() "{{{1
 		let g:textidote_html_report = 0
 	endif
 	
+	let s:languagetool_disable_rules = exists("g:languagetool_disable_rules")
+		\ ? g:languagetool_disable_rules
+		\ : 'WHITESPACE_RULE,EN_QUOTES'
+		let s:languagetool_enable_rules = exists("g:languagetool_enable_rules")
+		\ ? g:languagetool_enable_rules
+		\ : ''
+		let s:languagetool_disable_categories = exists("g:languagetool_disable_categories")
+		\ ? g:languagetool_disable_categories
+		\ : ''
+		let s:languagetool_enable_categories = exists("g:languagetool_enable_categories")
+		\ ? g:languagetool_enable_categories
+		\ : ''
+
 	" Setting up language...
 	if exists('g:textidote_lang')
 		let s:textidote_lang = s:FindLanguage(g:textidote_lang,s:textidote_checker)
