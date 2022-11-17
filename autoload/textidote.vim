@@ -898,7 +898,7 @@ function textidote#Display(data,code)
 	silent execute 'put! =a:data'
 	silent execute '%print'
 
-	if s:textidote_checker =~# 'textidote'
+	if s:textidote_checker =~? 'textidote'
 		" The text report produced by TeXtidote is processed to match the format of
 		" the XML report produced by LanguageTool so that large parts of the code of
 		" vim-LanguageTool can be reused. 
