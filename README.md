@@ -46,7 +46,7 @@ A very good alternative is to use the [LTeX][LTeX] language server with `coc.nvi
 
 ## License
 
-Copyright (c) Patrick Ballard.  Distributed under the same terms as Vim itself.
+Copyright © Patrick Ballard.  Distributed under the same terms as Vim itself.
 See `:help license`.
 
 
