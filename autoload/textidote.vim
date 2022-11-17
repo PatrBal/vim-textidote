@@ -778,7 +778,7 @@ function textidote#Check(line1, line2)
 				\ . (empty(s:languagetool_enable_categories) ?  '' : ' --enablecategories '.s:languagetool_enable_categories)
 				\ . ' -l '    . s:textidote_lang
 		let s:textidote_cmd_txt_name = l:textidote_cmd_txt . ' --api ' . s:current_file
-		let s:textidote_cmd_txt_complete = l:textidote_cmd_txt:w
+		let s:textidote_cmd_txt_complete = l:textidote_cmd_txt
 				\ . ' --api ' . s:tmp_filename
 				\ . ' > ' . s:tmp_output
 				\ . ' 2> '    . s:tmp_error
