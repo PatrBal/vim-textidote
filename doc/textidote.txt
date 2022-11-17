@@ -207,8 +207,8 @@ of the TeXtidote plugin.
   Example: `:let g:textidote_replacements = '~/.vim/remplacements.txt'`
 
 *g:languagetool_disable_rules*
-  This variable specifies checker rules to disable. The set of disabled rule
-  must be comma separated.
+  This variable specifies checker rules to disable, when LanguageTool is the
+  checker. The set of disabled rule must be comma separated.
   Default value: WHITESPACE_RULE,EN_QUOTES
   Example: `:let g:languagetool_disable_rules='WHITESPACE_RULE,EN_QUOTES,`
   			`FRENCH_WHITESPACE,UPPERCASE_SENTENCE_START,APOS'`
@@ -222,11 +222,13 @@ of the TeXtidote plugin.
   Example: `:let g:languagetool_enable_rules=PASSIVE_VOICE`
 
 *g:languagetool_disable_categories*
-  This variable specifies checker rule-categories which are disabled.
+  This variable specifies checker rule-categories which are disabled, when
+  LanguageTool is the checker.
   Default value: empty
 
 *g:languagetool_enable_categories*
-  This variable specifies checker rule-categories which are enabled.
+  This variable specifies checker rule-categories which are enabled, when 
+  LanguageTool is the checker.
   Default value: empty
 
 |Important| |remarks|
