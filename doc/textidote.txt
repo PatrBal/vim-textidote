@@ -136,7 +136,7 @@ of the TeXtidote plugin.
 *g:textidote_win_height*
   Height of the scratch window which contains the list of errors with some
   explanations. You can use a negative value to disable opening the scratch
-  window. You can also make it empty '' to let Vim pick a default size.
+  window. You can also make it empty `''` to let Vim pick a default size.
   Default value: 14
   Example: `:let g:textidote_win_height = -1`
 
