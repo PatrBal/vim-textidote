@@ -385,13 +385,11 @@ function <sid>DiscardCurrentError()
 		if l:error_nbr_orig > 1
 			if l:error_idx == 1
 				let s:errors = s:errors[1:l:error_nbr_orig - 1]
+			elseif l:error_idx == l:error_nbr_orig
+				let s:errors = s:errors[0:l:error_nbr_orig - 2]
+				let l:error_idx = l:error_idx - 1
 			else
-				if l:error_idx == l:error_nbr_orig
-					let s:errors = s:errors[0:l:error_nbr_orig - 2]
-					let l:error_idx = l:error_idx - 1
-				else
-					let s:errors = s:errors[0:l:error_idx - 2] + s:errors[l:error_idx:l:error_nbr_orig - 1]
-				endif
+				let s:errors = s:errors[0:l:error_idx - 2] + s:errors[l:error_idx:l:error_nbr_orig - 1]
 			endif
 		else
 			let s:errors = []
@@ -499,10 +497,10 @@ function! textidote#MoveBackwardOrigBuffer()
 			if get(get(s:errors,l:i-1,0),'fromy',0) > get(s:cursorPosOrigBuffer,1,0)
 				let l:test = 0
 			elseif get(get(s:errors,l:i-1,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0)
-							\ && get(get(s:errors,l:i-1,0),'fromx',0) > get(s:cursorPosOrigBuffer,2,0)
+						\ && get(get(s:errors,l:i-1,0),'fromx',0) > get(s:cursorPosOrigBuffer,2,0)
 					let l:test = 0
 			elseif get(get(s:errors,l:i-1,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0)
-							\ && get(get(s:errors,l:i-1,0),'tox',0) >= get(s:cursorPosOrigBuffer,2,0)
+						\ && get(get(s:errors,l:i-1,0),'tox',0) >= get(s:cursorPosOrigBuffer,2,0)
 					let l:test = 0
 			else
 					let l:test = 1
