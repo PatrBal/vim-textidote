@@ -594,18 +594,14 @@ function! textidote#FindErrorIndex(cursorPos)
 	if get(get(s:errors,l:indCurrentError-1,0),'toy',0) < get(a:cursorPos,1,0)
 				\ || get(get(s:errors,l:indCurrentError-1,0),'fromy',0) > get(a:cursorPos,1,0)
 		let l:test = 0
+	elseif get(get(s:errors,l:indCurrentError-1,0),'fromy',0) == get(a:cursorPos,1,0)
+				\ && get(get(s:errors,l:indCurrentError-1,0),'fromx',0) > get(a:cursorPos,2,0)
+		let l:test = 0
+	elseif get(get(s:errors,l:indCurrentError-1,0),'toy',0) == get(a:cursorPos,1,0)
+				\ && get(get(s:errors,l:indCurrentError-1,0),'tox',0) < get(a:cursorPos,2,0)
+		let l:test = 0
 	else
-		if get(get(s:errors,l:indCurrentError-1,0),'fromy',0) == get(a:cursorPos,1,0)
-					\ && get(get(s:errors,l:indCurrentError-1,0),'fromx',0) > get(a:cursorPos,2,0)
-			let l:test = 0
-		else
-			if get(get(s:errors,l:indCurrentError-1,0),'toy',0) == get(a:cursorPos,1,0)
-						\ && get(get(s:errors,l:indCurrentError-1,0),'tox',0) < get(a:cursorPos,2,0)
-				let l:test = 0
-			else
-				let l:test = 1
-			endif
-		endif
+		let l:test = 1
 	endif
     if l:test == 1
 		let l:test = l:indCurrentError
