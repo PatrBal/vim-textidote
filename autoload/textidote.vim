@@ -1077,7 +1077,7 @@ function textidote#Clear()
 	unlet! s:textidote_error_buffer
 	unlet! s:textidote_text_winid
 
-	execute 'drop' s:current_file
+	execute 'drop ' . s:current_file
 	let &completefunc = s:completefunc_orig
 	if exists('s:mapTab_orig')
 		execute 'nnoremap <Tab> ' . s:mapTab_orig
