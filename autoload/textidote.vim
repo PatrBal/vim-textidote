@@ -287,7 +287,7 @@ function s:TeXtidoteSetUp()
 	if !empty(maparg('\<BS>', 'n'))
 		let s:mapBSp_orig = maparg('\<BS>', 'n', 0, 1)
 	endif
-	let unnamed_register = @@
+	let s:unnamed_register = @@
 
 	return 0
 endfunction
@@ -1112,7 +1112,7 @@ function textidote#Clear()
 		else
 			silent!nunmap <buffer> <BS>
 		endif
-		let @@ = unnamed_register
+		let @@ = s:unnamed_register
 
 	endif
 
