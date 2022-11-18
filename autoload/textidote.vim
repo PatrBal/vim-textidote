@@ -134,13 +134,13 @@ endfunction
 " Parse a xml attribute such as: ruleId="FOO" in line a:line.
 " where ruleId is the key a:key, and FOO is the returned value corresponding
 " to that key.
-function s:ParseKeyValue(key, line) "{{{1
+function s:ParseKeyValue(key, line)
 	return s:XmlUnescape(matchstr(a:line, '\<' . a:key . '="\zs[^"]*\ze"'))
 endfunction
 
 " Set up configuration.
 " Returns 0 if success, < 0 in case of error.
-function s:TeXtidoteSetUp() "{{{1
+function s:TeXtidoteSetUp()
 	let s:textidote_dictionary = exists('g:textidote_dictionary')
 	\ ? g:textidote_dictionary : ''
 	let s:textidote_replacements = exists('g:textidote_replacements')
@@ -364,7 +364,7 @@ function <sid>JumpToCurrentError()
 		normal! zv
 		normal! zz
 
-		" Populate the suggestion list
+		" Populate the suggestion list for <Tab> completion
 		if !empty(l:error['replacements'])
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
@@ -484,7 +484,7 @@ function! textidote#MoveForwardOrigBuffer()
 		normal! zv
 		normal! zz
 
-		" Populate the suggestion list
+		" Populate the suggestion list for <Tab> completion
 		if !empty(l:error['replacements'])
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
@@ -548,7 +548,7 @@ function! textidote#MoveBackwardOrigBuffer()
 		normal! zv
 		normal! zz
 
-		" Populate the suggestion list
+		" Populate the suggestion list for <Tab> completion
 		if !empty(l:error['replacements'])
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			let s:suggestions_list = split(l:suggestions,', ')
@@ -739,7 +739,7 @@ function! textidote#Suggestions(findstart, base)
 	endif
 endfunction
 
-" This function is reponsible for calling TeXtidote asynchronously
+" This function is reponsible for calling either TeXtidote or LanguageTool asynchronously
 function textidote#Check(line1, line2) 
 	if s:TeXtidoteSetUp() < 0
 		return -1
