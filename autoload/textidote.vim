@@ -1077,7 +1077,9 @@ function textidote#Clear()
 	unlet! s:textidote_error_buffer
 	unlet! s:textidote_text_winid
 
-	echom 'End of grammar check.'
+	if g:textidote_indicator == 1
+		echom 'End of grammar check.'
+	endif
 
 	execute 'drop ' . s:current_file
 	let &completefunc = s:completefunc_orig
