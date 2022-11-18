@@ -376,6 +376,7 @@ function <sid>JumpToCurrentError()
 	endif
 endfunction
 
+" This function remove the current error in the scratch buffer
 function <sid>DiscardCurrentError()
 	normal! $
 	if search('^Error:\s\+', 'beW') > 0
@@ -398,7 +399,7 @@ function <sid>DiscardCurrentError()
 
 		call textidote#formatScratchBuffer()
 
-		" Also highlight errors in original buffer
+		" Also update highlighting of errors in original buffer
 		call win_gotoid(s:textidote_text_winid)
 		call setmatches(filter(getmatches(), 'v:val["group"] !~# "TeXtidote.*Error"'))
 
