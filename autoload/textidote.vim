@@ -349,11 +349,7 @@ function <sid>JumpToCurrentError()
 		let l:col  = l:error['fromx']
 		let l:rule = l:error['ruleId']
 		call setpos('.', l:save_cursor)
-		if exists('*win_gotoid')
-			call win_gotoid(s:textidote_text_winid)
-		else
-			execute s:textidote_text_winid . ' wincmd w'
-		endif
+		call win_gotoid(s:textidote_text_winid)
 		call cursor(l:line,l:col)
 		
 		echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
@@ -705,7 +701,7 @@ function! textidote#DiscardError()
 			echon 'Error ' . l:test . ' discarded.'
 		endif
 	endif
-	execute 'drop' s:current_file
+	execute 'drop ' . s:current_file
 	call setpos('.', s:cursorPosOrigBuffer)
 endfunction
 
