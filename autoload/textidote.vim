@@ -1012,7 +1012,7 @@ function textidote#Display(data,code)
 		endif
 		echom 'Press <BS> on error to discard it, <CR> to jump its location, and then <Tab> to fix it.'
 	else
-		echon 'Navigate errors with ] and [. Press <Tab> on error to fix it and <BS> to discard it.'
+		echom 'Navigate errors with ] and [. Press <Tab> on error to fix it and <BS> to discard it.'
 	endif
 
 	call delete(s:tmp_filename)
