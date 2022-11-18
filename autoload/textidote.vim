@@ -727,9 +727,9 @@ function textidote#Check(line1, line2)
 	call textidote#Clear()
 
 	if s:textidote_checker =~? 'textidote'
-		echon 'Calling TeXtidote...'
+		echom 'Calling TeXtidote...'
 	else
-		echon 'Calling LanguageTool...'
+		echom 'Calling LanguageTool...'
 	endif
 
 	" Using window ID is more reliable than window number.
@@ -1076,6 +1076,8 @@ function textidote#Clear()
 	endif
 	unlet! s:textidote_error_buffer
 	unlet! s:textidote_text_winid
+
+	echom 'End of grammar check.'
 
 	execute 'drop ' . s:current_file
 	let &completefunc = s:completefunc_orig
