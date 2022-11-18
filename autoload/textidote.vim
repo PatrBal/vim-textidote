@@ -941,7 +941,7 @@ function textidote#Display(data,code)
 			let l:error['toy']   += s:line1 - 1
 			" TeXtidote strangely overestimate 'tox' of 1
 			if l:error['tox'] > l:error['fromx']
-				let l:error['tox']   -= 1
+				let l:error['tox'] -= 1
 			endif
 		else
 			let l:error['fromy'] += s:line1
