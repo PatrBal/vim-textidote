@@ -894,7 +894,7 @@ function textidote#Display(data,code)
 
 		" Reformat last field to extract 'contextoffset' and 'errorlength'
 		silent! %substitute/\v\C^( *)(\^+)$/\1,\2,trucdeouf/
-		silent! %!awk -F"," '{ if ($3=="trucdeouf")  print "contextoffset=\""length($1)"\" errorlength=\""length($2)"\"/>"; else print $0 }'
+		silent! %!awk -F"," '{ if ($3=="trucdeouf")  print "contextoffset=\""length($1)"\" errorlength=\""length($2)-1"\"/>"; else print $0 }'
 		" Beginning of 'context' reformat. Adjust 'contextoffset' appropriately
 		silent! %global/\m\Ccontextoffset/-1s/\m^/context=/
 		silent! %global/\m\C^context=  /execute "normal! j^1\<C-A>"
@@ -940,9 +940,9 @@ function textidote#Display(data,code)
 			let l:error['fromy'] += s:line1 - 1
 			let l:error['toy']   += s:line1 - 1
 			" TeXtidote strangely overestimate 'tox' of 1
-			if l:error['tox'] > l:error['fromx']
-				let l:error['tox'] -= 1
-			endif
+			" if l:error['tox'] > l:error['fromx']
+			" 	let l:error['tox'] -= 1
+			" endif
 		else
 			let l:error['fromy'] += s:line1
 			let l:error['fromx'] += 1
