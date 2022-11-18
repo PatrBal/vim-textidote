@@ -677,13 +677,11 @@ function! textidote#DiscardError()
 			if l:error_nbr_orig > 1
 				if l:test == 1
 					let s:errors = s:errors[1:l:error_nbr_orig - 1]
+				elseif l:test == l:error_nbr_orig
+					let s:errors = s:errors[0:l:error_nbr_orig - 2]
+					let l:test = l:test - 1
 				else
-					if l:test == l:error_nbr_orig
-						let s:errors = s:errors[0:l:error_nbr_orig - 2]
-						let l:test = l:test - 1
-					else
-						let s:errors = s:errors[0:l:test - 2] + s:errors[l:test:l:error_nbr_orig - 1]
-					endif
+					let s:errors = s:errors[0:l:test - 2] + s:errors[l:test:l:error_nbr_orig - 1]
 				endif
 			else
 				let s:errors = []
