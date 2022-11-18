@@ -100,7 +100,7 @@ endfunction
 " Return a regular expression used to highlight a grammatical error
 " at line a:line in text.  The error starts at character a:start in
 " context a:context and its length in context is a:len.
-function s:TeXtidoteHighlightRegex(line, context, start, len)  "{{{1
+function s:TeXtidoteHighlightRegex(line, context, start, len)
 	let l:start_idx     = byteidx(a:context, a:start)
 	let l:end_idx       = byteidx(a:context, a:start + a:len) - 1
 	let l:start_ctx_idx = byteidx(a:context, a:start + a:len)
@@ -118,7 +118,7 @@ function s:TeXtidoteHighlightRegex(line, context, start, len)  "{{{1
 endfunction
 
 " Unescape XML special characters in a:text.
-function s:XmlUnescape(text) "{{{1
+function s:XmlUnescape(text)
 	" Change XML escape char such as &quot; into "
 	" Substitution of &amp; must be done last or else something
 	" like &amp;quot; would get first transformed into &quot;
