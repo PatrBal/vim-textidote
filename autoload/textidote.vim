@@ -1079,41 +1079,42 @@ function textidote#Clear()
 
 	if g:textidote_indicator == 1
 		echom 'End of grammar check.'
+
+		let &completefunc = s:completefunc_orig
+		if exists('s:mapTab_orig')
+			execute 'nnoremap <Tab> ' . s:mapTab_orig
+		else
+			silent!nunmap <buffer> <Tab>
+		endif
+		if exists('s:mapForward_orig')
+			execute 'nnoremap ] ' . s:mapForward_orig
+		else
+			silent!nunmap <buffer> ]
+		endif
+		if exists('s:mapBackward_orig')
+			execute 'nnoremap [ ' . s:mapBackward_orig
+		else
+			silent!nunmap <buffer> [
+		endif
+		if exists('s:mapAux_orig')
+			execute 'nnoremap ¶' . s:mapAux_orig
+		else
+			silent!nunmap <buffer> ¶
+		endif
+		if exists('s:mapRet_orig')
+			execute 'nnoremap <CR>' . s:mapRet_orig
+		else
+			silent!nunmap <buffer> <CR>
+		endif
+		if exists('s:mapBSp_orig')
+			execute 'nnoremap <BS>' . s:mapBSp_orig
+		else
+			silent!nunmap <buffer> <BS>
+		endif
+
 	endif
 
 	execute 'drop ' . s:current_file
-	let &completefunc = s:completefunc_orig
-	if exists('s:mapTab_orig')
-		execute 'nnoremap <Tab> ' . s:mapTab_orig
-	else
-		silent!nunmap <buffer> <Tab>
-	endif
-	if exists('s:mapForward_orig')
-		execute 'nnoremap ] ' . s:mapForward_orig
-	else
-		silent!nunmap <buffer> ]
-	endif
-	if exists('s:mapBackward_orig')
-		execute 'nnoremap [ ' . s:mapBackward_orig
-	else
-		silent!nunmap <buffer> [
-	endif
-	if exists('s:mapAux_orig')
-		execute 'nnoremap ¶' . s:mapAux_orig
-	else
-		silent!nunmap <buffer> ¶
-	endif
-	if exists('s:mapRet_orig')
-		execute 'nnoremap <CR>' . s:mapRet_orig
-	else
-		silent!nunmap <buffer> <CR>
-	endif
-	if exists('s:mapBSp_orig')
-		execute 'nnoremap <BS>' . s:mapBSp_orig
-	else
-		silent!nunmap <buffer> <BS>
-	endif
-
 	let g:textidote_indicator = 0
 endfunction
 
