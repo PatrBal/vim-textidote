@@ -1058,7 +1058,7 @@ function textidote#Browser(code)
 	endif
 	silent execute l:start_default_browser_command . 'file://' . s:tmp_output_html
 	sleep 8000m
-	call delete(s:tmp_output_html)
+	silent call delete(s:tmp_output_html)
 endfunction
 
 " This function clears syntax highlighting created by TeXtidote plugin
