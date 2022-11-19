@@ -674,17 +674,12 @@ function! textidote#QuickFix()
 					let s:colQF = ''
 				endif
 				let @" = "\<Esc>" . s:lineQF . "G0" . s:colQF . "a\<C-X>\<C-U>"
-				" call setcursorcharpos(s:lineQF,s:colQF)
-				" let @" = "\<C-X>\<C-U>"
 			else
 				" The error spans across multiple lines
 				" The completion is made to replace the part of the error on the first line
 				" This is not perfect, but seems to be the best possible choice
 				let s:lineQF = l:error['fromy']
 				let @" = "\<Esc>" . s:lineQF . "G$a\<C-X>\<C-U>"
-				" let s:colQF  = l:error['fromx']
-				" call setcursorcharpos(s:lineQF,s:colQF)
-				" normal! $
 			endif
 		else
 			" The error has no replacement
