@@ -658,20 +658,20 @@ function! textidote#QuickFix()
 			let l:error = s:errors[l:test - 1]
 			if str2nr(l:error['fromy']) == str2nr(l:error['toy'])
 				" The error is contained in a single line
-				let l:line = l:error['toy']
-				let l:col  = l:error['tox']
-				call setcursorcharpos(l:line,l:col)
+				let s:lineQF = l:error['toy']
+				let s:colQF  = l:error['tox']
+				" call setcursorcharpos(s:lineQF,s:colQF)
+				let @" = "\<Esc>" . s:lineQF . "G" . s:colQF . "|a\<C-X>\<C-U>"
 			else
 				" The error spans across multiple line
 				" The completion is made to replace the part of the error on the first line
 				" This is not perfect, but seems to be the best possible choice
-				let l:line = l:error['fromy']
-				let l:col  = l:error['fromx']
-				call setcursorcharpos(l:line,l:col)
+				let s:lineQF = l:error['fromy']
+				let s:colQF  = l:error['fromx']
+				call setcursorcharpos(s:lineQF,s:colQF)
 				normal! $
+				let @" = "\<Esc>" . s:lineQF . "G$a\<C-X>\<C-U>"
 			endif
-			" Load user completion
-			let @" = "\<C-X>\<C-U>"
 		else
 			" The error has no replacement
 			let @" = "\<Esc>"
