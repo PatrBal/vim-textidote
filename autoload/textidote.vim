@@ -661,6 +661,7 @@ function! textidote#QuickFix()
 			else
 				" The error spans across multiple line
 				" The completion is made to replace the part of the error on the first line
+				" This is not perfect, but seems to be the best possible choice
 				let l:line = l:error['fromy']
 				let l:col  = l:error['fromx']
 				call setcursorcharpos(l:line,l:col)
