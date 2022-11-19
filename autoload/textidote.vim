@@ -657,7 +657,7 @@ function! textidote#QuickFix()
 			let l:col  = l:error['tox']
 			call cursor(l:line,l:col)
 			" Load user completion
-			let @" = "\<Esc>a\<C-X>\<C-U>"
+			let @" = "\<C-X>\<C-U>"
 		else
 			" The error has no replacement
 			let @" = "\<Esc>"
