@@ -645,10 +645,12 @@ function! textidote#QuickFix()
 		endif
 		if !empty(get(get(s:errors,l:test-1,0),'replacements',0))
 			" The error has replacements indeed
-			if str2nr(get(get(s:errors,l:test-1,0),'tox',0)) > str2nr(get(get(s:errors,l:test-1,0),'fromx',0))
-				let @" = "\<Esc>ea\<C-X>\<C-U>"
-			else
+			if str2nr(get(get(s:errors,l:test-1,0),'toy',0)) == str2nr(get(get(s:errors,l:test-1,0),'fromy',0)) &&
+				\ str2nr(get(get(s:errors,l:test-1,0),'tox',0)) == str2nr(get(get(s:errors,l:test-1,0),'fromx',0))
+				" Error has only one character
 				let @" = "\<Esc>a\<C-X>\<C-U>"
+			else
+				let @" = "\<Esc>ea\<C-X>\<C-U>"
 			endif
 		else
 			" The error has no replacement
