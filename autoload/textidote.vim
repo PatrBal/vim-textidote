@@ -650,14 +650,8 @@ function! textidote#QuickFix()
 			let l:line = l:error['toy']
 			let l:col  = l:error['tox']
 			call cursor(l:line,l:col)
+			" Load user completion
 			let @" = "\<Esc>a\<C-X>\<C-U>"
-			" if str2nr(get(get(s:errors,l:test-1,0),'toy',0)) == str2nr(get(get(s:errors,l:test-1,0),'fromy',0)) &&
-			" 	\ str2nr(get(get(s:errors,l:test-1,0),'tox',0)) == str2nr(get(get(s:errors,l:test-1,0),'fromx',0))
-			" 	" Error has only one character
-			" 	let @" = "\<Esc>a\<C-X>\<C-U>"
-			" else
-			" 	let @" = "\<Esc>ea\<C-X>\<C-U>"
-			" endif
 		else
 			" The error has no replacement
 			let @" = "\<Esc>"
