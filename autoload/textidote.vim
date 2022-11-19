@@ -379,8 +379,7 @@ function <sid>JumpToCurrentError()
 			" To populate the complete func, we need the "byte" column of the
 			" first character of the error. This may be larger than l:col when
 			" there are multibyte characters before on the current line.
-			let l:currentline = getline(l:line)
-			let s:col = byteidx(str,l:col - 1)
+			let s:col = byteidx(getline(l:line),l:col - 1)
 			setlocal completefunc=textidote#Suggestions
 		endif
 	else
