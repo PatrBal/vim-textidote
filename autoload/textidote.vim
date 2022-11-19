@@ -356,7 +356,7 @@ function <sid>JumpToCurrentError()
 		let l:rule = l:error['ruleId']
 		call setpos('.', l:save_cursor)
 		call win_gotoid(s:textidote_text_winid)
-		call cursor(l:line,l:col)
+		call setcursorcharpos(l:line,l:col)
 		
 		echon 'Jump to error ' . l:error_idx . '/' . len(s:errors)
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
