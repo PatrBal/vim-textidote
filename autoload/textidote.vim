@@ -646,20 +646,28 @@ function! textidote#QuickFix()
 
 			" Populate the suggestion list
 			if !empty(l:error['replacements'])
-				let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
+			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
+			if s:textidote_checker =~? 'textidote'
+				" Multiple suggestions in TeXtidote are separated by ', ' 
 				let s:suggestions_list = split(l:suggestions,', ')
-				let s:col = l:col - 1
-				setlocal completefunc=textidote#Suggestions
+			else
+				" Multiple suggestions in LanguageTool are separated by '#'
+				let s:suggestions_list = split(l:suggestions,'#')
+			endif
+			" To populate the complete func, we need the "byte" column of the
+			" first character of the error. This may be larger than l:col when
+			" there are multibyte characters before on the current line.
+			let s:col = byteidx(getline(l:line),l:col - 1)
+			setlocal completefunc=textidote#Suggestions
 			endif
 		endif
 		if !empty(get(get(s:errors,l:test-1,0),'replacements',0))
 			" The error has replacements indeed
-			" First jump at the end of the error
 			let l:error = s:errors[l:test - 1]
 			if str2nr(l:error['fromy']) == str2nr(l:error['toy'])
 				" The error is contained in a single line
 				let s:lineQF = l:error['toy']
-				let s:colQF  = l:error['tox']
+				let s:colQF  = charidx(getline(l:line),l:error['tox']-1)+1
 				" call setcursorcharpos(s:lineQF,s:colQF)
 				let @" = "\<Esc>" . s:lineQF . "G" . s:colQF . "|a\<C-X>\<C-U>"
 			else
@@ -668,7 +676,7 @@ function! textidote#QuickFix()
 				" This is not perfect, but seems to be the best possible choice
 				let s:lineQF = l:error['fromy']
 				let s:colQF  = l:error['fromx']
-				call setcursorcharpos(s:lineQF,s:colQF)
+				" call setcursorcharpos(s:lineQF,s:colQF)
 				normal! $
 				let @" = "\<Esc>" . s:lineQF . "G$a\<C-X>\<C-U>"
 			endif
