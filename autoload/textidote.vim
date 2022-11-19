@@ -1057,7 +1057,7 @@ function textidote#Browser(code)
 		endif
 	endif
 	silent call system(l:start_default_browser_command . '"' . 'file://' . s:tmp_output_html . '"')
-	" sleep 8000m
+	sleep 8000m
 	call delete(s:tmp_output_html)
 endfunction
 
