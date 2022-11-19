@@ -668,7 +668,7 @@ function! textidote#QuickFix()
 				" The error is contained in a single line
 				let s:lineQF = l:error['toy']
 				let s:colQF  = str2nr(l:error['tox']) - 1
-				if s:colQG > 0
+				if s:colQF > 0
 					let s:colQF = s:colQF . 'l'
 				else 
 					let s:colQF = ''
