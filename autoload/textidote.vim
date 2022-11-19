@@ -1043,20 +1043,21 @@ function textidote#Browser(code)
 	sleep 1000m
 	let l:start_default_browser_command = ''
 	if has('win32') || has('win64')
-		let l:start_default_browser_command = '!start '
+		let l:start_default_browser_command = 'start '
 	elseif has('win32unix')
-		let l:start_default_browser_command = '!cygstart '
+		let l:start_default_browser_command = 'cygstart '
 	else
 		if has('unix')
 			let s:uname = system('uname')
 			if s:uname =~# 'Darwin'
-				let l:start_default_browser_command = '!open '
+				let l:start_default_browser_command = 'open '
 			else
-				let l:start_default_browser_command = '!xdg-open '
+				let l:start_default_browser_command = 'xdg-open '
 			endif
 		endif
 	endif
-	silent execute l:start_default_browser_command . 'file://' . s:tmp_output_html
+	" silent execute l:start_default_browser_command . 'file://' . s:tmp_output_html
+	silent call sysem("'" . l:start_default_browser_command . '"' . 'file://' . '"' . s:tmp_output_html . "'")
 	sleep 8000m
 	call delete(s:tmp_output_html)
 endfunction
