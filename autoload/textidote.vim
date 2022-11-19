@@ -653,7 +653,7 @@ function! textidote#QuickFix()
 			" The error has replacements indeed
 			" First jump at the end of the error
 			let l:error = s:errors[l:test - 1]
-			if l:error['fromy'] = l:error['toy']
+			if str2nr(l:error['fromy']) == str2nr(l:error['toy'])
 				" The error is contained in a single line
 				let l:line = l:error['toy']
 				let l:col  = l:error['tox']
