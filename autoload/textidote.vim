@@ -667,7 +667,7 @@ function! textidote#QuickFix()
 			if str2nr(l:error['fromy']) == str2nr(l:error['toy'])
 				" The error is contained in a single line
 				let s:lineQF = l:error['toy']
-				let s:colQF  = charidx(getline(l:line),l:error['tox']-1)+1
+				let s:colQF  = charidx(getline(s:lineQF),l:error['tox'] - 1) + 1
 				" call setcursorcharpos(s:lineQF,s:colQF)
 				let @" = "\<Esc>" . s:lineQF . "G" . s:colQF . "|a\<C-X>\<C-U>"
 			else
