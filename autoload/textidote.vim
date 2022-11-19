@@ -647,8 +647,8 @@ function! textidote#QuickFix()
 			" The error has replacements indeed
 			" First jump at the end of the error
 			let l:error = s:errors[l:test - 1]
-			let l:line = l:error['fromy']
-			let l:col  = l:error['fromx']
+			let l:line = l:error['toy']
+			let l:col  = l:error['tox']
 			call cursor(l:line,l:col)
 			let @" = "\<Esc>a\<C-X>\<C-U>"
 			" if str2nr(get(get(s:errors,l:test-1,0),'toy',0)) == str2nr(get(get(s:errors,l:test-1,0),'fromy',0)) &&
