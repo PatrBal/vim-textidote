@@ -38,10 +38,10 @@ highlight default link TeXtidoteCmd           	Comment
 highlight default link TeXtidoteErrorCount    	Title
 highlight default link TeXtidoteLabel         	Label
 highlight default link TeXtidoteUrl           	Underlined
-" highlight default link TeXtidoteGrammarError 	SpellCap
-" highlight default link TeXtidoteSpellingError 	SpellBad
 highlight default link TeXtidoteGrammarError 	WarningMsg
 highlight default link TeXtidoteSpellingError 	Error
+" highlight default link TeXtidoteGrammarError 	SpellCap
+" highlight default link TeXtidoteSpellingError 	SpellBad
 
 " Menu items {{{1
 if has("gui_running") && has("menu") && &go =~# 'm'
