@@ -105,7 +105,7 @@ function s:TeXtidoteHighlightRegex(line, context, start, len)
 	let l:end_idx       = byteidx(a:context, a:start + a:len) - 1
 	let l:start_ctx_idx = byteidx(a:context, a:start + a:len)
 	" Be careful that context in TeXtidote may be shorter than in LanguageTool 
-	if s:textidote_checker =~? 'textidote' && strlen(a:context) < byteidx(a:context, a:start + a:len + 5)
+	if s:textidote_checker =~? 'textidote' && byteidx(a:context, a:start + a:len + 5) == -1
 		let l:end_ctx_idx   = strlen(a:context) - 1
 	else
 		let l:end_ctx_idx   = byteidx(a:context, a:start + a:len + 5) - 1
