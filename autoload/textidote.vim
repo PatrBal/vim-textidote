@@ -493,16 +493,16 @@ endfunction
 function! textidote#MoveBackwardOrigBuffer()
 	let s:cursorPosOrigBuffer = getpos('.')
 	let l:test = 0
-	let l:i = 1
+	let l:i = len(s:errors)
 	while l:test == 0
-		if l:i <= len(s:errors)
-			if get(get(s:errors,l:i-1,0),'toy',0) < get(s:cursorPosOrigBuffer,1,0)
+		if l:i >= 1
+			" if get(get(s:errors,l:i-1,0),'fromy',0) > get(s:cursorPosOrigBuffer,1,0)
+			" 	let l:test = 0
+			if get(get(s:errors,l:i-1,0),'toy',0) > get(s:cursorPosOrigBuffer,1,0)
+						\ && get(get(s:errors,l:i-1,0),'fromx',0) <= get(s:cursorPosOrigBuffer,2,0)
 				let l:test = 0
 			elseif get(get(s:errors,l:i-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0)
-						\ && get(get(s:errors,l:i-1,0),'tox',0) < get(s:cursorPosOrigBuffer,2,0)
-				let l:test = 0
-			elseif get(get(s:errors,l:i-1,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0)
-						\ && get(get(s:errors,l:i-1,0),'fromx',0) <= get(s:cursorPosOrigBuffer,2,0)
+						\ && get(get(s:errors,l:i-1,0),'tox',0) >= get(s:cursorPosOrigBuffer,2,0)
 				let l:test = 0
 			else
 				let l:test = 1
@@ -510,9 +510,9 @@ function! textidote#MoveBackwardOrigBuffer()
 		else
 			let l:test = 1
 		endif
-		let l:i += 1
+		let l:i -= 1
 	endwhile
-	let l:indPrevError = l:i - 2
+	let l:indPrevError = l:i + 1
 	if l:indPrevError < 1
 		let l:indPrevError = len(s:errors)
 	endif
