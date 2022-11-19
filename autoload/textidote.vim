@@ -617,7 +617,7 @@ endfunction
 " This function decides if the <Tab> shortcut will open the pop-up menu or do nothing...
 " It checks whether the cursor is inside an error of the original buffer or not.
 function! textidote#QuickFix()
-	let s:cursorPosOrigBuffer = getpos('.')
+	let s:cursorPosOrigBuffer = getcursorcharpos('.')
 	let l:test = textidote#FindErrorIndex(s:cursorPosOrigBuffer)
 	if l:test >= 1
 		" The cursor is on error l:test
