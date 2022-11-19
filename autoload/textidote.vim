@@ -673,19 +673,18 @@ function! textidote#QuickFix()
 				else 
 					let s:colQF = ''
 				endif
+				let @" = "\<Esc>" . s:lineQF . "G0" . s:colQF . "a\<C-X>\<C-U>"
 				" call setcursorcharpos(s:lineQF,s:colQF)
 				" let @" = "\<C-X>\<C-U>"
-				" let s:colQF  = charidx(getline(s:lineQF),l:error['tox'] - 1) + 1
-				let @" = "\<Esc>" . s:lineQF . "G0" . s:colQF . "a\<C-X>\<C-U>"
 			else
-				" The error spans across multiple line
+				" The error spans across multiple lines
 				" The completion is made to replace the part of the error on the first line
 				" This is not perfect, but seems to be the best possible choice
 				let s:lineQF = l:error['fromy']
-				let s:colQF  = l:error['fromx']
+				let @" = "\<Esc>" . s:lineQF . "G$a\<C-X>\<C-U>"
+				" let s:colQF  = l:error['fromx']
 				" call setcursorcharpos(s:lineQF,s:colQF)
 				" normal! $
-				let @" = "\<Esc>" . s:lineQF . "G$a\<C-X>\<C-U>"
 			endif
 		else
 			" The error has no replacement
