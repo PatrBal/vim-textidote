@@ -104,7 +104,12 @@ function s:TeXtidoteHighlightRegex(line, context, start, len)
 	let l:start_idx     = byteidx(a:context, a:start)
 	let l:end_idx       = byteidx(a:context, a:start + a:len) - 1
 	let l:start_ctx_idx = byteidx(a:context, a:start + a:len)
-	let l:end_ctx_idx   = byteidx(a:context, a:start + a:len + 5) - 1
+	" Be careful that context in TeXtidote may be shorter than in LanguageTool 
+	if s:textidote_checker =~? 'textidote'
+		let l:end_ctx_idx   = byteidx(a:context, a:start + a:len + 3) - 1
+	else
+		let l:end_ctx_idx   = byteidx(a:context, a:start + a:len + 5) - 1
+	endif
 	
 	" The substitute allows matching errors which span multiple lines.
 	" The part after \ze gives a bit of context to avoid spurious
