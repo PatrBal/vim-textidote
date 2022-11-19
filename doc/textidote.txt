@@ -176,7 +176,7 @@ of the TeXtidote plugin.
   spelling errors, otherwise only grammar mistakes are pointed out. For
   example, with `spelllang=en`, you will get only grammar errors from
   LanguageTool. If you want spelling errors too, you need to set 
-  `spelllang=en_us`, for example.
+  `spelllang=en_us`, for example. This does not apply to TeXtidote.
 
 *g:textidote_first_language*
   Define your first language to enable the checking for false friends.
