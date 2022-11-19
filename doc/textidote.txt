@@ -171,9 +171,12 @@ of the TeXtidote plugin.
   `da`, `de`, `de-AT`, `de-CH`, `de-DE`, `el`, `en`, `en-AU`, `en-CA`, `en-GB`, `en-NZ`, `en-US`,
   `en-ZA`, `eo`, `es`, `fa`, `fr`, `ga`, `gl`, `it`, `ja`, `km`, `nl`, `pl`, `pt`, `pt-BR`, `pt-MZ`, `pt-PT`,
   `ro`, `ru`, `sk`, `sl`, `sr`, `sr-BA`, `sr-HR`, `sr-ME`, `sr-SR`, `sv`, `ta`, `tl`, `uk`, `zh`.
-  For `LanguageTool` only and languages with variants, it is necessary to
-  specify the variant in order for LanguageTool to signal spelling errors, 
-  otherwise only grammar mistakes are pointed out.
+  |Important| For `LanguageTool` only and languages with variants, it is
+  necessary to specify the variant in order for LanguageTool to signal
+  spelling errors, otherwise only grammar mistakes are pointed out. For
+  example, with `spelllang=en`, you will get only grammar errors from
+  LanguageTool. If you want spelling errors too, you need to set 
+  `spelllang=en_us`, for example.
 
 *g:textidote_first_language*
   Define your first language to enable the checking for false friends.
