@@ -655,7 +655,7 @@ function! textidote#QuickFix()
 			let l:error = s:errors[l:test - 1]
 			let l:line = l:error['toy']
 			let l:col  = l:error['tox']
-			call cursor(l:line,l:col)
+			call setcursorcharpos(l:line,l:col)
 			" Load user completion
 			let @" = "\<C-X>\<C-U>"
 		else
