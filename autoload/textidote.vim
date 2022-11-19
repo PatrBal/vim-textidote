@@ -816,7 +816,7 @@ function textidote#Check(line1, line2)
 				\ 'err_name': s:tmp_error,
 				\ 'exit_cb': funcref('textidote#JobHandlerVim')
 		  \ }
-		let s:id = job_start(s:textidote_cmd_txt_complete, s:callbacks )
+		let s:id = job_start(s:textidote_cmd_txt_name, s:callbacks )
 
 		if g:textidote_html_report == 1
 			let s:textidote_cmd_html = l:textidote_cmd_txt . ' --output html ' . s:tmp_filename
