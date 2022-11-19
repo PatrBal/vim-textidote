@@ -263,7 +263,10 @@ TeXtitode has real added-value for LaTeX and Markdown files. For other formats,
 such as `html` files, the good choice is probably to fall back to LanguageTool
 which is really faster than TeXtidote.
 
-You can also customize the following syntax highlighting groups:
+==============================================================================
+5. Customization                                               *TeXtidoteCustom*
+
+You can customize the following syntax highlighting groups:
 
   `TeXtidoteCmd`
   `TeXtidoteErrorCount`
@@ -271,24 +274,30 @@ You can also customize the following syntax highlighting groups:
   `TeXtidoteGrammarError`
   `TeXtidoteSpellingError`
 
-For example, to highlight grammar errors in blue, and spelling errors in
-red, with a curly underline in vim GUIs that support it, add this into your
-colorscheme:
+For example, if you want Textidote spelling and grammar errors look the same
+way as in vim spell, you can put the following lines in your |vimrc|:
 
-  `:hi TeXtidoteGrammarError guisp=blue gui=undercurl guifg=NONE guibg=NONE`
+`highlight default link TeXtidoteGrammarError 	SpellCap`
+`highlight default link TeXtidoteSpellingError 	SpellBad`
+
+To highlight grammar errors in blue, and spelling errors in red, with a curly
+underline in vim GUIs that support it, add this:
+
+`highlight TeXtidoteGrammarError guisp=blue gui=undercurl guifg=NONE guibg=NONE`
   			`\ ctermfg=white ctermbg=blue term=underline cterm=none`
-  `:hi TeXtidoteSpellingError guisp=red gui=undercurl guifg=NONE guibg=NONE`
+`highlight TeXtidoteSpellingError guisp=red gui=undercurl guifg=NONE guibg=NONE`
   			`\ ctermfg=white ctermbg=red term=underline cterm=none`
 
 ==============================================================================
-6. License                                                    *TeXtidoteLicense*
+7. License                                                    *TeXtidoteLicense*
 
 Copyright © Patrick Ballard.  Distributed under the same terms as Vim itself.
 See `:help license`.
 
 ==============================================================================
-7. Changelog                                                *TeXtidoteChangelog*
+8. Changelog                                                *TeXtidoteChangelog*
 
+19/11/2002 Fixed <Tab> completion with possibly multibyte characters in file
 17/11/2022 Add option to use LanguaeTool instead of TeXTidote as the checker
 13/11/2022 Add navigation of errors also in the original buffer
 06/11/2022 Add navigation of errors and completion fix
@@ -296,7 +305,7 @@ See `:help license`.
 06/01/2022 Initial version
 
 ==============================================================================
-8. Credits                                                    *TeXtidoteCredits*
+9. Credits                                                    *TeXtidoteCredits*
 
 This plugin is strongly based on the excellent plugin `vim-LanguageTool`. 
 Large parts of its code have been reused in this plugin.
