@@ -437,7 +437,7 @@ endfunction
 
 " The following two functions enable navigation of errors in original buffer
 function! textidote#MoveForwardOrigBuffer()
-	let s:cursorPosOrigBuffer = getpos('.')
+	let s:cursorPosOrigBuffer = getcursorcharpos('.')
 	let l:test = 0
 	let l:i = 1
 	while l:test == 0
@@ -476,7 +476,7 @@ function! textidote#MoveForwardOrigBuffer()
 		let l:line = l:error['fromy']
 		let l:col  = l:error['fromx']
 		let l:rule = l:error['ruleId']
-		call cursor(l:line,l:col)
+		call setcursorcharpos(l:line,l:col)
 		
 		echon 'Jump to error ' . l:indNextError . '/' . len(s:errors)
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
@@ -497,7 +497,7 @@ function! textidote#MoveForwardOrigBuffer()
 endfunction
 
 function! textidote#MoveBackwardOrigBuffer()
-	let s:cursorPosOrigBuffer = getpos('.')
+	let s:cursorPosOrigBuffer = getcursorcharpos('.')
 	let l:test = 0
 	let l:i = len(s:errors)
 	while l:test == 0
@@ -533,7 +533,7 @@ function! textidote#MoveBackwardOrigBuffer()
 		let l:line = l:error['fromy']
 		let l:col  = l:error['fromx']
 		let l:rule = l:error['ruleId']
-		call cursor(l:line,l:col)
+		call setcursorcharpos(l:line,l:col)
 		
 		echon 'Jump to error ' . l:indPrevError . '/' . len(s:errors)
 		\ . ' ' . l:rule . ' @ ' . l:line . 'L ' . l:col . 'C'
@@ -634,7 +634,7 @@ function! textidote#QuickFix()
 			let l:error = s:errors[l:test - 1]
 			let l:line = l:error['fromy']
 			let l:col  = l:error['fromx']
-			call cursor(l:line,l:col)
+			call setcursorcharpos(l:line,l:col)
 			
 			" Open the folds to reveal the cursor line and display that line in
 			" the middle of the window
