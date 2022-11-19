@@ -116,18 +116,18 @@ plugin
 `nnoremap <silent> <Leader>te :TeXtidoteToggle<CR>`
 
 Even better, you can map:
-vnoremap <silent> <Leader>te
-	\ :<C-U>let g:textidote_jar = $HOME . '/.vim/textidote.jar'<CR>
-	\ :'<,'>TeXtidoteToggle<CR>
-nnoremap <silent> <Leader>te
-	\ :let g:textidote_jar = $HOME . '/.vim/textidote.jar'<CR>
-	\ :TeXtidoteToggle<CR>
-vnoremap <silent> <Leader>lt
-	\ :<C-U>let g:textidote_jar = $HOME . '/.vim/languagetool-commandline.jar'<CR>
-	\ :'<,'>TeXtidoteToggle<CR>
-nnoremap <silent> <Leader>lt
-	\ :let g:textidote_jar = $HOME . '/.vim/languagetool-commandline.jar'<CR>
-	\ :TeXtidoteToggle<CR>
+`vnoremap <silent> <Leader>te`
+	`\ :<C-U>let g:textidote_jar = $HOME . '/.vim/textidote.jar'<CR>`
+	`\ :'<,'>TeXtidoteToggle<CR>`
+`nnoremap <silent> <Leader>te`
+	`\ :let g:textidote_jar = $HOME . '/.vim/textidote.jar'<CR>`
+	`\ :TeXtidoteToggle<CR>`
+`vnoremap <silent> <Leader>lt`
+	`\ :<C-U>let g:textidote_jar = $HOME . '/.vim/languagetool-commandline.jar'<CR>`
+	`\ :'<,'>TeXtidoteToggle<CR>`
+`nnoremap <silent> <Leader>lt`
+	`\ :let g:textidote_jar = $HOME . '/.vim/languagetool-commandline.jar'<CR>`
+	`\ :TeXtidoteToggle<CR>`
 so that `<Leader>te` will call TeXtidote and `<Leader>lt` LanguageTool.
 
 Several global variables can be set in your |vimrc| to configure the behavior
