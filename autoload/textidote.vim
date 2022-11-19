@@ -653,9 +653,19 @@ function! textidote#QuickFix()
 			" The error has replacements indeed
 			" First jump at the end of the error
 			let l:error = s:errors[l:test - 1]
-			let l:line = l:error['toy']
-			let l:col  = l:error['tox']
-			call setcursorcharpos(l:line,l:col)
+			if l:error['fromy'] = l:error['toy']
+				" The error is contained in a single line
+				let l:line = l:error['toy']
+				let l:col  = l:error['tox']
+				call setcursorcharpos(l:line,l:col)
+			else
+				" The error spans across multiple line
+				" The completion is made to replace the part of the error on the first line
+				let l:line = l:error['fromy']
+				let l:col  = l:error['fromx']
+				call setcursorcharpos(l:line,l:col)
+				normal! $
+			endif
 			" Load user completion
 			let @" = "\<C-X>\<C-U>"
 		else
