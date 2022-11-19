@@ -370,12 +370,11 @@ function <sid>JumpToCurrentError()
 		if !empty(l:error['replacements'])
 			let l:suggestions = substitute(l:error['replacements'], '^\(.\{-}\)\s*$', '\1', '')
 			if s:textidote_checker =~? 'textidote'
-				" TeXtidote often delivers multiple, comma separated, suggestions 
+				" Multiple suggestions in TeXtidote are separated by ', ' 
 				let s:suggestions_list = split(l:suggestions,', ')
 			else
-				" but not LanguageTool, whose suggestion may contain a comma
-				let s:suggestions_list = []
-				call add(s:suggestions_list,l:suggestions)
+				" Multiple suggestions in LanguageTool are separated by '#'
+				let s:suggestions_list = split(l:suggestions,'#')
 			endif
 			let s:col = l:col - 1
 			setlocal completefunc=textidote#Suggestions
