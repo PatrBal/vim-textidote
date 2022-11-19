@@ -667,9 +667,11 @@ function! textidote#QuickFix()
 			if str2nr(l:error['fromy']) == str2nr(l:error['toy'])
 				" The error is contained in a single line
 				let s:lineQF = l:error['toy']
-				let s:colQF  = charidx(getline(s:lineQF),l:error['tox'] - 1) + 1
-				" call setcursorcharpos(s:lineQF,s:colQF)
-				let @" = "\<Esc>" . s:lineQF . "G" . s:colQF . "|a\<C-X>\<C-U>"
+				let s:colQF  = l:error['fromx']
+				call setcursorcharpos(s:lineQF,s:colQF)
+				let @" = "\<C-X>\<C-U>"
+				" let s:colQF  = charidx(getline(s:lineQF),l:error['tox'] - 1) + 1
+				" let @" = "\<Esc>" . s:lineQF . "G" . s:colQF . "|a\<C-X>\<C-U>"
 			else
 				" The error spans across multiple line
 				" The completion is made to replace the part of the error on the first line
@@ -677,7 +679,7 @@ function! textidote#QuickFix()
 				let s:lineQF = l:error['fromy']
 				let s:colQF  = l:error['fromx']
 				" call setcursorcharpos(s:lineQF,s:colQF)
-				normal! $
+				" normal! $
 				let @" = "\<Esc>" . s:lineQF . "G$a\<C-X>\<C-U>"
 			endif
 		else
