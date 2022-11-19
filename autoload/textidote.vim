@@ -500,12 +500,12 @@ function! textidote#MoveBackwardOrigBuffer()
 				let l:test = 0
 			elseif get(get(s:errors,l:i-1,0),'fromy',0) == get(s:cursorPosOrigBuffer,1,0)
 						\ && get(get(s:errors,l:i-1,0),'fromx',0) > get(s:cursorPosOrigBuffer,2,0)
-					let l:test = 0
+				let l:test = 0
 			elseif get(get(s:errors,l:i-1,0),'toy',0) == get(s:cursorPosOrigBuffer,1,0)
 						\ && get(get(s:errors,l:i-1,0),'tox',0) >= get(s:cursorPosOrigBuffer,2,0)
-					let l:test = 0
+				let l:test = 0
 			else
-					let l:test = 1
+				let l:test = 1
 			endif
 		else
 			let l:test = 1
