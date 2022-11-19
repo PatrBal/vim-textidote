@@ -668,10 +668,10 @@ function! textidote#QuickFix()
 				" The error is contained in a single line
 				let s:lineQF = l:error['toy']
 				let s:colQF  = l:error['tox']
-				call setcursorcharpos(s:lineQF,s:colQF)
-				let @" = "\<C-X>\<C-U>"
+				" call setcursorcharpos(s:lineQF,s:colQF)
+				" let @" = "\<C-X>\<C-U>"
 				" let s:colQF  = charidx(getline(s:lineQF),l:error['tox'] - 1) + 1
-				" let @" = "\<Esc>" . s:lineQF . "G" . s:colQF . "|a\<C-X>\<C-U>"
+				let @" = "\<Esc>" . s:lineQF . "G" . s:colQF . "|a\<C-X>\<C-U>"
 			else
 				" The error spans across multiple line
 				" The completion is made to replace the part of the error on the first line
