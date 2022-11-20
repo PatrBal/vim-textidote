@@ -798,7 +798,7 @@ function! textidote#DiscardErrorPermanently()
 			let l:errorWORD = textidote#GetFullErrorString(l:test)
 
 			call system('echo "' . l:errorWORD . '" >> ' . s:textidote_dictionary)
-			echon '"' . l:error_WORD . '" permanently discarded.'
+			echon '"' . l:errorWORD . '" permanently discarded.'
 			drop [TeXtidote]
 		endif
 	else
@@ -809,7 +809,7 @@ function! textidote#DiscardErrorPermanently()
 			echom l:errorWORD
 
 			call system('echo "' . l:errorWORD . '" >> ' . s:textidote_dictionary)
-			echon '"' . l:error_WORD . '" permanently discarded.'
+			echon '"' . l:errorWORD . '" permanently discarded.'
 		endif
 	endif
 endfunction
