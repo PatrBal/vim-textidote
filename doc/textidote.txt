@@ -56,7 +56,7 @@ already made available by other good plugins (e.g., `vim-grammarous` or
    and the original buffer. The <BS> discarding will not be remembered in a
    later grammar check with `vim-textidote`. If you have set the variable 
    |g:textidote_dictionary| (file containing a list of words to be ignored by
-   TeXtidote), you can make permanent the discarding of the error by pressing
+   TeXtidote), you can make the discarding of the error permanent by pressing
    first <S-BS>. This adds the current error to the list of words in that
    file. All the original mappings of `[`, `]`, <BS>, <S-BS>, <CR> and <Tab> are
    restored when the scratch buffer is cleared.
