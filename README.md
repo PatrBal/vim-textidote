@@ -4,7 +4,7 @@
 
 This plugin interfaces Vim and Neovim with the [TeXtidote][TeXtidote] grammar checker.  TeXtidote is an open source spelling, grammar and style checker for multiple languages based on [LanguageTool][LanguageTool].  TeXtidote is built on top of LanguageTool and is able to remove LaTeX and Markdown markup before grammar checking, while keeping track of the relative position of words between the original and "clean text". In short, TeXtidote is a version of LanguageTool made blind to LaTeX and Markdown markup.
 
-This plugin provides asynchronous integration of both TeXtidote and LanguageTool, with highlighting of the errors and warnings. It offers also easy and intuitive navigation of the errors, as well as quick fixes by `<Tab>` completion.
+This plugin provides asynchronous integration of both TeXtidote and LanguageTool, with highlighting of the spelling and graammar errors. It offers also easy and intuitive navigation of the errors, as well as quick fixes by `<Tab>` completion.
 
 ## Screenshots
 
@@ -33,7 +33,7 @@ By default `[range]` is the whole buffer, except in the case where there is a vi
 
 
 ## Features
- - Asynchronous spell, grammar and style checking of either the entire buffer or part of it, with highlighing of the errors and warnings. The default grammar checker is TeXtidote, but the option of using LanguageTool instead is made possible.
+ - Asynchronous spell, grammar and style checking of either the entire buffer or part of it, with highlighing of the spelling and grammar errors in distinct colors. The default grammar checker is TeXtidote, but the option of using LanguageTool instead is also possible.
  - A scratch buffer shows up, listing all the errors.  Navigate the errors using `[` and `]`, both in the scratch buffer and in the original buffer. Hit `<Enter>` on an error in the scratch buffer to jump to that error. Hit `<Tab>` on an error in the original buffer to fix it. Also, `<BackSpace>` discards an error both in the scratch buffer and in the original buffer.
  - The location-list is populated, so that you can use location-list Vim commands such as `:lopen` to open the location-list window, `:lne` to jump to the next error, etc.
  - Optionally, a full html report of TeXtidote analysis can be displayed in the default browser.
