@@ -746,6 +746,18 @@ function! textidote#DiscardError()
 	call setpos('.', s:cursorPosOrigBuffer)
 endfunction
 
+function! textidote#DiscardErrorPermanently()
+	if s:textidote_checker ==? 'languagetool' || s:textidote_dictionary ==? ''
+		return
+	endif
+	let s:cursorPosOrigBuffer = getpos('.')
+	let l:test = textidote#FindErrorIndex(s:cursorPosOrigBuffer)
+	if l:test >= 1
+		let l:error_Word = expand('<cWord>')
+		call system('echo "' . l:error_Word . '" >> ' . s:textidote_dictionary)
+	endif
+endfunction
+
 " This function provides the completion with the suggestion list for the
 " current error
 function! textidote#Suggestions(findstart, base)
@@ -1046,6 +1058,7 @@ function textidote#Display(data,code)
 	nmap <buffer><silent> <CR> ¶
 	nmap <buffer><silent> <Tab> ¶a<C-R>"
 	nmap <buffer><silent> <BS> :call textidote#DiscardError()<CR>
+	nmap <buffer><silent> <S-BS> :call textidote#DiscardErrorPermanently()<CR>
 
 	if s:textidote_win_height >= 0
 		if s:textidote_checker =~? 'textidote'
