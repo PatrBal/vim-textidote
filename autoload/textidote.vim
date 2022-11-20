@@ -277,9 +277,6 @@ function s:TeXtidoteSetUp()
 	if !empty(maparg('<Tab>', 'n'))
 		let s:mapTab_orig = maparg('<Tab>', 'n', 0, 1)
 	endif
-	if !empty(maparg('<S-Tab>', 'n'))
-		let s:mapShiftTab_orig = maparg('<S-Tab>', 'n', 0, 1)
-	endif
 	if !empty(maparg(']', 'n'))
 		let s:mapForward_orig = maparg(']', 'n', 0, 1)
 	endif
@@ -294,6 +291,9 @@ function s:TeXtidoteSetUp()
 	endif
 	if !empty(maparg('\<BS>', 'n'))
 		let s:mapBSp_orig = maparg('\<BS>', 'n', 0, 1)
+	endif
+	if !empty(maparg('<S-BS>', 'n'))
+		let s:mapShiftBSp_orig = maparg('<S-BS>', 'n', 0, 1)
 	endif
 	let s:unnamed_register = @@
 
