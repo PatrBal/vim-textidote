@@ -12,7 +12,7 @@ CONTENTS                                                     *TeXtidoteContents*
     3. Usage ............................................ |TeXtidoteUsage|
     4. Installation ..................................... |TeXtidoteInstall|
     5. Configuration .................................... |TeXtidoteConfig|
-    6. Custumization .................................... |TeXtidoteCustom|
+    6. Customization .................................... |TeXtidoteCustom|
     7. License .......................................... |TeXtidoteLicense|
     8. Changelog ........................................ |TeXtidoteChangelog|
     9. Credits .......................................... |TeXtidoteCredits|
