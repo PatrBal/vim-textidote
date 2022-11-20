@@ -746,6 +746,45 @@ function! textidote#DiscardError()
 	call setpos('.', s:cursorPosOrigBuffer)
 endfunction
 
+function! textidote#GetFullErrorString(idx)
+	if a:idx < 1 || a:idx > len(s:errors)
+		return -1
+	endif
+
+	let l:fromy = get(get(s:errors,a:idx-1,0),'fromy',0)
+	let l:toy = get(get(s:errors,a:idx-1,0),'toy',0)
+	let l:fromx = get(get(s:errors,a:idx-1,0),'fromx',0)
+	let l:tox = get(get(s:errors,a:idx-1,0),'tox',0)
+	if l:toy == l:fromy
+		let l:errorLineTot = getline(l:fromy)
+		let l:errorColStart = byteidx(l:errorLineTot,l:fromx - 1)
+		let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
+		let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
+	elseif l:toy == l:fromy + 1
+		let l:errorLineTot = getline(l:fromy)
+		let l:errorColStart = byteidx(l:errorLineTot,l:fromx - 1)
+		let l:errorColEnd = strlen(l:errorLineTot) - l:errorColStart -1
+		let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
+		let l:errorLineTot = getline(l:toy)
+		let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
+		let l:error_WORD = l:error_WORD . l:errorLineTot[0:l:errorColEnd]
+	else
+		let l:errorLineTot = getline(l:fromy)
+		let l:errorColStart = byteidx(l:errorLineTot,l:fromx - 1)
+		let l:errorColEnd = strlen(l:errorLineTot) - l:errorColStart -1
+		let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
+		for l:l in range(l:fromy + 1,l:toy - 1)
+			let l:errorLineTot = getline(l:l)
+			let l:error_WORD = l:error_WORD . l:errorLineTot
+		endfor
+		let l:errorLineTot = getline(l:toy)
+		let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
+		let l:error_WORD = l:error_WORD . l:errorLineTot[0:l:errorColEnd]
+	endif
+
+	return l:error_WORD
+endfunction
+
 function! textidote#DiscardErrorPermanently()
 	if s:textidote_checker ==? 'languagetool' || s:textidote_dictionary ==? ''
 		return
@@ -755,36 +794,9 @@ function! textidote#DiscardErrorPermanently()
 		if search('^Error:\s\+', 'beW') > 0
 			let l:test = expand('<cword>')
 			execute 'drop ' . s:current_file
-			let l:fromy = get(get(s:errors,l:test-1,0),'fromy',0)
-			let l:toy = get(get(s:errors,l:test-1,0),'toy',0)
-			let l:fromx = get(get(s:errors,l:test-1,0),'fromx',0)
-			let l:tox = get(get(s:errors,l:test-1,0),'tox',0)
-			if l:toy == l:fromy
-				let l:errorLineTot = getline(l:fromy)
-				let l:errorColStart = byteidx(l:errorLineTot,l:fromx - 1)
-				let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
-				let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
-			elseif l:toy == l:fromy + 1
-				let l:errorLineTot = getline(l:fromy)
-				let l:errorColStart = byteidx(l:errorLineTot,l:fromx - 1)
-				let l:errorColEnd = strlen(l:errorLineTot) - l:errorColStart -1
-				let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
-				let l:errorLineTot = getline(l:toy)
-				let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
-				let l:error_WORD = l:error_WORD . l:errorLineTot[0:l:errorColEnd]
-			else
-				let l:errorLineTot = getline(l:fromy)
-				let l:errorColStart = byteidx(l:errorLineTot,l:fromx - 1)
-				let l:errorColEnd = strlen(l:errorLineTot) - l:errorColStart -1
-				let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
-				for l:l in range(l:fromy + 1,l:toy - 1)
-					let l:errorLineTot = getline(l:l)
-					let l:error_WORD = l:error_WORD . l:errorLineTot
-				endfor
-				let l:errorLineTot = getline(l:toy)
-				let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
-				let l:error_WORD = l:error_WORD . l:errorLineTot[0:l:errorColEnd]
-			endif
+
+			let l:errorWORD = textidote#GetFullErrorString(l:test)
+
 			call system('echo "' . l:error_WORD . '" >> ' . s:textidote_dictionary)
 			echon '"' . l:error_WORD . '" permanently discarded.'
 			drop [TeXtidote]
@@ -795,36 +807,8 @@ function! textidote#DiscardErrorPermanently()
 		let s:cursorPosOrigBuffer = getpos('.')
 		let l:test = textidote#FindErrorIndex(s:cursorPosOrigBuffer)
 		if l:test >= 1
-			let l:fromy = get(get(s:errors,l:test-1,0),'fromy',0)
-			let l:toy = get(get(s:errors,l:test-1,0),'toy',0)
-			let l:fromx = get(get(s:errors,l:test-1,0),'fromx',0)
-			let l:tox = get(get(s:errors,l:test-1,0),'tox',0)
-			if l:toy == l:fromy
-				let l:errorLineTot = getline(l:fromy)
-				let l:errorColStart = byteidx(l:errorLineTot,l:fromx - 1)
-				let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
-				let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
-			elseif l:toy == l:fromy + 1
-				let l:errorLineTot = getline(l:fromy)
-				let l:errorColStart = byteidx(l:errorLineTot,l:fromx - 1)
-				let l:errorColEnd = strlen(l:errorLineTot) - l:errorColStart -1
-				let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
-				let l:errorLineTot = getline(l:toy)
-				let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
-				let l:error_WORD = l:error_WORD . l:errorLineTot[0:l:errorColEnd]
-			else
-				let l:errorLineTot = getline(l:fromy)
-				let l:errorColStart = byteidx(l:errorLineTot,l:fromx - 1)
-				let l:errorColEnd = strlen(l:errorLineTot) - l:errorColStart -1
-				let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
-				for l:l in range(l:fromy + 1,l:toy - 1)
-					let l:errorLineTot = getline(l:l)
-					let l:error_WORD = l:error_WORD . l:errorLineTot
-				endfor
-				let l:errorLineTot = getline(l:toy)
-				let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
-				let l:error_WORD = l:error_WORD . l:errorLineTot[0:l:errorColEnd]
-			endif
+			let l:errorWORD = textidote#GetFullErrorString(l:test)
+
 			call system('echo "' . l:error_WORD . '" >> ' . s:textidote_dictionary)
 			echon '"' . l:error_WORD . '" permanently discarded.'
 		endif
