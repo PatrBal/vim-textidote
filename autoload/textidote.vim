@@ -783,7 +783,6 @@ function! textidote#GetFullErrorString(idx)
 		let l:error_WORD = l:error_WORD . l:errorLineTot[0:l:errorColEnd]
 	endif
 
-	echom l:error_WORD . ' (new function)'
 	return l:error_WORD
 endfunction
 
@@ -797,9 +796,8 @@ function! textidote#DiscardErrorPermanently()
 			let l:test = expand('<cword>')
 
 			let l:errorWORD = textidote#GetFullErrorString(l:test)
-			echom l:errorWORD
 
-			call system('echo "' . l:error_WORD . '" >> ' . s:textidote_dictionary)
+			call system('echo "' . l:errorWORD . '" >> ' . s:textidote_dictionary)
 			echon '"' . l:error_WORD . '" permanently discarded.'
 			drop [TeXtidote]
 		endif
@@ -810,7 +808,7 @@ function! textidote#DiscardErrorPermanently()
 			let l:errorWORD = textidote#GetFullErrorString(l:test)
 			echom l:errorWORD
 
-			call system('echo "' . l:error_WORD . '" >> ' . s:textidote_dictionary)
+			call system('echo "' . l:errorWORD . '" >> ' . s:textidote_dictionary)
 			echon '"' . l:error_WORD . '" permanently discarded.'
 		endif
 	endif
