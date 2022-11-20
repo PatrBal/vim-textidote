@@ -277,6 +277,9 @@ function s:TeXtidoteSetUp()
 	if !empty(maparg('<Tab>', 'n'))
 		let s:mapTab_orig = maparg('<Tab>', 'n', 0, 1)
 	endif
+	if !empty(maparg('<S-Tab>', 'n'))
+		let s:mapShiftTab_orig = maparg('<S-Tab>', 'n', 0, 1)
+	endif
 	if !empty(maparg(']', 'n'))
 		let s:mapForward_orig = maparg(']', 'n', 0, 1)
 	endif
