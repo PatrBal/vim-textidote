@@ -51,9 +51,14 @@ already made available by other good plugins (e.g., `vim-grammarous` or
    <C-N> (next) and <C-P> (previous), or <Down> and <Up>. Confirm a suggestion
    with <C-Y> (yes) or discard all suggestions with <C-E> (exit). The shortcut
    <CR> is also active when the cursor is on an error in the original buffer,
-   and displays the current error in the scratch buffer. You can also discard
-   an error by pressing <BS>, both in the scratch buffer and the original
-   buffer. All the original mappings of `[`, `]`, <BS>, <CR> and <Tab> are
+   and displays the current error in the scratch buffer.
+ - You can also discard an error by pressing <BS>, both in the scratch buffer
+   and the original buffer. The <BS> discarding will not remembered in a later
+   grammar check with `vim-textidote`. If you have set the variable 
+   |g:textidote_dictionary| (file containing a list of words to be ignored by
+   TeXtidote), you can make permanent the discarding of the error by pressing
+   first <S-BS>. This adds the current error to the list of words in that
+   file. All the original mappings of `[`, `]`, <BS>, <S-BS>, <CR> and <Tab> are
    restored when the scratch buffer is cleared.
  - The location-list is populated, so that you can use location-list Vim
    commands such as `:lopen` to open the location-list window, `:lne` to jump
