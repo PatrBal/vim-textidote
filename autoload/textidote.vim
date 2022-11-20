@@ -783,7 +783,7 @@ function! textidote#GetFullErrorString(idx)
 		let l:error_WORD = l:error_WORD . l:errorLineTot[0:l:errorColEnd]
 	endif
 
-	echom l:errorWORD
+	echom l:error_WORD . ' (new function)'
 	return l:error_WORD
 endfunction
 
