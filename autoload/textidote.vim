@@ -762,7 +762,7 @@ function! textidote#DiscardErrorPermanently()
 			if l:toy == l:fromy
 				let l:errorLineTot = getline(l:fromy)
 				let l:errorColStart = byteidx(l:errorLineTot,l:fromx - 1)
-				let l:errorColEnd = byteidx(l:tox - 1)
+				let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
 				let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
 			elseif l:toy == l:fromy + 1
 				let l:errorLineTot = getline(l:fromy)
@@ -770,7 +770,7 @@ function! textidote#DiscardErrorPermanently()
 				let l:errorColEnd = strlen(l:errorLineTot) - l:errorColStart -1
 				let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
 				let l:errorLineTot = getline(l:toy)
-				let l:errorColEnd = byteidx(l:tox - 1)
+				let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
 				let l:error_WORD = l:error_WORD . l:errorLineTot[0:l:errorColEnd]
 			else
 				let l:errorLineTot = getline(l:fromy)
@@ -782,7 +782,7 @@ function! textidote#DiscardErrorPermanently()
 					let l:error_WORD = l:error_WORD . l:errorLineTot
 				endfor
 				let l:errorLineTot = getline(l:toy)
-				let l:errorColEnd = byteidx(l:tox - 1)
+				let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
 				let l:error_WORD = l:error_WORD . l:errorLineTot[0:l:errorColEnd]
 			endif
 			call system('echo "' . l:error_WORD . '" >> ' . s:textidote_dictionary)
@@ -802,7 +802,7 @@ function! textidote#DiscardErrorPermanently()
 			if l:toy == l:fromy
 				let l:errorLineTot = getline(l:fromy)
 				let l:errorColStart = byteidx(l:errorLineTot,l:fromx - 1)
-				let l:errorColEnd = byteidx(l:tox - 1)
+				let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
 				let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
 			elseif l:toy == l:fromy + 1
 				let l:errorLineTot = getline(l:fromy)
@@ -810,7 +810,7 @@ function! textidote#DiscardErrorPermanently()
 				let l:errorColEnd = strlen(l:errorLineTot) - l:errorColStart -1
 				let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
 				let l:errorLineTot = getline(l:toy)
-				let l:errorColEnd = byteidx(l:tox - 1)
+				let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
 				let l:error_WORD = l:error_WORD . l:errorLineTot[0:l:errorColEnd]
 			else
 				let l:errorLineTot = getline(l:fromy)
@@ -822,7 +822,7 @@ function! textidote#DiscardErrorPermanently()
 					let l:error_WORD = l:error_WORD . l:errorLineTot
 				endfor
 				let l:errorLineTot = getline(l:toy)
-				let l:errorColEnd = byteidx(l:tox - 1)
+				let l:errorColEnd = byteidx(l:errorLineTot,l:tox - 1)
 				let l:error_WORD = l:error_WORD . l:errorLineTot[0:l:errorColEnd]
 			endif
 			call system('echo "' . l:error_WORD . '" >> ' . s:textidote_dictionary)
