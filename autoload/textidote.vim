@@ -1081,7 +1081,7 @@ function textidote#Display(data,code)
 		nnoremap <buffer><silent><nowait> [ :call textidote#MoveBackwardScratchBuffer()<CR>
 		nnoremap <buffer><silent> <CR> :call <sid>JumpToCurrentError()<CR>
 		nnoremap <buffer><silent> <BS> :call <sid>DiscardCurrentError()<CR>
-		nnoremap <buffer><silent> <S-BS> :call textidote#DiscardErrorPermanently()<CR>
+		nnoremap! <buffer><silent> <S-BS> :call textidote#DiscardErrorPermanently()<CR>
 
 		execute 'drop ' . s:current_file
 	else
