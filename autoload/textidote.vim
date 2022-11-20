@@ -791,6 +791,7 @@ function! textidote#DiscardErrorPermanently()
 		return
 	endif
 	if @% ==? '[TeXtidote]'
+		let l:save_cursor = getpos('.')
 		normal! $
 		if search('^Error:\s\+', 'beW') > 0
 			let l:test = expand('<cword>')
@@ -801,6 +802,7 @@ function! textidote#DiscardErrorPermanently()
 			echon '"' . l:errorWORD . '" permanently discarded.'
 			drop [TeXtidote]
 		endif
+		call setpos('.', l:save_cursor)
 	else
 		let s:cursorPosOrigBuffer = getpos('.')
 		let l:test = textidote#FindErrorIndex(s:cursorPosOrigBuffer)
