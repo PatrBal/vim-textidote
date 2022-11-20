@@ -794,7 +794,6 @@ function! textidote#DiscardErrorPermanently()
 		normal! $
 		if search('^Error:\s\+', 'beW') > 0
 			let l:test = expand('<cword>')
-			execute 'drop ' . s:current_file
 
 			let l:errorWORD = textidote#GetFullErrorString(l:test)
 
