@@ -1033,10 +1033,11 @@ function textidote#Display(data,code)
 		redraw
 
 		" Setting the shortcuts in the TeXtidote buffer (scratch) 
-		nnoremap <buffer><silent> <CR> :call <sid>JumpToCurrentError()<CR>
-		nnoremap <buffer><silent> <BS> :call <sid>DiscardCurrentError()<CR>
 		nnoremap <buffer><silent><nowait> ] :call textidote#MoveForwardScratchBuffer()<CR>
 		nnoremap <buffer><silent><nowait> [ :call textidote#MoveBackwardScratchBuffer()<CR>
+		nnoremap <buffer><silent> <CR> :call <sid>JumpToCurrentError()<CR>
+		nnoremap <buffer><silent> <BS> :call <sid>DiscardCurrentError()<CR>
+		nnoremap <buffer><silent> <S-BS> :call textidote#DiscardErrorPermanently()<CR>
 
 		execute 'drop ' . s:current_file
 	else
