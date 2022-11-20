@@ -797,18 +797,18 @@ function! textidote#DiscardErrorPermanently()
 			let l:test = expand('<cword>')
 
 			let l:errorWORD = textidote#GetFullErrorString(l:test)
+			echom l:errorWORD
 
 			call system('echo "' . l:error_WORD . '" >> ' . s:textidote_dictionary)
 			echon '"' . l:error_WORD . '" permanently discarded.'
 			drop [TeXtidote]
-		else
-			let l:test = 0
 		endif
 	else
 		let s:cursorPosOrigBuffer = getpos('.')
 		let l:test = textidote#FindErrorIndex(s:cursorPosOrigBuffer)
 		if l:test >= 1
 			let l:errorWORD = textidote#GetFullErrorString(l:test)
+			echom l:errorWORD
 
 			call system('echo "' . l:error_WORD . '" >> ' . s:textidote_dictionary)
 			echon '"' . l:error_WORD . '" permanently discarded.'
