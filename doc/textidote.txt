@@ -182,7 +182,9 @@ of the TeXtidote plugin.
 *g:textidote_first_language*
   Define your first language to enable the checking for false friends.
   Must be either empty or one of the following: `de`, `de_AT`, `de_CH`, `en`, `en_CA`,
-  `en_UK`, `es`, `fr`, `nl`, `pt`, `pl`.
+  `en_UK`, `es`, `fr`, `nl`, `pt`, `pl`. This option is only used when TeXtidote
+  is the checker.
+
   Default value: empty
   Example: `:let g:textidote_first_language = 'fr'`
 
@@ -190,14 +192,17 @@ of the TeXtidote plugin.
   If you have a list of words that you want TeXtidote to ignore when checking
   spelling, you can specify a dictionary file. This file must be a plain text
   file containing a list of words to be ignored, with each word on a separate
-  line.  
+  line. This option is only used when TeXtidote is the checker.
+
   Default value: empty
   Example: `:let g:textidote_dictionary = '~/.vim/dico.txt'`
 
 *g:textidote_ignore_rules*
   You may want to ignore some of TeXtidote's advice. You can do so by 
   specifying rule IDs to ignore (rule IDs are shown between brackets in the
-  reports given by TeXtidote).
+  reports given by TeXtidote). This option is only used when TeXtidote is the
+  checker.
+
   Default value: empty
   Example: `:let g:textidote_ignore_rules = 'lt:en:EN_REPEATEDWORDS,sh:c:noin'`
 
@@ -279,7 +284,7 @@ You can customize the following syntax highlighting groups:
   `TeXtidoteSpellingError`
 
 For example, if you want Textidote spelling and grammar errors look the same
-way as in vim spell, you can put the following lines in your |vimrc|:
+way as in Vim spell, you can put the following lines in your |vimrc|:
 
 `highlight default link TeXtidoteGrammarError 	SpellCap`
 `highlight default link TeXtidoteSpellingError 	SpellBad`
