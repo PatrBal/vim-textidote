@@ -1129,11 +1129,6 @@ function textidote#Clear()
 		else
 			silent!nunmap <buffer> <Tab>
 		endif
-		if exists('s:mapShiftTab_orig')
-			execute 'nnoremap <S-Tab> ' . s:mapShiftTab_orig
-		else
-			silent!nunmap <buffer> <S-Tab>
-		endif
 		if exists('s:mapForward_orig')
 			execute 'nnoremap ] ' . s:mapForward_orig
 		else
@@ -1158,6 +1153,11 @@ function textidote#Clear()
 			execute 'nnoremap <BS>' . s:mapBSp_orig
 		else
 			silent!nunmap <buffer> <BS>
+		endif
+		if exists('s:mapShiftBSp_orig')
+			execute 'nnoremap <S-BS> ' . s:mapShiftBSp_orig
+		else
+			silent!nunmap <buffer> <S-BS>
 		endif
 		let @@ = s:unnamed_register
 
