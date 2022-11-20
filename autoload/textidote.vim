@@ -751,6 +751,7 @@ function! textidote#GetFullErrorString(idx)
 		return -1
 	endif
 
+	execute 'drop ' . s:current_file
 	let l:fromy = get(get(s:errors,a:idx-1,0),'fromy',0)
 	let l:toy = get(get(s:errors,a:idx-1,0),'toy',0)
 	let l:fromx = get(get(s:errors,a:idx-1,0),'fromx',0)
