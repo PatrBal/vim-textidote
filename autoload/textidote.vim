@@ -1129,6 +1129,11 @@ function textidote#Clear()
 		else
 			silent!nunmap <buffer> <Tab>
 		endif
+		if exists('s:mapShiftTab_orig')
+			execute 'nnoremap <S-Tab> ' . s:mapShiftTab_orig
+		else
+			silent!nunmap <buffer> <S-Tab>
+		endif
 		if exists('s:mapForward_orig')
 			execute 'nnoremap ] ' . s:mapForward_orig
 		else
