@@ -754,7 +754,7 @@ function! textidote#DiscardErrorPermanently()
 		normal! $
 		if search('^Error:\s\+', 'beW') > 0
 			let l:test = expand('<cword>')
-			drop s:current_file
+			execute 'drop ' . s:current_file
 			let l:errorLineTot = getline(get(get(s:errors,l:test-1,0),'fromy',0))
 			drop [TeXtidote]
 		else
