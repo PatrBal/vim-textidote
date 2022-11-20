@@ -53,8 +53,8 @@ already made available by other good plugins (e.g., `vim-grammarous` or
    <CR> is also active when the cursor is on an error in the original buffer,
    and displays the current error in the scratch buffer.
  - You can also discard an error by pressing <BS>, both in the scratch buffer
-   and the original buffer. The <BS> discarding will not remembered in a later
-   grammar check with `vim-textidote`. If you have set the variable 
+   and the original buffer. The <BS> discarding will not be remembered in a
+   later grammar check with `vim-textidote`. If you have set the variable 
    |g:textidote_dictionary| (file containing a list of words to be ignored by
    TeXtidote), you can make permanent the discarding of the error by pressing
    first <S-BS>. This adds the current error to the list of words in that
