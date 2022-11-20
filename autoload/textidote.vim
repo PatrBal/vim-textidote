@@ -762,7 +762,7 @@ function! textidote#DiscardErrorPermanently()
 		let l:test = textidote#FindErrorIndex(s:cursorPosOrigBuffer)
 	endif
 	if l:test >= 1
-		let l:errorLineTot = getline(get(s:cursorPosOrigBuffer,1,0))
+		let l:errorLineTot = getline(get(get(s:errors,l:test-1,0),'fromy',0))
 		let l:errorColStart = get(get(s:errors,l:test-1,0),'fromx',0) - 1
 		let l:errorColEnd = get(get(s:errors,l:test-1,0),'tox',0) - 1
 		let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
