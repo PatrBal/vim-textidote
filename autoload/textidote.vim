@@ -15,6 +15,9 @@ function s:FindLanguage(lang,checker)
 		if l:language ==? 'en_GB'
 			let l:language = 'en_UK'
 		endif
+		if l:language ==? 'en_US'
+			let l:language = 'en'
+		endif
 		
 		" All supported languages (with variants) by TeXtidote.
 		let l:supportedLanguages =  {
