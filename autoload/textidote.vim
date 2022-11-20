@@ -750,8 +750,17 @@ function! textidote#DiscardErrorPermanently()
 	if s:textidote_checker ==? 'languagetool' || s:textidote_dictionary ==? ''
 		return
 	endif
-	let s:cursorPosOrigBuffer = getpos('.')
-	let l:test = textidote#FindErrorIndex(s:cursorPosOrigBuffer)
+	if @% ==? '[TeXtidote]'
+		normal! $
+		if search('^Error:\s\+', 'beW') > 0
+			let l:test = expand('<cword>')
+		else
+			let l:test = 0
+		endif
+	else
+		let s:cursorPosOrigBuffer = getpos('.')
+		let l:test = textidote#FindErrorIndex(s:cursorPosOrigBuffer)
+	endif
 	if l:test >= 1
 		let l:errorLineTot = getline(get(s:cursorPosOrigBuffer,1,0))
 		let l:errorColStart = get(get(s:errors,l:test-1,0),'fromx',0) - 1
