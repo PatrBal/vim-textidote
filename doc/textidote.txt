@@ -42,7 +42,8 @@ already made available by other good plugins (e.g., `vim-grammarous` or
 2. Features                                                  *TeXtidoteFeatures*
 
  - Asynchronous spell, grammar and style checking of either the entire buffer
-   or part of it, with highlight of all the errors and warnings.
+   or part of it, with highlight of all the spelling and grammar errors in
+   distinct colors.
  - A scratch buffer shows up, listing all the errors. Navigate the errors with 
    `[` and `]`, both in the scratch buffer and the original buffer. Press <CR> on
    an error in the scratch buffer to jump to that error. Hit <Tab> to fix it.
