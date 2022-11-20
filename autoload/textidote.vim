@@ -754,15 +754,16 @@ function! textidote#DiscardErrorPermanently()
 		normal! $
 		if search('^Error:\s\+', 'beW') > 0
 			let l:test = expand('<cword>')
+			let l:errorLineTot = getline(get(get(s:errors,l:test-1,0),'fromy',0))
 		else
 			let l:test = 0
 		endif
 	else
 		let s:cursorPosOrigBuffer = getpos('.')
 		let l:test = textidote#FindErrorIndex(s:cursorPosOrigBuffer)
+		let l:errorLineTot = getline(get(s:cursorPosOrigBuffer,1,0))
 	endif
 	if l:test >= 1
-		let l:errorLineTot = getline(get(get(s:errors,l:test-1,0),'fromy',0))
 		let l:errorColStart = get(get(s:errors,l:test-1,0),'fromx',0) - 1
 		let l:errorColEnd = get(get(s:errors,l:test-1,0),'tox',0) - 1
 		let l:error_WORD = l:errorLineTot[l:errorColStart:l:errorColEnd]
