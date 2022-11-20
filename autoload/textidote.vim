@@ -754,6 +754,7 @@ function! textidote#DiscardErrorPermanently()
 	let l:test = textidote#FindErrorIndex(s:cursorPosOrigBuffer)
 	if l:test >= 1
 		let l:error_Word = expand('<cWord>')
+		echom 'Current error Word: ' . l:error_Word
 		call system('echo "' . l:error_Word . '" >> ' . s:textidote_dictionary)
 	endif
 endfunction
