@@ -756,7 +756,7 @@ function! textidote#DiscardErrorPermanently()
 			let l:test = expand('<cword>')
 			drop s:current_file
 			let l:errorLineTot = getline(get(get(s:errors,l:test-1,0),'fromy',0))
-			drop '[TeXtidote]'
+			drop [TeXtidote]
 		else
 			let l:test = 0
 		endif
