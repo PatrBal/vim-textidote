@@ -766,9 +766,9 @@ function! textidote#DiscardErrorPermanently()
 		let l:errorLineTot = getline(get(s:cursorPosOrigBuffer,1,0))
 	endif
 	if l:test >= 1
-		let l:errorColStart = get(get(s:errors,l:test-1,0),'fromx',0) - 1
-		let l:errorColEnd = get(get(s:errors,l:test-1,0),'tox',0) - 1
-		let l:error_WORD = l:errorLineTot[byteidx(l:errorColStart):byteidx(l:errorColEnd)]
+		let l:errorColStart = byteidx(l:errorLineTot,get(get(s:errors,l:test-1,0),'fromx',0) - 1)
+		let l:errorColEnd = byteidx(l:errorLineTot,get(get(s:errors,l:test-1,0),'tox',0) - 1)
+		let l:error_WORD = l:errorLineTot[l:errorColStart):l:errorColEnd]
 		call system('echo "' . l:error_WORD . '" >> ' . s:textidote_dictionary)
 		echon '"' . l:error_WORD . '" permanently discarded.'
 	endif
