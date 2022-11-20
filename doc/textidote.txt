@@ -228,6 +228,7 @@ of the TeXtidote plugin.
   `# Patterns can also be regular expressions`
   `abc\d+[^x]	123`
   `foo		bar`
+  This option is only used when TeXtidote is the checker.
   Default value: empty
   Example: `:let g:textidote_replacements = '~/.vim/remplacements.txt'`
 
