@@ -806,7 +806,6 @@ function! textidote#DiscardErrorPermanently()
 		let l:test = textidote#FindErrorIndex(s:cursorPosOrigBuffer)
 		if l:test >= 1
 			let l:errorWORD = textidote#GetFullErrorString(l:test)
-			echom l:errorWORD
 
 			call system('echo "' . l:errorWORD . '" >> ' . s:textidote_dictionary)
 			echon '"' . l:errorWORD . '" permanently discarded.'
