@@ -753,7 +753,7 @@ function! textidote#DiscardErrorPermanently()
 	if @% ==? '[TeXtidote]'
 		normal! $
 		if search('^Error:\s\+', 'beW') > 0
-			let l:test = str2nr(expand('<cword>'))
+			let l:test = expand('<cword>')
 		else
 			let l:test = 0
 		endif
