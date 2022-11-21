@@ -294,16 +294,16 @@ You can customize the following syntax highlighting groups:
 For example, if you want Textidote spelling and grammar errors look the same
 way as in Vim spell, you can put the following lines in your |vimrc|:
 
-`highlight default link TeXtidoteGrammarError 	SpellCap`
 `highlight default link TeXtidoteSpellingError 	SpellBad`
+`highlight default link TeXtidoteGrammarError 	SpellLocal`
 
-To highlight grammar errors in blue, and spelling errors in red, with a curly
+To highlight spelling errors in red, and grammar errors in blue, with a curly
 underline in vim GUIs that support it, add this:
 
-`highlight TeXtidoteGrammarError guisp=blue gui=undercurl guifg=NONE guibg=NONE`
-  			`\ ctermfg=white ctermbg=blue term=underline cterm=none`
 `highlight TeXtidoteSpellingError guisp=red gui=undercurl guifg=NONE guibg=NONE`
   			`\ ctermfg=white ctermbg=red term=underline cterm=none`
+`highlight TeXtidoteGrammarError guisp=blue gui=undercurl guifg=NONE guibg=NONE`
+  			`\ ctermfg=white ctermbg=blue term=underline cterm=none`
 
 ==============================================================================
 7. License                                                    *TeXtidoteLicense*
