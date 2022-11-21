@@ -819,7 +819,7 @@ function! textidote#DiscardErrorPermanently()
 endfunction
 
 function! <sid>DiscardSelectionPermanently()
-	let saved_unnamed_register = @@
+	let l:saved_unnamed_register = @@
 	if a:type ==#'v'
 		normal! `<v`>y
 	else
@@ -827,7 +827,7 @@ function! <sid>DiscardSelectionPermanently()
 	endif
 	call system('echo "' . @@ . '" >> ' . s:textidote_dictionary)
 	echon '"' . @@ . '" permanently discarded.'
-	let@@ = saved_unnamed_register
+	let @@ = l:saved_unnamed_register
 endfunction
 
 " This function provides the completion with the suggestion list for the
