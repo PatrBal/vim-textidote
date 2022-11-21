@@ -170,7 +170,7 @@ of the `vim-textidote` plugin.
   The language code to use. If undefined, the plugin tries to guess the
   language of the Vim spelling checker 'spelllang' or v:lang. If neither
   work, the plugin defaults to US English (`en` with `TeXtidote` and `en-US`
-  with LanguageTool`). 
+  with `LanguageTool`). 
   The valid language codes with `TeXtidote` are: `de`, `de_AT`, `de_CH`, `en`, `en_CA`,
   `en_UK`, `es`, `fr`, `nl`, `pt`, `pl`.
   The valid language codes with `LanguageTool` are: `ar`, `ast`, `be`, `br`, `ca`, `cs`,
