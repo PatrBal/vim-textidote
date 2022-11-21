@@ -138,7 +138,7 @@ Even better, you can map:
 so that `<Leader>te` will call TeXtidote and `<Leader>lt` LanguageTool.
 
 Several global variables can be set in your |vimrc| to configure the behavior
-of the TeXtidote plugin.
+of the `vim-textidote` plugin.
 
 *g:textidote_jar*
   Path to either `textidote.jar` or `languagetool-commandline.jar`. The name
