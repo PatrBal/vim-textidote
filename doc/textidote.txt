@@ -35,8 +35,8 @@ This plugin integrates `TeXtidote` into Vim and Neovim. `TeXtidote` provides
 online spell, grammar and style checking for LaTeX or Markdown documents. It
 is built on top of `LanguageTool`. In fact, `TeXtidote` is able to remove all the
 markup of the original file before calling `LanguageTool`, but it keeps track of
-the relative position of words between the original and "clean text". In short,
-`TeXtidote` is a version of `LanguageTool` made blind to LaTeX and Markdown
+the relative position of words between the original and "clean text". In
+short, `TeXtidote` is a version of `LanguageTool` made blind to LaTeX and Markdown
 markup.
 
 This plugin also integrates `LanguageTool` into Vim and Neovim, which was
