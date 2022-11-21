@@ -818,7 +818,7 @@ function! textidote#DiscardErrorPermanently()
 	endif
 endfunction
 
-function! <sid>DiscardSelectionPermanently()
+function! <sid>DiscardSelectionPermanently(type)
 	let l:saved_unnamed_register = @@
 	if a:type ==#'v'
 		normal! `<v`>y
@@ -1098,7 +1098,7 @@ function textidote#Display(data,code)
 		nnoremap <buffer><silent> <BS> :call <sid>DiscardCurrentError()<CR>
 		" The mapping <S-BS> is recognized in Neovim and GVim, but maybe not in terminal vim
 		nnoremap <buffer><silent> <S-BS> :call textidote#DiscardErrorPermanently()<CR>
-		vnoremap <buffer><silent> <S-BS> :<C-U>call <sid>DiscardSelectionPermanently()<CR>
+		vnoremap <buffer><silent> <S-BS> :<C-U>call <sid>DiscardSelectionPermanently(visualmode())<CR>
 
 		execute 'drop ' . s:current_file
 	else
@@ -1135,7 +1135,7 @@ function textidote#Display(data,code)
 	nmap <buffer><silent> <BS> :call textidote#DiscardError()<CR>
 	" The mapping <S-BS> is recognized in Neovim and GVim, but maybe not in terminal vim
 	nmap <buffer><silent> <S-BS> :call textidote#DiscardErrorPermanently()<CR>
-	vmap <buffer><silent> <S-BS> :<C-U>call <sid>DiscardSelectionPermanently()<CR>
+	vmap <buffer><silent> <S-BS> :<C-U>call <sid>DiscardSelectionPermanently(visualmode())<CR>
 
 	if s:textidote_win_height >= 0
 		if s:textidote_checker =~? 'textidote'
