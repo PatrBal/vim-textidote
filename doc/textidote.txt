@@ -203,14 +203,15 @@ of the |vim-textidote| plugin.
   If you have a list of words that you want `TeXtidote` to ignore when checking
   spelling, you can specify a dictionary file. This file must be a plain text
   file containing a list of words to be ignored, with each word on a separate
-  line. This option is only used when `TeXtidote` is the checker. In the case
-  where you had already set up a |spellfile| in your |vimrc|, for use in Vim's
-  own spellchecker, you can also use it with |vim-textidote|. Just set:
+  line. This option is only used when `TeXtidote` is the checker.
+  In the case where you had already set up a |spellfile| in your |vimrc|, for
+  use in Vim's own spellchecker, you can also use it with |vim-textidote|. Just
+  set:
   `:let g:textidote_dictionary = &spellfile`
   In that case, it is a good idea to make your custom shortcut to toggle
   |vim-textidote| to also run:
   `silent execute 'mkspell! ' . &spellfile`
-  to ensure that the spell file used by `spell` is properly updated. This way,
+  to ensure that the spell file used by |spell| is properly updated. This way,
   you will use seamlessly the same dictionary file in Vim's own spell and in 
   |vim-textidote|. One benefit is that you will be able to use Vim's shortcuts
   |zg| and |zug| to add and remove words outside of |vim-textidote|.
