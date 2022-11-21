@@ -109,7 +109,7 @@ with silicon and intel homebrew, respectively. In my experience, the homebrew
 `TeXtidote` is twice faster than the `textidote.jar` from the website.
 
 If you want to be able to invoke directly `LanguageTool` instead of `TeXtidote`,
-you must download the latest `languagetool-commandline.jar` from
+you must also download the latest `languagetool-commandline.jar` from
 |https://languagetool.org/download|
 which also requires Java version 8 or later. Again, it is also available from
 `dpkg` on Debian systems and from `homebrew` on macOS.
