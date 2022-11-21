@@ -1098,6 +1098,7 @@ function textidote#Display(data,code)
 		nnoremap <buffer><silent> <BS> :call <sid>DiscardCurrentError()<CR>
 		" The mapping <S-BS> is recognized in Neovim and GVim, but maybe not in terminal vim
 		nnoremap <buffer><silent> <S-BS> :call textidote#DiscardErrorPermanently()<CR>
+		vnoremap <buffer><silent> <S-BS> :<C-U>call <sid>DiscardSelectionPermanently()<CR>
 
 		execute 'drop ' . s:current_file
 	else
@@ -1134,6 +1135,7 @@ function textidote#Display(data,code)
 	nmap <buffer><silent> <BS> :call textidote#DiscardError()<CR>
 	" The mapping <S-BS> is recognized in Neovim and GVim, but maybe not in terminal vim
 	nmap <buffer><silent> <S-BS> :call textidote#DiscardErrorPermanently()<CR>
+	vmap <buffer><silent> <S-BS> :<C-U>call <sid>DiscardSelectionPermanently()<CR>
 
 	if s:textidote_win_height >= 0
 		if s:textidote_checker =~? 'textidote'
