@@ -147,6 +147,7 @@ of the `vim-textidote` plugin.
   of the `.jar` file will also be used by `vim-textidote` to understand which
   checker you are using among `TeXtidote` and `LanguageTool`. So, do not rename
   the `.jar` files!
+
   Default value: `$HOME/.vim/textidote.jar`
   Examples:
   `:let g:textidote_jar =`
@@ -158,6 +159,7 @@ of the `vim-textidote` plugin.
   Set to `1` if you want to have a html `TeXtidote` report showing up in your
   default browser, in addition to the scratch buffer in Vim. This option is
   only available when `TeXtidote` is the checker (it defaults to 0 otherwise).
+
   Default value: `0`
   Example: `:let g:textidote_html_report = 1`
 
@@ -165,6 +167,7 @@ of the `vim-textidote` plugin.
   Height of the scratch window which contains the list of errors with some
   explanations. You can use a negative value to disable opening the scratch
   window. You can also make it empty `''` to let Vim pick a default size.
+
   Default value: 14
   Example: `:let g:textidote_win_height = -1`
 
@@ -199,7 +202,15 @@ of the `vim-textidote` plugin.
   If you have a list of words that you want `TeXtidote` to ignore when checking
   spelling, you can specify a dictionary file. This file must be a plain text
   file containing a list of words to be ignored, with each word on a separate
-  line. This option is only used when `TeXtidote` is the checker.
+  line. This option is only used when `TeXtidote` is the checker. In the case
+  where you had already set up a |spellfile| in your |vimrc|, for use in Vim's
+  own spellchecker, you can also use it with `vim-textidote`. Just set:
+  `:let g:textidote_dictionary = &spellfile`
+  In that case, it is a good idea to make your custom shortcu to toggle
+  `vim-textidote` to also run:
+  `silent execute 'mkspell! ' . &spellfile`
+  to ensure that the spell file used by `spell` is properly updated. This way,
+  you will used seamlessly
 
   Default value: empty
   Example: `:let g:textidote_dictionary = '~/.vim/dico.txt'`
