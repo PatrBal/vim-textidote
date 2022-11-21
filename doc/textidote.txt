@@ -181,8 +181,8 @@ of the `vim-textidote` plugin.
   necessary to specify the variant in order for LanguageTool to signal
   spelling errors, otherwise only grammar mistakes are pointed out. For
   example, with `spelllang=en`, you will get only grammar errors from
-  LanguageTool. If you want spelling errors too, you need to set 
-  `spelllang=en_us`, for example. This does not apply to TeXtidote.
+  `LanguageTool`. If you want spelling errors too, you need to set 
+  `spelllang=en_us`, for example. This does not apply to `TeXtidote`.
 
 *g:textidote_first_language*
   Define your first language to enable the checking for false friends.
@@ -194,25 +194,25 @@ of the `vim-textidote` plugin.
   Example: `:let g:textidote_first_language = 'fr'`
 
 *g:textidote_dictionary*
-  If you have a list of words that you want TeXtidote to ignore when checking
+  If you have a list of words that you want `TeXtidote` to ignore when checking
   spelling, you can specify a dictionary file. This file must be a plain text
   file containing a list of words to be ignored, with each word on a separate
-  line. This option is only used when TeXtidote is the checker.
+  line. This option is only used when `TeXtidote` is the checker.
 
   Default value: empty
   Example: `:let g:textidote_dictionary = '~/.vim/dico.txt'`
 
 *g:textidote_ignore_rules*
-  You may want to ignore some of TeXtidote's advice. You can do so by 
+  You may want to ignore some of `TeXtidote`'s advice. You can do so by 
   specifying rule IDs to ignore (rule IDs are shown between brackets in the
-  reports given by TeXtidote). This option is only used when TeXtidote is the
+  reports given by `TeXtidote`). This option is only used when `TeXtidote` is the
   checker.
 
   Default value: empty
   Example: `:let g:textidote_ignore_rules = 'lt:en:EN_REPEATEDWORDS,sh:c:noin'`
 
 *g:textidote_ignore_environments*
-  TeXtidote can be instructed to remove user-specified environments (including
+  `TeXtidote` can be instructed to remove user-specified environments (including
   all text lines between `\begin{...}` and `\end{...}`).
   Default value: empty
   Example: `:let g:textidote_ignore_environments = 'tikzpicture,equation'`
@@ -223,7 +223,7 @@ of the `vim-textidote` plugin.
   Example: `:let g:textidote_ignore_macros = 'qed,textsc'`
 
 *g:textidote_replacements*
-  Before TeXtidote analyses a file, you can ask it to apply a set of
+  Before `TeXtidote` analyses a file, you can ask it to apply a set of
   find/replace operations (for example, to replace a macro by some predefined
   character string). You can write these patterns into a text file. This file
   must be a plain text file containing the find replace patterns. It is
@@ -238,14 +238,14 @@ of the `vim-textidote` plugin.
   Example: `:let g:textidote_replacements = '~/.vim/remplacements.txt'`
 
 *g:languagetool_disable_rules*
-  This variable specifies checker rules to disable, when LanguageTool is the
+  This variable specifies checker rules to disable, when `LanguageTool` is the
   checker. The set of disabled rule must be comma separated.
   Default value: WHITESPACE_RULE,EN_QUOTES
   Example: `:let g:languagetool_disable_rules='WHITESPACE_RULE,EN_QUOTES,`
   			`FRENCH_WHITESPACE,UPPERCASE_SENTENCE_START,APOS'`
 
 *g:languagetool_enable_rules*
-  Some LanguageTool rules are disabled by default (rules that contain
+  Some `LanguageTool` rules are disabled by default (rules that contain
   default="off" in grammar.xml) because they might be stylistic, nitpicky
   or give frequent positive. Those rules can be enabled by setting the
   g:languagetool_enable_rules variable. 
@@ -254,18 +254,18 @@ of the `vim-textidote` plugin.
 
 *g:languagetool_disable_categories*
   This variable specifies checker rule-categories which are disabled, when
-  LanguageTool is the checker.
+  `LanguageTool` is the checker.
   Default value: empty
 
 *g:languagetool_enable_categories*
   This variable specifies checker rule-categories which are enabled, when 
-  LanguageTool is the checker.
+  `LanguageTool` is the checker.
   Default value: empty
 
 |Important| |remarks|
 
 Fine-tuning of the above options turns out to be very effective in filtering
-only the meaningful errors and warnings from TeXtidote.
+only the meaningful errors and warnings from `TeXtidote`.
 
 A typical efficient workflow with `vim-textidote` is to get a `reasonable'
 number of errors (say, less than 100 or 200), either by fine-tuning the above
