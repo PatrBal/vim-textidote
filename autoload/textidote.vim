@@ -298,6 +298,9 @@ function s:TeXtidoteSetUp()
 	if !empty(maparg('<S-BS>', 'n'))
 		let s:mapShiftBSp_orig = maparg('<S-BS>', 'n', 0, 1)
 	endif
+	if !empty(maparg('<S-BS>', 'v'))
+		let s:mapShiftBSp_visual_orig = maparg('<S-BS>', 'v', 0, 1)
+	endif
 	let s:unnamed_register = @@
 
 	return 0
@@ -1248,6 +1251,11 @@ function textidote#Clear()
 			execute 'nnoremap <S-BS> ' . s:mapShiftBSp_orig
 		else
 			silent!nunmap <buffer> <S-BS>
+		endif
+		if exists('s:mapShiftBSp__visual_orig')
+			execute 'vnoremap <S-BS> ' . s:mapShiftBSp__visual_orig
+		else
+			silent!vunmap <buffer> <S-BS>
 		endif
 		let @@ = s:unnamed_register
 
