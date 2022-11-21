@@ -58,8 +58,10 @@ already made available by other good plugins (e.g., `vim-grammarous` or
    |g:textidote_dictionary| (file containing a list of words to be ignored by
    `TeXtidote`), you can make the discarding of the error permanent by pressing
    first <S-BS>. This adds the current error to the list of words in that
-   file. All the original mappings of `[`, `]`, <BS>, <S-BS>, <CR> and <Tab> are
-   restored when the scratch buffer is cleared.
+   file. The shortcut <S-BS> is also active in visual mode, adding the current
+   selection to the list of permanently discarded words. All the original
+   mappings of `[`, `]`, <BS>, <S-BS>, <CR> and <Tab> are restored when the
+   scratch buffer is cleared.
  - The location-list is populated, so that you can use location-list Vim
    commands such as `:lopen` to open the location-list window, `:lne` to jump
    to the next error, etc.
