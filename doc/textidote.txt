@@ -1,4 +1,4 @@
-*textidote.txt*          Grammar checking of LaTeX files with TeXtidote from Vim
+*textidote.txt*          Grammar checking of LaTeX files with `TeXtidote` from Vim
 *textidote*
 *TeXtidote*
 
@@ -56,14 +56,14 @@ already made available by other good plugins (e.g., `vim-grammarous` or
    and the original buffer. The <BS> discarding will not be remembered in a
    later grammar check with `vim-textidote`. If you have set the variable 
    |g:textidote_dictionary| (file containing a list of words to be ignored by
-   TeXtidote), you can make the discarding of the error permanent by pressing
+   `TeXtidote`), you can make the discarding of the error permanent by pressing
    first <S-BS>. This adds the current error to the list of words in that
    file. All the original mappings of `[`, `]`, <BS>, <S-BS>, <CR> and <Tab> are
    restored when the scratch buffer is cleared.
  - The location-list is populated, so that you can use location-list Vim
    commands such as `:lopen` to open the location-list window, `:lne` to jump
    to the next error, etc.
- - Optionally, a full html report of TeXtidote analysis can be displayed in
+ - Optionally, a full html report of `TeXtidote` analysis can be displayed in
    the default browser.
 
 ==============================================================================
@@ -73,7 +73,7 @@ The plugin provides the new command
 `:[range]TeXtidoteToggle`
 where the default `[range]` is the whole buffer, except in the case where there
 is a visual selection which is then taken as the default `[range]`. This command
-launches the checking of `[range]` by TeXtidote, highlights the corresponding
+launches the checking of `[range]` by `TeXtidote`, highlights the corresponding
 errors and open the scratch buffer listing all the errors. Subsequent
 invocation of the same command closes the scratch buffer and clears the error
 highlighting.
@@ -135,7 +135,7 @@ Even better, you can map:
 `nnoremap <silent> <Leader>lt`
 	`\ :let g:textidote_jar = $HOME . '/.vim/languagetool-commandline.jar'<CR>`
 	`\ :TeXtidoteToggle<CR>`
-so that `<Leader>te` will call TeXtidote and `<Leader>lt` LanguageTool.
+so that `<Leader>te` will call `TeXtidote` and `<Leader>lt` `LanguageTool`.
 
 Several global variables can be set in your |vimrc| to configure the behavior
 of the `vim-textidote` plugin.
@@ -143,7 +143,7 @@ of the `vim-textidote` plugin.
 *g:textidote_jar*
   Path to either `textidote.jar` or `languagetool-commandline.jar`. The name
   of the `.jar` file will also be used by `vim-textidote` to understand which
-  checker you are using among TeXtidote and LanguageTool. So, do not rename
+  checker you are using among `TeXtidote` and `LanguageTool`. So, do not rename
   the `.jar` files!
   Default value: `$HOME/.vim/textidote.jar`
   Examples:
@@ -153,9 +153,9 @@ of the `vim-textidote` plugin.
 	`\ '/opt/homebrew/var/homebrew/linked/languagetool/libexec/languagetool-commandline.jar'`
 
 *g:textidote_html_report*
-  Set to `1` if you want to have a html TeXtidote report showing up in your
+  Set to `1` if you want to have a html `TeXtidote` report showing up in your
   default browser, in addition to the scratch buffer in Vim. This option is
-  only available when TeXtidote is the checker (it defaults to 0 otherwise).
+  only available when `TeXtidote` is the checker (it defaults to 0 otherwise).
   Default value: `0`
   Example: `:let g:textidote_html_report = 1`
 
@@ -178,7 +178,7 @@ of the `vim-textidote` plugin.
   `en-ZA`, `eo`, `es`, `fa`, `fr`, `ga`, `gl`, `it`, `ja`, `km`, `nl`, `pl`, `pt`, `pt-BR`, `pt-MZ`, `pt-PT`,
   `ro`, `ru`, `sk`, `sl`, `sr`, `sr-BA`, `sr-HR`, `sr-ME`, `sr-SR`, `sv`, `ta`, `tl`, `uk`, `zh`.
   |Important| For `LanguageTool` only and languages with variants, it is
-  necessary to specify the variant in order for LanguageTool to signal
+  necessary to specify the variant in order for `LanguageTool` to signal
   spelling errors, otherwise only grammar mistakes are pointed out. For
   example, with `spelllang=en`, you will get only grammar errors from
   `LanguageTool`. If you want spelling errors too, you need to set 
@@ -187,7 +187,7 @@ of the `vim-textidote` plugin.
 *g:textidote_first_language*
   Define your first language to enable the checking for false friends.
   Must be either empty or one of the following: `de`, `de_AT`, `de_CH`, `en`, `en_CA`,
-  `en_UK`, `es`, `fr`, `nl`, `pt`, `pl`. This option is only used when TeXtidote is the
+  `en_UK`, `es`, `fr`, `nl`, `pt`, `pl`. This option is only used when `TeXtidote` is the
   checker.
 
   Default value: empty
@@ -233,7 +233,7 @@ of the `vim-textidote` plugin.
   `# Patterns can also be regular expressions`
   `abc\d+[^x]	123`
   `foo		bar`
-  This option is only used when TeXtidote is the checker.
+  This option is only used when `TeXtidote` is the checker.
   Default value: empty
   Example: `:let g:textidote_replacements = '~/.vim/remplacements.txt'`
 
@@ -270,13 +270,13 @@ only the meaningful errors and warnings from `TeXtidote`.
 A typical efficient workflow with `vim-textidote` is to get a `reasonable'
 number of errors (say, less than 100 or 200), either by fine-tuning the above
 options or by visual selecting an appropriate range of text before invoking
-TeXtidote. Then, the errors can be quickly browsed to discard the non-relevant
+`TeXtidote`. Then, the errors can be quickly browsed to discard the non-relevant
 ones (for example, the proper nouns) and to narrow the errors to a small amount
 (say, less than 20) and, then, fix them.
 
 TeXtitode has real added-value for LaTeX and Markdown files. For other formats,
-such as `html` files, the good choice is probably to fall back to LanguageTool
-which is really faster than TeXtidote.
+such as `html` files, the good choice is probably to fall back to `LanguageTool`
+which is really faster than `TeXtidote`.
 
 ==============================================================================
 5. Customization                                               *TeXtidoteCustom*
