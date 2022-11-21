@@ -818,6 +818,10 @@ function! textidote#DiscardErrorPermanently()
 	endif
 endfunction
 
+function! <sid>DiscardSelectionPermanently()
+
+endfunction
+
 " This function provides the completion with the suggestion list for the
 " current error
 function! textidote#Suggestions(findstart, base)
