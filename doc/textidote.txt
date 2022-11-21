@@ -135,7 +135,7 @@ Even better, you can map:
 `nnoremap <silent> <Leader>lt`
 	`\ :let g:textidote_jar = $HOME . '/.vim/languagetool-commandline.jar'<CR>`
 	`\ :TeXtidoteToggle<CR>`
-so that `<Leader>te` will call `TeXtidote` and `<Leader>lt` `LanguageTool`.
+so that `<Leader>te` will call `TeXtidote` and `<Leader>lt`, `LanguageTool`.
 
 Several global variables can be set in your |vimrc| to configure the behavior
 of the `vim-textidote` plugin.
