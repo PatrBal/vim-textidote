@@ -1,5 +1,6 @@
 *textidote.txt*          Grammar checking of LaTeX files with `TeXtidote` from Vim
 *textidote*
+*vim-textidote*
 *TeXtidote*
 
 For Neovim and Vim version above 8.0
@@ -54,7 +55,7 @@ already made available by other good plugins (e.g., `vim-grammarous` or
    and displays the current error in the scratch buffer.
  - You can also discard an error by pressing <BS>, both in the scratch buffer
    and the original buffer. The <BS> discarding will not be remembered in a
-   later grammar check with `vim-textidote`. If you have set the variable 
+   later grammar check with |vim-textidote|. If you have set the variable 
    |g:textidote_dictionary| (file containing a list of words to be ignored by
    `TeXtidote`), you can make the discarding of the error permanent by pressing
    first <S-BS>. This adds the current error to the list of words in that
@@ -88,7 +89,7 @@ which respectively activates the checking and clears it.
 ==============================================================================
 4. Installation                                               *TeXtidoteInstall*
 
-Install `vim-textidote` using your favorite package manager, or use Vim's 
+Install |vim-textidote| using your favorite package manager, or use Vim's 
 built-in package support:
 
     `mkdir -p ~/.vim/pack/PatrBal/start`
@@ -140,11 +141,11 @@ Even better, you can map:
 so that `<Leader>te` will call `TeXtidote` and `<Leader>lt`, `LanguageTool`.
 
 Several global variables can be set in your |vimrc| to configure the behavior
-of the `vim-textidote` plugin.
+of the |vim-textidote| plugin.
 
 *g:textidote_jar*
   Path to either `textidote.jar` or `languagetool-commandline.jar`. The name
-  of the `.jar` file will also be used by `vim-textidote` to understand which
+  of the `.jar` file will also be used by |vim-textidote| to understand which
   checker you are using among `TeXtidote` and `LanguageTool`. So, do not rename
   the `.jar` files!
 
@@ -204,15 +205,15 @@ of the `vim-textidote` plugin.
   file containing a list of words to be ignored, with each word on a separate
   line. This option is only used when `TeXtidote` is the checker. In the case
   where you had already set up a |spellfile| in your |vimrc|, for use in Vim's
-  own spellchecker, you can also use it with `vim-textidote`. Just set:
+  own spellchecker, you can also use it with |vim-textidote|. Just set:
   `:let g:textidote_dictionary = &spellfile`
-  In that case, it is a good idea to make your custom shortcu to toggle
-  `vim-textidote` to also run:
+  In that case, it is a good idea to make your custom shortcut to toggle
+  |vim-textidote| to also run:
   `silent execute 'mkspell! ' . &spellfile`
   to ensure that the spell file used by `spell` is properly updated. This way,
   you will use seamlessly the same dictionary file in Vim's own spell and in 
-  `vim-textidote`. One benefit is that you will be able to use Vim's shortcuts
-  |zg| and |zug| to add and remove words outside of `vim-textidote`.
+  |vim-textidote|. One benefit is that you will be able to use Vim's shortcuts
+  |zg| and |zug| to add and remove words outside of |vim-textidote|.
 
   Default value: empty
   Example: `:let g:textidote_dictionary = '~/.vim/dico.txt'`
@@ -282,7 +283,7 @@ of the `vim-textidote` plugin.
 Fine-tuning of the above options turns out to be very effective in filtering
 only the meaningful errors and warnings from `TeXtidote`.
 
-A typical efficient workflow with `vim-textidote` is to get a `reasonable'
+A typical efficient workflow with |vim-textidote| is to get a `reasonable'
 number of errors (say, less than 100 or 200), either by fine-tuning the above
 options or by visual selecting an appropriate range of text before invoking
 `TeXtidote`. Then, the errors can be quickly browsed to discard the non-relevant
