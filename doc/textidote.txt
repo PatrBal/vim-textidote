@@ -210,7 +210,9 @@ of the `vim-textidote` plugin.
   `vim-textidote` to also run:
   `silent execute 'mkspell! ' . &spellfile`
   to ensure that the spell file used by `spell` is properly updated. This way,
-  you will used seamlessly
+  you will use seamlessly the same dictionary file in Vim's own spell and in 
+  `vim-textidote`. One benefit is that you will be able to use Vim's shortcuts
+  |zg| and |zug| to add and remove words outside of `vim-textidote`.
 
   Default value: empty
   Example: `:let g:textidote_dictionary = '~/.vim/dico.txt'`
