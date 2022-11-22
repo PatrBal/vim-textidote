@@ -144,10 +144,12 @@ Even better, you can map:
 	`\:let g:textidote_jar = $HOME . '/.vim/textidote.jar'<CR>`
 	`\:TeXtidoteToggle<CR>`
 `vnoremap <silent> <Leader>lt` 
-	`\:<C-U>let g:textidote_jar = $HOME . '/.vim/languagetool-commandline.jar'<CR>`
+	`\:<C-U>let g:textidote_jar = $HOME .' 
+	`\'/LanguageTool-5.9/languagetool-commandline.jar'<CR>`
 	`\:'<,'>TeXtidoteToggle<CR>`
 `nnoremap <silent> <Leader>lt` 
-	`\:let g:textidote_jar = $HOME . '/.vim/languagetool-commandline.jar'<CR>`
+	`\:let g:textidote_jar = $HOME .` 
+	`\'/LanguageTool-5.9/languagetool-commandline.jar'<CR>`
 	`\:TeXtidoteToggle<CR>`
 so that `<Leader>te` will call `TeXtidote` and `<Leader>lt`, `LanguageTool`.
 
