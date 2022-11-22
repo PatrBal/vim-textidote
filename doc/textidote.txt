@@ -29,7 +29,7 @@ CONTENTS                                                     *TeXtidoteContents*
     9. Credits .......................................... |TeXtidoteCredits|
 
 ==============================================================================
-OVERVIEW                                                  *TeXtidoteOverview*
+OVERVIEW                                                     *TeXtidoteOverview*
 
 This plugin integrates `TeXtidote` into Vim and Neovim. `TeXtidote` provides
 online spell, grammar and style checking for LaTeX or Markdown documents. It
@@ -50,7 +50,7 @@ already made available by other good plugins (e.g., `vim-LanguageTool` or
 |https://github.com/rhysd/vim-grammarous|
 
 ==============================================================================
-2. Features                                                  *TeXtidoteFeatures*
+FEATURES                                                     *TeXtidoteFeatures*
 
  - Asynchronous spell, grammar and style checking of either the entire buffer
    or part of it, with highlighting of all the spelling and grammar errors in
@@ -80,7 +80,7 @@ already made available by other good plugins (e.g., `vim-LanguageTool` or
    the default browser.
 
 ==============================================================================
-3. Usage                                                        *TeXtidoteUsage*
+USAGE                                                           *TeXtidoteUsage*
 
 The plugin provides the new command
 `:[range]TeXtidoteToggle`
@@ -97,7 +97,7 @@ In addition, there are
 which respectively activates the checking and clears it.
 
 ==============================================================================
-4. Installation                                               *TeXtidoteInstall*
+INSTALLATION                                                  *TeXtidoteInstall*
 
 Install |vim-textidote| using your favorite package manager, or use Vim's 
 built-in package support:
@@ -128,7 +128,7 @@ which also requires Java version 8 or later. Again, it is also available from
 `dpkg` on Debian systems and from `homebrew` on macOS.
 
 ==============================================================================
-5. Configuration                                               *TeXtidoteConfig*
+CONFIGURATION                                                  *TeXtidoteConfig*
 
 It is convenient to create a mapping in your |vimrc| to quickly invoke the
 plugin
@@ -306,7 +306,7 @@ such as `html` files, the good choice is probably to fall back to `LanguageTool`
 which is really faster than `TeXtidote`.
 
 ==============================================================================
-5. Customization                                               *TeXtidoteCustom*
+CUSTOMIZATION                                                  *TeXtidoteCustom*
 
 You can customize the following syntax highlighting groups:
 
@@ -331,13 +331,13 @@ underline in vim GUIs that support it, add this:
   			`\ ctermfg=white ctermbg=blue term=underline cterm=none`
 
 ==============================================================================
-7. License                                                    *TeXtidoteLicense*
+LICENSE                                                       *TeXtidoteLicense*
 
 Copyright © Patrick Ballard.  Distributed under the same terms as Vim itself.
 See `:help license`.
 
 ==============================================================================
-8. Changelog                                                *TeXtidoteChangelog*
+CHANGELOG                                                   *TeXtidoteChangelog*
 
 19/11/2002 Fixed <Tab> completion with possibly multibyte characters in file
 17/11/2022 Add option to use LanguaeTool instead of TeXTidote as the checker
@@ -347,7 +347,7 @@ See `:help license`.
 06/01/2022 Initial version
 
 ==============================================================================
-9. Credits                                                    *TeXtidoteCredits*
+CREDITS                                                       *TeXtidoteCredits*
 
 This plugin is strongly based on the excellent plugin `vim-LanguageTool`. 
 Large parts of its code have been reused in this plugin.
