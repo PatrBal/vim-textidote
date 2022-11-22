@@ -42,7 +42,7 @@ By default `[range]` is the whole buffer, except in the case where there is a vi
 
 ## Alternatives
 
-- A very good alternative is to use the [LTeX][LTeX] language server, for example with `coc.nvim`. It is also based on LanguageTool and is aware of LaTeX or Markdown markup. It provides grammar checking *as you type*, but does not currently offer suggestions or quick fixes with `coc.nvim`. `LTeX` can be both an alternative to `vim-textidote` or an addition.
+- A very good alternative is to use the [LTeX][LTeX] language server, for example together with [coc.nvim][coc.nvim]. It is also based on LanguageTool and is aware of LaTeX or Markdown markup. It provides grammar checking *as you type*, but does not currently offer suggestions or quick fixes with `coc.nvim`. `LTeX` can be both an alternative to `vim-textidote` or an addition.
 - Another alternative is to use [YaLafi][YaLafi] (Yet another LaTeX filter) together with [vim-LanguageTool][vim-LanguageTool] or [vim-grammarous][vim-grammarous]. This should provide an experience somewhat similar to `vim-textidote`, but handling custom dictionaries does not seem straightforward.
 
 
@@ -60,6 +60,7 @@ This plugin is strongly based on the excellent [vim-LanguageTool][vim-LanguageTo
 [TeXtidote]: https://github.com/sylvainhalle/textidote
 [LanguageTool]: https://languagetool.org
 [LTeX]: https://valentjn.github.io/ltex
+[coc.nvim]: https://github.com/neoclide/coc.nvim
 [YaLafi]: https://github.com/torik42/YaLafi
 [vim-LanguageTool]: https://github.com/dpelle/vim-LanguageTool
 [vim-grammarous]: https://github.com/rhysd/vim-grammarous
