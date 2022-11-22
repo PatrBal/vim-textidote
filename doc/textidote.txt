@@ -340,10 +340,11 @@ See `:help license`.
 ==============================================================================
 CHANGELOG                                                   *TeXtidoteChangelog*
 
-19/11/2002 Fixed <Tab> completion with possibly multibyte characters in file
-17/11/2022 Add option to use LanguaeTool instead of TeXTidote as the checker
+22/11/2022 Add the <BS> and <S-BS> shortcuts to discard errors
+19/11/2022 Fixed <Tab> completion with possibly multibyte characters in file
+17/11/2022 Add option to use LanguageTool instead of TeXTidote as the checker
 13/11/2022 Add navigation of errors also in the original buffer
-06/11/2022 Add navigation of errors and completion fix
+06/11/2022 Add navigation of errors and <Tab> completion fix
 02/11/2022 Asynchronous version
 06/01/2022 Initial version
 
