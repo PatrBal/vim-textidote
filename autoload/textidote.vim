@@ -1,6 +1,6 @@
 " Description: Grammar checker of LaTeX files with TeXtidote from Vim
 " Author:      Patrick Ballard <patrick.ballard.paris@gmail.com>
-" Last Change: 19/11/2022
+" Last Change: 22/11/2022
 
 
 " Guess language from 'a:lang' (either 'spelllang' or 'v:lang')
