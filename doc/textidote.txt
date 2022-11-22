@@ -29,7 +29,7 @@ CONTENTS                                                     *TeXtidoteContents*
     9. Credits .......................................... |TeXtidoteCredits|
 
 ==============================================================================
-1. Overview                                                  *TeXtidoteOverview*
+1. OVERVIEW                                                  *TeXtidoteOverview*
 
 This plugin integrates `TeXtidote` into Vim and Neovim. `TeXtidote` provides
 online spell, grammar and style checking for LaTeX or Markdown documents. It
