@@ -35,13 +35,15 @@ By default `[range]` is the whole buffer, except in the case where there is a vi
 ## Features
  - Asynchronous spell, grammar and style checking of either the entire buffer or part of it, with highlighing of the spelling and grammar errors in distinct colors. The default grammar checker is TeXtidote, but the option of using LanguageTool instead is also possible.
  - A scratch buffer shows up, listing all the errors.  Navigate the errors using `[` and `]`, both in the scratch buffer and in the original buffer. Hit `<Enter>` on an error in the scratch buffer to jump to that error. Hit `<Tab>` on an error in the original buffer to fix it. Also, `<BackSpace>` discards an error both in the scratch buffer and in the original buffer.
+ - Use of custom dictionary which can be synchronized with Vim's own `spellfile`.
  - The location-list is populated, so that you can use location-list Vim commands such as `:lopen` to open the location-list window, `:lne` to jump to the next error, etc.
  - Optionally, a full html report of TeXtidote analysis can be displayed in the default browser.
 
 
-## Alternative
+## Alternatives
 
-A very good alternative is to use the [LTeX][LTeX] language server with `coc.nvim`. It is also based on LanguageTool and is aware of LaTeX or Markdown markup. It provides grammar checking *as you type*, but does not currently offer suggestions or quick fixes with `coc.nvim`. `LTeX` can be both an alternative to `vim-textidote` or an addition.
+- A very good alternative is to use the [LTeX][LTeX] language server with `coc.nvim`. It is also based on LanguageTool and is aware of LaTeX or Markdown markup. It provides grammar checking *as you type*, but does not currently offer suggestions or quick fixes with `coc.nvim`. `LTeX` can be both an alternative to `vim-textidote` or an addition.
+- Another alternative is to use [YaLafi][YaLafi] (Yet another LaTeX filter) together with [vim-LanguageTool][vim-LanguageTool] or [vim-grammarous][vim-grammarous]. This should provide an experience somewhat similar to `vim-textidote`, but without the option of adding a custom dictionary.
 
 
 ## License
@@ -58,4 +60,6 @@ This plugin is strongly based on the excellent [vim-LanguageTool][vim-LanguageTo
 [TeXtidote]: https://github.com/sylvainhalle/textidote
 [LanguageTool]: https://languagetool.org
 [LTeX]: https://valentjn.github.io/ltex
+[YaLafi]: https://github.com/torik42/YaLafi
 [vim-LanguageTool]: https://github.com/dpelle/vim-LanguageTool
+[vim-grammarous]: https://github.com/rhysd/vim-grammarous
