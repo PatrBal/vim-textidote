@@ -123,8 +123,8 @@ with silicon and intel homebrew, respectively. In my experience, the homebrew
 If you want to be able to invoke directly `LanguageTool` instead of `TeXtidote`,
 you must also download the latest LanguageTool folder from 
 |https://languagetool.org/download|
-to be able to run the corresponding `languagetool-commandline.jar` on your system.
-Again, it is also available from `homebrew` on macOS.
+to be able to run the corresponding `languagetool-commandline.jar` on your
+system. Again, it is also available from `homebrew` on macOS.
 
 ==============================================================================
 CONFIGURATION                                                  *TeXtidoteConfig*
