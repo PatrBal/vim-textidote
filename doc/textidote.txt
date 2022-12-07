@@ -291,7 +291,7 @@ of the |vim-textidote| plugin.
   `LanguageTool` is the checker.
   Default value: empty
 
-*Important* *remarks*
+*Remarks*
 
 Fine-tuning of the above options turns out to be very effective in filtering
 only the meaningful errors and warnings from `TeXtidote`.
