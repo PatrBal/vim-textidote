@@ -195,7 +195,8 @@ of the |vim-textidote| plugin.
   `en-ZA`, `eo`, `es`, `fa`, `fr`, `ga`, `gl`, `it`, `ja`, `km`, `lt`, `nl`, `pl`, `pt`, `pt-AO`, `pt-BR`,
   `pt-MZ`, `pt-PT`, `ro`, `ru`, `sk`, `sl`, `sr`, `sr-BA`, `sr-HR`, `sr-ME`, `sr-SR`, `sv`, `ta`, `tl`,
   `uk`, `zh`.
-  *Important* For `LanguageTool` only and languages with variants, it is
+  Important~
+  For `LanguageTool` only and languages with variants, it is
   necessary to specify the variant in order for `LanguageTool` to signal
   spelling errors, otherwise only grammar mistakes are pointed out. For
   example, with `spelllang=en`, you will get only grammar errors from
@@ -291,7 +292,7 @@ of the |vim-textidote| plugin.
   `LanguageTool` is the checker.
   Default value: empty
 
-*Remarks*
+Remarks~
 
 Fine-tuning of the above options turns out to be very effective in filtering
 only the meaningful errors and warnings from `TeXtidote`.
