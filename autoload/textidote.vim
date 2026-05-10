@@ -582,7 +582,7 @@ function! textidote#MoveBackwardScratchBuffer()
 endfunction
 
 " This function returns 0 if the cursor in the original buffer is not on an
-" errer, and the index of that error otherwise
+" error, and the index of that error otherwise
 function! textidote#FindErrorIndex(cursorPos)
 	let l:test = 0
 	let l:i = 1
@@ -1026,7 +1026,7 @@ function textidote#Display(data,code)
 
 		" Reformat last field to extract 'contextoffset' and 'errorlength'
 		silent! %substitute/\v\C^( *)(\^+)$/\1,\2,trucdeouf/
-		silent! %!awk -F"," '{ if ($3=="trucdeouf")  print "contextoffset=\""length($1)"\" errorlength=\""length($2)-1"\"/>"; else print $0 }'
+		silent! %!awk -F"," '{ if ($3=="trucdeouf")  print "contextoffset=\""length($1)"\" errorlength=\""length($2)"\"/>"; else print $0 }'
 		" Beginning of 'context' reformat. Adjust 'contextoffset' appropriately
 		silent! %global/\m\Ccontextoffset/-1s/\m^/context=/
 		silent! %global/\m\C^context=  /execute "normal! j^1\<C-A>"
@@ -1071,10 +1071,10 @@ function textidote#Display(data,code)
 		if s:textidote_checker =~? 'textidote'
 			let l:error['fromy'] += s:line1 - 1
 			let l:error['toy']   += s:line1 - 1
-			" TeXtidote strangely overestimate 'tox' of 1
-			if str2nr(l:error['tox']) > str2nr(l:error['fromx'])
-				let l:error['tox'] -= 1
-			endif
+			" TeXtidote strangely overestimate 'tox' of 1 - Fixed in TeXtidote 0.9, hence 3 next lines commented
+			" if str2nr(l:error['tox']) > str2nr(l:error['fromx'])
+			" 	let l:error['tox'] -= 1
+			" endif
 		else
 			let l:error['fromy'] += s:line1
 			let l:error['fromx'] += 1
